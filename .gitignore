@@ -1,0 +1,4 @@
+.gitignore
+/src/br/com/examefacil/conn/
+/build/
+/dist/

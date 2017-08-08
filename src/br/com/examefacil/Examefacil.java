@@ -5,6 +5,10 @@
  */
 package br.com.examefacil;
 
+import br.com.examefacil.bean.CustomGeneric;
+import br.com.examefacil.bean.Paciente;
+import sun.java2d.loops.CustomComponent;
+
 
 /**
  *
@@ -16,7 +20,7 @@ public class Examefacil {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-    }
+
+    }   
     
 }
