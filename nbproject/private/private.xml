@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/bean/CustomGeneric.java</file>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/conn/ConnDB.java</file>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/dao/PacienteDAO.java</file>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/bean/Paciente.java</file>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/bean/Exame.java</file>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/bean/Laudo.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/bean/AuditoriaExame.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/Examefacil.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/bean/AreaExame.java</file>
+            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/dao/InterfaceDAO.java</file>
         </group>
     </open-files>
 </project-private>
