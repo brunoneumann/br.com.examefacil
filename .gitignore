@@ -1,4 +1,5 @@
 .gitignore
 /src/br/com/examefacil/conn/
+/src/META-INF/
 /build/
 /dist/

@@ -5,8 +5,62 @@
  */
 package br.com.examefacil.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author bruno
  */
-public class Audio extends Exame {}
+
+@Entity
+@Table(name="audios")
+public class Audio {
+    
+    @Id
+    @GeneratedValue
+    @Column(name = "idaudio")
+    private int idaudio;
+    private int idexame;
+    @Column(name="nome_arquivo")
+    private String nomeArquivo;
+    @Column(columnDefinition = "TEXT")
+    private String detalhes;
+
+    public int getIdaudio() {
+        return idaudio;
+    }
+
+    public void setIdaudio(int idaudio) {
+        this.idaudio = idaudio;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
+    }
+
+    public String getDetalhes() {
+        return detalhes;
+    }
+
+    public void setDetalhes(String detalhes) {
+        this.detalhes = detalhes;
+    }
+
+    public int getIdexame() {
+        return idexame;
+    }
+
+    public void setIdexame(int idexame) {
+        this.idexame = idexame;
+    }
+    
+    
+}

@@ -9,4 +9,4 @@ package br.com.examefacil.bean;
  *
  * @author bruno
  */
-public class Imagem extends CustomGeneric<Imagem>{}
+public class Imagem {}

@@ -5,14 +5,43 @@
  */
 package br.com.examefacil.bean;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author bruno
  */
-public class Paciente extends CustomGeneric<Paciente> {
+
+@Entity
+@Table(name="paciente")
+public class Paciente {
+    
+    @Id
+    @GeneratedValue
+    private int idpaciente;
+    private String nome;
     private String cpf;
     private String email;
 
+    public int getIdpaciente() {
+        return idpaciente;
+    }
+
+    public void setIdpaciente(int idpaciente) {
+        this.idpaciente = idpaciente;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
     public String getCpf() {
         return cpf;
     }

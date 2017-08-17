@@ -5,19 +5,42 @@
  */
 package br.com.examefacil.bean;
 
+import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  *
  * @author bruno
  */
-public class Exame extends CustomGeneric<Exame>{
+@Entity
+@Table(name="exame")
+public class Exame {
     
+    @Id
+    @GeneratedValue
+    @Column(name = "idexame")
     private int idexame;
-    protected Usuario usuario;
-    protected Paciente paciente;
-    protected AreaExame areaexame;
-    protected String status;
-    protected String data;
-    protected String resumo;
+    private int idusuario;
+    private int idpaciente;
+    private int idareaexame;
+    private int idtextopadrao;
+    private String status;
+    @Temporal(TemporalType.DATE)
+    private Calendar data;
+    @Column(name = "hora_entrada")
+    private String horaEntrada;
+    @Column(name = "hora_saida")
+    private String horaSaida;
+    @Column(columnDefinition = "TEXT")
+    private String observacoes;
+    @Column(columnDefinition = "TEXT")
+    private String resumo;
 
     public int getIdexame() {
         return idexame;
@@ -27,53 +50,86 @@ public class Exame extends CustomGeneric<Exame>{
         this.idexame = idexame;
     }
 
-    protected Usuario getUsuario() {
-        return usuario;
+    public int getIdusuario() {
+        return idusuario;
     }
 
-    protected void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
-    protected Paciente getPaciente() {
-        return paciente;
+    public int getIdpaciente() {
+        return idpaciente;
     }
 
-    protected void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public void setIdpaciente(int idpaciente) {
+        this.idpaciente = idpaciente;
     }
 
-    public AreaExame getAreaexame() {
-        return areaexame;
+    public int getIdareaexame() {
+        return idareaexame;
     }
 
-    public void setAreaexame(AreaExame areaexame) {
-        this.areaexame = areaexame;
+    public void setIdareaexame(int idareaexame) {
+        this.idareaexame = idareaexame;
     }
 
-    protected String getStatus() {
+    public int getIdtextopadrao() {
+        return idtextopadrao;
+    }
+
+    public void setIdtextopadrao(int idtextopadrao) {
+        this.idtextopadrao = idtextopadrao;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    protected void setStatus(String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    protected String getData() {
+    public Calendar getData() {
         return data;
     }
 
-    protected void setData(String data) {
+    public void setData(Calendar data) {
         this.data = data;
     }
 
-    protected String getResumo() {
+    public String getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(String horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
+
+    public String getHoraSaida() {
+        return horaSaida;
+    }
+
+    public void setHoraSaida(String horaSaida) {
+        this.horaSaida = horaSaida;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
+    public String getResumo() {
         return resumo;
     }
 
-    protected void setResumo(String resumo) {
+    public void setResumo(String resumo) {
         this.resumo = resumo;
     }
+
     
     
     

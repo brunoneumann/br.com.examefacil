@@ -9,6 +9,6 @@ package br.com.examefacil.bean;
  *
  * @author bruno
  */
-public class TextoPadrao extends CustomGeneric<TextoPadrao>{
+public class TextoPadrao {
     
 }

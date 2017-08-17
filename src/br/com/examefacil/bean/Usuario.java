@@ -9,7 +9,7 @@ package br.com.examefacil.bean;
  *
  * @author bruno
  */
-public class Usuario extends CustomGeneric<Usuario> {
+public class Usuario {
     private String email;
     private String senha;
     private String tipo_acesso;

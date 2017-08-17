@@ -5,10 +5,10 @@
  */
 package br.com.examefacil;
 
-import br.com.examefacil.bean.CustomGeneric;
-import br.com.examefacil.bean.Paciente;
-import sun.java2d.loops.CustomComponent;
-
+import br.com.examefacil.bean.AreaExame;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -20,7 +20,19 @@ public class Examefacil {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
+        AreaExame a = new AreaExame();
+        a.setNome("TESTE2");
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("examefacil");
+        EntityManager manager = factory.createEntityManager();
+        
+        manager.getTransaction().begin();
+        manager.persist(a);
+        manager.getTransaction().commit();
+        
+        manager.close();
+        factory.close();
     }   
     
 }
