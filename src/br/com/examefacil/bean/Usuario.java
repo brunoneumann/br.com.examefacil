@@ -5,11 +5,26 @@
  */
 package br.com.examefacil.bean;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  *
  * @author bruno
  */
+
+@Entity
+@Table(name="usuario")
 public class Usuario {
+    
+    @Id
+    @GeneratedValue
+    @Column(name = "idusuario")
+    private int idusuario;
+    private String nome;
     private String email;
     private String senha;
     private String tipo_acesso;

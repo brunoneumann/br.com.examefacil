@@ -5,6 +5,7 @@
  */
 package br.com.examefacil.bean;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +22,7 @@ public class Paciente {
     
     @Id
     @GeneratedValue
+    @Column(name = "idpaciente")
     private int idpaciente;
     private String nome;
     private String cpf;
