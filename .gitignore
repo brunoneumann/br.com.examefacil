@@ -1,5 +1,6 @@
 .gitignore
 /src/log4j.properties
-/src/META-INF/
+/src/hibernate.cfg.xml
 /build/
 /dist/
+hibernate.reveng.xml
