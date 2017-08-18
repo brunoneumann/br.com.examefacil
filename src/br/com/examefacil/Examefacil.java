@@ -20,10 +20,10 @@ public class Examefacil {
     public static void main(String[] args) {
         
         AreaExame a = new AreaExame();
-        a.setIdareaexame(8);
+        a.setIdareaexame(12);
         
         AreaExameControl control = new AreaExameControl();
         control.excluir(a);
-    }   
+    }
     
 }

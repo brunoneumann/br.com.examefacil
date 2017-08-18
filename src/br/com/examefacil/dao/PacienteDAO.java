@@ -20,15 +20,10 @@ public class PacienteDAO implements InterfaceDAO<Paciente> {
     }
 
     @Override
-    public boolean insert(Paciente obj) throws Exception {
+    public boolean save(Paciente obj) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public boolean update(Paciente obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public boolean delete(Paciente obj) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

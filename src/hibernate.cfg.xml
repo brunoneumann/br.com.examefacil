@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/examefacil?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">1pbns11</property>
+    <mapping class="br.com.examefacil.bean.Acesso"/>
+    <mapping class="br.com.examefacil.bean.AreaExame"/>
+    <mapping class="br.com.examefacil.bean.Audio"/>
+    <mapping class="br.com.examefacil.bean.AuditoriaExame"/>
+    <mapping class="br.com.examefacil.bean.Exame"/>
+    <mapping class="br.com.examefacil.bean.Imagem"/>
+    <mapping class="br.com.examefacil.bean.Laudo"/>
+    <mapping class="br.com.examefacil.bean.Paciente"/>
+    <mapping class="br.com.examefacil.bean.Parametros"/>
+    <mapping class="br.com.examefacil.bean.TextoPadrao"/>
+    <mapping class="br.com.examefacil.bean.TipoExame"/>
+    <mapping class="br.com.examefacil.bean.Usuario"/>
+  </session-factory>
+</hibernate-configuration>

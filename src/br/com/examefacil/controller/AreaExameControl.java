@@ -16,12 +16,10 @@ public class AreaExameControl {
     
     public AreaExameControl(){}
     
-    public boolean inserir(AreaExame areaExame) {
-        return new AreaExameDAO().insert(areaExame);
+    public boolean salvar(AreaExame areaExame){
+        return new AreaExameDAO().save(areaExame);
     }
-    public boolean alterar(AreaExame areaExame){
-        return new AreaExameDAO().update(areaExame);
-    }
+
     public boolean excluir(AreaExame areaExame){
         return new AreaExameDAO().delete(areaExame);
     }

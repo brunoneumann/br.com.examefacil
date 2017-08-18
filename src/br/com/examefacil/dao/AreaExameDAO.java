@@ -6,12 +6,11 @@
 package br.com.examefacil.dao;
 
 import br.com.examefacil.bean.AreaExame;
-import br.com.examefacil.conn.ConnDB;
+import br.com.examefacil.conn.HibernateUtil;
 import java.util.List;
-import javax.persistence.EntityManager;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 
 
 /**
@@ -20,22 +19,20 @@ import org.apache.logging.log4j.Logger;
  */
 public class AreaExameDAO implements InterfaceDAO<AreaExame>{
     
-    static final Logger log = LogManager.getLogger(AreaExameDAO.class.getName());
+    final Logger log = LogManager.getLogger(AreaExameDAO.class.getName());
     
     @Override
-    public boolean insert(AreaExame obj) {
+    public boolean save(AreaExame obj) {
         try {
-            ConnDB connection = new ConnDB();
-            EntityManager manager = connection.entityManager();
-            manager.getTransaction().begin();
-            manager.persist(obj);
-            manager.getTransaction().commit();
-            manager.close();
-            connection.closeConnection();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            session.saveOrUpdate(obj);
+            session.getTransaction().commit();
             return true;
         } catch(Exception ex){
             log.error(ex);
-            ex.printStackTrace();
+        } finally {
+            HibernateUtil.getSessionFactory().close();
         }
         return false;
     }
@@ -43,36 +40,15 @@ public class AreaExameDAO implements InterfaceDAO<AreaExame>{
     @Override
     public boolean delete(AreaExame obj) {
         try {
-            ConnDB connection = new ConnDB();
-            EntityManager manager = connection.entityManager();
-            manager.getTransaction().begin();
-            AreaExame areaExame = manager.merge(obj);
-            manager.remove(areaExame);
-            manager.getTransaction().commit();
-            manager.close();
-            connection.closeConnection();
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            session.delete(obj);
+            session.getTransaction().commit();
             return true;
         } catch(Exception ex){
             log.error(ex);
-            ex.printStackTrace();
-        }
-        return false;
-    }
-    
-    @Override
-    public boolean update(AreaExame obj) {
-        try {
-            ConnDB connection = new ConnDB();
-            EntityManager manager = connection.entityManager();
-            manager.getTransaction().begin();
-            manager.merge(obj);
-            manager.getTransaction().commit();
-            manager.close();
-            connection.closeConnection();
-            return true;
-        } catch(Exception ex){
-            log.error(ex);
-            ex.printStackTrace();
+        } finally {
+            HibernateUtil.getSessionFactory().close();
         }
         return false;
     }
@@ -85,6 +61,8 @@ public class AreaExameDAO implements InterfaceDAO<AreaExame>{
     @Override
     public List<AreaExame> list() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+    }
+    
+    
     
 }
