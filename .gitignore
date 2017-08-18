@@ -1,5 +1,5 @@
 .gitignore
-/src/br/com/examefacil/conn/
+/src/log4j.properties
 /src/META-INF/
 /build/
 /dist/

@@ -6,9 +6,7 @@
 package br.com.examefacil;
 
 import br.com.examefacil.bean.AreaExame;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import br.com.examefacil.controller.AreaExameControl;
 
 /**
  *
@@ -22,17 +20,10 @@ public class Examefacil {
     public static void main(String[] args) {
         
         AreaExame a = new AreaExame();
-        a.setNome("TESTE2");
+        a.setIdareaexame(8);
         
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("examefacil");
-        EntityManager manager = factory.createEntityManager();
-        
-        manager.getTransaction().begin();
-        manager.persist(a);
-        manager.getTransaction().commit();
-        
-        manager.close();
-        factory.close();
+        AreaExameControl control = new AreaExameControl();
+        control.excluir(a);
     }   
     
 }

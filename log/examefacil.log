@@ -1,0 +1,15 @@
+2017-08-18 00:19:05 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:19:06 [main] ERROR AreaExameDAO:84 - org.hibernate.TransactionException: Cannot begin Transaction on closed Session/EntityManager
+2017-08-18 00:20:03 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:22:59 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:23:49 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:25:22 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:25:23 [main] ERROR AreaExameDAO:55 - java.lang.IllegalArgumentException: Removing a detached instance br.com.examefacil.bean.AreaExame#5
+2017-08-18 00:26:09 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:26:10 [main] ERROR AreaExameDAO:55 - java.lang.IllegalArgumentException: Removing a detached instance br.com.examefacil.bean.AreaExame#5
+2017-08-18 00:30:45 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:30:46 [main] ERROR AreaExameDAO:56 - java.lang.IllegalArgumentException: Removing a detached instance br.com.examefacil.bean.AreaExame#5
+2017-08-18 00:32:22 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:32:47 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:32:56 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:33:05 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)

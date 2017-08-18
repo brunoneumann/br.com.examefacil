@@ -13,9 +13,9 @@ import java.util.List;
  */
 public interface InterfaceDAO<T> {
     
-    public void insert(T obj) throws Exception;
-    public void update(T obj) throws Exception;
-    public void delete(T obj) throws Exception;
+    public boolean insert(T obj) throws Exception;
+    public boolean update(T obj) throws Exception;
+    public boolean delete(T obj) throws Exception;
     public T get(T obj) throws Exception;
     public List<T> list() throws Exception;
     
