@@ -1,5 +1,0 @@
-.gitignore
-/src/log4j.properties
-/src/META-INF/
-/build/
-/dist/
