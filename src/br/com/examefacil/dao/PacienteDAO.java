@@ -6,37 +6,28 @@
 package br.com.examefacil.dao;
 
 import br.com.examefacil.bean.Paciente;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
  * @author bruno
  */
-public class PacienteDAO implements InterfaceDAO<Paciente> {
+public class PacienteDAO {
     
-    public PacienteDAO() throws ClassNotFoundException, SQLException {
-        super();
+    public boolean save(Paciente obj) {
+        return new CustomDAO<Paciente>().save(obj);
     }
 
-    @Override
-    public boolean save(Paciente obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(Paciente obj) {
+        return new CustomDAO<Paciente>().delete(obj);
     }
     
-    @Override
-    public boolean delete(Paciente obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Paciente get(int id) {
+        return new CustomDAO<Paciente>().get(Paciente.class, id);
     }
-
-    @Override
-    public Paciente get(Paciente obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    
     public List<Paciente> list() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
     
 }

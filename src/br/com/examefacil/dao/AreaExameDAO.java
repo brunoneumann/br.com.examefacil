@@ -6,61 +6,29 @@
 package br.com.examefacil.dao;
 
 import br.com.examefacil.bean.AreaExame;
-import br.com.examefacil.conn.HibernateUtil;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
 
 
 /**
  *
  * @author bruno
  */
-public class AreaExameDAO implements InterfaceDAO<AreaExame>{
+public class AreaExameDAO {
     
-    final Logger log = LogManager.getLogger(AreaExameDAO.class.getName());
-    
-    @Override
     public boolean save(AreaExame obj) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
-            session.saveOrUpdate(obj);
-            session.getTransaction().commit();
-            return true;
-        } catch(Exception ex){
-            log.error(ex);
-        } finally {
-            HibernateUtil.getSessionFactory().close();
-        }
-        return false;
+        return new CustomDAO<AreaExame>().save(obj);
     }
-    
-    @Override
+
     public boolean delete(AreaExame obj) {
-        try {
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            session.beginTransaction();
-            session.delete(obj);
-            session.getTransaction().commit();
-            return true;
-        } catch(Exception ex){
-            log.error(ex);
-        } finally {
-            HibernateUtil.getSessionFactory().close();
-        }
-        return false;
+        return new CustomDAO<AreaExame>().delete(obj);
     }
     
-    @Override
-    public AreaExame get(AreaExame obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public AreaExame get(int id) {
+        return new CustomDAO<AreaExame>().get(AreaExame.class, id);
     }
     
-    @Override
     public List<AreaExame> list() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
     
     

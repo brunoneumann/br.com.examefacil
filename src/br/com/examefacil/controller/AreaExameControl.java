@@ -23,4 +23,8 @@ public class AreaExameControl {
     public boolean excluir(AreaExame areaExame){
         return new AreaExameDAO().delete(areaExame);
     }
+    
+    public AreaExame get(int id){
+        return new AreaExameDAO().get(id);
+    }
 }

@@ -6,7 +6,9 @@
 package br.com.examefacil;
 
 import br.com.examefacil.bean.AreaExame;
+import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.controller.AreaExameControl;
+import br.com.examefacil.controller.PacienteControl;
 
 /**
  *
@@ -19,11 +21,14 @@ public class Examefacil {
      */
     public static void main(String[] args) {
         
-        AreaExame a = new AreaExame();
-        a.setNome("qwerty");
+        /*AreaExame a = new AreaExame();
+        a.setNome("TESTE 4");
         
         AreaExameControl control = new AreaExameControl();
         control.salvar(a);
+        
+        System.out.println(new AreaExameControl().get(4).getNome());*/
+        
     }
     
 }
