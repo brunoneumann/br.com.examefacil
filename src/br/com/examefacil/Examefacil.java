@@ -7,6 +7,8 @@ package br.com.examefacil;
 
 import br.com.examefacil.bean.AreaExame;
 import br.com.examefacil.controller.AreaExameControl;
+import br.com.examefacil.swing.TelaPrincipal;
+import br.com.examefacil.swing.TelaTipoExame;
 
 /**
  *
@@ -14,16 +16,16 @@ import br.com.examefacil.controller.AreaExameControl;
  */
 public class Examefacil {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         
-        AreaExame a = new AreaExame();
+        /*AreaExame a = new AreaExame();
         a.setNome("qwerty");
         
         AreaExameControl control = new AreaExameControl();
-        control.salvar(a);
+        control.salvar(a);*/
+        
+        new TelaPrincipal().setVisible(true);
+        
     }
     
 }

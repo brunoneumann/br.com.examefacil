@@ -29,3 +29,16 @@
 2017-08-18 12:32:14 [main] ERROR AreaExameDAO:100 - org.hibernate.HibernateException: No CurrentSessionContext configured!
 2017-08-18 12:36:41 [main] ERROR AreaExameDAO:100 - org.hibernate.HibernateException: No CurrentSessionContext configured!
 2017-08-18 12:43:34 [main] ERROR AreaExameDAO:49 - org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
+2017-08-21 21:05:37 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:05:54 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:05:54 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:06:39 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:06:48 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:06:57 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:08:16 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:08:20 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:08:25 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:10:40 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:15:25 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:21:37 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:25:39 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
