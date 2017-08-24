@@ -14,14 +14,18 @@ import br.com.examefacil.dao.TipoExameDAO;
  */
 public class TipoExameControl {
     
-        public TipoExameControl(){}
+    public TipoExameControl(){}
     
-    public boolean salvar(TipoExame tipoExame){
-        return new TipoExameDAO().save(tipoExame);
+    public boolean salvar(TipoExame areaExame){
+        return new TipoExameDAO().save(areaExame);
     }
 
-    public boolean excluir(TipoExame tipoExame){
-        return new TipoExameDAO().delete(tipoExame);
+    public boolean excluir(TipoExame areaExame){
+        return new TipoExameDAO().delete(areaExame);
+    }
+    
+    public TipoExame get(int id){
+        return new TipoExameDAO().get(id);
     }
     
 }

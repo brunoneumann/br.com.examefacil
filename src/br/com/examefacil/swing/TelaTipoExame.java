@@ -7,6 +7,7 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.Examefacil;
 import br.com.examefacil.bean.TipoExame;
+import br.com.examefacil.controller.TipoExameControl;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,6 +50,8 @@ public class TelaTipoExame extends javax.swing.JFrame {
         jTTipoExame = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTDescricao = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TipoExame");
@@ -64,6 +67,11 @@ public class TelaTipoExame extends javax.swing.JFrame {
         });
 
         jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         jBIncluir.setText("Incluir");
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +189,15 @@ public class TelaTipoExame extends javax.swing.JFrame {
         jTDescricao.setColumns(20);
         jTDescricao.setRows(5);
 
+        jLabel3.setText("Area do Exame");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
         jEditarLayout.setHorizontalGroup(
@@ -189,18 +206,28 @@ public class TelaTipoExame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42)
+                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -288,10 +315,53 @@ public class TelaTipoExame extends javax.swing.JFrame {
        TipoExame a = new TipoExame();
        a.setNome(jTTipoExame.getText());
        a.setDescricao(jTDescricao.getText());
+       a.setIdareaexame(28);
 
        /*acrescentar método de inserção ao banco de dados*/
        
-    
+    if (jTTipoExame.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
+        } else {
+            try {
+                
+                
+            if (jCInclusaoAutomatica.isSelected()) {
+                
+                a.setNome(jTTipoExame.getText());
+                a.setDescricao(jTDescricao.getText());
+
+                TipoExameControl control = new TipoExameControl();
+                control.salvar(a);
+
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
+                jTTipoExame.setText("");
+            } else {
+
+                
+                a.setNome(jTTipoExame.getText());
+
+                TipoExameControl control = new TipoExameControl();
+                control.salvar(a);
+
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
+                jTTipoExame.setText("");
+                jBIncluir.setEnabled(true);
+                jBExcluir.setEnabled(true);
+                jBPesquisar.setEnabled(true);
+                jBeditar.setEnabled(true);
+                jBFechar.setEnabled(true);
+                jTPesquisar.setEnabled(true);
+                jBGravar.setEnabled(false);
+                jBCancelar.setEnabled(false);
+                jTTipoExame.setText("");
+                jTDescricao.setText("");
+                jTabTipoExame.setSelectedIndex(0);
+            }
+        }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
+                }
+        }
        
        
        
@@ -300,6 +370,18 @@ public class TelaTipoExame extends javax.swing.JFrame {
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        
+        String pesquisa = jTPesquisar.getText();
+        
+        
+        
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,10 +430,12 @@ public class TelaTipoExame extends javax.swing.JFrame {
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JButton jBeditar;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jEditar;
     private javax.swing.JList<String> jLTipoExame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPTipoExame;
     private javax.swing.JPanel jPVisualizar;
     private javax.swing.JTextArea jTDescricao;

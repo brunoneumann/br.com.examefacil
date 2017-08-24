@@ -12,26 +12,7 @@ import java.util.List;
  *
  * @author bruno
  */
-public class AcessoDAO implements InterfaceDAO<Acesso>{
-    
-    
-    @Override
-    public boolean save(Acesso obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    @Override
-    public boolean delete(Acesso obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public Acesso get(Acesso obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public List<Acesso> list() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class AcessoDAO {
+
     
 }

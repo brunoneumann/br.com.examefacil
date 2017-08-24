@@ -6,6 +6,9 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.Examefacil;
+import br.com.examefacil.bean.Usuario;
+import br.com.examefacil.controller.UsuarioControl;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +69,11 @@ public class TelaUsuario extends javax.swing.JFrame {
         });
 
         jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         jBIncluir.setText("Incluir");
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +91,11 @@ public class TelaUsuario extends javax.swing.JFrame {
 
         jBGravar.setText("Gravar");
         jBGravar.setEnabled(false);
+        jBGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGravarActionPerformed(evt);
+            }
+        });
 
         jBExcluir.setText("Excluir");
 
@@ -300,6 +313,78 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
+
+    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
+        
+       Usuario a = new Usuario();
+       a.setNome(jTNomeUsuario.getText());
+       a.setEmail(jTEmail.getText());
+       a.setSenha(jPSenha.getText());
+       a.setTipo_acesso("a");
+
+       /*acrescentar método de inserção ao banco de dados*/
+       
+    if (jTNomeUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
+        } else {
+            try {
+                
+                
+            if (jCInclusaoAutomatica.isSelected()) {
+                
+
+
+                UsuarioControl control = new UsuarioControl();
+                control.salvar(a);
+
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
+                jTNomeUsuario.setText("");
+                jTEmail.setText("");
+                jPSenha.setText("");
+            } else {
+
+                
+                
+                UsuarioControl control = new UsuarioControl();
+                control.salvar(a);
+
+                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
+                jTNomeUsuario.setText("");
+                jTEmail.setText("");
+                jPSenha.setText("");
+                jBIncluir.setEnabled(true);
+                jBExcluir.setEnabled(true);
+                jBPesquisar.setEnabled(true);
+                jBeditar.setEnabled(true);
+                jBFechar.setEnabled(true);
+                jTPesquisar.setEnabled(true);
+                jBGravar.setEnabled(false);
+                jBCancelar.setEnabled(false);
+                jTabUsuario.setSelectedIndex(0);
+            }
+        }
+            catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
+                }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jBGravarActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        
+        
+        String pesquisa = jTPesquisar.getText();
+        
+        
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

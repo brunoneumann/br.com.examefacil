@@ -29,6 +29,15 @@ public class Usuario {
     private String senha;
     private String tipo_acesso;
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
     public String getEmail() {
         return email;
     }

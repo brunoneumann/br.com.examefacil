@@ -6,6 +6,7 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.Examefacil;
+import br.com.examefacil.bean.Usuario;
 
 /**
  *
@@ -64,6 +65,11 @@ public class TelaPaciente extends javax.swing.JFrame {
         });
 
         jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         jBIncluir.setText("Incluir");
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +91,11 @@ public class TelaPaciente extends javax.swing.JFrame {
         jBExcluir.setText("Excluir");
 
         jTPesquisar.setText("Descrição");
+        jTPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPesquisarActionPerformed(evt);
+            }
+        });
 
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +184,7 @@ public class TelaPaciente extends javax.swing.JFrame {
 
         jLabel2.setText("CPF");
 
-        jLabel3.setText("E-mails");
+        jLabel3.setText("E-mail");
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -287,6 +298,16 @@ public class TelaPaciente extends javax.swing.JFrame {
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
+
+    private void jTPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPesquisarActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        String pesquisa = jTPesquisar.getText();
+        
+        
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

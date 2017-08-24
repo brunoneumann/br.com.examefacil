@@ -5,10 +5,10 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
 import br.com.examefacil.bean.AreaExame;
 import br.com.examefacil.controller.AreaExameControl;
-import javassist.bytecode.stackmap.BasicBlock;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -64,6 +64,11 @@ public class TelaAreaExame extends javax.swing.JFrame {
         });
 
         jBPesquisar.setText("Pesquisar");
+        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPesquisarActionPerformed(evt);
+            }
+        });
 
         jBIncluir.setText("Incluir");
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
@@ -215,8 +220,6 @@ public class TelaAreaExame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleName("AreaExame");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -322,6 +325,21 @@ public class TelaAreaExame extends javax.swing.JFrame {
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
+
+    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
+        String pesquisa = jTPesquisar.getText();
+        
+        AreaExameControl control = new AreaExameControl();
+        System.out.println (control.get(28).getNome());
+        
+        
+        
+        
+
+        
+        
+        
+    }//GEN-LAST:event_jBPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

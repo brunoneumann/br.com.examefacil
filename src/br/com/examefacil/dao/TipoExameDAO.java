@@ -12,26 +12,22 @@ import java.util.List;
  *
  * @author Henrique
  */
-public class TipoExameDAO implements InterfaceDAO<TipoExame> {
+public class TipoExameDAO {
 
-    @Override
-    public boolean save(TipoExame obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean save(TipoExame obj) {
+        return new CustomDAO<TipoExame>().save(obj);
     }
 
-    @Override
-    public boolean delete(TipoExame obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(TipoExame obj) {
+        return new CustomDAO<TipoExame>().delete(obj);
     }
-
-    @Override
-    public TipoExame get(TipoExame obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public TipoExame get(int id) {
+        return new CustomDAO<TipoExame>().get(TipoExame.class, id);
     }
-
-    @Override
+    
     public List<TipoExame> list() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
     
 }
