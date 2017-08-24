@@ -42,3 +42,5 @@
 2017-08-21 21:15:25 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
 2017-08-21 21:21:37 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
 2017-08-21 21:25:39 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 16:49:50 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 17:02:42 [AWT-EventQueue-0] ERROR TipoExameDAO:32 - org.hibernate.exception.ConstraintViolationException: could not execute statement

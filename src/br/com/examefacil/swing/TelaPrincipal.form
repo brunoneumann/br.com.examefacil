@@ -14,6 +14,14 @@
             <Property name="text" type="java.lang.String" value="Cadastros"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pacientes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMTipoExame">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tipos de Exames"/>
@@ -28,14 +36,6 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Exemplo de Janela Interna"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
@@ -75,14 +75,14 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel1" max="32767" attributes="0"/>
-          <Component id="jDesktopPane2" alignment="0" max="32767" attributes="0"/>
+          <Component id="jDesktopPane2" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jDesktopPane2" max="32767" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -94,12 +94,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="860" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="32" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -109,31 +109,25 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jIteste" pref="0" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jIExemplo" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="462" max="32767" attributes="0"/>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jIteste" pref="0" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
+                  <Component id="jIExemplo" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JInternalFrame" name="jIteste">
+        <Container class="javax.swing.JInternalFrame" name="jIExemplo">
           <Properties>
             <Property name="visible" type="boolean" value="false"/>
           </Properties>
@@ -141,23 +135,23 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPModelo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTabModelo" alignment="0" min="-2" pref="600" max="-2" attributes="0"/>
+                  <Component id="jPAreaExame1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jTabAreaExame1" alignment="0" min="-2" pref="600" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPModelo" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPAreaExame1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTabModelo" min="-2" pref="311" max="-2" attributes="0"/>
+                      <Component id="jTabAreaExame1" min="-2" pref="311" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPModelo">
+            <Container class="javax.swing.JPanel" name="jPAreaExame1">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -173,25 +167,25 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jBIncluir" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExameIncluir1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jBeditar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExameEditar1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jBGravar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExameGravar1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jBCancelar" min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExameCancelar1" min="-2" pref="75" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jBExcluir" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExameExcluir1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jBFechar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExameFechar1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTPesquisar" min="-2" pref="199" max="-2" attributes="0"/>
+                                  <Component id="jTAreaExamePesquisar1" min="-2" pref="199" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jBPesquisar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jBAreaExamePesquisar1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jCInclusaoAutomatica" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCAreaExameInclusaoAutomatica1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -202,97 +196,97 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBeditar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBGravar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jBFechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExameCancelar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExameIncluir1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExameEditar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExameGravar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExameExcluir1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExameFechar1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jBPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBAreaExamePesquisar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTAreaExamePesquisar1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jCInclusaoAutomatica" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCAreaExameInclusaoAutomatica1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jBCancelar">
+                <Component class="javax.swing.JButton" name="jBAreaExameCancelar1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Cancelar"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCancelarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAreaExameCancelar1ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBPesquisar">
+                <Component class="javax.swing.JButton" name="jBAreaExamePesquisar1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pesquisar"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBIncluir">
+                <Component class="javax.swing.JButton" name="jBAreaExameIncluir1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Incluir"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBIncluirActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAreaExameIncluir1ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBeditar">
+                <Component class="javax.swing.JButton" name="jBAreaExameEditar1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeditarActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAreaExameEditar1ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBGravar">
+                <Component class="javax.swing.JButton" name="jBAreaExameGravar1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Gravar"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBExcluir">
+                <Component class="javax.swing.JButton" name="jBAreaExameExcluir1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTPesquisar">
+                <Component class="javax.swing.JTextField" name="jTAreaExamePesquisar1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jBFechar">
+                <Component class="javax.swing.JButton" name="jBAreaExameFechar1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Fechar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBFecharActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBAreaExameFechar1ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JCheckBox" name="jCInclusaoAutomatica">
+                <Component class="javax.swing.JCheckBox" name="jCAreaExameInclusaoAutomatica1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Inclus&#xe3;o Autom&#xe1;tica"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCInclusaoAutomaticaActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCAreaExameInclusaoAutomatica1ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JTabbedPane" name="jTabModelo">
+            <Container class="javax.swing.JTabbedPane" name="jTabAreaExame1">
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="jPVisualizar">
+                <Container class="javax.swing.JPanel" name="jPAreaExameVisualizar1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="Visualizar">
@@ -305,19 +299,19 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLTipoExame" min="-2" pref="583" max="-2" attributes="0"/>
+                              <Component id="jLAreaExame1" min="-2" pref="583" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLTipoExame" alignment="0" pref="283" max="32767" attributes="0"/>
+                          <Component id="jLAreaExame1" alignment="0" pref="283" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JList" name="jLTipoExame">
+                    <Component class="javax.swing.JList" name="jLAreaExame1">
                       <Properties>
                         <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                           <StringArray count="5">
@@ -335,7 +329,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jEditar">
+                <Container class="javax.swing.JPanel" name="jAreaExameEditar1">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="Editar">
@@ -350,10 +344,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTTipoExame" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <Component id="jTDescricao" alignment="0" min="-2" pref="565" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTAreaExame1" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Component id="jTAreaExameDescricao1" alignment="0" min="-2" pref="565" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="20" max="32767" attributes="0"/>
                           </Group>
@@ -363,32 +357,32 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTTipoExame" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTAreaExame1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTDescricao" min="-2" pref="184" max="-2" attributes="0"/>
+                              <Component id="jTAreaExameDescricao1" min="-2" pref="184" max="-2" attributes="0"/>
                               <EmptySpace pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel1">
+                    <Component class="javax.swing.JLabel" name="jLabel5">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Tipo de Exame"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTTipoExame">
+                    <Component class="javax.swing.JTextField" name="jTAreaExame1">
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel2">
+                    <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextArea" name="jTDescricao">
+                    <Component class="javax.swing.JTextArea" name="jTAreaExameDescricao1">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
