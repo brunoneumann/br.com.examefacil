@@ -1,0 +1,40 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="examefacil">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- mapped entity -->
+        <class>br.com.examefacil.bean.Acesso</class>
+        <class>br.com.examefacil.bean.AreaExame</class>
+        <class>br.com.examefacil.bean.Audio</class>
+        <class>br.com.examefacil.bean.AuditoriaExame</class>
+        <class>br.com.examefacil.bean.Exame</class>
+        <class>br.com.examefacil.bean.Imagem</class>
+        <class>br.com.examefacil.bean.Laudo</class>
+        <class>br.com.examefacil.bean.Paciente</class>
+        <class>br.com.examefacil.bean.Parametros</class>
+        <class>br.com.examefacil.bean.TextoPadrao</class>
+        <class>br.com.examefacil.bean.TipoExame</class>
+        <class>br.com.examefacil.bean.Usuario</class>
+   
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/examefacil" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="1pbns11" />
+
+            <!--  hibernate properties -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+        </properties>
+        
+    </persistence-unit>
+</persistence>
