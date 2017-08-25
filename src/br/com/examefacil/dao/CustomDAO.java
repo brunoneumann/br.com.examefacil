@@ -7,6 +7,7 @@ package br.com.examefacil.dao;
 
 import br.com.examefacil.conn.HibernateUtil;
 import java.util.List;
+import jdk.nashorn.internal.parser.TokenType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -30,7 +31,7 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         } catch(Exception ex){
             log.error(ex);
         } finally {
-            HibernateUtil.getSessionFactory().close();
+            //HibernateUtil.getSessionFactory().close();
         }
         return false;
     }

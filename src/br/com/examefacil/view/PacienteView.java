@@ -9,6 +9,6 @@ package br.com.examefacil.view;
  *
  * @author bruno
  */
-public class PacienteView {
+public interface PacienteView {
     
 }

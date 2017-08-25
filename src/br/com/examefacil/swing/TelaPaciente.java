@@ -52,7 +52,7 @@ public class TelaPaciente extends javax.swing.JFrame {
         jPSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TipoExame");
+        setTitle("Pacientes");
 
         jPPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

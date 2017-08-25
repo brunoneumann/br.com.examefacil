@@ -51,7 +51,7 @@ public class TelaAreaExame extends javax.swing.JFrame {
         jTAreaExame = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("AreaExame");
+        setTitle("Área de Exame");
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

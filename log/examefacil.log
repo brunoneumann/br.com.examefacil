@@ -88,3 +88,10 @@
 2017-08-24 18:44:34 [AWT-EventQueue-0] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
 2017-08-24 18:44:37 [AWT-EventQueue-0] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
 2017-08-24 18:44:43 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-25 18:55:54 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2017-08-25 18:57:47 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-25 18:59:00 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-25 19:00:16 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-25 19:01:57 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-25 19:35:37 [AWT-EventQueue-0] ERROR CustomDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-25 19:36:28 [AWT-EventQueue-0] ERROR CustomDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]

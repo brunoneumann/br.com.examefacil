@@ -1,28 +1,32 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.swing;
 
 import br.com.examefacil.Examefacil;
 import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.UsuarioControl;
+import br.com.examefacil.view.UsuarioView;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Henrique
  */
-public class TelaUsuario extends javax.swing.JFrame {
-
+public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
+    
     /**
      * Creates new form TipoExames
      */
     public TelaUsuario() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +60,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TipoExame");
+        setTitle("Usuários");
 
         jPUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -266,14 +270,12 @@ public class TelaUsuario extends javax.swing.JFrame {
         jBCancelar.setEnabled(true);
         jTabUsuario.setSelectedIndex(1);
         
-
-        
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
         // TODO add your handling code here:
-       setVisible(false);
-       
+        setVisible(false);
+        
         
     }//GEN-LAST:event_jBFecharActionPerformed
 
@@ -316,60 +318,62 @@ public class TelaUsuario extends javax.swing.JFrame {
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         
-       Usuario a = new Usuario();
-       a.setNome(jTNomeUsuario.getText());
-       a.setEmail(jTEmail.getText());
-       a.setSenha(jPSenha.getText());
-       a.setTipo_acesso("a");
-
-       /*acrescentar método de inserção ao banco de dados*/
-       
-    if (jTNomeUsuario.getText().equals("")) {
+        
+        UsuarioControl usuarioControl = new UsuarioControl();
+        usuarioControl.salvar(this);
+        
+        /*Usuario a = new Usuario();
+        a.setNome(jTNomeUsuario.getText());
+        a.setEmail(jTEmail.getText());
+        a.setSenha(jPSenha.getText());
+        a.setTipo_acesso("a");
+        
+        if (jTNomeUsuario.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
         } else {
             try {
                 
                 
-            if (jCInclusaoAutomatica.isSelected()) {
-                
-
-
-                UsuarioControl control = new UsuarioControl();
-                control.salvar(a);
-
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                jTNomeUsuario.setText("");
-                jTEmail.setText("");
-                jPSenha.setText("");
-            } else {
-
-                
-                
-                UsuarioControl control = new UsuarioControl();
-                control.salvar(a);
-
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                jTNomeUsuario.setText("");
-                jTEmail.setText("");
-                jPSenha.setText("");
-                jBIncluir.setEnabled(true);
-                jBExcluir.setEnabled(true);
-                jBPesquisar.setEnabled(true);
-                jBeditar.setEnabled(true);
-                jBFechar.setEnabled(true);
-                jTPesquisar.setEnabled(true);
-                jBGravar.setEnabled(false);
-                jBCancelar.setEnabled(false);
-                jTabUsuario.setSelectedIndex(0);
+                if (jCInclusaoAutomatica.isSelected()) {
+                    
+                    
+                    
+                    UsuarioControl control = new UsuarioControl();
+                    control.salvar(a);
+                    
+                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
+                    jTNomeUsuario.setText("");
+                    jTEmail.setText("");
+                    jPSenha.setText("");
+                } else {
+                    
+                    
+                    
+                    UsuarioControl control = new UsuarioControl();
+                    control.salvar(a);
+                    
+                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
+                    jTNomeUsuario.setText("");
+                    jTEmail.setText("");
+                    jPSenha.setText("");
+                    jBIncluir.setEnabled(true);
+                    jBExcluir.setEnabled(true);
+                    jBPesquisar.setEnabled(true);
+                    jBeditar.setEnabled(true);
+                    jBFechar.setEnabled(true);
+                    jTPesquisar.setEnabled(true);
+                    jBGravar.setEnabled(false);
+                    jBCancelar.setEnabled(false);
+                    jTabUsuario.setSelectedIndex(0);
+                }
             }
-        }
             catch (Exception e){
                 JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
-                }
+            }
         }
         
         
-        
+        */
         
         
         
@@ -385,7 +389,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jBPesquisarActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -393,8 +397,8 @@ public class TelaUsuario extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -419,7 +423,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -452,4 +456,34 @@ public class TelaUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTabbedPane jTabUsuario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getNome() {
+        return jTNomeUsuario.getText();
+    }
+
+    @Override
+    public String getEmail() {
+        return jTEmail.getText();
+    }
+
+    @Override
+    public String getSenha() {
+        return jPSenha.getText();
+    }
+
+    @Override
+    public JTextField jTNomeUsuario() {
+        return jTNomeUsuario;
+    }
+
+    @Override
+    public JTextField jTEmail() {
+        return jTEmail;
+    }
+
+    @Override
+    public JPasswordField jPSenha() {
+        return jPSenha;
+    }
 }

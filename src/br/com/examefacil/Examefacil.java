@@ -7,7 +7,6 @@ package br.com.examefacil;
 
 
 import br.com.examefacil.swing.TelaPrincipal;
-import br.com.examefacil.swing.TelaTipoExame;
 
 
 /**
@@ -27,8 +26,6 @@ public class Examefacil {
 
         AreaExameControl control = new AreaExameControl();
         control.salvar(a);*/
-
-        new TelaPrincipal().setVisible(true);
        
 
         

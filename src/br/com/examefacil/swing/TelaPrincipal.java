@@ -31,27 +31,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jDesktopPane2 = new javax.swing.JDesktopPane();
-        jIExemplo = new javax.swing.JInternalFrame();
-        jPAreaExame1 = new javax.swing.JPanel();
-        jBAreaExameCancelar1 = new javax.swing.JButton();
-        jBAreaExamePesquisar1 = new javax.swing.JButton();
-        jBAreaExameIncluir1 = new javax.swing.JButton();
-        jBAreaExameEditar1 = new javax.swing.JButton();
-        jBAreaExameGravar1 = new javax.swing.JButton();
-        jBAreaExameExcluir1 = new javax.swing.JButton();
-        jTAreaExamePesquisar1 = new javax.swing.JTextField();
-        jBAreaExameFechar1 = new javax.swing.JButton();
-        jCAreaExameInclusaoAutomatica1 = new javax.swing.JCheckBox();
-        jTabAreaExame1 = new javax.swing.JTabbedPane();
-        jPAreaExameVisualizar1 = new javax.swing.JPanel();
-        jLAreaExame1 = new javax.swing.JList<>();
-        jAreaExameEditar1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jTAreaExame1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTAreaExameDescricao1 = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -61,206 +40,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 32, Short.MAX_VALUE)
-        );
-
-        jIExemplo.setVisible(false);
-
-        jPAreaExame1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jBAreaExameCancelar1.setText("Cancelar");
-        jBAreaExameCancelar1.setEnabled(false);
-        jBAreaExameCancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAreaExameCancelar1ActionPerformed(evt);
-            }
-        });
-
-        jBAreaExamePesquisar1.setText("Pesquisar");
-
-        jBAreaExameIncluir1.setText("Incluir");
-        jBAreaExameIncluir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAreaExameIncluir1ActionPerformed(evt);
-            }
-        });
-
-        jBAreaExameEditar1.setText("Editar");
-        jBAreaExameEditar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAreaExameEditar1ActionPerformed(evt);
-            }
-        });
-
-        jBAreaExameGravar1.setText("Gravar");
-        jBAreaExameGravar1.setEnabled(false);
-
-        jBAreaExameExcluir1.setText("Excluir");
-
-        jTAreaExamePesquisar1.setText("Descrição");
-
-        jBAreaExameFechar1.setText("Fechar");
-        jBAreaExameFechar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBAreaExameFechar1ActionPerformed(evt);
-            }
-        });
-
-        jCAreaExameInclusaoAutomatica1.setText("Inclusão Automática");
-        jCAreaExameInclusaoAutomatica1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCAreaExameInclusaoAutomatica1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPAreaExame1Layout = new javax.swing.GroupLayout(jPAreaExame1);
-        jPAreaExame1.setLayout(jPAreaExame1Layout);
-        jPAreaExame1Layout.setHorizontalGroup(
-            jPAreaExame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPAreaExame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPAreaExame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPAreaExame1Layout.createSequentialGroup()
-                        .addComponent(jBAreaExameIncluir1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBAreaExameEditar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBAreaExameGravar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBAreaExameCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBAreaExameExcluir1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBAreaExameFechar1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPAreaExame1Layout.createSequentialGroup()
-                        .addComponent(jTAreaExamePesquisar1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBAreaExamePesquisar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCAreaExameInclusaoAutomatica1))))
-        );
-        jPAreaExame1Layout.setVerticalGroup(
-            jPAreaExame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPAreaExame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPAreaExame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAreaExameCancelar1)
-                    .addComponent(jBAreaExameIncluir1)
-                    .addComponent(jBAreaExameEditar1)
-                    .addComponent(jBAreaExameGravar1)
-                    .addComponent(jBAreaExameExcluir1)
-                    .addComponent(jBAreaExameFechar1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPAreaExame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBAreaExamePesquisar1)
-                    .addComponent(jTAreaExamePesquisar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAreaExame1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jCAreaExameInclusaoAutomatica1))
-        );
-
-        jLAreaExame1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-
-        javax.swing.GroupLayout jPAreaExameVisualizar1Layout = new javax.swing.GroupLayout(jPAreaExameVisualizar1);
-        jPAreaExameVisualizar1.setLayout(jPAreaExameVisualizar1Layout);
-        jPAreaExameVisualizar1Layout.setHorizontalGroup(
-            jPAreaExameVisualizar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPAreaExameVisualizar1Layout.createSequentialGroup()
-                .addComponent(jLAreaExame1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
-        );
-        jPAreaExameVisualizar1Layout.setVerticalGroup(
-            jPAreaExameVisualizar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLAreaExame1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
-        );
-
-        jTabAreaExame1.addTab("Visualizar", jPAreaExameVisualizar1);
-
-        jLabel5.setText("Tipo de Exame");
-
-        jLabel6.setText("Descrição");
-
-        jTAreaExameDescricao1.setColumns(20);
-        jTAreaExameDescricao1.setRows(5);
-
-        javax.swing.GroupLayout jAreaExameEditar1Layout = new javax.swing.GroupLayout(jAreaExameEditar1);
-        jAreaExameEditar1.setLayout(jAreaExameEditar1Layout);
-        jAreaExameEditar1Layout.setHorizontalGroup(
-            jAreaExameEditar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jAreaExameEditar1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jAreaExameEditar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jTAreaExame1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTAreaExameDescricao1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-        jAreaExameEditar1Layout.setVerticalGroup(
-            jAreaExameEditar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jAreaExameEditar1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTAreaExame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTAreaExameDescricao1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        jTabAreaExame1.addTab("Editar", jAreaExameEditar1);
-
-        javax.swing.GroupLayout jIExemploLayout = new javax.swing.GroupLayout(jIExemplo.getContentPane());
-        jIExemplo.getContentPane().setLayout(jIExemploLayout);
-        jIExemploLayout.setHorizontalGroup(
-            jIExemploLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPAreaExame1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabAreaExame1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jIExemploLayout.setVerticalGroup(
-            jIExemploLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jIExemploLayout.createSequentialGroup()
-                .addComponent(jPAreaExame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabAreaExame1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jDesktopPane2.setLayer(jIExemplo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
-        jDesktopPane2.setLayout(jDesktopPane2Layout);
-        jDesktopPane2Layout.setHorizontalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jIExemplo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jDesktopPane2Layout.setVerticalGroup(
-            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jIExemplo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        setTitle("Exame Fácil");
+        setMinimumSize(new java.awt.Dimension(800, 500));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -307,15 +88,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jDesktopPane2)
+            .addGap(0, 733, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 441, Short.MAX_VALUE)
         );
 
         pack();
@@ -337,26 +114,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new TelaUsuario().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jBAreaExameCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAreaExameCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBAreaExameCancelar1ActionPerformed
-
-    private void jBAreaExameIncluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAreaExameIncluir1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBAreaExameIncluir1ActionPerformed
-
-    private void jBAreaExameEditar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAreaExameEditar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBAreaExameEditar1ActionPerformed
-
-    private void jBAreaExameFechar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAreaExameFechar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBAreaExameFechar1ActionPerformed
-
-    private void jCAreaExameInclusaoAutomatica1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAreaExameInclusaoAutomatica1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCAreaExameInclusaoAutomatica1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new TelaPaciente().setVisible(true);
@@ -398,20 +155,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jAreaExameEditar1;
-    private javax.swing.JButton jBAreaExameCancelar1;
-    private javax.swing.JButton jBAreaExameEditar1;
-    private javax.swing.JButton jBAreaExameExcluir1;
-    private javax.swing.JButton jBAreaExameFechar1;
-    private javax.swing.JButton jBAreaExameGravar1;
-    private javax.swing.JButton jBAreaExameIncluir1;
-    private javax.swing.JButton jBAreaExamePesquisar1;
-    private javax.swing.JCheckBox jCAreaExameInclusaoAutomatica1;
-    private javax.swing.JDesktopPane jDesktopPane2;
-    private javax.swing.JInternalFrame jIExemplo;
-    private javax.swing.JList<String> jLAreaExame1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuItem jMTipoExame;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -419,12 +162,5 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPAreaExame1;
-    private javax.swing.JPanel jPAreaExameVisualizar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTAreaExame1;
-    private javax.swing.JTextArea jTAreaExameDescricao1;
-    private javax.swing.JTextField jTAreaExamePesquisar1;
-    private javax.swing.JTabbedPane jTabAreaExame1;
     // End of variables declaration//GEN-END:variables
 }

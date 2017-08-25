@@ -54,7 +54,7 @@ public class TelaTipoExame extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("TipoExame");
+        setTitle("Tipos de Exame");
 
         jPTipoExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
