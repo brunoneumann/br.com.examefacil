@@ -1,3 +1,51 @@
+<<<<<<< HEAD
+2017-08-18 00:40:56 [main] INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: examefacil
+	...]
+2017-08-18 00:40:56 [main] INFO  Version:45 - HHH000412: Hibernate Core {5.2.10.Final}
+2017-08-18 00:40:56 [main] INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-18 00:40:56 [main] INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-18 00:40:56 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:40:56 [main] INFO  pooling:126 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/examefacil]
+2017-08-18 00:40:56 [main] INFO  pooling:135 - HHH10001001: Connection properties: {user=root, password=****}
+2017-08-18 00:40:56 [main] INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2017-08-18 00:40:56 [main] INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2017-08-18 00:40:56 [main] INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2017-08-18 00:40:57 [main] INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7a11c4c7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2017-08-18 00:40:57 [main] INFO  pooling:230 - HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost/examefacil]
+2017-08-18 00:41:19 [main] INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
+	name: examefacil
+	...]
+2017-08-18 00:41:20 [main] INFO  Version:45 - HHH000412: Hibernate Core {5.2.10.Final}
+2017-08-18 00:41:20 [main] INFO  Environment:213 - HHH000206: hibernate.properties not found
+2017-08-18 00:41:20 [main] INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2017-08-18 00:41:20 [main] WARN  pooling:70 - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2017-08-18 00:41:20 [main] INFO  pooling:126 - HHH10001005: using driver [com.mysql.jdbc.Driver] at URL [jdbc:mysql://localhost/examefacil]
+2017-08-18 00:41:20 [main] INFO  pooling:135 - HHH10001001: Connection properties: {user=root, password=****}
+2017-08-18 00:41:20 [main] INFO  pooling:140 - HHH10001003: Autocommit mode: false
+2017-08-18 00:41:20 [main] INFO  DriverManagerConnectionProviderImpl:41 - HHH000115: Hibernate connection pool size: 20 (min=1)
+2017-08-18 00:41:20 [main] INFO  Dialect:157 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2017-08-18 00:41:20 [main] INFO  access:47 - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7a11c4c7] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2017-08-18 00:41:21 [main] INFO  pooling:230 - HHH10001008: Cleaning up connection pool [jdbc:mysql://localhost/examefacil]
+2017-08-18 12:32:14 [main] ERROR AreaExameDAO:100 - org.hibernate.HibernateException: No CurrentSessionContext configured!
+2017-08-18 12:36:41 [main] ERROR AreaExameDAO:100 - org.hibernate.HibernateException: No CurrentSessionContext configured!
+2017-08-18 12:43:34 [main] ERROR AreaExameDAO:49 - org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
+2017-08-21 21:05:37 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:05:54 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:05:54 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:06:39 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:06:48 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:06:57 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:08:16 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:08:20 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:08:25 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:10:40 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:15:25 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:21:37 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-21 21:25:39 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 16:49:50 [AWT-EventQueue-0] ERROR AreaExameDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 17:02:42 [AWT-EventQueue-0] ERROR TipoExameDAO:32 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+=======
 2017-08-18 00:40:56 [main] INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [
 	name: examefacil
 	...]
@@ -30,3 +78,13 @@
 2017-08-18 12:36:41 [main] ERROR AreaExameDAO:100 - org.hibernate.HibernateException: No CurrentSessionContext configured!
 2017-08-18 12:43:34 [main] ERROR AreaExameDAO:49 - org.hibernate.StaleStateException: Batch update returned unexpected row count from update [0]; actual row count: 0; expected: 1
 2017-08-20 19:13:58 [main] ERROR CustomDAO:62 - org.hibernate.HibernateException: get is not valid without active transaction
+>>>>>>> origin/ajustando_controles_bruno
+2017-08-24 17:58:48 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2017-08-24 18:04:00 [main] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 18:04:00 [main] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 18:04:39 [main] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 18:04:58 [main] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 18:21:44 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2017-08-24 18:44:34 [AWT-EventQueue-0] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 18:44:37 [AWT-EventQueue-0] ERROR CustomDAO:63 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-24 18:44:43 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
