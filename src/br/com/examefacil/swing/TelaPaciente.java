@@ -5,8 +5,9 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
-import br.com.examefacil.bean.Usuario;
+import br.com.examefacil.bean.Paciente;
+import br.com.examefacil.controller.PacienteControl;
+import java.util.List;
 
 /**
  *
@@ -19,6 +20,11 @@ public class TelaPaciente extends javax.swing.JFrame {
      */
     public TelaPaciente() {
         initComponents();
+        
+        List<Paciente> list = new PacienteControl().listar("o");
+        for(Paciente p : list){
+            System.out.println(p.getNome());
+        }
     }
 
     /**

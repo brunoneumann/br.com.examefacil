@@ -7,6 +7,7 @@ package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.dao.PacienteDAO;
+import java.util.List;
 
 /**
  *
@@ -27,5 +28,14 @@ public class PacienteControl {
     public Paciente get(int id){
         return new PacienteDAO().get(id);
     }
+    
+    public List<Paciente> listar(){
+        return new PacienteDAO().list();
+    }
+    
+    public List<Paciente> listar(String parametro){
+        return new PacienteDAO().list(parametro);
+    }
+    
     
 }

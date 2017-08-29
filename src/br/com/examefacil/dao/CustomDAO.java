@@ -7,9 +7,12 @@ package br.com.examefacil.dao;
 
 import br.com.examefacil.conn.HibernateUtil;
 import java.util.List;
-import jdk.nashorn.internal.parser.TokenType;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -19,11 +22,15 @@ import org.hibernate.Session;
 public class CustomDAO<T> implements InterfaceDAO<T>{
     
     final Logger log = LogManager.getLogger(CustomDAO.class.getName());
+    final Session session;
+    
+    public CustomDAO() {
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+    }
     
     @Override
     public boolean save(T obj) {
         try {
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.saveOrUpdate(obj);
             session.getTransaction().commit();
@@ -31,7 +38,9 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         } catch(Exception ex){
             log.error(ex);
         } finally {
-            //HibernateUtil.getSessionFactory().close();
+            if(session.isConnected()){
+                session.close();
+            }
         }
         return false;
     }
@@ -39,7 +48,6 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
     @Override
     public boolean delete(T obj) {
         try {
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             session.delete(obj);
             session.getTransaction().commit();
@@ -47,7 +55,9 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         } catch(Exception ex){
             log.error(ex);
         } finally {
-            HibernateUtil.getSessionFactory().close();
+            if(session.isConnected()){
+                session.close();
+            }
         }
         return false;
     }
@@ -55,7 +65,6 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
     @Override
     public T get(Class<T> c, int id) {
         try {
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             T obj = c.cast(session.get(c, id));
             session.getTransaction().commit();
@@ -63,14 +72,44 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         } catch(Exception ex){
             log.error(ex);
         } finally {
-            HibernateUtil.getSessionFactory().close();
+            if(session.isConnected()){
+                session.close();
+            }
         }
         return null;
     }
     
     @Override
-    public List<T> list() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<T> list(Class<T> type) {
+        try {
+            session.beginTransaction();
+            Criteria crit = session.createCriteria(type);
+            return crit.list();
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public List<T> list(Class<T> type, String query, String field, String parameter) {
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery(query).addEntity(type);
+            q.setParameter(field, parameter);
+            return q.list();
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return null;
     }
     
 }

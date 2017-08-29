@@ -95,3 +95,17 @@
 2017-08-25 19:01:57 [AWT-EventQueue-0] ERROR CustomDAO:31 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
 2017-08-25 19:35:37 [AWT-EventQueue-0] ERROR CustomDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
 2017-08-25 19:36:28 [AWT-EventQueue-0] ERROR CustomDAO:33 - org.hibernate.service.UnknownServiceException: Unknown service requested [org.hibernate.engine.jdbc.connections.spi.ConnectionProvider]
+2017-08-28 20:39:46 [AWT-EventQueue-0] ERROR CustomDAO:78 - org.hibernate.HibernateException: createCriteria is not valid without active transaction
+2017-08-28 20:41:46 [AWT-EventQueue-0] ERROR CustomDAO:79 - org.hibernate.TransactionException: nested transactions not supported
+2017-08-28 20:43:08 [AWT-EventQueue-0] ERROR CustomDAO:79 - org.hibernate.SessionException: Session is closed!
+2017-08-28 20:48:31 [AWT-EventQueue-0] ERROR CustomDAO:79 - org.hibernate.TransactionException: nested transactions not supported
+2017-08-28 20:50:00 [AWT-EventQueue-0] ERROR CustomDAO:81 - org.hibernate.SessionException: Session is closed!
+2017-08-28 20:53:12 [AWT-EventQueue-0] ERROR CustomDAO:84 - org.hibernate.TransactionException: nested transactions not supported
+2017-08-28 21:51:16 [AWT-EventQueue-0] ERROR CustomDAO:105 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2017-08-28 21:55:59 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from paciente]
+2017-08-28 21:56:36 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from br.com.examefacil.bean.Paciente]
+2017-08-28 22:02:26 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.QueryParameterException: could not locate named parameter [nome]
+2017-08-28 22:11:09 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.QueryParameterException: could not locate named parameter [nome]
+2017-08-28 22:12:22 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.QueryParameterException: could not locate named parameter [nome]
+2017-08-28 22:13:02 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.QueryParameterException: could not locate named parameter [nome]
+2017-08-28 22:13:19 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet

@@ -16,6 +16,7 @@ public interface InterfaceDAO<T> {
     public boolean save(T obj) throws Exception;
     public boolean delete(T obj) throws Exception;
     public T get(Class<T> c, int id) throws Exception;
-    public List<T> list() throws Exception;
+    public List<T> list(Class<T> c) throws Exception;
+    public List<T> list(Class<T> c, String query, String field, String parameter) throws Exception;
     
 }
