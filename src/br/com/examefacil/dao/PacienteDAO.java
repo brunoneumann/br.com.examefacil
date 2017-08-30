@@ -31,7 +31,7 @@ public class PacienteDAO {
     }
     
     public List<Paciente> list(String parametro){
-        return new CustomDAO<Paciente>().list(Paciente.class, "select * from paciente where nome like '%' :nome '%'", "nome", parametro);
+        return new CustomDAO<Paciente>().list(Paciente.class, "SELECT * FROM paciente WHERE nome LIKE '%' :nome '%' ORDER BY idpaciente DESC", "nome", parametro);
     }
     
 }
