@@ -135,6 +135,7 @@
         <Component class="javax.swing.JButton" name="jBeditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBeditarActionPerformed"/>
@@ -152,7 +153,11 @@
         <Component class="javax.swing.JButton" name="jBExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTPesquisarPaciente">
           <Events>
@@ -222,6 +227,9 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTABPacientesMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -239,15 +247,16 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jTEmail" pref="180" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jTEmail" alignment="1" pref="180" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jTNomePaciente" alignment="0" pref="180" max="32767" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jTCPF" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLIDPaciente" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="412" max="32767" attributes="0"/>
                   </Group>
@@ -256,7 +265,9 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLIDPaciente" min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTNomePaciente" min="-2" max="-2" attributes="0"/>
@@ -268,7 +279,7 @@
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTEmail" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="124" max="32767" attributes="0"/>
+                      <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -294,6 +305,8 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTEmail">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLIDPaciente">
             </Component>
           </SubComponents>
         </Container>

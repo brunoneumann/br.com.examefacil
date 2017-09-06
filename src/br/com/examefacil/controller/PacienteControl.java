@@ -7,6 +7,7 @@ package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.dao.PacienteDAO;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.PacienteView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
@@ -23,8 +24,24 @@ public class PacienteControl {
     
     public PacienteControl(){}
     
+    public void init(PacienteView view){
+        atualizaTabelaPacientes(view);
+        
+        /* Desabilita aba editar */
+        view.jTabPaciente().setEnabledAt(1, false);
+        view.jLIDPaciente().setVisible(false);
+    }
+    
+    public void atualizaTabelaPacientes(PacienteView view){
+        view.JTABPacientes().setModel(tableModelPacientes(view));
+        view.JTABPacientes().setColumnModel(tableColumnPacientes(view));
+    }
+    
     public boolean salvar(PacienteView view){
         Paciente paciente = new Paciente();
+        if(view.jLIDPaciente().getText()!=null){
+            paciente.setIdpaciente(Integer.parseInt(view.jLIDPaciente().getText()));
+        }
         paciente.setNome(view.getNome());
         paciente.setCpf(view.getCPF());
         paciente.setEmail(view.getEmail());
@@ -33,12 +50,22 @@ public class PacienteControl {
         if(result){
             limparTextos(view);
             desabilitaBotoesEditar(view);
+            atualizaTabelaPacientes(view);
         }
         return result;
     }
     
-    public boolean excluir(Paciente paciente){
-        return new PacienteDAO().delete(paciente);
+    public boolean excluir(PacienteView view){
+        if (Util.Confirma("Deseja excluir realmente este paciente?\n"
+                + "Nome: " + view.JTABPacientes().getModel().getValueAt(view.JTABPacientes().getSelectedRow(), 1))) {
+            
+            boolean result = new PacienteDAO().delete(pacienteSelecionado(view));
+            if(result){
+                atualizaTabelaPacientes(view);
+            }
+        }
+        alteraEstadoEditarExcluir(view, false);
+        return false;
     }
     
     public Paciente get(int id){
@@ -51,6 +78,21 @@ public class PacienteControl {
     
     public List<Paciente> listar(String parametro){
         return new PacienteDAO().list(parametro);
+    }
+    
+    public Paciente pacienteSelecionado(PacienteView view){
+        int selected = view.JTABPacientes().getSelectedRow();
+        return get((int)view.JTABPacientes().getModel().getValueAt(selected, 0));
+    }
+    public void carregarDados(PacienteView view){
+        Paciente p = pacienteSelecionado(view);
+        if(p!=null){
+            habilitaBotoesEditar(view);
+            view.jLIDPaciente().setText(p.getIdpaciente()+"");
+            view.jTNomePaciente().setText(p.getNome());
+            view.jTCPF().setText(p.getCpf());
+            view.JTEmail().setText(p.getEmail());
+        }
     }
     
     public TableModel tableModelPacientes(PacienteView view){
@@ -75,6 +117,16 @@ public class PacienteControl {
         coluna.getColumn(2).setPreferredWidth(50);
         coluna.getColumn(3).setPreferredWidth(50);
         return coluna;
+    }
+    
+    public void novoPaciente(PacienteView view){
+        habilitaBotoesEditar(view);
+        view.jLIDPaciente().setText(null);
+    }
+    
+    public void alteraEstadoEditarExcluir(PacienteView view, boolean action){
+        view.jBExcluir().setEnabled(action);
+        view.jBeditar().setEnabled(action);
     }
     
     public void limparTextos(PacienteView view){

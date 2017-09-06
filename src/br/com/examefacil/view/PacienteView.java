@@ -7,6 +7,7 @@ package br.com.examefacil.view;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -33,4 +34,6 @@ public interface PacienteView {
     public JButton jBCancelar();
     public JTabbedPane jTabPaciente();
     public JCheckBox jCInclusaoAutomatica();
+    
+    public JLabel jLIDPaciente();
 }

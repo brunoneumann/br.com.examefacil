@@ -1,14 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.PacienteControl;
 import br.com.examefacil.view.PacienteView;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -18,31 +19,25 @@ import javax.swing.JTextField;
  * @author Henrique
  */
 public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
-
+    
     /**
      * Creates new form TipoExames
      */
     public TelaPaciente() {
         initComponents();
-        atualizaTabelaPacientes();
-        
+        new PacienteControl().init(this);
         
         /* EXEMPLO DE LISTA
         List<Paciente> listAll = new PacienteControl().listar();
         for(Paciente p : listAll){
-            System.out.println(p.getNome());
+        System.out.println(p.getNome());
         }
         List<Paciente> list = new PacienteControl().listar("o");
         for(Paciente p : list){
-            System.out.println(p.getNome());
+        System.out.println(p.getNome());
         }*/
     }
     
-    public void atualizaTabelaPacientes(){
-        jTABPacientes.setModel(new PacienteControl().tableModelPacientes(this));
-        jTABPacientes.setColumnModel(new PacienteControl().tableColumnPacientes(this));
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,6 +68,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jTCPF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTEmail = new javax.swing.JTextField();
+        jLIDPaciente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pacientes");
@@ -102,6 +98,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         });
 
         jBeditar.setText("Editar");
+        jBeditar.setEnabled(false);
         jBeditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBeditarActionPerformed(evt);
@@ -117,6 +114,12 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.setEnabled(false);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
         jTPesquisarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,6 +200,11 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
 
             }
         ));
+        jTABPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTABPacientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTABPacientes);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
@@ -224,19 +232,22 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTNomePaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTCPF, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTNomePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTCPF)
+                    .addComponent(jLabel3)
+                    .addComponent(jLIDPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(412, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEditarLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
+                .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,7 +259,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jTabPaciente.addTab("Editar", jEditar);
@@ -273,12 +284,12 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        new PacienteControl().habilitaBotoesEditar(this);
+        new PacienteControl().novoPaciente(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
         // TODO add your handling code here:
-       setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -287,7 +298,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
-                
+        new PacienteControl().carregarDados(this);
     }//GEN-LAST:event_jBeditarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
@@ -299,15 +310,22 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     }//GEN-LAST:event_jTPesquisarPacienteActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        atualizaTabelaPacientes();
+        new PacienteControl().atualizaTabelaPacientes(this);
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         PacienteControl control = new PacienteControl();
         control.salvar(this);
-        atualizaTabelaPacientes();
     }//GEN-LAST:event_jBGravarActionPerformed
 
+    private void jTABPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABPacientesMouseClicked
+        new PacienteControl().alteraEstadoEditarExcluir(this, true);
+    }//GEN-LAST:event_jTABPacientesMouseClicked
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new PacienteControl().excluir(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -315,8 +333,8 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -349,7 +367,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -368,6 +386,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     private javax.swing.JButton jBeditar;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
     private javax.swing.JPanel jEditar;
+    private javax.swing.JLabel jLIDPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -381,84 +400,89 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     private javax.swing.JTextField jTPesquisarPaciente;
     private javax.swing.JTabbedPane jTabPaciente;
     // End of variables declaration//GEN-END:variables
-
+    
     @Override
     public String getNome() {
         return jTNomePaciente().getText();
     }
-
+    
     @Override
     public String getCPF() {
         return jTCPF().getText();
     }
-
+    
     @Override
     public String getEmail() {
         return JTEmail().getText();
     }
-
+    
     @Override
     public JTextField jTNomePaciente() {
         return jTNomePaciente;
     }
-
+    
     @Override
     public JTextField jTCPF() {
         return jTCPF;
     }
-
+    
     @Override
     public JTextField JTEmail() {
         return jTEmail;
     }
-
+    
     @Override
     public JTable JTABPacientes() {
         return jTABPacientes;
     }
-
+    
     @Override
     public JButton jBIncluir() {
         return jBIncluir;
     }
-
+    
     @Override
     public JButton jBExcluir() {
         return jBExcluir;
     }
-
+    
     @Override
     public JButton jBPesquisar() {
         return jBPesquisar;
     }
-
+    
     @Override
     public JButton jBeditar() {
         return jBeditar;
     }
-
+    
     @Override
     public JButton jBGravar() {
         return jBGravar;
     }
-
+    
     @Override
     public JButton jBCancelar() {
         return jBCancelar;
     }
-
+    
     @Override
     public JTabbedPane jTabPaciente() {
         return jTabPaciente;
     }
-
+    
     @Override
     public JCheckBox jCInclusaoAutomatica() {
         return jCInclusaoAutomatica;
     }
-
+    
     @Override
     public JTextField jTPesquisarPaciente() {
         return jTPesquisarPaciente;
+    }
+
+    @Override
+    public JLabel jLIDPaciente() {
+        return jLIDPaciente;
     }
 }
