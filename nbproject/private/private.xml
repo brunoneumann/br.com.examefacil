@@ -5,12 +5,9 @@
         <group>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/dao/PacienteDAO.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/controller/PacienteControl.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/tools/Util.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/view/PacienteView.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/table/PacientesTableModel.java</file>
             <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/swing/TelaPaciente.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/dao/CustomDAO.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/dao/InterfaceDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -12,23 +12,22 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Henrique
  */
-public interface UsuarioView {
+public interface TipoExameView {
     
     public String getNome();
-    public String getEmail();
-    public String getTipoAcesso();
-    public String getSenha();
-    public JTextField jTNomeUsuario();
-    public JTextField jTEmail();
-    public JPasswordField jPSenha();
-    public JComboBox jCTipoAcesso();
-    public JTable JTABUsuarios();
+    public String getDescricao();
+    public int getIdareaexame();
+    public JTextField jTTipoExame();
+    public JTextArea jTDescricao();
+    public JComboBox jCAreaExame();
+    public JTable jTABTipoExame();
     public JTextField jTPesquisar();
     
     public JButton jBIncluir();
@@ -37,9 +36,9 @@ public interface UsuarioView {
     public JButton jBEditar();
     public JButton jBGravar();
     public JButton jBCancelar();
-    public JTabbedPane jTabUsuario();
+    public JTabbedPane jTabTipoExame();
     public JCheckBox jCInclusaoAutomatica();
     
-    public JLabel jLIDUsuario();
+    public JLabel jLIDTipoExame();
     
 }

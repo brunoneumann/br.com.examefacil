@@ -10,8 +10,13 @@ import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.UsuarioView;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -25,6 +30,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
      */
     public TelaUsuario() {
         initComponents();
+        new UsuarioControl().init(this);
     }
     
     /**
@@ -40,7 +46,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jBCancelar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
-        jBeditar = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
         jTPesquisar = new javax.swing.JTextField();
@@ -48,7 +54,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jCInclusaoAutomatica = new javax.swing.JCheckBox();
         jTabUsuario = new javax.swing.JTabbedPane();
         jPVisualizar = new javax.swing.JPanel();
-        jLTipoExame = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTABUsuario = new javax.swing.JTable();
         jEditar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTNomeUsuario = new javax.swing.JTextField();
@@ -58,8 +65,42 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jPSenha = new javax.swing.JPasswordField();
         jCTipoAcesso = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        jLIDUsuario = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
+        jCheckBox7 = new javax.swing.JCheckBox();
+        jCheckBox17 = new javax.swing.JCheckBox();
+        jCheckBox10 = new javax.swing.JCheckBox();
+        jCheckBox15 = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jCheckBox19 = new javax.swing.JCheckBox();
+        jCheckBox20 = new javax.swing.JCheckBox();
+        jCheckBox21 = new javax.swing.JCheckBox();
+        jCheckBox22 = new javax.swing.JCheckBox();
+        jCheckBox23 = new javax.swing.JCheckBox();
+        jCheckBox24 = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jCheckBox25 = new javax.swing.JCheckBox();
+        jCheckBox26 = new javax.swing.JCheckBox();
+        jCheckBox27 = new javax.swing.JCheckBox();
+        jCheckBox28 = new javax.swing.JCheckBox();
+        jCheckBox29 = new javax.swing.JCheckBox();
+        jCheckBox30 = new javax.swing.JCheckBox();
+        jLabel17 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuários");
 
         jPUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -86,10 +127,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
-        jBeditar.setText("Editar");
-        jBeditar.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setText("Editar");
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeditarActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
 
@@ -102,8 +143,17 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
-        jTPesquisar.setText("Descrição");
+        jTPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPesquisarActionPerformed(evt);
+            }
+        });
 
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +179,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                     .addGroup(jPUsuarioLayout.createSequentialGroup()
                         .addComponent(jBIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBeditar)
+                        .addComponent(jBEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,7 +203,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addGroup(jPUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCancelar)
                     .addComponent(jBIncluir)
-                    .addComponent(jBeditar)
+                    .addComponent(jBEditar)
                     .addComponent(jBGravar)
                     .addComponent(jBExcluir)
                     .addComponent(jBFechar))
@@ -167,23 +217,35 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addComponent(jCInclusaoAutomatica))
         );
 
-        jLTipoExame.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jTABUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTABUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTABUsuarioMouseClicked(evt);
+            }
         });
+        jScrollPane1.setViewportView(jTABUsuario);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jLTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+            .addGroup(jPVisualizarLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabUsuario.addTab("Visualizar", jPVisualizar);
@@ -205,16 +267,19 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(jTNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addComponent(jTEmail)
-                        .addComponent(jLabel3)
-                        .addComponent(jPSenha)
-                        .addComponent(jCTipoAcesso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(jTNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTEmail)
+                            .addComponent(jLabel3)
+                            .addComponent(jPSenha)
+                            .addComponent(jCTipoAcesso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4))
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,8 +287,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLIDUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTNomeUsuario))
+                .addGap(13, 13, 13)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,10 +302,192 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         jTabUsuario.addTab("Editar", jEditar);
+
+        jLabel5.setText("Atendimentos");
+
+        jLabel9.setText("Pacientes");
+
+        jLabel10.setText("Tipos de Exames");
+
+        jLabel11.setText("Areas de Exames");
+
+        jLabel12.setText("Textos Padrões");
+
+        jLabel13.setText("Usuários");
+
+        jLabel14.setText("Cadastros");
+
+        jLabel15.setText("Tipo de Usuário");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionista", "Atend. Exame", "Médico Requisitante", "Médico Interpretador", "Administrador" }));
+
+        jLabel6.setText("Excluir");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6)
+            .addComponent(jCheckBox1)
+            .addComponent(jCheckBox15)
+            .addComponent(jCheckBox4)
+            .addComponent(jCheckBox7)
+            .addComponent(jCheckBox10)
+            .addComponent(jCheckBox17)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox17)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel16.setText("Incluir");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel16)
+            .addComponent(jCheckBox19)
+            .addComponent(jCheckBox24)
+            .addComponent(jCheckBox20)
+            .addComponent(jCheckBox21)
+            .addComponent(jCheckBox23)
+            .addComponent(jCheckBox22)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox22)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        jLabel17.setText("Editar");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel17)
+            .addComponent(jCheckBox25)
+            .addComponent(jCheckBox30)
+            .addComponent(jCheckBox26)
+            .addComponent(jCheckBox27)
+            .addComponent(jCheckBox29)
+            .addComponent(jCheckBox28)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBox28)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(27, 27, 27)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel5))
+                                .addGap(15, 15, 15)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(370, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel14)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabUsuario.addTab("Permissões", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,16 +509,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabUsuario.setSelectedIndex(1);
-        
+            new UsuarioControl().novoUsuario(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -280,115 +520,45 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jBIncluir.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBPesquisar.setEnabled(true);
-        jBeditar.setEnabled(true);
-        jBFechar.setEnabled(true);
-        jTPesquisar.setEnabled(true);
-        jBGravar.setEnabled(false);
-        jBCancelar.setEnabled(false);
-        jTNomeUsuario.setText("");
-        jTEmail.setText("");
-        jPSenha.setText("");
-        jTabUsuario.setSelectedIndex(0);
+        jCInclusaoAutomatica.setSelected(false);
+        new UsuarioControl().desabilitaBotoesEditar(this);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
-    private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        new UsuarioControl().carregarDados(this);
         
-        /*Código para trazer as informações do registro selecionado*/
-        
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabUsuario.setSelectedIndex(1);
-        
-        
-        
-    }//GEN-LAST:event_jBeditarActionPerformed
+    }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        
-        
-        UsuarioControl usuarioControl = new UsuarioControl();
-        usuarioControl.salvar(this);
-        
-        /*Usuario a = new Usuario();
-        a.setNome(jTNomeUsuario.getText());
-        a.setEmail(jTEmail.getText());
-        a.setSenha(jPSenha.getText());
-        a.setTipo_acesso("a");
-        
-        if (jTNomeUsuario.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
-        } else {
-            try {
-                
-                
-                if (jCInclusaoAutomatica.isSelected()) {
-                    
-                    
-                    
-                    UsuarioControl control = new UsuarioControl();
-                    control.salvar(a);
-                    
-                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                    jTNomeUsuario.setText("");
-                    jTEmail.setText("");
-                    jPSenha.setText("");
-                } else {
-                    
-                    
-                    
-                    UsuarioControl control = new UsuarioControl();
-                    control.salvar(a);
-                    
-                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                    jTNomeUsuario.setText("");
-                    jTEmail.setText("");
-                    jPSenha.setText("");
-                    jBIncluir.setEnabled(true);
-                    jBExcluir.setEnabled(true);
-                    jBPesquisar.setEnabled(true);
-                    jBeditar.setEnabled(true);
-                    jBFechar.setEnabled(true);
-                    jTPesquisar.setEnabled(true);
-                    jBGravar.setEnabled(false);
-                    jBCancelar.setEnabled(false);
-                    jTabUsuario.setSelectedIndex(0);
-                }
-            }
-            catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
-            }
-        }
-        
-        
-        */
-        
-        
-        
-        
-        
+        UsuarioControl control = new UsuarioControl();
+        control.salvar(this);     
+         
         
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         
         
-        String pesquisa = jTPesquisar.getText();
+        new UsuarioControl().atualizaTabelaUsuarios(this);
         
         
     }//GEN-LAST:event_jBPesquisarActionPerformed
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new UsuarioControl().excluir(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jTPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPesquisarActionPerformed
+
+    private void jTABUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABUsuarioMouseClicked
+        new UsuarioControl().alteraEstadoEditarExcluir(this, true);
+    }//GEN-LAST:event_jTABUsuarioMouseClicked
     
     /**
      * @param args the command line arguments
@@ -434,23 +604,59 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBPesquisar;
-    private javax.swing.JButton jBeditar;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
     private javax.swing.JComboBox<String> jCTipoAcesso;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox10;
+    private javax.swing.JCheckBox jCheckBox15;
+    private javax.swing.JCheckBox jCheckBox17;
+    private javax.swing.JCheckBox jCheckBox19;
+    private javax.swing.JCheckBox jCheckBox20;
+    private javax.swing.JCheckBox jCheckBox21;
+    private javax.swing.JCheckBox jCheckBox22;
+    private javax.swing.JCheckBox jCheckBox23;
+    private javax.swing.JCheckBox jCheckBox24;
+    private javax.swing.JCheckBox jCheckBox25;
+    private javax.swing.JCheckBox jCheckBox26;
+    private javax.swing.JCheckBox jCheckBox27;
+    private javax.swing.JCheckBox jCheckBox28;
+    private javax.swing.JCheckBox jCheckBox29;
+    private javax.swing.JCheckBox jCheckBox30;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox7;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jEditar;
-    private javax.swing.JList<String> jLTipoExame;
+    private javax.swing.JLabel jLIDUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPSenha;
     private javax.swing.JPanel jPUsuario;
     private javax.swing.JPanel jPVisualizar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTABUsuario;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jTNomeUsuario;
     private javax.swing.JTextField jTPesquisar;
@@ -459,12 +665,17 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
     @Override
     public String getNome() {
-        return jTNomeUsuario.getText();
+        return jTNomeUsuario().getText();
     }
 
     @Override
     public String getEmail() {
-        return jTEmail.getText();
+        return jTEmail().getText();
+    }
+
+    @Override
+    public String getTipoAcesso() {
+        return String.valueOf(jCTipoAcesso.getSelectedIndex());
     }
 
     @Override
@@ -478,6 +689,66 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }
 
     @Override
+    public JComboBox jCTipoAcesso() {
+        return jCTipoAcesso;
+    }
+
+    @Override
+    public JTable JTABUsuarios() {
+        return jTABUsuario;
+    }
+
+    @Override
+    public JTextField jTPesquisar() {
+        return jTPesquisar;
+    }
+
+    @Override
+    public JButton jBIncluir() {
+        return jBIncluir;
+    }
+
+    @Override
+    public JButton jBExcluir() {
+        return jBExcluir;
+    }
+
+    @Override
+    public JButton jBPesquisar() {
+        return jBPesquisar;
+    }
+
+    @Override
+    public JButton jBEditar() {
+        return jBEditar;
+    }
+
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+
+    @Override
+    public JTabbedPane jTabUsuario() {
+        return jTabUsuario;
+    }
+
+    @Override
+    public JCheckBox jCInclusaoAutomatica() {
+        return jCInclusaoAutomatica;
+    }
+
+    @Override
+    public JLabel jLIDUsuario() {
+        return jLIDUsuario;
+    }
+
+    @Override
     public JTextField jTEmail() {
         return jTEmail;
     }
@@ -486,4 +757,6 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     public JPasswordField jPSenha() {
         return jPSenha;
     }
+
+    
 }

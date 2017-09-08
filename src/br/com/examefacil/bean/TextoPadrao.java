@@ -24,7 +24,7 @@ public class TextoPadrao {
     @GeneratedValue
     @Column(name = "idtextopadrao")
     private int idtextopadrao;
-    private String nomeCodigo;
+    private String nome_codigo;
     @Column(columnDefinition = "TEXT")
     private String texto;
 
@@ -36,12 +36,12 @@ public class TextoPadrao {
         this.idtextopadrao = idtextopadrao;
     }
 
-    public String getNomeCodigo() {
-        return nomeCodigo;
+    public String getNome_codigo() {
+        return nome_codigo;
     }
 
-    public void setNomeCodigo(String nomeCodigo) {
-        this.nomeCodigo = nomeCodigo;
+    public void setNome_codigo(String nome_codigo) {
+        this.nome_codigo = nome_codigo;
     }
 
     public String getTexto() {

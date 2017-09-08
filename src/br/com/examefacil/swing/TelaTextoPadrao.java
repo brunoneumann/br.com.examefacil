@@ -5,13 +5,15 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
-import br.com.examefacil.bean.TipoExame;
-import br.com.examefacil.controller.TipoExameControl;
-import br.com.examefacil.view.TipoExameView;
+
+
+
+import br.com.examefacil.controller.TextoPadraoControl;
+import br.com.examefacil.view.TextoPadraoView;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
@@ -23,14 +25,14 @@ import javax.swing.JTextField;
  *
  * @author Henrique
  */
-public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
+public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoView{
 
     /**
      * Creates new form TipoExames
      */
-    public TelaTipoExame() {
+    public TelaTextoPadrao() {
         initComponents();
-        new TipoExameControl().init(this);
+        new TextoPadraoControl().init(this);
     }
 
     /**
@@ -42,7 +44,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPTipoExame = new javax.swing.JPanel();
+        jPAreaExame = new javax.swing.JPanel();
         jBCancelar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
@@ -52,23 +54,21 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
         jTPesquisar = new javax.swing.JTextField();
         jBFechar = new javax.swing.JButton();
         jCInclusaoAutomatica = new javax.swing.JCheckBox();
-        jTabTipoExame = new javax.swing.JTabbedPane();
+        jTabTextoPadrao = new javax.swing.JTabbedPane();
         jPVisualizar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTABTipoExame = new javax.swing.JTable();
+        jTABTextoPadrao = new javax.swing.JTable();
         jEditar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTTipoExame = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jCAreaExame = new javax.swing.JComboBox<>();
-        jLIDTipoExame = new javax.swing.JLabel();
+        jTNome = new javax.swing.JTextField();
+        jLIDTextoPadrao = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jTDescricao = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Tipos de Exame");
+        setTitle("Área de Exame");
 
-        jPTipoExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jBCancelar.setText("Cancelar");
         jBCancelar.setEnabled(false);
@@ -128,14 +128,14 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
             }
         });
 
-        javax.swing.GroupLayout jPTipoExameLayout = new javax.swing.GroupLayout(jPTipoExame);
-        jPTipoExame.setLayout(jPTipoExameLayout);
-        jPTipoExameLayout.setHorizontalGroup(
-            jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPTipoExameLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPAreaExameLayout = new javax.swing.GroupLayout(jPAreaExame);
+        jPAreaExame.setLayout(jPAreaExameLayout);
+        jPAreaExameLayout.setHorizontalGroup(
+            jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAreaExameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPTipoExameLayout.createSequentialGroup()
+                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPAreaExameLayout.createSequentialGroup()
                         .addComponent(jBIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBEditar)
@@ -148,18 +148,18 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBFechar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPTipoExameLayout.createSequentialGroup()
+                    .addGroup(jPAreaExameLayout.createSequentialGroup()
                         .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCInclusaoAutomatica))))
         );
-        jPTipoExameLayout.setVerticalGroup(
-            jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPTipoExameLayout.createSequentialGroup()
+        jPAreaExameLayout.setVerticalGroup(
+            jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPAreaExameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCancelar)
                     .addComponent(jBIncluir)
                     .addComponent(jBEditar)
@@ -167,16 +167,16 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
                     .addComponent(jBExcluir)
                     .addComponent(jBFechar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPesquisar)
                     .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPTipoExameLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAreaExameLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jCInclusaoAutomatica))
         );
 
-        jTABTipoExame.setModel(new javax.swing.table.DefaultTableModel(
+        jTABTextoPadrao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -187,7 +187,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
             }
         ));
-        jScrollPane1.setViewportView(jTABTipoExame);
+        jScrollPane1.setViewportView(jTABTextoPadrao);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
         jPVisualizar.setLayout(jPVisualizarLayout);
@@ -198,27 +198,19 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        jTabTipoExame.addTab("Visualizar", jPVisualizar);
+        jTabTextoPadrao.addTab("Visualizar", jPVisualizar);
 
-        jLabel1.setText("Tipo de Exame");
-
-        jLabel2.setText("Descrição");
-
-        jLabel3.setText("Area do Exame");
-
-        jCAreaExame.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCAreaExame.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCAreaExameActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Nome / Código");
 
         jTDescricao.setColumns(20);
         jTDescricao.setRows(5);
+        jScrollPane2.setViewportView(jTDescricao);
+
+        jLabel2.setText("Descrição");
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -227,59 +219,50 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTDescricao)
+                    .addComponent(jScrollPane2)
                     .addGroup(jEditarLayout.createSequentialGroup()
                         .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
                             .addGroup(jEditarLayout.createSequentialGroup()
-                                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(42, 42, 42)
-                                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(jEditarLayout.createSequentialGroup()
-                                        .addComponent(jCAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLIDTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 44, Short.MAX_VALUE)))
+                                .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLIDTextoPadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 214, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLIDTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLIDTextoPadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabTipoExame.addTab("Editar", jEditar);
+        jTabTextoPadrao.addTab("Editar", jEditar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPAreaExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabTextoPadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabTextoPadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -287,47 +270,43 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        new TipoExameControl().novoTipoExame(this);
+        new TextoPadraoControl().novoTextoPadrao(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
         // TODO add your handling code here:
        setVisible(false);
        
-        
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jCInclusaoAutomatica.setSelected(false);
-        new TipoExameControl().desabilitaBotoesEditar(this);
+       jCInclusaoAutomatica.setSelected(false);
+        new TextoPadraoControl().desabilitaBotoesEditar(this);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-           new TipoExameControl().carregarDados(this);
+        new TextoPadraoControl().carregarDados(this);
+        
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-       TipoExameControl control = new TipoExameControl();
-        control.salvar(this); 
+        TextoPadraoControl control = new TextoPadraoControl();
+        control.salvar(this);
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
 
-    private void jCAreaExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAreaExameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCAreaExameActionPerformed
-
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        new TipoExameControl().atualizaTabelaTipoExame(this);
+        new TextoPadraoControl().atualizaTabelaTextoPadrao(this); 
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        new TipoExameControl().excluir(this);
+        new TextoPadraoControl().excluir(this);
     }//GEN-LAST:event_jBExcluirActionPerformed
-    private void jTABTipoExameMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        new TipoExameControl().alteraEstadoEditarExcluir(this, true);
+    private void jTABTextoPadraoMouseClicked(java.awt.event.MouseEvent evt) {                                           
+        new TextoPadraoControl().alteraEstadoEditarExcluir(this, true);
     }
     /**
      * @param args the command line arguments
@@ -346,14 +325,42 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaTipoExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTextoPadrao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaTipoExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTextoPadrao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaTipoExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTextoPadrao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaTipoExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTextoPadrao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -362,7 +369,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaTipoExame().setVisible(true);
+                new TelaTextoPadrao().setVisible(true);
             }
         });
     }
@@ -375,42 +382,23 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBPesquisar;
-    private javax.swing.JComboBox<String> jCAreaExame;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
     private javax.swing.JPanel jEditar;
-    private javax.swing.JLabel jLIDTipoExame;
+    private javax.swing.JLabel jLIDTextoPadrao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPTipoExame;
+    private javax.swing.JPanel jPAreaExame;
     private javax.swing.JPanel jPVisualizar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTABTipoExame;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTABTextoPadrao;
     private javax.swing.JTextArea jTDescricao;
+    private javax.swing.JTextField jTNome;
     private javax.swing.JTextField jTPesquisar;
-    private javax.swing.JTextField jTTipoExame;
-    private javax.swing.JTabbedPane jTabTipoExame;
+    private javax.swing.JTabbedPane jTabTextoPadrao;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public String getNome() {
-        return jTTipoExame().getText();
-    }
-
-    @Override
-    public String getDescricao() {
-        return jTDescricao().getText();
-    }
-
-    @Override
-    public int getIdareaexame() {
-        return jCAreaExame.getSelectedIndex();
-    }
-
-    @Override
-    public JTextField jTTipoExame() {
-        return jTTipoExame;
-    }
+    
 
     @Override
     public JTextArea jTDescricao() {
@@ -418,11 +406,9 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     }
 
     @Override
-    public JComboBox jCAreaExame() {
-        return jCAreaExame;
+    public JTable jTABTextoPadrao() {
+        return jTABTextoPadrao;
     }
-
-
 
     @Override
     public JTextField jTPesquisar() {
@@ -446,12 +432,12 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
     @Override
     public JButton jBEditar() {
-        return jBEditar;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public JButton jBGravar() {
-        return jBGravar;
+        return jBEditar;
     }
 
     @Override
@@ -460,8 +446,8 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     }
 
     @Override
-    public JTabbedPane jTabTipoExame() {
-        return jTabTipoExame;
+    public JTabbedPane jTabTextoPadrao() {
+        return jTabTextoPadrao;
     }
 
     @Override
@@ -470,12 +456,25 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     }
 
     @Override
-    public JLabel jLIDTipoExame() {
-        return jLIDTipoExame;
+    public JLabel jLIDTextoPadrao() {
+        return jLIDTextoPadrao;
     }
 
     @Override
-    public JTable jTABTipoExame() {
-        return jTABTipoExame;
+    public String getDescricao() {
+        return jTDescricao().getText();
     }
+
+    @Override
+    public String getNome() {
+        return jTNome().getText();
+    }
+
+    @Override
+    public JTextField jTNome() {
+        return jTNome;
+    }
+
+    
+    
 }

@@ -26,8 +26,12 @@ public class UsuarioDAO {
         return new CustomDAO<Usuario>().get(Usuario.class, id);
     }
     
-    public List<Usuario> list() throws Exception {
-        return null;
+    public List<Usuario> list() {
+        return new CustomDAO<Usuario>().list(Usuario.class);
+    }
+    
+    public List<Usuario> list(String parametro){
+        return new CustomDAO<Usuario>().list(Usuario.class, "SELECT * FROM usuario WHERE nome LIKE '%' :nome '%' ORDER BY idusuario DESC", "nome", parametro);
     }
     
 }

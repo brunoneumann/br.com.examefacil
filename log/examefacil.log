@@ -110,3 +110,4 @@
 2017-08-28 22:13:02 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.QueryParameterException: could not locate named parameter [nome]
 2017-08-28 22:13:19 [AWT-EventQueue-0] ERROR CustomDAO:106 - org.hibernate.exception.SQLGrammarException: could not extract ResultSet
 2017-08-30 13:20:09 [AWT-EventQueue-0] ERROR CustomDAO:39 - org.hibernate.exception.DataException: could not execute statement
+2017-09-08 19:55:46 [AWT-EventQueue-0] ERROR CustomDAO:37 - org.hibernate.exception.ConstraintViolationException: could not execute statement
