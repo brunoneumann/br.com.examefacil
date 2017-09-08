@@ -27,7 +27,7 @@ public class AuditoriaExame {
     @GeneratedValue
     @Column(name = "idauditoria")
     private int idauditoria;
-    private int idusuario;
+    private String nome_usuario;
     private int idexame;
     @Temporal(TemporalType.DATE)
     private Calendar data;
@@ -46,12 +46,12 @@ public class AuditoriaExame {
         this.idauditoria = idauditoria;
     }
 
-    public int getIdusuario() {
-        return idusuario;
+    public String getNome_usuario() {
+        return nome_usuario;
     }
 
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
+    public void setNome_usuario(String nome_usuario) {
+        this.nome_usuario = nome_usuario;
     }
 
     public int getIdexame() {
