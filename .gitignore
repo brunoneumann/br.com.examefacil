@@ -1,0 +1,6 @@
+/src/log4j.properties
+/src/hibernate.cfg.xml
+/build/
+/dist/
+hibernate.reveng.xml
+/nbproject/private/private.xml
