@@ -23,6 +23,7 @@ public interface TelaPrincipalView {
         public String getUsuario();
         public String getSenha();
         public JInternalFrame jILogin();
+        public JInternalFrame jIExame();
         public JTextField jTUsuario();
         public JPasswordField jPSenha();
         public JButton jBEntrar();
