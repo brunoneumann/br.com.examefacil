@@ -6,21 +6,40 @@
 package br.com.examefacil.view;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
  *
- * @author bruno
+ * @author Henrique
  */
 public interface UsuarioView {
     
     public String getNome();
     public String getEmail();
+    public String getTipoAcesso();
     public String getSenha();
-
     public JTextField jTNomeUsuario();
     public JTextField jTEmail();
     public JPasswordField jPSenha();
+    public JComboBox jCTipoAcesso();
+    public JTable JTABUsuarios();
+    public JTextField jTPesquisar();
+    
+    public JButton jBIncluir();
+    public JButton jBExcluir();
+    public JButton jBPesquisar();
+    public JButton jBEditar();
+    public JButton jBGravar();
+    public JButton jBCancelar();
+    public JTabbedPane jTabUsuario();
+    public JCheckBox jCInclusaoAutomatica();
+    
+    public JLabel jLIDUsuario();
     
 }

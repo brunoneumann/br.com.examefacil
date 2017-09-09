@@ -7,19 +7,30 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.bean.AreaExame;
 import br.com.examefacil.controller.AreaExameControl;
+import br.com.examefacil.controller.TelaPrincipalControl;
+import br.com.examefacil.view.TelaPrincipalView;
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Henrique
  */
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalView{
 
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        //jILogin.setVisible(true);
+        new TelaPrincipalControl().init(this);
     }
 
     /**
@@ -31,30 +42,104 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jILogin = new javax.swing.JInternalFrame();
+        jTUsuario = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPSenha = new javax.swing.JPasswordField();
+        jBEntrar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMCadastro = new javax.swing.JMenu();
+        jMPaciente = new javax.swing.JMenuItem();
         jMTipoExame = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMAreaExame = new javax.swing.JMenuItem();
+        jMUsuario = new javax.swing.JMenuItem();
+        jMTextoPadrao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exame Fácil");
         setMinimumSize(new java.awt.Dimension(800, 500));
 
+        jILogin.setTitle("Login");
+        jILogin.setVisible(true);
+
+        jLabel1.setText("Usuário");
+
+        jLabel2.setText("Senha");
+
+        jBEntrar.setText("Entrar");
+        jBEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEntrarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jILoginLayout = new javax.swing.GroupLayout(jILogin.getContentPane());
+        jILogin.getContentPane().setLayout(jILoginLayout);
+        jILoginLayout.setHorizontalGroup(
+            jILoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jILoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jILoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jILoginLayout.createSequentialGroup()
+                        .addGroup(jILoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jPSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBEntrar))
+                    .addComponent(jLabel1)
+                    .addComponent(jTUsuario))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+        jILoginLayout.setVerticalGroup(
+            jILoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jILoginLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jILoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBEntrar))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jDesktopPane1.setLayer(jILogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(168, 168, 168)
+                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(285, Short.MAX_VALUE))
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Cadastros");
+        jMCadastro.setText("Cadastros");
 
-        jMenuItem1.setText("Pacientes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMPaciente.setText("Pacientes");
+        jMPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMPacienteActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMCadastro.add(jMPaciente);
 
         jMTipoExame.setText("Tipos de Exames");
         jMTipoExame.addActionListener(new java.awt.event.ActionListener() {
@@ -62,25 +147,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jMTipoExameActionPerformed(evt);
             }
         });
-        jMenu2.add(jMTipoExame);
+        jMCadastro.add(jMTipoExame);
 
-        jMenuItem2.setText("Areas Exames");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMAreaExame.setText("Areas Exames");
+        jMAreaExame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMAreaExameActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMCadastro.add(jMAreaExame);
 
-        jMenuItem3.setText("Usuários");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMUsuario.setText("Usuários");
+        jMUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMUsuarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMCadastro.add(jMUsuario);
 
-        jMenuBar1.add(jMenu2);
+        jMTextoPadrao.setText("Textos Padrões");
+        jMTextoPadrao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMTextoPadraoActionPerformed(evt);
+            }
+        });
+        jMCadastro.add(jMTextoPadrao);
+
+        jMenuBar1.add(jMCadastro);
 
         setJMenuBar(jMenuBar1);
 
@@ -88,11 +181,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 733, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jDesktopPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 441, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -105,19 +201,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMTipoExameActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
-        new TelaAreaExame().setVisible(true);
-        
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMAreaExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAreaExameActionPerformed
+        new TelaAreaExame().setVisible(true);        
+    }//GEN-LAST:event_jMAreaExameActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMUsuarioActionPerformed
         new TelaUsuario().setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMUsuarioActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMPacienteActionPerformed
         new TelaPaciente().setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMPacienteActionPerformed
+
+    private void jMTextoPadraoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMTextoPadraoActionPerformed
+        new TelaTextoPadrao().setVisible(true);
+    }//GEN-LAST:event_jMTextoPadraoActionPerformed
+
+    private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
+        //jILogin.setVisible(false);
+        new TelaPrincipalControl().habilitaMenus(this);
+    }//GEN-LAST:event_jBEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,12 +258,90 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBEntrar;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JInternalFrame jILogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMAreaExame;
+    private javax.swing.JMenu jMCadastro;
+    private javax.swing.JMenuItem jMPaciente;
+    private javax.swing.JMenuItem jMTextoPadrao;
     private javax.swing.JMenuItem jMTipoExame;
+    private javax.swing.JMenuItem jMUsuario;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPasswordField jPSenha;
+    private javax.swing.JTextField jTUsuario;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getUsuario() {
+        return jTUsuario().getText();
+    }
+
+    @Override
+    public String getSenha() {
+        return jPSenha().getText();
+    }
+
+    @Override
+    public JInternalFrame jILogin() {
+        return jILogin;
+    }
+
+    @Override
+    public JTextField jTUsuario() {
+        return jTUsuario;
+    }
+
+    @Override
+    public JPasswordField jPSenha() {
+        return jPSenha;
+    }
+
+    @Override
+    public JButton jBEntrar() {
+        return jBEntrar;
+    }
+
+    @Override
+    public JMenuBar jMenuBar1() {
+        return jMenuBar1;
+    }
+
+    @Override
+    public JMenu jMenu1() {
+        return jMenu1;
+    }
+
+    @Override
+    public JMenu jMCadastro() {
+        return jMCadastro;
+    }
+
+    @Override
+    public JMenuItem jMPaciente() {
+        return jMPaciente;
+    }
+
+    @Override
+    public JMenuItem jMTipoExame() {
+        return jMTipoExame;
+    }
+
+    @Override
+    public JMenuItem jMAreaExame() {
+        return jMAreaExame;
+    }
+
+    @Override
+    public JMenuItem jMUsuario() {
+        return jMUsuario;
+    }
+
+    @Override
+    public JMenuItem jMTextoPadrao() {
+        return jMTextoPadrao;
+    }
 }

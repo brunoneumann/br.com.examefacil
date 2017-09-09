@@ -54,6 +54,14 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
+
     public String getTipo_acesso() {
         return tipo_acesso;
     }

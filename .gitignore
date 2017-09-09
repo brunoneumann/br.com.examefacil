@@ -3,4 +3,8 @@
 /build/
 /dist/
 hibernate.reveng.xml
+<<<<<<< HEAD
 /nbproject/private/private.xml
+=======
+/nbproject/private/private.xml
+>>>>>>> origin/release_3_bruno

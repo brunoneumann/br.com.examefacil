@@ -27,8 +27,12 @@ public class AreaExameDAO {
         return new CustomDAO<AreaExame>().get(AreaExame.class, id);
     }
     
-    public List<AreaExame> list() throws Exception {
-        return null;
+    public List<AreaExame> list() {
+        return new CustomDAO<AreaExame>().list(AreaExame.class);
+    }
+    
+    public List<AreaExame> list(String parametro){
+        return new CustomDAO<AreaExame>().list(AreaExame.class, "SELECT * FROM areaexame WHERE nome LIKE '%' :nome '%' ORDER BY idareaexame DESC", "nome", parametro);
     }
     
     
