@@ -44,7 +44,7 @@ public class UsuarioControl {
             usuario.setIdusuario(Integer.parseInt(view.jLIDUsuario().getText()));
         }
         usuario.setNome(view.getNome());
-        usuario.setSenha(view.getSenha());
+        usuario.setSenha(Util.encriptaSenha(view.getSenha()));
         usuario.setEmail(view.getEmail());
         usuario.setTipo_acesso(view.getTipoAcesso());
         

@@ -5,15 +5,12 @@
 */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
-import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.UsuarioView;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -61,11 +58,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jTNomeUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTEmail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jPSenha = new javax.swing.JPasswordField();
         jCTipoAcesso = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLIDUsuario = new javax.swing.JLabel();
+        jbtnAbreResetSenha = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -243,9 +239,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         jTabUsuario.addTab("Visualizar", jPVisualizar);
@@ -254,11 +248,16 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jLabel2.setText("E-mail");
 
-        jLabel3.setText("Senha");
-
         jCTipoAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText("Tipo de Acesso");
+
+        jbtnAbreResetSenha.setText("Alterar senha");
+        jbtnAbreResetSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAbreResetSenhaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -273,13 +272,12 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                             .addComponent(jTNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(jLabel2)
                             .addComponent(jTEmail)
-                            .addComponent(jLabel3)
-                            .addComponent(jPSenha)
                             .addComponent(jCTipoAcesso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addContainerGap(207, Short.MAX_VALUE))
+                    .addComponent(jLabel4)
+                    .addComponent(jbtnAbreResetSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,15 +292,13 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(jbtnAbreResetSenha)
+                .addContainerGap())
         );
 
         jTabUsuario.addTab("Editar", jEditar);
@@ -452,7 +448,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -494,15 +490,15 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabUsuario)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -559,6 +555,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private void jTABUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABUsuarioMouseClicked
         new UsuarioControl().alteraEstadoEditarExcluir(this, true);
     }//GEN-LAST:event_jTABUsuarioMouseClicked
+
+    private void jbtnAbreResetSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAbreResetSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAbreResetSenhaActionPerformed
     
     /**
      * @param args the command line arguments
@@ -643,12 +643,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPSenha;
     private javax.swing.JPanel jPUsuario;
     private javax.swing.JPanel jPVisualizar;
     private javax.swing.JPanel jPanel1;
@@ -661,6 +659,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JTextField jTNomeUsuario;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTabbedPane jTabUsuario;
+    private javax.swing.JButton jbtnAbreResetSenha;
     // End of variables declaration//GEN-END:variables
 
     @Override
@@ -676,11 +675,6 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     @Override
     public String getTipoAcesso() {
         return String.valueOf(jCTipoAcesso.getSelectedIndex());
-    }
-
-    @Override
-    public String getSenha() {
-        return jPSenha.getText();
     }
 
     @Override
@@ -752,11 +746,5 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     public JTextField jTEmail() {
         return jTEmail;
     }
-
-    @Override
-    public JPasswordField jPSenha() {
-        return jPSenha;
-    }
-
     
 }

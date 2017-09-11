@@ -5,7 +5,10 @@
 */
 package br.com.examefacil.tools;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -29,6 +32,18 @@ public class Util {
                 null,     
                 options,  
                 options[0]) == JOptionPane.YES_OPTION;
+    }
+    
+    public static String encriptaSenha(String senha) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(senha.getBytes());
+            Base64 encoder = new Base64();
+            return encoder.encodeAsString(digest.digest());
+        } catch (NoSuchAlgorithmException ns) {
+            ns.printStackTrace();
+            return senha;
+        }
     }
     
 }
