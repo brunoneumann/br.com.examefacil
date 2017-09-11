@@ -44,7 +44,6 @@ public class UsuarioControl {
             usuario.setIdusuario(Integer.parseInt(view.jLIDUsuario().getText()));
         }
         usuario.setNome(view.getNome());
-        usuario.setSenha(Util.encriptaSenha(view.getSenha()));
         usuario.setEmail(view.getEmail());
         usuario.setTipo_acesso(view.getTipoAcesso());
         
@@ -55,6 +54,10 @@ public class UsuarioControl {
             atualizaTabelaUsuarios(view);
         }
         return result;
+    }
+    
+    public boolean alterarSenha(int idusuario, String senha){
+        return new UsuarioDAO().alterarSenha(idusuario, Util.encriptaSenha(senha));
     }
 
     public boolean excluir(UsuarioView view){
@@ -94,7 +97,7 @@ public class UsuarioControl {
             view.jLIDUsuario().setText(u.getIdusuario()+"");
             view.jTNomeUsuario().setText(u.getNome());
             view.jTEmail().setText(u.getEmail());
-            view.jPSenha().setText(u.getSenha());
+            view.btnAbrirDialogAlteraSenha().setVisible(true);
             //view.jCTipoAcesso().setText(u.getTipo_acesso());
         }
     }
@@ -123,6 +126,7 @@ public class UsuarioControl {
      public void novoUsuario(UsuarioView view){
         habilitaBotoesEditar(view);
         view.jLIDUsuario().setText(null);
+        view.btnAbrirDialogAlteraSenha().setVisible(false);
     }
     
     public void alteraEstadoEditarExcluir(UsuarioView view, boolean action){
@@ -133,7 +137,6 @@ public class UsuarioControl {
     public void limparTextos(UsuarioView view){
         view.jTNomeUsuario().setText("");
         view.jTEmail().setText("");
-        view.jPSenha().setText("");
     }
     
     public void habilitaBotoesEditar(UsuarioView view){

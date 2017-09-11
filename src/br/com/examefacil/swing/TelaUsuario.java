@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -61,7 +60,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jCTipoAcesso = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLIDUsuario = new javax.swing.JLabel();
-        jbtnAbreResetSenha = new javax.swing.JButton();
+        btnAbrirDialogAlteraSenha = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -252,10 +251,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jLabel4.setText("Tipo de Acesso");
 
-        jbtnAbreResetSenha.setText("Alterar senha");
-        jbtnAbreResetSenha.addActionListener(new java.awt.event.ActionListener() {
+        btnAbrirDialogAlteraSenha.setText("Alterar senha");
+        btnAbrirDialogAlteraSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnAbreResetSenhaActionPerformed(evt);
+                btnAbrirDialogAlteraSenhaActionPerformed(evt);
             }
         });
 
@@ -276,7 +275,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                         .addGap(18, 18, 18)
                         .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4)
-                    .addComponent(jbtnAbreResetSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(214, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
@@ -297,7 +296,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jbtnAbreResetSenha)
+                .addComponent(btnAbrirDialogAlteraSenha)
                 .addContainerGap())
         );
 
@@ -505,7 +504,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-            new UsuarioControl().novoUsuario(this);
+        new UsuarioControl().novoUsuario(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -531,8 +530,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         UsuarioControl control = new UsuarioControl();
-        control.salvar(this);     
-         
+        control.salvar(this);
+        
         
     }//GEN-LAST:event_jBGravarActionPerformed
 
@@ -556,9 +555,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         new UsuarioControl().alteraEstadoEditarExcluir(this, true);
     }//GEN-LAST:event_jTABUsuarioMouseClicked
 
-    private void jbtnAbreResetSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAbreResetSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnAbreResetSenhaActionPerformed
+    private void btnAbrirDialogAlteraSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirDialogAlteraSenhaActionPerformed
+        DialogAlteraSenhaUsuario dialog = new DialogAlteraSenhaUsuario(this, true, Integer.parseInt(jLIDUsuario.getText()));
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAbrirDialogAlteraSenhaActionPerformed
     
     /**
      * @param args the command line arguments
@@ -603,6 +603,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirDialogAlteraSenha;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
@@ -659,92 +660,96 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JTextField jTNomeUsuario;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTabbedPane jTabUsuario;
-    private javax.swing.JButton jbtnAbreResetSenha;
     // End of variables declaration//GEN-END:variables
-
+    
     @Override
     public String getNome() {
         return jTNomeUsuario().getText();
     }
-
+    
     @Override
     public String getEmail() {
         return jTEmail().getText();
     }
-
+    
     @Override
     public String getTipoAcesso() {
         return String.valueOf(jCTipoAcesso.getSelectedIndex());
     }
-
+    
     @Override
     public JTextField jTNomeUsuario() {
         return jTNomeUsuario;
     }
-
+    
     @Override
     public JComboBox jCTipoAcesso() {
         return jCTipoAcesso;
     }
-
+    
     @Override
     public JTable JTABUsuarios() {
         return jTABUsuario;
     }
-
+    
     @Override
     public JTextField jTPesquisar() {
         return jTPesquisar;
     }
-
+    
     @Override
     public JButton jBIncluir() {
         return jBIncluir;
     }
-
+    
     @Override
     public JButton jBExcluir() {
         return jBExcluir;
     }
-
+    
     @Override
     public JButton jBPesquisar() {
         return jBPesquisar;
     }
-
+    
     @Override
     public JButton jBEditar() {
         return jBEditar;
     }
-
+    
     @Override
     public JButton jBGravar() {
         return jBGravar;
     }
-
+    
     @Override
     public JButton jBCancelar() {
         return jBCancelar;
     }
-
+    
     @Override
     public JTabbedPane jTabUsuario() {
         return jTabUsuario;
     }
-
+    
     @Override
     public JCheckBox jCInclusaoAutomatica() {
         return jCInclusaoAutomatica;
     }
-
+    
     @Override
     public JLabel jLIDUsuario() {
         return jLIDUsuario;
     }
-
+    
     @Override
     public JTextField jTEmail() {
         return jTEmail;
+    }
+
+    @Override
+    public JButton btnAbrirDialogAlteraSenha() {
+        return btnAbrirDialogAlteraSenha;
     }
     
 }

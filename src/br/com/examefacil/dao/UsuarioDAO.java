@@ -34,4 +34,7 @@ public class UsuarioDAO {
         return new CustomDAO<Usuario>().list(Usuario.class, "SELECT * FROM usuario WHERE nome LIKE '%' :nome '%' ORDER BY idusuario DESC", "nome", parametro);
     }
     
+    public boolean alterarSenha(int idusuario, String senha){
+        return new CustomDAO<Usuario>().execute(Usuario.class, "UPDATE usuario SET senha='"+senha+"' WHERE idusuario="+idusuario);
+    }
 }

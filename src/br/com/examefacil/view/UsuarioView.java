@@ -36,7 +36,7 @@ public interface UsuarioView {
     public JButton jBCancelar();
     public JTabbedPane jTabUsuario();
     public JCheckBox jCInclusaoAutomatica();
-    
+    public JButton btnAbrirDialogAlteraSenha();
     public JLabel jLIDUsuario();
     
 }

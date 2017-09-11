@@ -259,7 +259,7 @@
                               <Component id="jLIDUsuario" min="-2" pref="180" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jbtnAbreResetSenha" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                          <Component id="btnAbrirDialogAlteraSenha" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="214" max="32767" attributes="0"/>
                   </Group>
@@ -284,7 +284,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jCTipoAcesso" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="78" max="32767" attributes="0"/>
-                      <Component id="jbtnAbreResetSenha" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAbrirDialogAlteraSenha" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -327,12 +327,12 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLIDUsuario">
             </Component>
-            <Component class="javax.swing.JButton" name="jbtnAbreResetSenha">
+            <Component class="javax.swing.JButton" name="btnAbrirDialogAlteraSenha">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Alterar senha"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAbreResetSenhaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAbrirDialogAlteraSenhaActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
