@@ -26,6 +26,7 @@ public class Usuario {
     private int idusuario;
     private String nome;
     private String email;
+    @Column(updatable = false, insertable = false)
     private String senha;
     private String tipo_acesso;
 

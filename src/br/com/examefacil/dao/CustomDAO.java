@@ -60,6 +60,24 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         return false;
     }
     
+  
+    public boolean execute(Class<T> type, String query) {
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery(query).addEntity(type);
+            int res = q.executeUpdate();
+            session.getTransaction().commit();
+            return  res > 0;
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return false;
+    }
+    
     @Override
     public T get(Class<T> c, int id) {
         try {

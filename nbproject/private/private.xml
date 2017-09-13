@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group/>
-=======
-        <group>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/dao/PacienteDAO.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/controller/PacienteControl.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/view/PacienteView.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/table/PacientesTableModel.java</file>
-            <file>file:/home/bruno/workspace/br.com.examefacil/src/br/com/examefacil/swing/TelaPaciente.java</file>
-        </group>
->>>>>>> origin/release_3_bruno
     </open-files>
 </project-private>

@@ -27,11 +27,14 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaPrincipal() {
+    
+   public TelaPrincipal() {
         initComponents();
         //jILogin.setVisible(true);
         new TelaPrincipalControl().init(this);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -482,7 +485,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMTextoPadraoActionPerformed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        //jILogin.setVisible(false);
+        
         new TelaPrincipalControl().habilitaMenus(this);
     }//GEN-LAST:event_jBEntrarActionPerformed
 
