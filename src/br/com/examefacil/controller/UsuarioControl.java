@@ -29,6 +29,7 @@ public class UsuarioControl {
         
         /* Desabilita aba editar */
         view.jTabUsuario().setEnabledAt(1, false);
+        view.jTabUsuario().setEnabledAt(2, false);
         view.jLIDUsuario().setVisible(false);
     }
         
@@ -151,6 +152,7 @@ public class UsuarioControl {
         view.jCInclusaoAutomatica().setSelected(false);
         view.jTabUsuario().setEnabledAt(0, false);
         view.jTabUsuario().setEnabledAt(1, true);
+        view.jTabUsuario().setEnabledAt(2, false);
     }
     public void desabilitaBotoesEditar(UsuarioView view){
         if(!view.jCInclusaoAutomatica().isSelected()){
@@ -164,6 +166,21 @@ public class UsuarioControl {
             view.jTabUsuario().setSelectedIndex(0);
             view.jTabUsuario().setEnabledAt(0, true);
             view.jTabUsuario().setEnabledAt(1, false);
+            view.jTabUsuario().setEnabledAt(2, false);
         }
     }
+    public void inserirPermissoes (UsuarioView view){
+        view.jBIncluir().setEnabled(false);
+            view.jBExcluir().setEnabled(false);
+            view.jBPesquisar().setEnabled(false);
+            view.jBEditar().setEnabled(false);
+            view.jTPesquisar().setEnabled(false);
+            view.jBGravar().setEnabled(true);
+            view.jBCancelar().setEnabled(true);
+            view.jTabUsuario().setSelectedIndex(2);
+            view.jTabUsuario().setEnabledAt(0, false);
+            view.jTabUsuario().setEnabledAt(1, false);
+            view.jTabUsuario().setEnabledAt(2, true);
+    }
+    
 }

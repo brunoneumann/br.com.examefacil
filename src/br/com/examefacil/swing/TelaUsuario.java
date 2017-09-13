@@ -27,6 +27,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     public TelaUsuario() {
         initComponents();
         new UsuarioControl().init(this);
+        
     }
     
     /**
@@ -59,7 +60,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jTEmail = new javax.swing.JTextField();
         jLIDUsuario = new javax.swing.JLabel();
         btnAbrirDialogAlteraSenha = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBPermissoes = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -271,7 +272,12 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
-        jButton1.setText("Definir Permissões");
+        jBPermissoes.setText("Definir Permissões");
+        jBPermissoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPermissoesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -289,7 +295,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                         .addGap(18, 18, 18)
                         .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBPermissoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
                 .addContainerGap(278, Short.MAX_VALUE))
         );
@@ -307,7 +313,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jBPermissoes)
                 .addGap(18, 18, 18)
                 .addComponent(btnAbrirDialogAlteraSenha)
                 .addContainerGap(232, Short.MAX_VALUE))
@@ -907,6 +913,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         DialogAlteraSenhaUsuario dialog = new DialogAlteraSenhaUsuario(this, true, Integer.parseInt(jLIDUsuario.getText()));
         dialog.setVisible(true);
     }//GEN-LAST:event_btnAbrirDialogAlteraSenhaActionPerformed
+
+    private void jBPermissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPermissoesActionPerformed
+        new UsuarioControl().inserirPermissoes(this);
+    }//GEN-LAST:event_jBPermissoesActionPerformed
     
     /**
      * @param args the command line arguments
@@ -958,8 +968,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
+    private javax.swing.JButton jBPermissoes;
     private javax.swing.JButton jBPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCArEditar;
     private javax.swing.JCheckBox jCArExcluir;
     private javax.swing.JCheckBox jCArIncluir;
@@ -1115,6 +1125,11 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     @Override
     public JButton btnAbrirDialogAlteraSenha() {
         return btnAbrirDialogAlteraSenha;
+    }
+
+    @Override
+    public JButton jBPermissoes() {
+        return jBPermissoes;
     }
     
 }

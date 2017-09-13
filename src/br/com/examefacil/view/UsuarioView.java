@@ -34,6 +34,7 @@ public interface UsuarioView {
     public JButton jBEditar();
     public JButton jBGravar();
     public JButton jBCancelar();
+    public JButton jBPermissoes();
     public JTabbedPane jTabUsuario();
     public JCheckBox jCInclusaoAutomatica();
     public JButton btnAbrirDialogAlteraSenha();

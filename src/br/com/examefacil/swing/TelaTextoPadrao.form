@@ -253,7 +253,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTNome" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <Component id="jTNome_codigo" min="-2" pref="180" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jLIDTextoPadrao" min="-2" pref="163" max="-2" attributes="0"/>
                                   </Group>
@@ -275,7 +275,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTNome" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTNome_codigo" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -293,7 +293,7 @@
                 <Property name="text" type="java.lang.String" value="Nome / C&#xf3;digo"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTNome">
+            <Component class="javax.swing.JTextField" name="jTNome_codigo">
             </Component>
             <Component class="javax.swing.JLabel" name="jLIDTextoPadrao">
             </Component>

@@ -60,7 +60,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
         jTABTextoPadrao = new javax.swing.JTable();
         jEditar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTNome = new javax.swing.JTextField();
+        jTNome_codigo = new javax.swing.JTextField();
         jLIDTextoPadrao = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTDescricao = new javax.swing.JTextArea();
@@ -232,7 +232,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
                         .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jEditarLayout.createSequentialGroup()
-                                .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTNome_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLIDTextoPadrao, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +248,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
                     .addGroup(jEditarLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTNome_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -407,7 +407,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTABTextoPadrao;
     private javax.swing.JTextArea jTDescricao;
-    private javax.swing.JTextField jTNome;
+    private javax.swing.JTextField jTNome_codigo;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTabbedPane jTabTextoPadrao;
     // End of variables declaration//GEN-END:variables
@@ -446,12 +446,12 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
 
     @Override
     public JButton jBEditar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jBEditar;
     }
 
     @Override
     public JButton jBGravar() {
-        return jBEditar;
+        return jBGravar;
     }
 
     @Override
@@ -480,13 +480,13 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
     }
 
     @Override
-    public String getNome() {
-        return jTNome().getText();
+    public JTextField jTNome_codigo() {
+        return jTNome_codigo;
     }
 
     @Override
-    public JTextField jTNome() {
-        return jTNome;
+    public String getNome_codigo() {
+        return jTNome_codigo().getText();
     }
 
     

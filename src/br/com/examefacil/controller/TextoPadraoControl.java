@@ -44,7 +44,7 @@ public class TextoPadraoControl {
         if(view.jLIDTextoPadrao().getText()!=null){
             area.setIdtextopadrao(Integer.parseInt(view.jLIDTextoPadrao().getText()));
         }
-        area.setNome_codigo(view.getNome());
+        area.setNome_codigo(view.getNome_codigo());
         
         boolean result = new TextoPadraoDAO().save(area);
         if(result){
@@ -90,7 +90,7 @@ public class TextoPadraoControl {
         if(a!=null){
             habilitaBotoesEditar(view);
             view.jLIDTextoPadrao().setText(a.getIdtextopadrao()+"");
-            view.jTNome().setText(a.getNome_codigo());
+            view.jTNome_codigo().setText(a.getNome_codigo());
         }
     }
     public TableModel tableModelTextoPadrao(TextoPadraoView view){
@@ -124,7 +124,7 @@ public class TextoPadraoControl {
     }
     
     public void limparTextos(TextoPadraoView view){
-        view.jTNome().setText("");
+        view.jTNome_codigo().setText("");
         view.jTDescricao().setText("");
 
     }

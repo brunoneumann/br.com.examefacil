@@ -21,9 +21,9 @@ import javax.swing.JTextField;
  */
 public interface TextoPadraoView {
     
-    public String getNome();
+    public String getNome_codigo();
     public String getDescricao();
-    public JTextField jTNome();
+    public JTextField jTNome_codigo();
     public JTextArea jTDescricao();
     public JTable jTABTextoPadrao();
     public JTextField jTPesquisar();

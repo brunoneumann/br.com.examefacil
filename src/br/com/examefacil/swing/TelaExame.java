@@ -186,6 +186,11 @@ public class TelaExame extends javax.swing.JFrame{
 
             }
         ));
+        jTABAreaExame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTABAreaExameMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTABAreaExame);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
@@ -334,9 +339,11 @@ public class TelaExame extends javax.swing.JFrame{
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         
     }//GEN-LAST:event_jBExcluirActionPerformed
-    private void jTABAreaExameMouseClicked(java.awt.event.MouseEvent evt) {                                           
+
+    private void jTABAreaExameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABAreaExameMouseClicked
         
-    }
+    }//GEN-LAST:event_jTABAreaExameMouseClicked
+
     /**
      * @param args the command line arguments
      */
