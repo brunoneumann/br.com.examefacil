@@ -1,10 +1,15 @@
+/nbproject/
+
+/test/
+
+/log/
+
+build.xml
+desktop.ini
+manifest.mf
 /src/log4j.properties
 /src/hibernate.cfg.xml
 /build/
 /dist/
 hibernate.reveng.xml
-<<<<<<< HEAD
 /nbproject/private/private.xml
-=======
-/nbproject/private/private.xml
->>>>>>> origin/release_3_bruno
