@@ -81,26 +81,46 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jCAteIncluir = new javax.swing.JCheckBox();
         jCAteEditar = new javax.swing.JCheckBox();
         jCAteExcluir = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        jCLauVisualizar = new javax.swing.JCheckBox();
+        jCLauIncluir = new javax.swing.JCheckBox();
+        jCLauEditar = new javax.swing.JCheckBox();
+        jCLauExcluir = new javax.swing.JCheckBox();
+        jLabel17 = new javax.swing.JLabel();
+        jCImaVisualizar = new javax.swing.JCheckBox();
+        jCImaIncluir = new javax.swing.JCheckBox();
+        jCImaEditar = new javax.swing.JCheckBox();
+        jCImaExcluir = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        jCManVisualizar = new javax.swing.JCheckBox();
+        jCManIncluir = new javax.swing.JCheckBox();
+        jCManEditar = new javax.swing.JCheckBox();
+        jCManExcluir = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
+        jCAudVisualizar = new javax.swing.JCheckBox();
+        jCAudIncluir = new javax.swing.JCheckBox();
+        jCAudEditar = new javax.swing.JCheckBox();
+        jCAudExcluir = new javax.swing.JCheckBox();
+        jLabel18 = new javax.swing.JLabel();
         jCPacVisualizar = new javax.swing.JCheckBox();
         jCPacIncluir = new javax.swing.JCheckBox();
         jCPacEditar = new javax.swing.JCheckBox();
         jCPacExcluir = new javax.swing.JCheckBox();
-        jLabel4 = new javax.swing.JLabel();
-        jCTexVisualizar = new javax.swing.JCheckBox();
-        jCTexIncluir = new javax.swing.JCheckBox();
-        jCTexEditar = new javax.swing.JCheckBox();
-        jCTexExcluir = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
+        jCTipVisualizar = new javax.swing.JCheckBox();
+        jCTipIncluir = new javax.swing.JCheckBox();
+        jCTipEditar = new javax.swing.JCheckBox();
+        jCTipExcluir = new javax.swing.JCheckBox();
+        jLabel19 = new javax.swing.JLabel();
         jCAreVisualizar = new javax.swing.JCheckBox();
         jCAreIncluir = new javax.swing.JCheckBox();
         jCAreEditar = new javax.swing.JCheckBox();
         jCAreExcluir = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-        jCTipVisualizar = new javax.swing.JCheckBox();
-        jCTipIncluir = new javax.swing.JCheckBox();
-        jCTipEditar = new javax.swing.JCheckBox();
-        jCTipExcluir = new javax.swing.JCheckBox();
+        jCTexVisualizar = new javax.swing.JCheckBox();
+        jCTexIncluir = new javax.swing.JCheckBox();
+        jCTexEditar = new javax.swing.JCheckBox();
+        jCTexExcluir = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jCTipoAcesso = new javax.swing.JComboBox<>();
@@ -244,11 +264,11 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 809, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
 
         jTabUsuario.addTab("Visualizar", jPVisualizar);
@@ -289,7 +309,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                     .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jBPermissoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
-                .addContainerGap(421, Short.MAX_VALUE))
+                .addContainerGap(664, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,16 +328,18 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addComponent(jBPermissoes)
                 .addGap(18, 18, 18)
                 .addComponent(btnAbrirDialogAlteraSenha)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         jTabUsuario.addTab("Editar", jEditar);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setLayout(new java.awt.GridLayout(7, 5));
+        jPanel2.setLayout(new java.awt.GridLayout(11, 5, 5, 0));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Permissões Específicas");
+        jLabel10.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel10.setMinimumSize(new java.awt.Dimension(200, 14));
         jPanel2.add(jLabel10);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -336,47 +358,182 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jLabel14.setText("Excluir");
         jPanel2.add(jLabel14);
 
-        jLabel9.setText("Cadastro de Usuários");
+        jLabel9.setText("1. Cadastro de Usuários");
+        jLabel9.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel9.setMinimumSize(new java.awt.Dimension(200, 14));
         jPanel2.add(jLabel9);
+
+        jCUsuVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCUsuVisualizar.setAlignmentY(0.0F);
+        jCUsuVisualizar.setIconTextGap(1);
+        jCUsuVisualizar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jCUsuVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCUsuVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCUsuVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jCUsuVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCUsuVisualizarActionPerformed(evt);
+            }
+        });
         jPanel2.add(jCUsuVisualizar);
         jPanel2.add(jCUsuIncluir);
         jPanel2.add(jCUsuEditar);
         jPanel2.add(jCUsuExcluir);
 
-        jLabel8.setText("Atendimentos");
+        jLabel8.setText("2. Atendimentos");
+        jLabel8.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel8.setMinimumSize(new java.awt.Dimension(200, 14));
         jPanel2.add(jLabel8);
+
+        jCAteVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCAteVisualizar.setAlignmentY(0.0F);
+        jCAteVisualizar.setIconTextGap(1);
+        jCAteVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCAteVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCAteVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCAteVisualizar);
         jPanel2.add(jCAteIncluir);
         jPanel2.add(jCAteEditar);
         jPanel2.add(jCAteExcluir);
 
-        jLabel6.setText("Cadastro de Pacientes");
+        jLabel16.setText("2.1. Atendimentos / Laudos");
+        jLabel16.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel16.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel16);
+
+        jCLauVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCLauVisualizar.setAlignmentY(0.0F);
+        jCLauVisualizar.setIconTextGap(1);
+        jCLauVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCLauVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCLauVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCLauVisualizar);
+        jPanel2.add(jCLauIncluir);
+        jPanel2.add(jCLauEditar);
+        jPanel2.add(jCLauExcluir);
+
+        jLabel17.setText("2.2. Atendimentos / Imagens");
+        jLabel17.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel17.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel17);
+
+        jCImaVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCImaVisualizar.setAlignmentY(0.0F);
+        jCImaVisualizar.setIconTextGap(1);
+        jCImaVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCImaVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCImaVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCImaVisualizar);
+        jPanel2.add(jCImaIncluir);
+
+        jCImaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCImaEditarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCImaEditar);
+        jPanel2.add(jCImaExcluir);
+
+        jLabel4.setText("2.3. Atendimentos / Manip. Imagens");
+        jLabel4.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel4.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel4);
+
+        jCManVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCManVisualizar.setAlignmentY(0.0F);
+        jCManVisualizar.setIconTextGap(1);
+        jCManVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCManVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCManVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCManVisualizar);
+        jPanel2.add(jCManIncluir);
+        jPanel2.add(jCManEditar);
+        jPanel2.add(jCManExcluir);
+
+        jLabel6.setText("2.4. Atendimentos / Áudios");
+        jLabel6.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel6.setMinimumSize(new java.awt.Dimension(200, 14));
         jPanel2.add(jLabel6);
+
+        jCAudVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCAudVisualizar.setAlignmentY(0.0F);
+        jCAudVisualizar.setIconTextGap(1);
+        jCAudVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCAudVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCAudVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCAudVisualizar);
+        jPanel2.add(jCAudIncluir);
+        jPanel2.add(jCAudEditar);
+        jPanel2.add(jCAudExcluir);
+
+        jLabel18.setText("3. Cadastro de Pacientes");
+        jLabel18.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel18.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel18);
+
+        jCPacVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCPacVisualizar.setAlignmentY(0.0F);
+        jCPacVisualizar.setIconTextGap(1);
+        jCPacVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCPacVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCPacVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCPacVisualizar);
         jPanel2.add(jCPacIncluir);
         jPanel2.add(jCPacEditar);
         jPanel2.add(jCPacExcluir);
 
-        jLabel4.setText("Cadastro de Textos Padrões");
-        jPanel2.add(jLabel4);
-        jPanel2.add(jCTexVisualizar);
-        jPanel2.add(jCTexIncluir);
-        jPanel2.add(jCTexEditar);
-        jPanel2.add(jCTexExcluir);
-
-        jLabel7.setText("Cadastro de Área de Exames");
+        jLabel7.setText("4. Cadastros de Tipos de Exames");
+        jLabel7.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel7.setMinimumSize(new java.awt.Dimension(200, 14));
         jPanel2.add(jLabel7);
+
+        jCTipVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCTipVisualizar.setAlignmentY(0.0F);
+        jCTipVisualizar.setIconTextGap(1);
+        jCTipVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCTipVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCTipVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCTipVisualizar);
+        jPanel2.add(jCTipIncluir);
+        jPanel2.add(jCTipEditar);
+        jPanel2.add(jCTipExcluir);
+
+        jLabel19.setText("5. Cadastro de Áreas de Exames");
+        jLabel19.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel19.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel19);
+
+        jCAreVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCAreVisualizar.setAlignmentY(0.0F);
+        jCAreVisualizar.setIconTextGap(1);
+        jCAreVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCAreVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCAreVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCAreVisualizar);
         jPanel2.add(jCAreIncluir);
         jPanel2.add(jCAreEditar);
         jPanel2.add(jCAreExcluir);
 
-        jLabel5.setText("Cadastro de Tipos de Exame");
+        jLabel5.setText("6. Cadastro de Textos Padrões");
+        jLabel5.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel5.setMinimumSize(new java.awt.Dimension(200, 14));
         jPanel2.add(jLabel5);
-        jPanel2.add(jCTipVisualizar);
-        jPanel2.add(jCTipIncluir);
-        jPanel2.add(jCTipEditar);
-        jPanel2.add(jCTipExcluir);
+
+        jCTexVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCTexVisualizar.setAlignmentY(0.0F);
+        jCTexVisualizar.setIconTextGap(1);
+        jCTexVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCTexVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCTexVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jCTexVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTexVisualizarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCTexVisualizar);
+        jPanel2.add(jCTexIncluir);
+        jPanel2.add(jCTexEditar);
+        jPanel2.add(jCTexExcluir);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -419,17 +576,16 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -440,14 +596,15 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
+            .addComponent(jTabUsuario)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabUsuario))
+                .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -513,6 +670,18 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private void jBPermissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPermissoesActionPerformed
         new UsuarioControl().inserirPermissoes(this);
     }//GEN-LAST:event_jBPermissoesActionPerformed
+
+    private void jCTexVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTexVisualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCTexVisualizarActionPerformed
+
+    private void jCImaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCImaEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCImaEditarActionPerformed
+
+    private void jCUsuVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCUsuVisualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCUsuVisualizarActionPerformed
     
     /**
      * @param args the command line arguments
@@ -574,7 +743,23 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JCheckBox jCAteExcluir;
     private javax.swing.JCheckBox jCAteIncluir;
     private javax.swing.JCheckBox jCAteVisualizar;
+    private javax.swing.JCheckBox jCAudEditar;
+    private javax.swing.JCheckBox jCAudExcluir;
+    private javax.swing.JCheckBox jCAudIncluir;
+    private javax.swing.JCheckBox jCAudVisualizar;
+    private javax.swing.JCheckBox jCImaEditar;
+    private javax.swing.JCheckBox jCImaExcluir;
+    private javax.swing.JCheckBox jCImaIncluir;
+    private javax.swing.JCheckBox jCImaVisualizar;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
+    private javax.swing.JCheckBox jCLauEditar;
+    private javax.swing.JCheckBox jCLauExcluir;
+    private javax.swing.JCheckBox jCLauIncluir;
+    private javax.swing.JCheckBox jCLauVisualizar;
+    private javax.swing.JCheckBox jCManEditar;
+    private javax.swing.JCheckBox jCManExcluir;
+    private javax.swing.JCheckBox jCManIncluir;
+    private javax.swing.JCheckBox jCManVisualizar;
     private javax.swing.JCheckBox jCPacEditar;
     private javax.swing.JCheckBox jCPacExcluir;
     private javax.swing.JCheckBox jCPacIncluir;
@@ -601,6 +786,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
