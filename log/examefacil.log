@@ -117,3 +117,4 @@
 2017-09-13 19:46:21 [AWT-EventQueue-0] ERROR CustomDAO:37 - org.hibernate.exception.ConstraintViolationException: could not execute statement
 2017-09-13 19:46:28 [AWT-EventQueue-0] ERROR CustomDAO:37 - org.hibernate.exception.ConstraintViolationException: could not execute statement
 2017-09-13 19:49:44 [AWT-EventQueue-0] ERROR CustomDAO:37 - org.hibernate.exception.ConstraintViolationException: could not execute statement
+2017-09-15 14:02:48 [AWT-EventQueue-0] ERROR HibernateUtil:22 - org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect

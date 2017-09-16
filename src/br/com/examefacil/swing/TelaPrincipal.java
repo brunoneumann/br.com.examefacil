@@ -94,8 +94,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         setMinimumSize(new java.awt.Dimension(800, 500));
 
         jILogin.setTitle("Login");
+        jILogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jILogin.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jILogin.setFocusTraversalPolicyProvider(true);
+        jILogin.setPreferredSize(new java.awt.Dimension(260, 200));
+        jILogin.setRequestFocusEnabled(false);
         jILogin.setVisible(true);
 
         jLabel1.setText("Usuário");
@@ -154,7 +157,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             .addGroup(jILoginLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jIExame.setVisible(true);
@@ -273,12 +276,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 865, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -365,7 +368,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jIExameLayout.setHorizontalGroup(
             jIExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPAreaExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabExame, javax.swing.GroupLayout.PREFERRED_SIZE, 723, Short.MAX_VALUE)
+            .addComponent(jTabExame)
         );
         jIExameLayout.setVerticalGroup(
             jIExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,18 +388,20 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(jIExame)
-                .addGap(34, 34, 34)
-                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jIExame)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jILogin.getAccessibleContext().setAccessibleDescription("");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);

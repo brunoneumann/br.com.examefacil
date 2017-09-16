@@ -14,7 +14,7 @@ import br.com.examefacil.view.TelaPrincipalView;
 public class TelaPrincipalControl {
     
     public void init(TelaPrincipalView view){
-        desahabilitaMenus(view);
+        desabilitaMenus(view);
         
     }
         
@@ -25,11 +25,14 @@ public class TelaPrincipalControl {
         view.jILogin().setVisible(false);
         view.jIExame().setVisible(true);
     }
-    public void desahabilitaMenus (TelaPrincipalView view){
+    public void desabilitaMenus (TelaPrincipalView view){
         view.jMenu1().setEnabled(false);
         view.jMenuBar1().setEnabled(false);
         view.jMCadastro().setEnabled(false);
         view.jILogin().setVisible(true);
+        view.jILogin().setSize(280, 200);
+        view.jILogin().setAlignmentX(1);
+        view.jILogin().setAlignmentY(1);
         view.jIExame().setVisible(false);
         
     }

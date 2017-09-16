@@ -1,11 +1,11 @@
 /src/log4j.properties
 /src/hibernate.cfg.xml
-/build/
-/dist/
+/build/*
+/dist/*
 hibernate.reveng.xml
-/nbproject/
-/test/
-/log/
+/nbproject/*
+/test/*
+/log/*
 build.xml
 desktop.ini
 manifest.mf
