@@ -211,6 +211,8 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
         jLabel1.setText("Tipo de Exame");
 
+        jTTipoExame.setName("Tipo de Exame"); // NOI18N
+
         jLabel2.setText("Descrição");
 
         jLabel3.setText("Area do Exame");
@@ -224,6 +226,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
         jTDescricao.setColumns(20);
         jTDescricao.setRows(5);
+        jTDescricao.setName("Descrição"); // NOI18N
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);

@@ -17,6 +17,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.TextoPadraoView;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +41,8 @@ public class TextoPadraoControl {
     
     public boolean salvar(TextoPadraoView view){
         
+        if(validaCampos(view)){
+        
         TextoPadrao area = new TextoPadrao();
         if(view.jLIDTextoPadrao().getText()!=null){
             area.setIdtextopadrao(Integer.parseInt(view.jLIDTextoPadrao().getText()));
@@ -53,6 +56,8 @@ public class TextoPadraoControl {
             atualizaTabelaTextoPadrao(view);
         }
         return result;
+        }
+        return false;
     }
 
     public boolean excluir(TextoPadraoView view){
@@ -154,6 +159,22 @@ public class TextoPadraoControl {
             view.jTabTextoPadrao().setSelectedIndex(0);
             view.jTabTextoPadrao().setEnabledAt(0, true);
             view.jTabTextoPadrao().setEnabledAt(1, false);
+        }
+    }
+    public boolean validaCampos(TextoPadraoView view) {
+
+        if (view.jTNome_codigo().getText().equals("")
+                || view.jTNome_codigo().getText().equals(" ")) {
+            JOptionPane.showMessageDialog(null, "Digite um valor válido no campo: " + view.jTNome_codigo().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+
+            return false;
+        } else if (view.jTDescricao().getText().equals("")
+                || view.jTDescricao().getText().equals(" ")) {
+
+            JOptionPane.showMessageDialog(null, "Digite um valor válido no campo: " + view.jTDescricao().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else {
+            return true;
         }
     }
 }

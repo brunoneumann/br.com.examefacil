@@ -307,6 +307,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTTipoExame">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Tipo de Exame" noResource="true"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -342,6 +345,7 @@
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
+                <Property name="name" type="java.lang.String" value="Descri&#xe7;&#xe3;o" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -214,8 +214,11 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
 
         jLabel1.setText("Nome / Código");
 
+        jTNome_codigo.setName("Nome / Código"); // NOI18N
+
         jTDescricao.setColumns(20);
         jTDescricao.setRows(5);
+        jTDescricao.setName("Descrição"); // NOI18N
         jScrollPane2.setViewportView(jTDescricao);
 
         jLabel2.setText("Descrição");

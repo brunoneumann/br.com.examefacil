@@ -294,6 +294,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTNome_codigo">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Nome / C&#xf3;digo" noResource="true"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLIDTextoPadrao">
             </Component>
@@ -308,6 +311,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
+                    <Property name="name" type="java.lang.String" value="Descri&#xe7;&#xe3;o" noResource="true"/>
                   </Properties>
                 </Component>
               </SubComponents>

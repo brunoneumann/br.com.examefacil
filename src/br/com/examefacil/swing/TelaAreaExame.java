@@ -201,6 +201,8 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
 
         jLabel1.setText("Área do Exame");
 
+        jTAreaExame.setName("Área do Exame"); // NOI18N
+
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
         jEditarLayout.setHorizontalGroup(
