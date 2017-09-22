@@ -15,18 +15,15 @@ public class TelaPrincipalControl {
     
     public void init(TelaPrincipalView view){
         desabilitaMenus(view);
-        
     }
         
     public void habilitaMenus (TelaPrincipalView view){
-        view.jMenu1().setEnabled(true);
         view.jMenuBar1().setEnabled(true);
         view.jMCadastro().setEnabled(true);
         view.jILogin().setVisible(false);
         view.jIExame().setVisible(true);
     }
     public void desabilitaMenus (TelaPrincipalView view){
-        view.jMenu1().setEnabled(false);
         view.jMenuBar1().setEnabled(false);
         view.jMCadastro().setEnabled(false);
         view.jILogin().setVisible(true);
@@ -34,7 +31,6 @@ public class TelaPrincipalControl {
         view.jILogin().setAlignmentX(1);
         view.jILogin().setAlignmentY(1);
         view.jIExame().setVisible(false);
-        
     }
     
 }

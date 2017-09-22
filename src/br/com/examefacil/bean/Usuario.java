@@ -28,6 +28,7 @@ public class Usuario {
     private String email;
     @Column(updatable = false, insertable = false)
     private String senha;
+    @Column(updatable = false, insertable = false)
     private String tipo_acesso;
 
     public String getNome() {

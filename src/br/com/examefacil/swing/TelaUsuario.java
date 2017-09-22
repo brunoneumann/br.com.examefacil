@@ -7,8 +7,8 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.UsuarioView;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -23,14 +23,74 @@ import javax.swing.JTextField;
  */
 public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     
-    /**
-     * Creates new form TipoExames
-     */
+    public List<JCheckBox> chksPermissaoUsuario;
+    public List<JCheckBox> chksPermissaoAtendimento;
+    public List<JCheckBox> chksPermissaoAtLaudo;
+    public List<JCheckBox> chksPermissaoAtImagem;
+    public List<JCheckBox> chksPermissaoAtEditImage;
+    public List<JCheckBox> chksPermissaoAtAudio;
+    public List<JCheckBox> chksPermissaoPaciente;
+    public List<JCheckBox> chksPermissaoTextoPadrao;
+    public List<JCheckBox> chksPermissaoAreaExame;
+    public List<JCheckBox> chksPermissaoTipoExame;
+    
     public TelaUsuario() {
         initComponents();
         new UsuarioControl().init(this);
-        
-        
+        initCheckboxesPermissoes();
+    }
+    
+    public void initCheckboxesPermissoes(){
+        this.chksPermissaoUsuario = new ArrayList<>();
+        this.chksPermissaoUsuario.add(jCUsuVisualizar);
+        this.chksPermissaoUsuario.add(jCUsuIncluir);
+        this.chksPermissaoUsuario.add(jCUsuEditar);
+        this.chksPermissaoUsuario.add(jCUsuExcluir);
+        this.chksPermissaoAtendimento = new ArrayList<>();
+        this.chksPermissaoAtendimento.add(jCAteVisualizar);
+        this.chksPermissaoAtendimento.add(jCAteIncluir);
+        this.chksPermissaoAtendimento.add(jCAteEditar);
+        this.chksPermissaoAtendimento.add(jCAteExcluir);
+        this.chksPermissaoAtLaudo = new ArrayList<>();
+        this.chksPermissaoAtLaudo.add(jCLauVisualizar);
+        this.chksPermissaoAtLaudo.add(jCLauIncluir);
+        this.chksPermissaoAtLaudo.add(jCLauEditar);
+        this.chksPermissaoAtLaudo.add(jCLauExcluir);
+        this.chksPermissaoAtImagem = new ArrayList<>();
+        this.chksPermissaoAtImagem.add(jCImaVisualizar);
+        this.chksPermissaoAtImagem.add(jCImaIncluir);
+        this.chksPermissaoAtImagem.add(jCImaEditar);
+        this.chksPermissaoAtImagem.add(jCImaExcluir);
+        this.chksPermissaoAtEditImage = new ArrayList<>();
+        this.chksPermissaoAtEditImage.add(jCManVisualizar);
+        this.chksPermissaoAtEditImage.add(jCManIncluir);
+        this.chksPermissaoAtEditImage.add(jCManEditar);
+        this.chksPermissaoAtEditImage.add(jCManExcluir);
+        this.chksPermissaoAtAudio = new ArrayList<>();
+        this.chksPermissaoAtAudio.add(jCAudVisualizar);
+        this.chksPermissaoAtAudio.add(jCAudIncluir);
+        this.chksPermissaoAtAudio.add(jCAudEditar);
+        this.chksPermissaoAtAudio.add(jCAudExcluir);
+        this.chksPermissaoPaciente = new ArrayList<>();
+        this.chksPermissaoPaciente.add(jCPacVisualizar);
+        this.chksPermissaoPaciente.add(jCPacIncluir);
+        this.chksPermissaoPaciente.add(jCPacEditar);
+        this.chksPermissaoPaciente.add(jCPacExcluir);
+        this.chksPermissaoTextoPadrao = new ArrayList<>();
+        this.chksPermissaoTextoPadrao.add(jCTexVisualizar);
+        this.chksPermissaoTextoPadrao.add(jCTexIncluir);
+        this.chksPermissaoTextoPadrao.add(jCTexEditar);
+        this.chksPermissaoTextoPadrao.add(jCTexExcluir);
+        this.chksPermissaoAreaExame = new ArrayList<>();
+        this.chksPermissaoAreaExame.add(jCAreVisualizar);
+        this.chksPermissaoAreaExame.add(jCAreIncluir);
+        this.chksPermissaoAreaExame.add(jCAreEditar);
+        this.chksPermissaoAreaExame.add(jCAreExcluir);
+        this.chksPermissaoTipoExame = new ArrayList<>();
+        this.chksPermissaoTipoExame.add(jCTipVisualizar);
+        this.chksPermissaoTipoExame.add(jCTipIncluir);
+        this.chksPermissaoTipoExame.add(jCTipEditar);
+        this.chksPermissaoTipoExame.add(jCTipExcluir);
     }
     
     /**
@@ -308,7 +368,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                         .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jBPermissoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                        .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(664, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
@@ -539,7 +599,12 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jLabel15.setText("Tipo de Usuário");
 
-        jCTipoAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recepcionista", "Atend. Exame", "Médico Requisitante", "Médico Interpretador", "Administrador" }));
+        jCTipoAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecione--", "Recepcionista", "Atend. Exame", "Médico Requisitante", "Médico Interpretador", "Administrador" }));
+        jCTipoAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTipoAcessoActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 255));
@@ -553,7 +618,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addContainerGap()
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
@@ -576,7 +641,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -638,16 +703,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         UsuarioControl control = new UsuarioControl();
         control.salvar(this);
-        
-        
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        
-        
         new UsuarioControl().atualizaTabelaUsuarios(this);
-        
-        
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
@@ -682,6 +741,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private void jCUsuVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCUsuVisualizarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCUsuVisualizarActionPerformed
+
+    private void jCTipoAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTipoAcessoActionPerformed
+        new UsuarioControl().carregaRegraPermissao(this);
+    }//GEN-LAST:event_jCTipoAcessoActionPerformed
     
     /**
      * @param args the command line arguments
@@ -895,15 +958,71 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     public JTextField jTEmail() {
         return jTEmail;
     }
-
+    
     @Override
     public JButton btnAbrirDialogAlteraSenha() {
         return btnAbrirDialogAlteraSenha;
     }
-
+    
     @Override
     public JButton jBPermissoes() {
         return jBPermissoes;
     }
+    
+    @Override
+    public List<JCheckBox> chksPermissaoUsuario() {
+        return this.chksPermissaoUsuario;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtendimento() {
+        return this.chksPermissaoAtendimento;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtLaudo() {
+        return this.chksPermissaoAtLaudo;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtImagem() {
+        return this.chksPermissaoAtImagem;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtEditImage() {
+        return this.chksPermissaoAtEditImage;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtAudio() {
+        return this.chksPermissaoAtAudio;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoPaciente() {
+        return this.chksPermissaoPaciente;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoTextoPadrao() {
+        return this.chksPermissaoTextoPadrao;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAreaExame() {
+        return this.chksPermissaoAreaExame;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoTipoExame() {
+        return this.chksPermissaoTipoExame;
+    }
+
+    @Override
+    public JButton btnAbrirPermissoes() {
+        return jBPermissoes;
+    }
+    
     
 }

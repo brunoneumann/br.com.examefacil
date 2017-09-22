@@ -28,7 +28,6 @@ public interface TelaPrincipalView {
         public JPasswordField jPSenha();
         public JButton jBEntrar();
         public JMenuBar jMenuBar1();
-        public JMenu jMenu1();
         public JMenu jMCadastro();
         public JMenuItem jMPaciente();
         public JMenuItem jMTipoExame();

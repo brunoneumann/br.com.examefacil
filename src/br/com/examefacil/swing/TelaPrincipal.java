@@ -8,6 +8,7 @@ package br.com.examefacil.swing;
 import br.com.examefacil.bean.AreaExame;
 import br.com.examefacil.controller.AreaExameControl;
 import br.com.examefacil.controller.TelaPrincipalControl;
+import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.TelaPrincipalView;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
@@ -81,7 +82,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMCadastro = new javax.swing.JMenu();
         jMPaciente = new javax.swing.JMenuItem();
         jMTipoExame = new javax.swing.JMenuItem();
@@ -101,7 +101,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jILogin.setRequestFocusEnabled(false);
         jILogin.setVisible(true);
 
-        jLabel1.setText("Usuário");
+        jLabel1.setText("E-mail ");
 
         jLabel2.setText("Senha");
 
@@ -236,7 +236,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 145, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPAreaExameLayout.setVerticalGroup(
@@ -329,7 +329,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                         .addGap(34, 34, 34)
                         .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -402,9 +402,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         );
 
         jILogin.getAccessibleContext().setAccessibleDescription("");
-
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
 
         jMCadastro.setText("Cadastros");
 
@@ -490,8 +487,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMTextoPadraoActionPerformed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        
-        new TelaPrincipalControl().habilitaMenus(this);
+        if(new UsuarioControl().testaAcesso(jTUsuario.getText(), jPSenha.getText())){
+            new TelaPrincipalControl().habilitaMenus(this);
+        }
     }//GEN-LAST:event_jBEntrarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -586,7 +584,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JMenuItem jMTextoPadrao;
     private javax.swing.JMenuItem jMTipoExame;
     private javax.swing.JMenuItem jMUsuario;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPAreaExame;
     private javax.swing.JPasswordField jPSenha;
@@ -633,11 +630,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     @Override
     public JMenuBar jMenuBar1() {
         return jMenuBar1;
-    }
-
-    @Override
-    public JMenu jMenu1() {
-        return jMenu1;
     }
 
     @Override

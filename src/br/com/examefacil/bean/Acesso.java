@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -30,6 +31,21 @@ public class Acesso {
     private boolean incluir;
     private boolean alterar;
     private boolean excluir;
+    
+    @Transient
+    private int tipoUsuario;
+    
+    public Acesso(){}
+    
+    public Acesso(int tipoUsuario, String pagina, boolean visualizar, boolean incluir, boolean alterar, boolean excluir){
+        this.tipoUsuario = tipoUsuario;
+        this.pagina = pagina;
+        this.visualizar = visualizar;
+        this.incluir = incluir;
+        this.alterar = alterar;
+        this.excluir = excluir;
+    }
+
 
     public int getIdacesso() {
         return idacesso;
@@ -85,6 +101,14 @@ public class Acesso {
 
     public void setExcluir(boolean excluir) {
         this.excluir = excluir;
+    }
+
+    public int getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(int tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
     
     

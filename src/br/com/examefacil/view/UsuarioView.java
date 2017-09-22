@@ -5,6 +5,7 @@
  */
 package br.com.examefacil.view;
 
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -28,6 +29,8 @@ public interface UsuarioView {
     public JTable JTABUsuarios();
     public JTextField jTPesquisar();
     
+    
+    
     public JButton jBIncluir();
     public JButton jBExcluir();
     public JButton jBPesquisar();
@@ -38,6 +41,18 @@ public interface UsuarioView {
     public JTabbedPane jTabUsuario();
     public JCheckBox jCInclusaoAutomatica();
     public JButton btnAbrirDialogAlteraSenha();
+    public JButton btnAbrirPermissoes();
     public JLabel jLIDUsuario();
+    
+    public List<JCheckBox> chksPermissaoUsuario();
+    public List<JCheckBox> chksPermissaoAtendimento();
+    public List<JCheckBox> chksPermissaoAtLaudo();
+    public List<JCheckBox> chksPermissaoAtImagem();
+    public List<JCheckBox> chksPermissaoAtEditImage();
+    public List<JCheckBox> chksPermissaoAtAudio();
+    public List<JCheckBox> chksPermissaoPaciente();
+    public List<JCheckBox> chksPermissaoTextoPadrao();
+    public List<JCheckBox> chksPermissaoAreaExame();
+    public List<JCheckBox> chksPermissaoTipoExame();
     
 }

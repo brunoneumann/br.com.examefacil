@@ -7,6 +7,15 @@ package br.com.examefacil;
 
 
 import br.com.examefacil.swing.TelaPrincipal;
+import br.com.examefacil.tools.Util;
+import com.sun.java.swing.plaf.gtk.GTKLookAndFeel;
+import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 
 /**
@@ -17,21 +26,21 @@ public class Examefacil {
 
     public static void main(String[] args) {
         
-        
-        new TelaPrincipal().setVisible(true);
-        
-        /*AreaExame a = new AreaExame();
+        java.awt.EventQueue.invokeLater(new Runnable() {
 
-        a.setNome("qwerty");
+            public void run() {
 
-        AreaExameControl control = new AreaExameControl();
-        control.salvar(a);*/
-       
+                try {
 
-        
-        //System.out.println(new AreaExameControl().get(4).getNome());
+                    UIManager.setLookAndFeel(new NimbusLookAndFeel());
 
-        
+                } catch (Exception ex) {
+                    Util.Aviso("Look and Feel não suportado: "+ex.getMessage());
+                }
+                
+                new TelaPrincipal().setVisible(true);
+            }
+        });
         
     }
     

@@ -1,12 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.controller;
 
+import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.Usuario;
+import br.com.examefacil.dao.AcessoDAO;
 import br.com.examefacil.dao.UsuarioDAO;
+import br.com.examefacil.tools.UsuarioUtils;
 import br.com.examefacil.view.UsuarioView;
 
 import com.towel.el.FieldResolver;
@@ -16,15 +19,16 @@ import java.util.List;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.tools.Util;
+import java.util.ArrayList;
 
 /**
  *
  * @author Henrique
  */
 public class UsuarioControl {
-        public UsuarioControl(){}
-        
-        public void init(UsuarioView view){
+    public UsuarioControl(){}
+    
+    public void init(UsuarioView view){
         atualizaTabelaUsuarios(view);
         
         /* Desabilita aba editar */
@@ -32,35 +36,81 @@ public class UsuarioControl {
         view.jTabUsuario().setEnabledAt(2, false);
         view.jLIDUsuario().setVisible(false);
     }
-        
-        public void atualizaTabelaUsuarios(UsuarioView view){
+    
+    public void atualizaTabelaUsuarios(UsuarioView view){
         view.JTABUsuarios().setModel(tableModelUsuarios(view));
         view.JTABUsuarios().setColumnModel(tableColumnUsuarios(view));
     }
     
     public boolean salvar(UsuarioView view){
         
-        Usuario usuario = new Usuario();
-        if(view.jLIDUsuario().getText()!=null){
-            usuario.setIdusuario(Integer.parseInt(view.jLIDUsuario().getText()));
+        if(view.jTabUsuario().getSelectedIndex()==1){
+            
+            Usuario usuario = new Usuario();
+            if(view.jLIDUsuario().getText()!=null){
+                usuario.setIdusuario(Integer.parseInt(view.jLIDUsuario().getText()));
+            }
+            usuario.setNome(view.getNome());
+            usuario.setEmail(view.getEmail());
+            
+            boolean result = new UsuarioDAO().save(usuario);
+            if(result){
+                limparTextos(view);
+                desabilitaBotoesEditar(view);
+                atualizaTabelaUsuarios(view);
+            }
+            return result;
         }
-        usuario.setNome(view.getNome());
-        usuario.setEmail(view.getEmail());
-        usuario.setTipo_acesso(view.getTipoAcesso());
         
-        boolean result = new UsuarioDAO().save(usuario);
-        if(result){
-            limparTextos(view);
-            desabilitaBotoesEditar(view);
-            atualizaTabelaUsuarios(view);
+        /* Gravar permissões */
+        else {
+            if(view.jLIDUsuario().getText()!=null){
+                int idusuario = Integer.parseInt(view.jLIDUsuario().getText());
+                List<Acesso> listAcessos = new ArrayList<>();
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "usuario", view.chksPermissaoUsuario()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "atendimento", view.chksPermissaoAtendimento()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "at-laudo", view.chksPermissaoAtLaudo()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "at-imagem", view.chksPermissaoAtImagem()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "at-edit-imagem", view.chksPermissaoAtEditImage()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "at-audio", view.chksPermissaoAtAudio()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "paciente", view.chksPermissaoPaciente()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "textopadrao", view.chksPermissaoTextoPadrao()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "areaexame", view.chksPermissaoAreaExame()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "tipoexame", view.chksPermissaoTipoExame()));
+                
+                boolean result = true;
+                if(new AcessoDAO().excluirPermissoes(idusuario)){
+                    for(Acesso a : listAcessos){
+                        if(!new AcessoDAO().save(a)){
+                            result = false;
+                        }
+                    }
+                }
+                if(result){
+                    Usuario u = new Usuario();
+                    u.setIdusuario(idusuario);
+                    u.setTipo_acesso(view.getTipoAcesso());
+                    new UsuarioDAO().alteraTipoAcesso(u);
+                    
+                    limparTextos(view);
+                    desabilitaBotoesEditar(view);
+                    atualizaTabelaUsuarios(view);
+                }
+                return result;
+            }
         }
-        return result;
+        
+        return false;
+    }
+    
+    public boolean testaAcesso(String email, String senha){
+        return new UsuarioDAO().testAcesso(email, senha);
     }
     
     public boolean alterarSenha(int idusuario, String senha){
         return new UsuarioDAO().alterarSenha(idusuario, Util.encriptaSenha(senha));
     }
-
+    
     public boolean excluir(UsuarioView view){
         if (Util.Confirma("Deseja excluir realmente este usuário?\n"
                 + "Nome: " + view.JTABUsuarios().getModel().getValueAt(view.JTABUsuarios().getSelectedRow(), 1))) {
@@ -99,7 +149,7 @@ public class UsuarioControl {
             view.jTNomeUsuario().setText(u.getNome());
             view.jTEmail().setText(u.getEmail());
             view.btnAbrirDialogAlteraSenha().setVisible(true);
-            //view.jCTipoAcesso().setText(u.getTipo_acesso());
+            view.btnAbrirPermissoes().setVisible(true);
         }
     }
     public TableModel tableModelUsuarios(UsuarioView view){
@@ -107,11 +157,11 @@ public class UsuarioControl {
         FieldResolver frID = frf.createResolver("idusuario", "ID");
         FieldResolver frNome = frf.createResolver("nome", "Nome");
         FieldResolver frEmail = frf.createResolver("email", "E-mail");
-
-        ObjectTableModel<Usuario> model = 
+        
+        ObjectTableModel<Usuario> model =
                 new ObjectTableModel<Usuario>(
-                new FieldResolver[]{frID,frNome,frEmail});
-
+                        new FieldResolver[]{frID,frNome,frEmail});
+        
         model.setEditableDefault(false);
         model.setData(this.listar(view.jTPesquisar().getText()));
         return model;
@@ -121,13 +171,14 @@ public class UsuarioControl {
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(150);
         coluna.getColumn(2).setPreferredWidth(50);
-         return coluna;
+        return coluna;
     }
     
-     public void novoUsuario(UsuarioView view){
+    public void novoUsuario(UsuarioView view){
         habilitaBotoesEditar(view);
         view.jLIDUsuario().setText(null);
         view.btnAbrirDialogAlteraSenha().setVisible(false);
+        view.btnAbrirPermissoes().setVisible(false);
     }
     
     public void alteraEstadoEditarExcluir(UsuarioView view, boolean action){
@@ -171,16 +222,82 @@ public class UsuarioControl {
     }
     public void inserirPermissoes (UsuarioView view){
         view.jBIncluir().setEnabled(false);
-            view.jBExcluir().setEnabled(false);
-            view.jBPesquisar().setEnabled(false);
-            view.jBEditar().setEnabled(false);
-            view.jTPesquisar().setEnabled(false);
-            view.jBGravar().setEnabled(true);
-            view.jBCancelar().setEnabled(true);
-            view.jTabUsuario().setSelectedIndex(2);
-            view.jTabUsuario().setEnabledAt(0, false);
-            view.jTabUsuario().setEnabledAt(1, false);
-            view.jTabUsuario().setEnabledAt(2, true);
+        view.jBExcluir().setEnabled(false);
+        view.jBPesquisar().setEnabled(false);
+        view.jBEditar().setEnabled(false);
+        view.jTPesquisar().setEnabled(false);
+        view.jBGravar().setEnabled(true);
+        view.jBCancelar().setEnabled(true);
+        view.jTabUsuario().setSelectedIndex(2);
+        view.jTabUsuario().setEnabledAt(0, false);
+        view.jTabUsuario().setEnabledAt(1, false);
+        view.jTabUsuario().setEnabledAt(2, true);
+    }
+    
+    /**
+     * Recepcionista = 1
+     * Atend. exame = 2
+     * Médico requis. = 3
+     * Médico interpr. = 4
+     * Administrador = 5
+     * @param view
+     */
+    public void carregaRegraPermissao(UsuarioView view){
+        List<Acesso> listaAcessos = new UsuarioUtils().listaPadroesAcesso(view.jCTipoAcesso().getSelectedIndex());
+        for(Acesso a : listaAcessos){
+            switch(a.getPagina()){
+                case "usuario":
+                    view.chksPermissaoUsuario().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoUsuario().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoUsuario().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoUsuario().get(3).setSelected(a.isExcluir());
+                case "atendimento":
+                    view.chksPermissaoAtendimento().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtendimento().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtendimento().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtendimento().get(3).setSelected(a.isExcluir());
+                case "at-laudo":
+                    view.chksPermissaoAtLaudo().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtLaudo().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtLaudo().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtLaudo().get(3).setSelected(a.isExcluir());
+                case "at-imagem":
+                    view.chksPermissaoAtImagem().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtImagem().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtImagem().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtImagem().get(3).setSelected(a.isExcluir());
+                case "at-edit-imagem":
+                    view.chksPermissaoAtEditImage().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtEditImage().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtEditImage().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtEditImage().get(3).setSelected(a.isExcluir());
+                case "at-audio":
+                    view.chksPermissaoAtAudio().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtAudio().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtAudio().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtAudio().get(3).setSelected(a.isExcluir());
+                case "paciente":
+                    view.chksPermissaoPaciente().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoPaciente().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoPaciente().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoPaciente().get(3).setSelected(a.isExcluir());
+                case "textopadrao":
+                    view.chksPermissaoTextoPadrao().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoTextoPadrao().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoTextoPadrao().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoTextoPadrao().get(3).setSelected(a.isExcluir());
+                case "areaexame":
+                    view.chksPermissaoAreaExame().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAreaExame().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAreaExame().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAreaExame().get(3).setSelected(a.isExcluir());
+                case "tipoexame":
+                    view.chksPermissaoTipoExame().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoTipoExame().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoTipoExame().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoTipoExame().get(3).setSelected(a.isExcluir());
+            }
+        }
     }
     
 }
