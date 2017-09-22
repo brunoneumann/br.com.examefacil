@@ -232,6 +232,8 @@ public class UsuarioControl {
         view.jTabUsuario().setEnabledAt(0, false);
         view.jTabUsuario().setEnabledAt(1, false);
         view.jTabUsuario().setEnabledAt(2, true);
+        
+        carregaPermissoesGravadas(view);
     }
     
     /**
@@ -244,6 +246,68 @@ public class UsuarioControl {
      */
     public void carregaRegraPermissao(UsuarioView view){
         List<Acesso> listaAcessos = new UsuarioUtils().listaPadroesAcesso(view.jCTipoAcesso().getSelectedIndex());
+        for(Acesso a : listaAcessos){
+            switch(a.getPagina()){
+                case "usuario":
+                    view.chksPermissaoUsuario().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoUsuario().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoUsuario().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoUsuario().get(3).setSelected(a.isExcluir());
+                case "atendimento":
+                    view.chksPermissaoAtendimento().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtendimento().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtendimento().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtendimento().get(3).setSelected(a.isExcluir());
+                case "at-laudo":
+                    view.chksPermissaoAtLaudo().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtLaudo().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtLaudo().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtLaudo().get(3).setSelected(a.isExcluir());
+                case "at-imagem":
+                    view.chksPermissaoAtImagem().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtImagem().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtImagem().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtImagem().get(3).setSelected(a.isExcluir());
+                case "at-edit-imagem":
+                    view.chksPermissaoAtEditImage().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtEditImage().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtEditImage().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtEditImage().get(3).setSelected(a.isExcluir());
+                case "at-audio":
+                    view.chksPermissaoAtAudio().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAtAudio().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAtAudio().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAtAudio().get(3).setSelected(a.isExcluir());
+                case "paciente":
+                    view.chksPermissaoPaciente().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoPaciente().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoPaciente().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoPaciente().get(3).setSelected(a.isExcluir());
+                case "textopadrao":
+                    view.chksPermissaoTextoPadrao().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoTextoPadrao().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoTextoPadrao().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoTextoPadrao().get(3).setSelected(a.isExcluir());
+                case "areaexame":
+                    view.chksPermissaoAreaExame().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoAreaExame().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoAreaExame().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoAreaExame().get(3).setSelected(a.isExcluir());
+                case "tipoexame":
+                    view.chksPermissaoTipoExame().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoTipoExame().get(1).setSelected(a.isAlterar());
+                    view.chksPermissaoTipoExame().get(2).setSelected(a.isAlterar());
+                    view.chksPermissaoTipoExame().get(3).setSelected(a.isExcluir());
+            }
+        }
+    }
+    
+    
+    public void carregaPermissoesGravadas(UsuarioView view){
+        List<Acesso> listaAcessos = new AcessoDAO().listaAcessos(view.jLIDUsuario().getText());
+        if(listaAcessos.size()==0){
+            listaAcessos = new UsuarioUtils().listaPadroesAcesso(0);
+        }
         for(Acesso a : listaAcessos){
             switch(a.getPagina()){
                 case "usuario":

@@ -35,8 +35,23 @@ public class UsuarioUtils {
             case 3: return listaPadroesAcessoMedicoRequisitante();
             case 4: return listaPadroesAcessoMedicoInterpretador();
             case 5: return listaPadroesAcessoAdministrador();
-            default: return null;
+            default: return listaPadroes();
         }
+    }
+    
+    public List<Acesso> listaPadroes(){
+        List<Acesso> lista = new ArrayList<>();
+        lista.add(new Acesso(0,"usuario",false,false,false,false));
+        lista.add(new Acesso(0,"atendimento",false,false,false,false));
+        lista.add(new Acesso(0,"at-laudo",false,false,false,false));
+        lista.add(new Acesso(0,"at-imagem",false,false,false,false));
+        lista.add(new Acesso(0,"at-edit-imagem",false,false,false,false));
+        lista.add(new Acesso(0,"at-audio",false,false,false,false));
+        lista.add(new Acesso(0,"paciente",false,false,false,false));
+        lista.add(new Acesso(0,"textopadrao",false,false,false,false));
+        lista.add(new Acesso(0,"areaexame",false,false,false,false));
+        lista.add(new Acesso(0,"tipoexame",false,false,false,false));
+        return lista;
     }
     
     public List<Acesso> listaPadroesAcessoRecepcionista(){
