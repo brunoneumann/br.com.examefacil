@@ -33,14 +33,15 @@ public class UsuarioDAO {
         return new CustomDAO<Usuario>().list(Usuario.class);
     }
     
-    public boolean testAcesso(String email, String senha){
-        List<Parametro> list = new ArrayList<>();
-        list.add(new Parametro(0, email));
-        list.add(new Parametro(1, Util.encriptaSenha(senha)));
-        if(new CustomDAO<Usuario>().list(Usuario.class, "SELECT * FROM usuario WHERE email=? AND senha=?", list).size()>0){
-            return true;
+    public Usuario testAcesso(String email, String senha){
+        List<Parametro> parametros = new ArrayList<>();
+        parametros.add(new Parametro(0, email));
+        parametros.add(new Parametro(1, Util.encriptaSenha(senha)));
+        List<Usuario> list = new CustomDAO<Usuario>().list(Usuario.class, "SELECT * FROM usuario WHERE email=? AND senha=?", parametros); 
+        if(list.size()>0){
+            return list.get(0);
         }
-        return false;
+        return null;
     }
     
     public boolean alteraTipoAcesso(Usuario u){

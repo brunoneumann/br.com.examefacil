@@ -5,7 +5,9 @@
  */
 package br.com.examefacil.controller;
 
+import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.view.TelaPrincipalView;
+import java.util.List;
 
 /**
  *
@@ -15,6 +17,27 @@ public class TelaPrincipalControl {
     
     public void init(TelaPrincipalView view){
         desabilitaMenus(view);
+    }
+    
+    public void carregaPermissoes(TelaPrincipalView view, int idusuario){
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(idusuario);
+        for(Acesso a : permissoes){
+            if(a.getPagina().equals("paciente")){
+                view.jMPaciente().setEnabled(a.isVisualizar());
+            }
+            if(a.getPagina().equals("tipoexame")){
+                view.jMTipoExame().setEnabled(a.isVisualizar());
+            }
+            if(a.getPagina().equals("areaexame")){
+                view.jMAreaExame().setEnabled(a.isVisualizar());
+            }
+            if(a.getPagina().equals("usuario")){
+                view.jMUsuario().setEnabled(a.isVisualizar());
+            }
+            if(a.getPagina().equals("textopadrao")){
+                view.jMTextoPadrao().setEnabled(a.isVisualizar());
+            }
+        }
     }
         
     public void habilitaMenus (TelaPrincipalView view){

@@ -1,12 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.swing;
 
-import br.com.examefacil.bean.AreaExame;
-import br.com.examefacil.controller.AreaExameControl;
+import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.TelaPrincipalView;
@@ -15,7 +14,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -24,19 +22,20 @@ import javax.swing.JTextField;
  * @author Henrique
  */
 public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalView{
-
+    
     /**
      * Creates new form TelaPrincipal
      */
     
-   public TelaPrincipal() {
+    public static Usuario usuarioLogado;
+    
+    public TelaPrincipal() {
         initComponents();
-        //jILogin.setVisible(true);
         new TelaPrincipalControl().init(this);
     }
     
     
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,6 +87,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jMAreaExame = new javax.swing.JMenuItem();
         jMUsuario = new javax.swing.JMenuItem();
         jMTextoPadrao = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exame Fácil");
@@ -444,6 +445,15 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             }
         });
         jMCadastro.add(jMTextoPadrao);
+        jMCadastro.add(jSeparator1);
+
+        jMSair.setText("Sair");
+        jMSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMSairActionPerformed(evt);
+            }
+        });
+        jMCadastro.add(jMSair);
 
         jMenuBar1.add(jMCadastro);
 
@@ -465,7 +475,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
     private void jMTipoExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMTipoExameActionPerformed
         
-        new TelaTipoExame().setVisible(true);       
+        new TelaTipoExame().setVisible(true);
         
         
     }//GEN-LAST:event_jMTipoExameActionPerformed
@@ -487,8 +497,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMTextoPadraoActionPerformed
 
     private void jBEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEntrarActionPerformed
-        if(new UsuarioControl().testaAcesso(jTUsuario.getText(), jPSenha.getText())){
-            new TelaPrincipalControl().habilitaMenus(this);
+        Usuario u = new UsuarioControl().testaAcesso(jTUsuario.getText(), jPSenha.getText());
+        if(u!=null){
+            usuarioLogado = u;
+            TelaPrincipalControl control = new TelaPrincipalControl();
+            control.habilitaMenus(this);
+            control.carregaPermissoes(this, usuarioLogado.getIdusuario());
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
 
@@ -517,6 +531,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
     }//GEN-LAST:event_jBExcluirActionPerformed
 
+    private void jMSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSairActionPerformed
+        this.usuarioLogado = null;
+        new TelaPrincipalControl().desabilitaMenus(this);
+    }//GEN-LAST:event_jMSairActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -524,8 +543,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -543,7 +562,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -581,6 +600,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JMenuItem jMAreaExame;
     private javax.swing.JMenu jMCadastro;
     private javax.swing.JMenuItem jMPaciente;
+    private javax.swing.JMenuItem jMSair;
     private javax.swing.JMenuItem jMTextoPadrao;
     private javax.swing.JMenuItem jMTipoExame;
     private javax.swing.JMenuItem jMUsuario;
@@ -590,83 +610,84 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JPanel jPVisualizar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTable jTABExame;
     private javax.swing.JTextField jTPaciente;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTextField jTUsuario;
     private javax.swing.JTabbedPane jTabExame;
     // End of variables declaration//GEN-END:variables
-
+    
     @Override
     public String getUsuario() {
         return jTUsuario().getText();
     }
-
+    
     @Override
     public String getSenha() {
         return jPSenha().getText();
     }
-
+    
     @Override
     public JInternalFrame jILogin() {
         return jILogin;
     }
-
+    
     @Override
     public JTextField jTUsuario() {
         return jTUsuario;
     }
-
+    
     @Override
     public JPasswordField jPSenha() {
         return jPSenha;
     }
-
+    
     @Override
     public JButton jBEntrar() {
         return jBEntrar;
     }
-
+    
     @Override
     public JMenuBar jMenuBar1() {
         return jMenuBar1;
     }
-
+    
     @Override
     public JMenu jMCadastro() {
         return jMCadastro;
     }
-
+    
     @Override
     public JMenuItem jMPaciente() {
         return jMPaciente;
     }
-
+    
     @Override
     public JMenuItem jMTipoExame() {
         return jMTipoExame;
     }
-
+    
     @Override
     public JMenuItem jMAreaExame() {
         return jMAreaExame;
     }
-
+    
     @Override
     public JMenuItem jMUsuario() {
         return jMUsuario;
     }
-
+    
     @Override
     public JMenuItem jMTextoPadrao() {
         return jMTextoPadrao;
     }
-
+    
     @Override
     public JInternalFrame jIExame() {
         return jIExame;
     }
-
-
-
+    
+    
+    
 }

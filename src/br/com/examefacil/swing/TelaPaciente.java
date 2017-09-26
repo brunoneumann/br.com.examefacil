@@ -26,16 +26,6 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     public TelaPaciente() {
         initComponents();
         new PacienteControl().init(this);
-        
-        /* EXEMPLO DE LISTA
-        List<Paciente> listAll = new PacienteControl().listar();
-        for(Paciente p : listAll){
-        System.out.println(p.getNome());
-        }
-        List<Paciente> list = new PacienteControl().listar("o");
-        for(Paciente p : list){
-        System.out.println(p.getNome());
-        }*/
     }
     
     /**

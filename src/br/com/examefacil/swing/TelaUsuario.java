@@ -693,7 +693,6 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         new UsuarioControl().carregarDados(this);
-        
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed

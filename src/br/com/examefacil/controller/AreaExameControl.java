@@ -5,8 +5,10 @@
 */
 package br.com.examefacil.controller;
 
+import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.AreaExame;
 import br.com.examefacil.dao.AreaExameDAO;
+import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.view.AreaExameView;
 
 import com.towel.el.FieldResolver;
@@ -30,6 +32,29 @@ public class AreaExameControl {
         /* Desabilita aba editar */
         view.jTabAreaExame().setEnabledAt(1, false);
         view.jLIDAreaExame().setVisible(false);
+        
+        carregaPermissaoIncluir(view);
+    }
+    
+    public void carregaPermissaoIncluir(AreaExameView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("areaexame")) {
+                view.jBIncluir().setEnabled(a.isIncluir());
+                break;
+            }
+        }
+    }
+
+    public void carregaPermissaoAlterarExcluir(AreaExameView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("areaexame")) {
+                view.jBEditar().setEnabled(a.isAlterar());
+                view.jBExcluir().setEnabled(a.isExcluir());
+                break;
+            }
+        }
     }
     
     public void atualizaTabelaAreaExame(AreaExameView view){
@@ -120,6 +145,8 @@ public class AreaExameControl {
     public void alteraEstadoEditarExcluir(AreaExameView view, boolean action){
         view.jBExcluir().setEnabled(action);
         view.jBEditar().setEnabled(action);
+        
+        carregaPermissaoAlterarExcluir(view);
     }
     
     public void limparTextos(AreaExameView view){

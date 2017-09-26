@@ -1,12 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.controller;
 
+import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.TipoExameDAO;
+import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.view.TipoExameView;
 
 import com.towel.el.FieldResolver;
@@ -22,19 +24,42 @@ import br.com.examefacil.tools.Util;
  * @author Henrique
  */
 public class TipoExameControl {
-        public TipoExameControl(){}
-        
-        public void init(TipoExameView view){
+    public TipoExameControl(){}
+    
+    public void init(TipoExameView view){
         atualizaTabelaTipoExame(view);
         
         /* Desabilita aba editar */
         view.jTabTipoExame().setEnabledAt(1, false);
         view.jLIDTipoExame().setVisible(false);
-    }
         
-        public void atualizaTabelaTipoExame(TipoExameView view){
+        carregaPermissaoIncluir(view);
+    }
+    
+    public void atualizaTabelaTipoExame(TipoExameView view){
         view.jTABTipoExame().setModel(tableModelTipoExame(view));
         view.jTABTipoExame().setColumnModel(tableColumnTipoExame(view));
+    }
+    
+    public void carregaPermissaoIncluir(TipoExameView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("tipoexame")) {
+                view.jBIncluir().setEnabled(a.isIncluir());
+                break;
+            }
+        }
+    }
+
+    public void carregaPermissaoAlterarExcluir(TipoExameView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("tipoexame")) {
+                view.jBEditar().setEnabled(a.isAlterar());
+                view.jBExcluir().setEnabled(a.isExcluir());
+                break;
+            }
+        }
     }
     
     public boolean salvar(TipoExameView view){
@@ -53,7 +78,7 @@ public class TipoExameControl {
         }
         return result;
     }
-
+    
     public boolean excluir(TipoExameView view){
         if (Util.Confirma("Deseja excluir realmente este tipo de exame?\n"
                 + "Nome: " + view.jTABTipoExame().getModel().getValueAt(view.jTABTipoExame().getSelectedRow(), 1))) {
@@ -82,7 +107,6 @@ public class TipoExameControl {
     public TipoExame tipoExameSelecionado(TipoExameView view){
         int selected = view.jTABTipoExame().getSelectedRow();
         return get((int)view.jTABTipoExame().getModel().getValueAt(selected, 0));
-        //return null;
     }
     
     public void carregarDados(TipoExameView view){
@@ -97,11 +121,11 @@ public class TipoExameControl {
         FieldResolverFactory frf = new FieldResolverFactory(TipoExame.class);
         FieldResolver frID = frf.createResolver("idtipoexame", "ID");
         FieldResolver frNome = frf.createResolver("nome", "Nome");
-
-        ObjectTableModel<TipoExame> model = 
+        
+        ObjectTableModel<TipoExame> model =
                 new ObjectTableModel<TipoExame>(
-                new FieldResolver[]{frID,frNome});
-
+                        new FieldResolver[]{frID,frNome});
+        
         model.setEditableDefault(false);
         model.setData(this.listar(view.jTPesquisar().getText()));
         return model;
@@ -110,10 +134,10 @@ public class TipoExameControl {
         TableColumnModel coluna = view.jTABTipoExame().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(150);
-         return coluna;
+        return coluna;
     }
     
-     public void novoTipoExame(TipoExameView view){
+    public void novoTipoExame(TipoExameView view){
         habilitaBotoesEditar(view);
         view.jLIDTipoExame().setText(null);
     }
@@ -121,11 +145,13 @@ public class TipoExameControl {
     public void alteraEstadoEditarExcluir(TipoExameView view, boolean action){
         view.jBExcluir().setEnabled(action);
         view.jBEditar().setEnabled(action);
+        
+        carregaPermissaoAlterarExcluir(view);
     }
     
     public void limparTextos(TipoExameView view){
         view.jTTipoExame().setText("");
-
+        
     }
     
     public void habilitaBotoesEditar(TipoExameView view){
