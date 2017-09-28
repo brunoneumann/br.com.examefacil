@@ -5,7 +5,10 @@
 */
 package br.com.examefacil.dao;
 
+import br.com.examefacil.bean.Parametro;
 import br.com.examefacil.bean.Usuario;
+import br.com.examefacil.tools.Util;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,14 +33,28 @@ public class UsuarioDAO {
         return new CustomDAO<Usuario>().list(Usuario.class);
     }
     
+    public Usuario testAcesso(String email, String senha){
+        List<Parametro> parametros = new ArrayList<>();
+        parametros.add(new Parametro(0, email));
+        parametros.add(new Parametro(1, Util.encriptaSenha(senha)));
+        List<Usuario> list = new CustomDAO<Usuario>().list(Usuario.class, "SELECT * FROM usuario WHERE email=? AND senha=?", parametros); 
+        if(list.size()>0){
+            return list.get(0);
+        }
+        return null;
+    }
+    
+    public boolean alteraTipoAcesso(Usuario u){
+        List<Parametro> list = new ArrayList<>();
+        list.add(new Parametro(0, u.getTipo_acesso()));
+        list.add(new Parametro(1, u.getIdusuario()+""));
+        return new CustomDAO<Usuario>().execute(Usuario.class, "UPDATE usuario SET tipo_acesso=? WHERE idusuario=?", list);
+    }
     public List<Usuario> list(String parametro){
         return new CustomDAO<Usuario>().list(Usuario.class, "SELECT * FROM usuario WHERE nome LIKE '%' :nome '%' ORDER BY idusuario DESC", "nome", parametro);
     }
-    
     public boolean alterarSenha(int idusuario, String senha){
         return new CustomDAO<Usuario>().execute(Usuario.class, "UPDATE usuario SET senha='"+senha+"' WHERE idusuario="+idusuario);
     }
-    public boolean logarUsuario(String nomeusuario, String senha){
-        return new CustomDAO<Usuario>().execute(Usuario.class, "SELECT nome FROM usuario WHERE nome="+nomeusuario+" AND senha="+senha);
-    }
+    
 }

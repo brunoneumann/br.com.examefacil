@@ -5,22 +5,19 @@
  */
 package br.com.examefacil.controller;
 
+import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.dao.PacienteDAO;
+import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.PacienteView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
-import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -35,9 +32,31 @@ public class PacienteControl {
         atualizaTabelaPacientes(view);
 
         /* Desabilita aba editar */
-        
         view.jTabPaciente().setEnabledAt(1, false);
         view.jLIDPaciente().setVisible(false);
+
+        carregaPermissaoIncluir(view);
+    }
+
+    public void carregaPermissaoIncluir(PacienteView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("paciente")) {
+                view.jBIncluir().setEnabled(a.isIncluir());
+                break;
+            }
+        }
+    }
+
+    public void carregaPermissaoAlterarExcluir(PacienteView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("paciente")) {
+                view.jBeditar().setEnabled(a.isAlterar());
+                view.jBExcluir().setEnabled(a.isExcluir());
+                break;
+            }
+        }
     }
 
     public void atualizaTabelaPacientes(PacienteView view) {
@@ -46,24 +65,21 @@ public class PacienteControl {
     }
 
     public boolean salvar(PacienteView view) {
-        if (validaCampos(view)) {
-            Paciente paciente = new Paciente();
-            if (view.jLIDPaciente().getText() != null) {
-                paciente.setIdpaciente(Integer.parseInt(view.jLIDPaciente().getText()));
-            }
-            paciente.setNome(view.getNome());
-            paciente.setCpf(view.getCPF());
-            paciente.setEmail(view.getEmail());
-
-            boolean result = new PacienteDAO().save(paciente);
-            if (result) {
-                limparTextos(view);
-                desabilitaBotoesEditar(view);
-                atualizaTabelaPacientes(view);
-            }
-            return result;
+        Paciente paciente = new Paciente();
+        if (view.jLIDPaciente().getText() != null) {
+            paciente.setIdpaciente(Integer.parseInt(view.jLIDPaciente().getText()));
         }
-        return false;
+        paciente.setNome(view.getNome());
+        paciente.setCpf(view.getCPF());
+        paciente.setEmail(view.getEmail());
+
+        boolean result = new PacienteDAO().save(paciente);
+        if (result) {
+            limparTextos(view);
+            desabilitaBotoesEditar(view);
+            atualizaTabelaPacientes(view);
+        }
+        return result;
     }
 
     public boolean excluir(PacienteView view) {
@@ -140,6 +156,8 @@ public class PacienteControl {
     public void alteraEstadoEditarExcluir(PacienteView view, boolean action) {
         view.jBExcluir().setEnabled(action);
         view.jBeditar().setEnabled(action);
+        
+        carregaPermissaoAlterarExcluir(view);
     }
 
     public void limparTextos(PacienteView view) {
@@ -176,7 +194,6 @@ public class PacienteControl {
             view.jTabPaciente().setEnabledAt(1, false);
         }
     }
-
     public boolean validaCampos(PacienteView view) {
 
         if (view.jTNomePaciente().getText().equals("")
@@ -199,3 +216,4 @@ public class PacienteControl {
         }
     }
 }
+

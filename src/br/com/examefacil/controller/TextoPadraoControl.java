@@ -1,14 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.controller;
 
 
 
+import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.TextoPadrao;
 import br.com.examefacil.dao.TextoPadraoDAO;
+import br.com.examefacil.swing.TelaPrincipal;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
@@ -24,24 +26,45 @@ import javax.swing.JOptionPane;
  * @author Henrique
  */
 public class TextoPadraoControl {
-        public TextoPadraoControl(){}
-        
-        public void init(TextoPadraoView view){
+    public TextoPadraoControl(){}
+    
+    public void init(TextoPadraoView view){
         atualizaTabelaTextoPadrao(view);
         
         /* Desabilita aba editar */
         view.jTabTextoPadrao().setEnabledAt(1, false);
         view.jLIDTextoPadrao().setVisible(false);
-    }
         
-        public void atualizaTabelaTextoPadrao(TextoPadraoView view){
+        carregaPermissaoIncluir(view);
+    }
+    
+    public void carregaPermissaoIncluir(TextoPadraoView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("textopadrao")) {
+                view.jBIncluir().setEnabled(a.isIncluir());
+                break;
+            }
+        }
+    }
+    
+    public void carregaPermissaoAlterarExcluir(TextoPadraoView view) {
+        List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
+        for (Acesso a : permissoes) {
+            if (a.getPagina().equals("textopadrao")) {
+                view.jBEditar().setEnabled(a.isAlterar());
+                view.jBExcluir().setEnabled(a.isExcluir());
+                break;
+            }
+        }
+    }
+    
+    public void atualizaTabelaTextoPadrao(TextoPadraoView view){
         view.jTABTextoPadrao().setModel(tableModelTextoPadrao(view));
         view.jTABTextoPadrao().setColumnModel(tableColumnTextoPadrao(view));
     }
     
     public boolean salvar(TextoPadraoView view){
-        
-        if(validaCampos(view)){
         
         TextoPadrao area = new TextoPadrao();
         if(view.jLIDTextoPadrao().getText()!=null){
@@ -56,10 +79,8 @@ public class TextoPadraoControl {
             atualizaTabelaTextoPadrao(view);
         }
         return result;
-        }
-        return false;
     }
-
+    
     public boolean excluir(TextoPadraoView view){
         if (Util.Confirma("Deseja excluir realmente este texto padrão?\n"
                 + "Nome: " + view.jTABTextoPadrao().getModel().getValueAt(view.jTABTextoPadrao().getSelectedRow(), 1))) {
@@ -102,11 +123,11 @@ public class TextoPadraoControl {
         FieldResolverFactory frf = new FieldResolverFactory(TextoPadrao.class);
         FieldResolver frID = frf.createResolver("idtextopadrao", "ID");
         FieldResolver frNome = frf.createResolver("nome_codigo", "Nome");
-
-        ObjectTableModel<TextoPadrao> model = 
+        
+        ObjectTableModel<TextoPadrao> model =
                 new ObjectTableModel<TextoPadrao>(
-                new FieldResolver[]{frID,frNome});
-
+                        new FieldResolver[]{frID,frNome});
+        
         model.setEditableDefault(false);
         model.setData(this.listar(view.jTPesquisar().getText()));
         return model;
@@ -115,10 +136,10 @@ public class TextoPadraoControl {
         TableColumnModel coluna = view.jTABTextoPadrao().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(150);
-         return coluna;
+        return coluna;
     }
     
-     public void novoTextoPadrao(TextoPadraoView view){
+    public void novoTextoPadrao(TextoPadraoView view){
         habilitaBotoesEditar(view);
         view.jLIDTextoPadrao().setText(null);
     }
@@ -126,12 +147,14 @@ public class TextoPadraoControl {
     public void alteraEstadoEditarExcluir(TextoPadraoView view, boolean action){
         view.jBExcluir().setEnabled(action);
         view.jBEditar().setEnabled(action);
+        
+        carregaPermissaoAlterarExcluir(view);
     }
     
     public void limparTextos(TextoPadraoView view){
         view.jTNome_codigo().setText("");
         view.jTDescricao().setText("");
-
+        
     }
     
     public void habilitaBotoesEditar(TextoPadraoView view){
@@ -161,6 +184,7 @@ public class TextoPadraoControl {
             view.jTabTextoPadrao().setEnabledAt(1, false);
         }
     }
+    
     public boolean validaCampos(TextoPadraoView view) {
 
         if (view.jTNome_codigo().getText().equals("")
@@ -178,3 +202,4 @@ public class TextoPadraoControl {
         }
     }
 }
+

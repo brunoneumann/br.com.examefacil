@@ -259,7 +259,7 @@
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jBPermissoes" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnAbrirDialogAlteraSenha" alignment="0" pref="157" max="32767" attributes="0"/>
+                              <Component id="btnAbrirDialogAlteraSenha" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="664" max="32767" attributes="0"/>
@@ -339,7 +339,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" pref="1042" max="32767" attributes="0"/>
+                          <Component id="jPanel2" pref="1046" max="32767" attributes="0"/>
                           <Component id="jPanel5" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -799,7 +799,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jCTipoAcesso" min="-2" pref="114" max="-2" attributes="0"/>
+                          <Component id="jCTipoAcesso" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -829,15 +829,19 @@
                 <Component class="javax.swing.JComboBox" name="jCTipoAcesso">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
-                        <StringItem index="0" value="Recepcionista"/>
-                        <StringItem index="1" value="Atend. Exame"/>
-                        <StringItem index="2" value="M&#xe9;dico Requisitante"/>
-                        <StringItem index="3" value="M&#xe9;dico Interpretador"/>
-                        <StringItem index="4" value="Administrador"/>
+                      <StringArray count="6">
+                        <StringItem index="0" value="--Selecione--"/>
+                        <StringItem index="1" value="Recepcionista"/>
+                        <StringItem index="2" value="Atend. Exame"/>
+                        <StringItem index="3" value="M&#xe9;dico Requisitante"/>
+                        <StringItem index="4" value="M&#xe9;dico Interpretador"/>
+                        <StringItem index="5" value="Administrador"/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCTipoAcessoActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>

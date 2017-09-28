@@ -5,6 +5,7 @@
 */
 package br.com.examefacil.dao;
 
+import br.com.examefacil.bean.Parametro;
 import br.com.examefacil.conn.HibernateUtil;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -60,14 +61,35 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         return false;
     }
     
-  
+    @Override
     public boolean execute(Class<T> type, String query) {
         try {
             session.beginTransaction();
             Query q = session.createSQLQuery(query).addEntity(type);
             int res = q.executeUpdate();
             session.getTransaction().commit();
-            return  res > 0;
+            return  res >= 0;
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean execute(Class<T> type, String query, List<Parametro> parametros) {
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery(query).addEntity(type);
+            for(Parametro p : parametros){
+                q.setParameter(p.getCampo(), p.getParametro());
+            }
+            int res = q.executeUpdate();
+            session.getTransaction().commit();
+            return  res >= 0;
         } catch(Exception ex){
             log.error(ex);
         } finally {
@@ -117,6 +139,25 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
             session.beginTransaction();
             Query q = session.createSQLQuery(query).addEntity(type);
             q.setParameter(field, parameter);
+            return q.list();
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public List<T> list(Class<T> type, String query, List<Parametro> parametros) {
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery(query).addEntity(type);
+            for(Parametro p : parametros){
+                q.setParameter(p.getCampo(), p.getParametro());
+            }
             return q.list();
         } catch(Exception ex){
             log.error(ex);

@@ -291,9 +291,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTNomePaciente">
+<<<<<<< HEAD
               <Properties>
                 <Property name="name" type="java.lang.String" value="Nome" noResource="true"/>
               </Properties>
+=======
+>>>>>>> origin/release_4_bruno_b
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -301,9 +304,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTCPF">
+<<<<<<< HEAD
               <Properties>
                 <Property name="name" type="java.lang.String" value="CPF" noResource="true"/>
               </Properties>
+=======
+>>>>>>> origin/release_4_bruno_b
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -311,9 +317,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTEmail">
+<<<<<<< HEAD
               <Properties>
                 <Property name="name" type="java.lang.String" value="E-mail" noResource="true"/>
               </Properties>
+=======
+>>>>>>> origin/release_4_bruno_b
             </Component>
             <Component class="javax.swing.JLabel" name="jLIDPaciente">
             </Component>
