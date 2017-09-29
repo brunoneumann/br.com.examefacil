@@ -10,12 +10,9 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.TextoPadraoControl;
 import br.com.examefacil.view.TextoPadraoView;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;

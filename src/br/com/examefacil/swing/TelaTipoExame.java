@@ -5,15 +5,12 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
-import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.controller.TipoExameControl;
 import br.com.examefacil.view.TipoExameView;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -65,7 +62,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
         jLIDTipoExame = new javax.swing.JLabel();
         jTDescricao = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipos de Exame");
 
         jPTipoExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());

@@ -18,6 +18,7 @@ public class TextoPadraoTableModel extends AbstractTableModel {
     
     private static final int COL_ID = 0;
     private static final int COL_NOME = 1;
+    private static final int COL_TEXTO = 2;
     
     private static List<TextoPadrao> tipo;
     
@@ -30,13 +31,14 @@ public class TextoPadraoTableModel extends AbstractTableModel {
     }
     
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
     
     @Override
     public String getColumnName(int column) {
         if(column == COL_ID) return "ID";
         else if(column == COL_NOME) return "Nome";
+        else if(column == COL_TEXTO) return "Texto";
         return "";
     }
     
@@ -44,6 +46,7 @@ public class TextoPadraoTableModel extends AbstractTableModel {
         TextoPadrao a = tipo.get(row);
         if(column== COL_ID) return a.getIdtextopadrao();
         else if (column == COL_NOME) return a.getNome_codigo();
+        else if (column == COL_TEXTO) return a.getTexto();
         return "";
     }
     
@@ -52,6 +55,7 @@ public class TextoPadraoTableModel extends AbstractTableModel {
         TextoPadrao a = tipo.get(rowIndex);
         if(columnIndex == COL_ID) a.setIdtextopadrao(Integer.parseInt((String) aValue));
         else if(columnIndex == COL_NOME) a.setNome_codigo(aValue.toString());
+        else if(columnIndex == COL_TEXTO) a.setTexto(aValue.toString());
     }
     
     @Override

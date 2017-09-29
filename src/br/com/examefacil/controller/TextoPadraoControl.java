@@ -71,6 +71,7 @@ public class TextoPadraoControl {
             area.setIdtextopadrao(Integer.parseInt(view.jLIDTextoPadrao().getText()));
         }
         area.setNome_codigo(view.getNome_codigo());
+        area.setTexto(view.getDescricao());
         
         boolean result = new TextoPadraoDAO().save(area);
         if(result){
@@ -122,16 +123,18 @@ public class TextoPadraoControl {
             habilitaBotoesEditar(view);
             view.jLIDTextoPadrao().setText(a.getIdtextopadrao()+"");
             view.jTNome_codigo().setText(a.getNome_codigo());
+            view.jTDescricao().setText(a.getTexto());
         }
     }
     public TableModel tableModelTextoPadrao(TextoPadraoView view){
         FieldResolverFactory frf = new FieldResolverFactory(TextoPadrao.class);
         FieldResolver frID = frf.createResolver("idtextopadrao", "ID");
         FieldResolver frNome = frf.createResolver("nome_codigo", "Nome");
+        FieldResolver frTexto = frf.createResolver("texto", "Texto");
         
         ObjectTableModel<TextoPadrao> model =
                 new ObjectTableModel<TextoPadrao>(
-                        new FieldResolver[]{frID,frNome});
+                        new FieldResolver[]{frID,frNome,frTexto});
         
         model.setEditableDefault(false);
         model.setData(this.listar(view.jTPesquisar().getText()));
@@ -141,6 +144,7 @@ public class TextoPadraoControl {
         TableColumnModel coluna = view.jTABTextoPadrao().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(150);
+        coluna.getColumn(2).setPreferredWidth(150);
         return coluna;
     }
     

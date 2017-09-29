@@ -60,7 +60,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jTEmail = new javax.swing.JTextField();
         jLIDPaciente = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pacientes");
 
         jPPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -212,9 +212,15 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
 
         jLabel1.setText("Nome do Paciente");
 
+        jTNomePaciente.setName("Nome"); // NOI18N
+
         jLabel2.setText("CPF");
 
+        jTCPF.setName("CPF"); // NOI18N
+
         jLabel3.setText("E-mail");
+
+        jTEmail.setName("E-mail"); // NOI18N
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
