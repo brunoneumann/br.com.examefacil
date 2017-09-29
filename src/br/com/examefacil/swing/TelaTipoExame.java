@@ -93,6 +93,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
         });
 
         jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
@@ -108,6 +109,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.setEnabled(false);
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBExcluirActionPerformed(evt);

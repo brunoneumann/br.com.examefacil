@@ -213,6 +213,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         });
 
         jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
@@ -228,6 +229,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.setEnabled(false);
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBExcluirActionPerformed(evt);
@@ -335,7 +337,11 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jLabel1.setText("Nome do Usuário");
 
+        jTNomeUsuario.setName("Nome do Usuário"); // NOI18N
+
         jLabel2.setText("E-mail");
+
+        jTEmail.setName("E-mail"); // NOI18N
 
         btnAbrirDialogAlteraSenha.setText("Alterar senha");
         btnAbrirDialogAlteraSenha.addActionListener(new java.awt.event.ActionListener() {

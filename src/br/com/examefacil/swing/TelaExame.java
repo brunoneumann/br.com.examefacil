@@ -92,6 +92,7 @@ public class TelaExame extends javax.swing.JFrame{
         });
 
         jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
@@ -107,6 +108,7 @@ public class TelaExame extends javax.swing.JFrame{
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.setEnabled(false);
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBExcluirActionPerformed(evt);

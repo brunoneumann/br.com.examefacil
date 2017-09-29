@@ -64,6 +64,7 @@ public class AreaExameControl {
     }
     
     public boolean salvar(AreaExameView view){
+        if (validaCampos(view)){
         
         AreaExame area = new AreaExame();
         if(view.jLIDAreaExame().getText()!=null){
@@ -78,10 +79,14 @@ public class AreaExameControl {
             atualizaTabelaAreaExame(view);
         }
         return result;
+        }
+        else {
+            return false;
+        }
     }
     
     public boolean excluir(AreaExameView view){
-        if (Util.Confirma("Deseja excluir realmente esta area de exame?\n"
+        if (Util.Confirma("Deseja realmente excluir esta area de exame?\n"
                 + "Nome: " + view.JTABAreaExame().getModel().getValueAt(view.JTABAreaExame().getSelectedRow(), 1))) {
             
             boolean result = new AreaExameDAO().delete(areaExameSelecionado(view));
@@ -185,7 +190,7 @@ public class AreaExameControl {
     public boolean validaCampos(AreaExameView view) {
 
         if (view.jTAreaExame().getText().equals("")||view.jTAreaExame().getText().equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Digite um valor válido no campo: "+view.jTAreaExame().getName()+"", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: "+view.jTAreaExame().getName()+"", "Erro de validação", JOptionPane.ERROR_MESSAGE);
             return false;
         } else {
             return true;

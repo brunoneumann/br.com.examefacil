@@ -83,6 +83,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
         });
 
         jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
@@ -98,6 +99,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.setEnabled(false);
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBExcluirActionPerformed(evt);
@@ -392,7 +394,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
 
     @Override
     public JButton jBExcluir() {
-        return jBEditar;
+        return jBExcluir;
     }
 
     @Override

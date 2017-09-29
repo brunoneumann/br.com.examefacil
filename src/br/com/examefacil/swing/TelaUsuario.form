@@ -134,6 +134,7 @@
         <Component class="javax.swing.JButton" name="jBEditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEditarActionPerformed"/>
@@ -151,6 +152,7 @@
         <Component class="javax.swing.JButton" name="jBExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Excluir"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBExcluirActionPerformed"/>
@@ -296,6 +298,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTNomeUsuario">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="Nome do Usu&#xe1;rio" noResource="true"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -303,6 +308,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTEmail">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="E-mail" noResource="true"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLIDUsuario">
             </Component>

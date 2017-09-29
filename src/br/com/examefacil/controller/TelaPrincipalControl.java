@@ -8,6 +8,8 @@ package br.com.examefacil.controller;
 import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.view.TelaPrincipalView;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 /**
  *
@@ -16,7 +18,9 @@ import java.util.List;
 public class TelaPrincipalControl {
     
     public void init(TelaPrincipalView view){
+        
         desabilitaMenus(view);
+       
     }
     
     public void carregaPermissoes(TelaPrincipalView view, int idusuario){
@@ -56,4 +60,8 @@ public class TelaPrincipalControl {
         view.jIExame().setVisible(false);
     }
     
+    public boolean validaCampos(TelaPrincipalView view) {
+        return false;
+    }
+
 }
