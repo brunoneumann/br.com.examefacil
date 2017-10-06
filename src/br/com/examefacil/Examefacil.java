@@ -8,6 +8,8 @@ package br.com.examefacil;
 
 import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.tools.Util;
+import com.alee.laf.WebLookAndFeel;
+import com.sun.java.swing.plaf.gtk.GTKLookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
@@ -26,7 +28,8 @@ public class Examefacil {
 
                 try {
 
-                    UIManager.setLookAndFeel(new NimbusLookAndFeel());
+                    //UIManager.setLookAndFeel(new GTKLookAndFeel());
+                    UIManager.setLookAndFeel ( WebLookAndFeel.class.getCanonicalName () );
                     
                     new TelaPrincipal().setVisible(true);
                     
