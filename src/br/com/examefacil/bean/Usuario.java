@@ -26,7 +26,9 @@ public class Usuario {
     private int idusuario;
     private String nome;
     private String email;
+    @Column(updatable = false, insertable = false)
     private String senha;
+    @Column(updatable = false, insertable = false)
     private String tipo_acesso;
 
     public String getNome() {
@@ -52,6 +54,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
     }
 
     public String getTipo_acesso() {

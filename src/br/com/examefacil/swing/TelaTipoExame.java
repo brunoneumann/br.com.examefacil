@@ -5,22 +5,29 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
-import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.controller.TipoExameControl;
-import javax.swing.JOptionPane;
+import br.com.examefacil.view.TipoExameView;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Henrique
  */
-public class TelaTipoExame extends javax.swing.JFrame {
+public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
     /**
      * Creates new form TipoExames
      */
     public TelaTipoExame() {
         initComponents();
+        new TipoExameControl().init(this);
     }
 
     /**
@@ -36,7 +43,7 @@ public class TelaTipoExame extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
-        jBeditar = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
         jTPesquisar = new javax.swing.JTextField();
@@ -44,16 +51,18 @@ public class TelaTipoExame extends javax.swing.JFrame {
         jCInclusaoAutomatica = new javax.swing.JCheckBox();
         jTabTipoExame = new javax.swing.JTabbedPane();
         jPVisualizar = new javax.swing.JPanel();
-        jLTipoExame = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTABTipoExame = new javax.swing.JTable();
         jEditar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTTipoExame = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTDescricao = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCAreaExame = new javax.swing.JComboBox<>();
+        jLIDTipoExame = new javax.swing.JLabel();
+        jTDescricao = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipos de Exame");
 
         jPTipoExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -80,10 +89,11 @@ public class TelaTipoExame extends javax.swing.JFrame {
             }
         });
 
-        jBeditar.setText("Editar");
-        jBeditar.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeditarActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
 
@@ -96,8 +106,12 @@ public class TelaTipoExame extends javax.swing.JFrame {
         });
 
         jBExcluir.setText("Excluir");
-
-        jTPesquisar.setText("Descrição");
+        jBExcluir.setEnabled(false);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +137,7 @@ public class TelaTipoExame extends javax.swing.JFrame {
                     .addGroup(jPTipoExameLayout.createSequentialGroup()
                         .addComponent(jBIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBeditar)
+                        .addComponent(jBEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -147,7 +161,7 @@ public class TelaTipoExame extends javax.swing.JFrame {
                 .addGroup(jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCancelar)
                     .addComponent(jBIncluir)
-                    .addComponent(jBeditar)
+                    .addComponent(jBEditar)
                     .addComponent(jBGravar)
                     .addComponent(jBExcluir)
                     .addComponent(jBFechar))
@@ -161,42 +175,57 @@ public class TelaTipoExame extends javax.swing.JFrame {
                 .addComponent(jCInclusaoAutomatica))
         );
 
-        jLTipoExame.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jTABTipoExame.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTABTipoExame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTABTipoExameMouseClicked(evt);
+            }
         });
+        jScrollPane1.setViewportView(jTABTipoExame);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jLTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+            .addGroup(jPVisualizarLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabTipoExame.addTab("Visualizar", jPVisualizar);
 
         jLabel1.setText("Tipo de Exame");
 
-        jLabel2.setText("Descrição");
+        jTTipoExame.setName("Tipo de Exame"); // NOI18N
 
-        jTDescricao.setColumns(20);
-        jTDescricao.setRows(5);
+        jLabel2.setText("Descrição");
 
         jLabel3.setText("Area do Exame");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jCAreaExame.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCAreaExame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jCAreaExameActionPerformed(evt);
             }
         });
+
+        jTDescricao.setColumns(20);
+        jTDescricao.setRows(5);
+        jTDescricao.setName("Descrição"); // NOI18N
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -205,17 +234,23 @@ public class TelaTipoExame extends javax.swing.JFrame {
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTDescricao)
                     .addGroup(jEditarLayout.createSequentialGroup()
                         .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
-                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addGroup(jEditarLayout.createSequentialGroup()
+                                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42)
+                                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addGroup(jEditarLayout.createSequentialGroup()
+                                        .addComponent(jCAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLIDTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 44, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,14 +260,16 @@ public class TelaTipoExame extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLIDTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jTDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabTipoExame.addTab("Editar", jEditar);
@@ -242,33 +279,22 @@ public class TelaTipoExame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabTipoExame)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabTipoExame)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabTipoExame.setSelectedIndex(1);
-        
-
-        
+        new TipoExameControl().novoTipoExame(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -279,109 +305,38 @@ public class TelaTipoExame extends javax.swing.JFrame {
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jBIncluir.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBPesquisar.setEnabled(true);
-        jBeditar.setEnabled(true);
-        jBFechar.setEnabled(true);
-        jTPesquisar.setEnabled(true);
-        jBGravar.setEnabled(false);
-        jBCancelar.setEnabled(false);
-        jTDescricao.setText("");
-        jTTipoExame.setText("");
-        jTabTipoExame.setSelectedIndex(0);
+        jCInclusaoAutomatica.setSelected(false);
+        new TipoExameControl().desabilitaBotoesEditar(this);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
-    private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
-        
-        /*Código para trazer as informações do registro selecionado*/
-        
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabTipoExame.setSelectedIndex(1);
-        
-        
-        
-    }//GEN-LAST:event_jBeditarActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+           new TipoExameControl().carregarDados(this);
+    }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        
-       TipoExame a = new TipoExame();
-       a.setNome(jTTipoExame.getText());
-       a.setDescricao(jTDescricao.getText());
-       a.setIdareaexame(28);
-
-       /*acrescentar método de inserção ao banco de dados*/
-       
-    if (jTTipoExame.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
-        } else {
-            try {
-                
-                
-            if (jCInclusaoAutomatica.isSelected()) {
-                
-                a.setNome(jTTipoExame.getText());
-                a.setDescricao(jTDescricao.getText());
-
-                TipoExameControl control = new TipoExameControl();
-                control.salvar(a);
-
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                jTTipoExame.setText("");
-            } else {
-
-                
-                a.setNome(jTTipoExame.getText());
-
-                TipoExameControl control = new TipoExameControl();
-                control.salvar(a);
-
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                jTTipoExame.setText("");
-                jBIncluir.setEnabled(true);
-                jBExcluir.setEnabled(true);
-                jBPesquisar.setEnabled(true);
-                jBeditar.setEnabled(true);
-                jBFechar.setEnabled(true);
-                jTPesquisar.setEnabled(true);
-                jBGravar.setEnabled(false);
-                jBCancelar.setEnabled(false);
-                jTTipoExame.setText("");
-                jTDescricao.setText("");
-                jTabTipoExame.setSelectedIndex(0);
-            }
-        }
-            catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
-                }
-        }
-       
-       
-       
+       TipoExameControl control = new TipoExameControl();
+        control.salvar(this); 
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void jCAreaExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAreaExameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jCAreaExameActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        
-        String pesquisa = jTPesquisar.getText();
-        
-        
-        
+        new TipoExameControl().atualizaTabelaTipoExame(this);
     }//GEN-LAST:event_jBPesquisarActionPerformed
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new TipoExameControl().excluir(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jTABTipoExameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABTipoExameMouseClicked
+        new TipoExameControl().alteraEstadoEditarExcluir(this, true);
+    }//GEN-LAST:event_jTABTipoExameMouseClicked
 
     /**
      * @param args the command line arguments
@@ -423,24 +378,113 @@ public class TelaTipoExame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBPesquisar;
-    private javax.swing.JButton jBeditar;
+    private javax.swing.JComboBox<String> jCAreaExame;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jEditar;
-    private javax.swing.JList<String> jLTipoExame;
+    private javax.swing.JLabel jLIDTipoExame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPTipoExame;
     private javax.swing.JPanel jPVisualizar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTABTipoExame;
     private javax.swing.JTextArea jTDescricao;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTextField jTTipoExame;
     private javax.swing.JTabbedPane jTabTipoExame;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getNome() {
+        return jTTipoExame().getText();
+    }
+
+    @Override
+    public String getDescricao() {
+        return jTDescricao().getText();
+    }
+
+    @Override
+    public int getIdareaexame() {
+        return jCAreaExame.getSelectedIndex();
+    }
+
+    @Override
+    public JTextField jTTipoExame() {
+        return jTTipoExame;
+    }
+
+    @Override
+    public JTextArea jTDescricao() {
+        return jTDescricao;
+    }
+
+    @Override
+    public JComboBox jCAreaExame() {
+        return jCAreaExame;
+    }
+
+
+
+    @Override
+    public JTextField jTPesquisar() {
+        return jTPesquisar;
+    }
+
+    @Override
+    public JButton jBIncluir() {
+        return jBIncluir;
+    }
+
+    @Override
+    public JButton jBExcluir() {
+        return jBExcluir;
+    }
+
+    @Override
+    public JButton jBPesquisar() {
+        return jBPesquisar;
+    }
+
+    @Override
+    public JButton jBEditar() {
+        return jBEditar;
+    }
+
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+
+    @Override
+    public JTabbedPane jTabTipoExame() {
+        return jTabTipoExame;
+    }
+
+    @Override
+    public JCheckBox jCInclusaoAutomatica() {
+        return jCInclusaoAutomatica;
+    }
+
+    @Override
+    public JLabel jLIDTipoExame() {
+        return jLIDTipoExame;
+    }
+
+    @Override
+    public JTable jTABTipoExame() {
+        return jTABTipoExame;
+    }
 }

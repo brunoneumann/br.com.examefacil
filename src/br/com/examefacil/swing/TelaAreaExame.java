@@ -5,23 +5,27 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.bean.AreaExame;
 import br.com.examefacil.controller.AreaExameControl;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
+import br.com.examefacil.view.AreaExameView;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Henrique
  */
-public class TelaAreaExame extends javax.swing.JFrame {
+public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
 
     /**
      * Creates new form TipoExames
      */
     public TelaAreaExame() {
         initComponents();
+        new AreaExameControl().init(this);
     }
 
     /**
@@ -37,7 +41,7 @@ public class TelaAreaExame extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
-        jBeditar = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
         jTPesquisar = new javax.swing.JTextField();
@@ -45,12 +49,14 @@ public class TelaAreaExame extends javax.swing.JFrame {
         jCInclusaoAutomatica = new javax.swing.JCheckBox();
         jTabAreaExame = new javax.swing.JTabbedPane();
         jPVisualizar = new javax.swing.JPanel();
-        jLTipoExame = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTABAreaExame = new javax.swing.JTable();
         jEditar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTAreaExame = new javax.swing.JTextField();
+        jLIDAreaExame = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Área de Exame");
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -77,10 +83,11 @@ public class TelaAreaExame extends javax.swing.JFrame {
             }
         });
 
-        jBeditar.setText("Editar");
-        jBeditar.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeditarActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
 
@@ -93,8 +100,12 @@ public class TelaAreaExame extends javax.swing.JFrame {
         });
 
         jBExcluir.setText("Excluir");
-
-        jTPesquisar.setText("Descrição");
+        jBExcluir.setEnabled(false);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +131,7 @@ public class TelaAreaExame extends javax.swing.JFrame {
                     .addGroup(jPAreaExameLayout.createSequentialGroup()
                         .addComponent(jBIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBeditar)
+                        .addComponent(jBEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -144,7 +155,7 @@ public class TelaAreaExame extends javax.swing.JFrame {
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCancelar)
                     .addComponent(jBIncluir)
-                    .addComponent(jBeditar)
+                    .addComponent(jBEditar)
                     .addComponent(jBGravar)
                     .addComponent(jBExcluir)
                     .addComponent(jBFechar))
@@ -158,28 +169,42 @@ public class TelaAreaExame extends javax.swing.JFrame {
                 .addComponent(jCInclusaoAutomatica))
         );
 
-        jLTipoExame.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jTABAreaExame.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTABAreaExame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTABAreaExameMouseClicked(evt);
+            }
         });
+        jScrollPane1.setViewportView(jTABAreaExame);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jLTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+            .addGroup(jPVisualizarLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         jTabAreaExame.addTab("Visualizar", jPVisualizar);
 
         jLabel1.setText("Área do Exame");
+
+        jTAreaExame.setName("Área do Exame"); // NOI18N
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -189,16 +214,22 @@ public class TelaAreaExame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(405, Short.MAX_VALUE))
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addComponent(jTAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(232, Short.MAX_VALUE))
         );
 
@@ -209,33 +240,22 @@ public class TelaAreaExame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPAreaExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabAreaExame)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabAreaExame)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabAreaExame.setSelectedIndex(1);
-        
-
-        
+        new AreaExameControl().novoAreaExame(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -246,80 +266,19 @@ public class TelaAreaExame extends javax.swing.JFrame {
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jBIncluir.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBPesquisar.setEnabled(true);
-        jBeditar.setEnabled(true);
-        jBFechar.setEnabled(true);
-        jTPesquisar.setEnabled(true);
-        jBGravar.setEnabled(false);
-        jBCancelar.setEnabled(false);
-        jTAreaExame.setText("");
-        jTabAreaExame.setSelectedIndex(0);
+        jCInclusaoAutomatica.setSelected(false);
+        new AreaExameControl().desabilitaBotoesEditar(this);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
-    private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         
-        /*Código para trazer as informações do registro selecionado*/
+        new AreaExameControl().carregarDados(this);
         
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabAreaExame.setSelectedIndex(1);
-        
-        
-        
-    }//GEN-LAST:event_jBeditarActionPerformed
+    }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        
-        if (jTAreaExame.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
-        } else {
-            try {
-                AreaExame a = new AreaExame();
-                
-            if (jCInclusaoAutomatica.isSelected()) {
-                
-                a.setNome(jTAreaExame.getText());
-
-                AreaExameControl control = new AreaExameControl();
-                control.salvar(a);
-
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                jTAreaExame.setText("");
-            } else {
-
-                
-                a.setNome(jTAreaExame.getText());
-
-                AreaExameControl control = new AreaExameControl();
-                control.salvar(a);
-
-                JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                jTAreaExame.setText("");
-                jBIncluir.setEnabled(true);
-                jBExcluir.setEnabled(true);
-                jBPesquisar.setEnabled(true);
-                jBeditar.setEnabled(true);
-                jBFechar.setEnabled(true);
-                jTPesquisar.setEnabled(true);
-                jBGravar.setEnabled(false);
-                jBCancelar.setEnabled(false);
-                jTAreaExame.setText("");
-                jTabAreaExame.setSelectedIndex(0);
-            }
-        }
-            catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
-                }
-        }
-        
+        AreaExameControl control = new AreaExameControl();
+        control.salvar(this);    
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
@@ -327,20 +286,17 @@ public class TelaAreaExame extends javax.swing.JFrame {
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        String pesquisa = jTPesquisar.getText();
-        
-        AreaExameControl control = new AreaExameControl();
-        System.out.println (control.get(28).getNome());
-        
-        
-        
-        
-
-        
-        
-        
+        new AreaExameControl().atualizaTabelaAreaExame(this); 
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new AreaExameControl().excluir(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jTABAreaExameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABAreaExameMouseClicked
+        new AreaExameControl().alteraEstadoEditarExcluir(this, true);
+    }//GEN-LAST:event_jTABAreaExameMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -393,20 +349,87 @@ public class TelaAreaExame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBPesquisar;
-    private javax.swing.JButton jBeditar;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
     private javax.swing.JPanel jEditar;
-    private javax.swing.JList<String> jLTipoExame;
+    private javax.swing.JLabel jLIDAreaExame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPAreaExame;
     private javax.swing.JPanel jPVisualizar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTABAreaExame;
     private javax.swing.JTextField jTAreaExame;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTabbedPane jTabAreaExame;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public String getNome() {
+        return jTAreaExame.getText();
+    }
+
+    @Override
+    public JTextField jTAreaExame() {
+        return jTAreaExame;
+    }
+
+    @Override
+    public JTable JTABAreaExame() {
+        return jTABAreaExame;
+    }
+
+    @Override
+    public JTextField jTPesquisar() {
+        return jTPesquisar;
+    }
+
+    @Override
+    public JButton jBIncluir() {
+        return jBIncluir;
+    }
+
+    @Override
+    public JButton jBExcluir() {
+        return jBExcluir;
+    }
+
+    @Override
+    public JButton jBPesquisar() {
+        return jBPesquisar;
+    }
+
+    @Override
+    public JButton jBEditar() {
+        return jBEditar;
+    }
+
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+
+    @Override
+    public JTabbedPane jTabAreaExame() {
+        return jTabAreaExame;
+    }
+
+    @Override
+    public JCheckBox jCInclusaoAutomatica() {
+        return jCInclusaoAutomatica;
+    }
+
+    @Override
+    public JLabel jLIDAreaExame() {
+        return jLIDAreaExame;
+    }
 }

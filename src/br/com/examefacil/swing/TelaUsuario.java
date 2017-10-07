@@ -5,13 +5,16 @@
 */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.Examefacil;
-import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.UsuarioView;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -20,11 +23,74 @@ import javax.swing.JTextField;
  */
 public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     
-    /**
-     * Creates new form TipoExames
-     */
+    public List<JCheckBox> chksPermissaoUsuario;
+    public List<JCheckBox> chksPermissaoAtendimento;
+    public List<JCheckBox> chksPermissaoAtLaudo;
+    public List<JCheckBox> chksPermissaoAtImagem;
+    public List<JCheckBox> chksPermissaoAtEditImage;
+    public List<JCheckBox> chksPermissaoAtAudio;
+    public List<JCheckBox> chksPermissaoPaciente;
+    public List<JCheckBox> chksPermissaoTextoPadrao;
+    public List<JCheckBox> chksPermissaoAreaExame;
+    public List<JCheckBox> chksPermissaoTipoExame;
+    
     public TelaUsuario() {
         initComponents();
+        new UsuarioControl().init(this);
+        initCheckboxesPermissoes();
+    }
+    
+    public void initCheckboxesPermissoes(){
+        this.chksPermissaoUsuario = new ArrayList<>();
+        this.chksPermissaoUsuario.add(jCUsuVisualizar);
+        this.chksPermissaoUsuario.add(jCUsuIncluir);
+        this.chksPermissaoUsuario.add(jCUsuEditar);
+        this.chksPermissaoUsuario.add(jCUsuExcluir);
+        this.chksPermissaoAtendimento = new ArrayList<>();
+        this.chksPermissaoAtendimento.add(jCAteVisualizar);
+        this.chksPermissaoAtendimento.add(jCAteIncluir);
+        this.chksPermissaoAtendimento.add(jCAteEditar);
+        this.chksPermissaoAtendimento.add(jCAteExcluir);
+        this.chksPermissaoAtLaudo = new ArrayList<>();
+        this.chksPermissaoAtLaudo.add(jCLauVisualizar);
+        this.chksPermissaoAtLaudo.add(jCLauIncluir);
+        this.chksPermissaoAtLaudo.add(jCLauEditar);
+        this.chksPermissaoAtLaudo.add(jCLauExcluir);
+        this.chksPermissaoAtImagem = new ArrayList<>();
+        this.chksPermissaoAtImagem.add(jCImaVisualizar);
+        this.chksPermissaoAtImagem.add(jCImaIncluir);
+        this.chksPermissaoAtImagem.add(jCImaEditar);
+        this.chksPermissaoAtImagem.add(jCImaExcluir);
+        this.chksPermissaoAtEditImage = new ArrayList<>();
+        this.chksPermissaoAtEditImage.add(jCManVisualizar);
+        this.chksPermissaoAtEditImage.add(jCManIncluir);
+        this.chksPermissaoAtEditImage.add(jCManEditar);
+        this.chksPermissaoAtEditImage.add(jCManExcluir);
+        this.chksPermissaoAtAudio = new ArrayList<>();
+        this.chksPermissaoAtAudio.add(jCAudVisualizar);
+        this.chksPermissaoAtAudio.add(jCAudIncluir);
+        this.chksPermissaoAtAudio.add(jCAudEditar);
+        this.chksPermissaoAtAudio.add(jCAudExcluir);
+        this.chksPermissaoPaciente = new ArrayList<>();
+        this.chksPermissaoPaciente.add(jCPacVisualizar);
+        this.chksPermissaoPaciente.add(jCPacIncluir);
+        this.chksPermissaoPaciente.add(jCPacEditar);
+        this.chksPermissaoPaciente.add(jCPacExcluir);
+        this.chksPermissaoTextoPadrao = new ArrayList<>();
+        this.chksPermissaoTextoPadrao.add(jCTexVisualizar);
+        this.chksPermissaoTextoPadrao.add(jCTexIncluir);
+        this.chksPermissaoTextoPadrao.add(jCTexEditar);
+        this.chksPermissaoTextoPadrao.add(jCTexExcluir);
+        this.chksPermissaoAreaExame = new ArrayList<>();
+        this.chksPermissaoAreaExame.add(jCAreVisualizar);
+        this.chksPermissaoAreaExame.add(jCAreIncluir);
+        this.chksPermissaoAreaExame.add(jCAreEditar);
+        this.chksPermissaoAreaExame.add(jCAreExcluir);
+        this.chksPermissaoTipoExame = new ArrayList<>();
+        this.chksPermissaoTipoExame.add(jCTipVisualizar);
+        this.chksPermissaoTipoExame.add(jCTipIncluir);
+        this.chksPermissaoTipoExame.add(jCTipEditar);
+        this.chksPermissaoTipoExame.add(jCTipExcluir);
     }
     
     /**
@@ -40,7 +106,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jBCancelar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
-        jBeditar = new javax.swing.JButton();
+        jBEditar = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
         jTPesquisar = new javax.swing.JTextField();
@@ -48,18 +114,78 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jCInclusaoAutomatica = new javax.swing.JCheckBox();
         jTabUsuario = new javax.swing.JTabbedPane();
         jPVisualizar = new javax.swing.JPanel();
-        jLTipoExame = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTABUsuario = new javax.swing.JTable();
         jEditar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTNomeUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTEmail = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jPSenha = new javax.swing.JPasswordField();
-        jCTipoAcesso = new javax.swing.JComboBox<>();
+        jLIDUsuario = new javax.swing.JLabel();
+        btnAbrirDialogAlteraSenha = new javax.swing.JButton();
+        jBPermissoes = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jCUsuVisualizar = new javax.swing.JCheckBox();
+        jCUsuIncluir = new javax.swing.JCheckBox();
+        jCUsuEditar = new javax.swing.JCheckBox();
+        jCUsuExcluir = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        jCAteVisualizar = new javax.swing.JCheckBox();
+        jCAteIncluir = new javax.swing.JCheckBox();
+        jCAteEditar = new javax.swing.JCheckBox();
+        jCAteExcluir = new javax.swing.JCheckBox();
+        jLabel16 = new javax.swing.JLabel();
+        jCLauVisualizar = new javax.swing.JCheckBox();
+        jCLauIncluir = new javax.swing.JCheckBox();
+        jCLauEditar = new javax.swing.JCheckBox();
+        jCLauExcluir = new javax.swing.JCheckBox();
+        jLabel17 = new javax.swing.JLabel();
+        jCImaVisualizar = new javax.swing.JCheckBox();
+        jCImaIncluir = new javax.swing.JCheckBox();
+        jCImaEditar = new javax.swing.JCheckBox();
+        jCImaExcluir = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
+        jCManVisualizar = new javax.swing.JCheckBox();
+        jCManIncluir = new javax.swing.JCheckBox();
+        jCManEditar = new javax.swing.JCheckBox();
+        jCManExcluir = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
+        jCAudVisualizar = new javax.swing.JCheckBox();
+        jCAudIncluir = new javax.swing.JCheckBox();
+        jCAudEditar = new javax.swing.JCheckBox();
+        jCAudExcluir = new javax.swing.JCheckBox();
+        jLabel18 = new javax.swing.JLabel();
+        jCPacVisualizar = new javax.swing.JCheckBox();
+        jCPacIncluir = new javax.swing.JCheckBox();
+        jCPacEditar = new javax.swing.JCheckBox();
+        jCPacExcluir = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        jCTipVisualizar = new javax.swing.JCheckBox();
+        jCTipIncluir = new javax.swing.JCheckBox();
+        jCTipEditar = new javax.swing.JCheckBox();
+        jCTipExcluir = new javax.swing.JCheckBox();
+        jLabel19 = new javax.swing.JLabel();
+        jCAreVisualizar = new javax.swing.JCheckBox();
+        jCAreIncluir = new javax.swing.JCheckBox();
+        jCAreEditar = new javax.swing.JCheckBox();
+        jCAreExcluir = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        jCTexVisualizar = new javax.swing.JCheckBox();
+        jCTexIncluir = new javax.swing.JCheckBox();
+        jCTexEditar = new javax.swing.JCheckBox();
+        jCTexExcluir = new javax.swing.JCheckBox();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jCTipoAcesso = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Usuários");
 
         jPUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -86,10 +212,11 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
-        jBeditar.setText("Editar");
-        jBeditar.addActionListener(new java.awt.event.ActionListener() {
+        jBEditar.setText("Editar");
+        jBEditar.setEnabled(false);
+        jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBeditarActionPerformed(evt);
+                jBEditarActionPerformed(evt);
             }
         });
 
@@ -102,8 +229,18 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         });
 
         jBExcluir.setText("Excluir");
+        jBExcluir.setEnabled(false);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
-        jTPesquisar.setText("Descrição");
+        jTPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPesquisarActionPerformed(evt);
+            }
+        });
 
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +266,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                     .addGroup(jPUsuarioLayout.createSequentialGroup()
                         .addComponent(jBIncluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBeditar)
+                        .addComponent(jBEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,7 +290,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addGroup(jPUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBCancelar)
                     .addComponent(jBIncluir)
-                    .addComponent(jBeditar)
+                    .addComponent(jBEditar)
                     .addComponent(jBGravar)
                     .addComponent(jBExcluir)
                     .addComponent(jBFechar))
@@ -167,36 +304,58 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addComponent(jCInclusaoAutomatica))
         );
 
-        jLTipoExame.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jTABUsuario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jTABUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTABUsuarioMouseClicked(evt);
+            }
         });
+        jScrollPane1.setViewportView(jTABUsuario);
 
         javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jLTipoExame, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLTipoExame, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
 
         jTabUsuario.addTab("Visualizar", jPVisualizar);
 
         jLabel1.setText("Nome do Usuário");
 
+        jTNomeUsuario.setName("Nome do Usuário"); // NOI18N
+
         jLabel2.setText("E-mail");
 
-        jLabel3.setText("Senha");
+        jTEmail.setName("E-mail"); // NOI18N
 
-        jCTipoAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        btnAbrirDialogAlteraSenha.setText("Alterar senha");
+        btnAbrirDialogAlteraSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirDialogAlteraSenhaActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Tipo de Acesso");
+        jBPermissoes.setText("Definir Permissões");
+        jBPermissoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPermissoesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -205,16 +364,18 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(jTNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addComponent(jTEmail)
-                        .addComponent(jLabel3)
-                        .addComponent(jPSenha)
-                        .addComponent(jCTipoAcesso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel4))
-                .addContainerGap(405, Short.MAX_VALUE))
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(jTNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTEmail))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jBPermissoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(664, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,37 +383,298 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLIDUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTNomeUsuario))
+                .addGap(13, 13, 13)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBPermissoes)
+                .addGap(18, 18, 18)
+                .addComponent(btnAbrirDialogAlteraSenha)
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         jTabUsuario.addTab("Editar", jEditar);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setLayout(new java.awt.GridLayout(11, 5, 5, 0));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setText("Permissões Específicas");
+        jLabel10.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel10.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel10);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Visualizar");
+        jPanel2.add(jLabel11);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setText("Incluir");
+        jPanel2.add(jLabel13);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setText("Editar");
+        jPanel2.add(jLabel12);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setText("Excluir");
+        jPanel2.add(jLabel14);
+
+        jLabel9.setText("1. Cadastro de Usuários");
+        jLabel9.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel9.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel9);
+
+        jCUsuVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCUsuVisualizar.setAlignmentY(0.0F);
+        jCUsuVisualizar.setIconTextGap(1);
+        jCUsuVisualizar.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        jCUsuVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCUsuVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCUsuVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jCUsuVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCUsuVisualizarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCUsuVisualizar);
+        jPanel2.add(jCUsuIncluir);
+        jPanel2.add(jCUsuEditar);
+        jPanel2.add(jCUsuExcluir);
+
+        jLabel8.setText("2. Atendimentos");
+        jLabel8.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel8.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel8);
+
+        jCAteVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCAteVisualizar.setAlignmentY(0.0F);
+        jCAteVisualizar.setIconTextGap(1);
+        jCAteVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCAteVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCAteVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCAteVisualizar);
+        jPanel2.add(jCAteIncluir);
+        jPanel2.add(jCAteEditar);
+        jPanel2.add(jCAteExcluir);
+
+        jLabel16.setText("2.1. Atendimentos / Laudos");
+        jLabel16.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel16.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel16);
+
+        jCLauVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCLauVisualizar.setAlignmentY(0.0F);
+        jCLauVisualizar.setIconTextGap(1);
+        jCLauVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCLauVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCLauVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCLauVisualizar);
+        jPanel2.add(jCLauIncluir);
+        jPanel2.add(jCLauEditar);
+        jPanel2.add(jCLauExcluir);
+
+        jLabel17.setText("2.2. Atendimentos / Imagens");
+        jLabel17.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel17.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel17);
+
+        jCImaVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCImaVisualizar.setAlignmentY(0.0F);
+        jCImaVisualizar.setIconTextGap(1);
+        jCImaVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCImaVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCImaVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCImaVisualizar);
+        jPanel2.add(jCImaIncluir);
+
+        jCImaEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCImaEditarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCImaEditar);
+        jPanel2.add(jCImaExcluir);
+
+        jLabel4.setText("2.3. Atendimentos / Manip. Imagens");
+        jLabel4.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel4.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel4);
+
+        jCManVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCManVisualizar.setAlignmentY(0.0F);
+        jCManVisualizar.setIconTextGap(1);
+        jCManVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCManVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCManVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCManVisualizar);
+        jPanel2.add(jCManIncluir);
+        jPanel2.add(jCManEditar);
+        jPanel2.add(jCManExcluir);
+
+        jLabel6.setText("2.4. Atendimentos / Áudios");
+        jLabel6.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel6.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel6);
+
+        jCAudVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCAudVisualizar.setAlignmentY(0.0F);
+        jCAudVisualizar.setIconTextGap(1);
+        jCAudVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCAudVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCAudVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCAudVisualizar);
+        jPanel2.add(jCAudIncluir);
+        jPanel2.add(jCAudEditar);
+        jPanel2.add(jCAudExcluir);
+
+        jLabel18.setText("3. Cadastro de Pacientes");
+        jLabel18.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel18.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel18);
+
+        jCPacVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCPacVisualizar.setAlignmentY(0.0F);
+        jCPacVisualizar.setIconTextGap(1);
+        jCPacVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCPacVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCPacVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCPacVisualizar);
+        jPanel2.add(jCPacIncluir);
+        jPanel2.add(jCPacEditar);
+        jPanel2.add(jCPacExcluir);
+
+        jLabel7.setText("4. Cadastros de Tipos de Exames");
+        jLabel7.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel7.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel7);
+
+        jCTipVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCTipVisualizar.setAlignmentY(0.0F);
+        jCTipVisualizar.setIconTextGap(1);
+        jCTipVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCTipVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCTipVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCTipVisualizar);
+        jPanel2.add(jCTipIncluir);
+        jPanel2.add(jCTipEditar);
+        jPanel2.add(jCTipExcluir);
+
+        jLabel19.setText("5. Cadastro de Áreas de Exames");
+        jLabel19.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel19.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel19);
+
+        jCAreVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCAreVisualizar.setAlignmentY(0.0F);
+        jCAreVisualizar.setIconTextGap(1);
+        jCAreVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCAreVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCAreVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jPanel2.add(jCAreVisualizar);
+        jPanel2.add(jCAreIncluir);
+        jPanel2.add(jCAreEditar);
+        jPanel2.add(jCAreExcluir);
+
+        jLabel5.setText("6. Cadastro de Textos Padrões");
+        jLabel5.setMaximumSize(new java.awt.Dimension(300, 15));
+        jLabel5.setMinimumSize(new java.awt.Dimension(200, 14));
+        jPanel2.add(jLabel5);
+
+        jCTexVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
+        jCTexVisualizar.setAlignmentY(0.0F);
+        jCTexVisualizar.setIconTextGap(1);
+        jCTexVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
+        jCTexVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
+        jCTexVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
+        jCTexVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTexVisualizarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jCTexVisualizar);
+        jPanel2.add(jCTexIncluir);
+        jPanel2.add(jCTexEditar);
+        jPanel2.add(jCTexExcluir);
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel15.setText("Tipo de Usuário");
+
+        jCTipoAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Selecione--", "Recepcionista", "Atend. Exame", "Médico Requisitante", "Médico Interpretador", "Administrador" }));
+        jCTipoAcesso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTipoAcessoActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel3.setText("Selecione o tipo de usuário para carregar as permissões pré definidas");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCTipoAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel3))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1046, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabUsuario.addTab("Permissões", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabUsuario)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -260,16 +682,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabUsuario.setSelectedIndex(1);
-        
+        new UsuarioControl().novoUsuario(this);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -280,115 +693,63 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jBIncluir.setEnabled(true);
-        jBExcluir.setEnabled(true);
-        jBPesquisar.setEnabled(true);
-        jBeditar.setEnabled(true);
-        jBFechar.setEnabled(true);
-        jTPesquisar.setEnabled(true);
-        jBGravar.setEnabled(false);
-        jBCancelar.setEnabled(false);
-        jTNomeUsuario.setText("");
-        jTEmail.setText("");
-        jPSenha.setText("");
-        jTabUsuario.setSelectedIndex(0);
+        jCInclusaoAutomatica.setSelected(false);
+        new UsuarioControl().desabilitaBotoesEditar(this);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
-    private void jBeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeditarActionPerformed
-        
-        /*Código para trazer as informações do registro selecionado*/
-        
-        jBIncluir.setEnabled(false);
-        jBExcluir.setEnabled(false);
-        jBPesquisar.setEnabled(false);
-        jBeditar.setEnabled(false);
-        jBFechar.setEnabled(false);
-        jTPesquisar.setEnabled(false);
-        jBGravar.setEnabled(true);
-        jBCancelar.setEnabled(true);
-        jTabUsuario.setSelectedIndex(1);
-        
-        
-        
-    }//GEN-LAST:event_jBeditarActionPerformed
+    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
+        new UsuarioControl().carregarDados(this);
+    }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        
-        
-        UsuarioControl usuarioControl = new UsuarioControl();
-        usuarioControl.salvar(this);
-        
-        /*Usuario a = new Usuario();
-        a.setNome(jTNomeUsuario.getText());
-        a.setEmail(jTEmail.getText());
-        a.setSenha(jPSenha.getText());
-        a.setTipo_acesso("a");
-        
-        if (jTNomeUsuario.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Não é possível salvar um registro em branco");
-        } else {
-            try {
-                
-                
-                if (jCInclusaoAutomatica.isSelected()) {
-                    
-                    
-                    
-                    UsuarioControl control = new UsuarioControl();
-                    control.salvar(a);
-                    
-                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                    jTNomeUsuario.setText("");
-                    jTEmail.setText("");
-                    jPSenha.setText("");
-                } else {
-                    
-                    
-                    
-                    UsuarioControl control = new UsuarioControl();
-                    control.salvar(a);
-                    
-                    JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
-                    jTNomeUsuario.setText("");
-                    jTEmail.setText("");
-                    jPSenha.setText("");
-                    jBIncluir.setEnabled(true);
-                    jBExcluir.setEnabled(true);
-                    jBPesquisar.setEnabled(true);
-                    jBeditar.setEnabled(true);
-                    jBFechar.setEnabled(true);
-                    jTPesquisar.setEnabled(true);
-                    jBGravar.setEnabled(false);
-                    jBCancelar.setEnabled(false);
-                    jTabUsuario.setSelectedIndex(0);
-                }
-            }
-            catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Erro ao inserir registro!");
-            }
-        }
-        
-        
-        */
-        
-        
-        
-        
-        
-        
+        UsuarioControl control = new UsuarioControl();
+        control.salvar(this);
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        
-        
-        String pesquisa = jTPesquisar.getText();
-        
-        
+        new UsuarioControl().atualizaTabelaUsuarios(this);
     }//GEN-LAST:event_jBPesquisarActionPerformed
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new UsuarioControl().excluir(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jTPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPesquisarActionPerformed
+
+    private void jTABUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABUsuarioMouseClicked
+        new UsuarioControl().alteraEstadoEditarExcluir(this, true);
+    }//GEN-LAST:event_jTABUsuarioMouseClicked
+
+    private void btnAbrirDialogAlteraSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirDialogAlteraSenhaActionPerformed
+        DialogAlteraSenhaUsuario dialog = new DialogAlteraSenhaUsuario(this, true, Integer.parseInt(jLIDUsuario.getText()));
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnAbrirDialogAlteraSenhaActionPerformed
+
+    private void jBPermissoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPermissoesActionPerformed
+        new UsuarioControl().inserirPermissoes(this);
+    }//GEN-LAST:event_jBPermissoesActionPerformed
+
+    private void jCTexVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTexVisualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCTexVisualizarActionPerformed
+
+    private void jCImaEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCImaEditarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCImaEditarActionPerformed
+
+    private void jCUsuVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCUsuVisualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCUsuVisualizarActionPerformed
+
+    private void jCTipoAcessoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTipoAcessoActionPerformed
+        new UsuarioControl().carregaRegraPermissao(this);
+    }//GEN-LAST:event_jCTipoAcessoActionPerformed
     
     /**
      * @param args the command line arguments
@@ -433,57 +794,240 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirDialogAlteraSenha;
     private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
+    private javax.swing.JButton jBPermissoes;
     private javax.swing.JButton jBPesquisar;
-    private javax.swing.JButton jBeditar;
+    private javax.swing.JCheckBox jCAreEditar;
+    private javax.swing.JCheckBox jCAreExcluir;
+    private javax.swing.JCheckBox jCAreIncluir;
+    private javax.swing.JCheckBox jCAreVisualizar;
+    private javax.swing.JCheckBox jCAteEditar;
+    private javax.swing.JCheckBox jCAteExcluir;
+    private javax.swing.JCheckBox jCAteIncluir;
+    private javax.swing.JCheckBox jCAteVisualizar;
+    private javax.swing.JCheckBox jCAudEditar;
+    private javax.swing.JCheckBox jCAudExcluir;
+    private javax.swing.JCheckBox jCAudIncluir;
+    private javax.swing.JCheckBox jCAudVisualizar;
+    private javax.swing.JCheckBox jCImaEditar;
+    private javax.swing.JCheckBox jCImaExcluir;
+    private javax.swing.JCheckBox jCImaIncluir;
+    private javax.swing.JCheckBox jCImaVisualizar;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
+    private javax.swing.JCheckBox jCLauEditar;
+    private javax.swing.JCheckBox jCLauExcluir;
+    private javax.swing.JCheckBox jCLauIncluir;
+    private javax.swing.JCheckBox jCLauVisualizar;
+    private javax.swing.JCheckBox jCManEditar;
+    private javax.swing.JCheckBox jCManExcluir;
+    private javax.swing.JCheckBox jCManIncluir;
+    private javax.swing.JCheckBox jCManVisualizar;
+    private javax.swing.JCheckBox jCPacEditar;
+    private javax.swing.JCheckBox jCPacExcluir;
+    private javax.swing.JCheckBox jCPacIncluir;
+    private javax.swing.JCheckBox jCPacVisualizar;
+    private javax.swing.JCheckBox jCTexEditar;
+    private javax.swing.JCheckBox jCTexExcluir;
+    private javax.swing.JCheckBox jCTexIncluir;
+    private javax.swing.JCheckBox jCTexVisualizar;
+    private javax.swing.JCheckBox jCTipEditar;
+    private javax.swing.JCheckBox jCTipExcluir;
+    private javax.swing.JCheckBox jCTipIncluir;
+    private javax.swing.JCheckBox jCTipVisualizar;
     private javax.swing.JComboBox<String> jCTipoAcesso;
+    private javax.swing.JCheckBox jCUsuEditar;
+    private javax.swing.JCheckBox jCUsuExcluir;
+    private javax.swing.JCheckBox jCUsuIncluir;
+    private javax.swing.JCheckBox jCUsuVisualizar;
     private javax.swing.JPanel jEditar;
-    private javax.swing.JList<String> jLTipoExame;
+    private javax.swing.JLabel jLIDUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPSenha;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPUsuario;
     private javax.swing.JPanel jPVisualizar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTABUsuario;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jTNomeUsuario;
     private javax.swing.JTextField jTPesquisar;
     private javax.swing.JTabbedPane jTabUsuario;
     // End of variables declaration//GEN-END:variables
-
+    
     @Override
     public String getNome() {
-        return jTNomeUsuario.getText();
+        return jTNomeUsuario().getText();
     }
-
+    
     @Override
     public String getEmail() {
-        return jTEmail.getText();
+        return jTEmail().getText();
     }
-
+    
     @Override
-    public String getSenha() {
-        return jPSenha.getText();
+    public String getTipoAcesso() {
+        return String.valueOf(jCTipoAcesso.getSelectedIndex());
     }
-
+    
     @Override
     public JTextField jTNomeUsuario() {
         return jTNomeUsuario;
     }
-
+    
+    @Override
+    public JComboBox jCTipoAcesso() {
+        return jCTipoAcesso;
+    }
+    
+    @Override
+    public JTable JTABUsuarios() {
+        return jTABUsuario;
+    }
+    
+    @Override
+    public JTextField jTPesquisar() {
+        return jTPesquisar;
+    }
+    
+    @Override
+    public JButton jBIncluir() {
+        return jBIncluir;
+    }
+    
+    @Override
+    public JButton jBExcluir() {
+        return jBExcluir;
+    }
+    
+    @Override
+    public JButton jBPesquisar() {
+        return jBPesquisar;
+    }
+    
+    @Override
+    public JButton jBEditar() {
+        return jBEditar;
+    }
+    
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+    
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+    
+    @Override
+    public JTabbedPane jTabUsuario() {
+        return jTabUsuario;
+    }
+    
+    @Override
+    public JCheckBox jCInclusaoAutomatica() {
+        return jCInclusaoAutomatica;
+    }
+    
+    @Override
+    public JLabel jLIDUsuario() {
+        return jLIDUsuario;
+    }
+    
     @Override
     public JTextField jTEmail() {
         return jTEmail;
     }
+    
+    @Override
+    public JButton btnAbrirDialogAlteraSenha() {
+        return btnAbrirDialogAlteraSenha;
+    }
+    
+    @Override
+    public JButton jBPermissoes() {
+        return jBPermissoes;
+    }
+    
+    @Override
+    public List<JCheckBox> chksPermissaoUsuario() {
+        return this.chksPermissaoUsuario;
+    }
 
     @Override
-    public JPasswordField jPSenha() {
-        return jPSenha;
+    public List<JCheckBox> chksPermissaoAtendimento() {
+        return this.chksPermissaoAtendimento;
     }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtLaudo() {
+        return this.chksPermissaoAtLaudo;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtImagem() {
+        return this.chksPermissaoAtImagem;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtEditImage() {
+        return this.chksPermissaoAtEditImage;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAtAudio() {
+        return this.chksPermissaoAtAudio;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoPaciente() {
+        return this.chksPermissaoPaciente;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoTextoPadrao() {
+        return this.chksPermissaoTextoPadrao;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoAreaExame() {
+        return this.chksPermissaoAreaExame;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoTipoExame() {
+        return this.chksPermissaoTipoExame;
+    }
+
+    @Override
+    public JButton btnAbrirPermissoes() {
+        return jBPermissoes;
+    }
+    
+    
 }

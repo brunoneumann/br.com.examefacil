@@ -1,0 +1,25 @@
+<<<<<<< HEAD
+/src/log4j.properties
+/src/hibernate.cfg.xml
+/build/
+/dist/
+hibernate.reveng.xml
+/nbproject/
+/test/
+/log/
+build.xml
+desktop.ini
+manifest.mf
+=======
+/src/log4j.properties
+/src/hibernate.cfg.xml
+/build
+/dist
+hibernate.reveng.xml
+/nbproject
+/test
+/log
+build.xml
+desktop.ini
+manifest.mf
+>>>>>>> origin/release_4_bruno_b

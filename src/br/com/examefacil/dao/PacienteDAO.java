@@ -26,8 +26,12 @@ public class PacienteDAO {
         return new CustomDAO<Paciente>().get(Paciente.class, id);
     }
     
-    public List<Paciente> list() throws Exception {
-        return null;
+    public List<Paciente> list() {
+        return new CustomDAO<Paciente>().list(Paciente.class);
+    }
+    
+    public List<Paciente> list(String parametro){
+        return new CustomDAO<Paciente>().list(Paciente.class, "SELECT * FROM paciente WHERE nome LIKE '%' :nome '%' ORDER BY idpaciente DESC", "nome", parametro);
     }
     
 }

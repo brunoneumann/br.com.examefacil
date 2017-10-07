@@ -26,8 +26,12 @@ public class TipoExameDAO {
         return new CustomDAO<TipoExame>().get(TipoExame.class, id);
     }
     
-    public List<TipoExame> list() throws Exception {
-        return null;
+    public List<TipoExame> list() {
+        return new CustomDAO<TipoExame>().list(TipoExame.class);
+    }
+    
+    public List<TipoExame> list(String parametro){
+        return new CustomDAO<TipoExame>().list(TipoExame.class, "SELECT * FROM tipoexame WHERE nome LIKE '%' :nome '%' ORDER BY idtipoexame DESC", "nome", parametro);
     }
     
 }
