@@ -18,6 +18,7 @@ public class DialogAlteraSenhaUsuario extends javax.swing.JDialog {
     public DialogAlteraSenhaUsuario(java.awt.Frame parent, boolean modal, int idusuario) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo( null );
         this.idusuario = idusuario;
     }
 
@@ -36,6 +37,7 @@ public class DialogAlteraSenhaUsuario extends javax.swing.JDialog {
         btnConfirmaAlterarSenha = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         jLabel1.setText("Senha:");
 

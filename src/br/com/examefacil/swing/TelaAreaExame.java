@@ -25,6 +25,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
      */
     public TelaAreaExame() {
         initComponents();
+        setLocationRelativeTo( null );
         new AreaExameControl().init(this);
     }
 
@@ -58,6 +59,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Área de Exame");
+        setAlwaysOnTop(true);
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

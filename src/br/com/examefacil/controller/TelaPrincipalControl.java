@@ -6,6 +6,7 @@
 package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Acesso;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.TelaPrincipalView;
 import java.util.List;
 import javax.swing.JFormattedTextField;
@@ -55,8 +56,7 @@ public class TelaPrincipalControl {
         view.jMCadastro().setEnabled(false);
         view.jILogin().setVisible(true);
         view.jILogin().setSize(280, 200);
-        view.jILogin().setAlignmentX(1);
-        view.jILogin().setAlignmentY(1);
+        Util.setPosicao(view.jILogin()); //Deveria estar centralizando a tela de Login
         view.jIExame().setVisible(false);
     }
     

@@ -14,6 +14,7 @@ import br.com.examefacil.view.PacienteView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,13 +68,23 @@ public class PacienteControl {
     }
 
     public boolean salvar(PacienteView view) {
-        if (validaCampos(view)) {
+        
+        ArrayList<String> campos = new ArrayList<>();
+        ArrayList<String> nomes = new ArrayList<>();
+        campos.add(view.jTNomePaciente().getText());
+        campos.add (view.jTCPF().getText());
+        campos.add (view.JTEmail().getText());
+        nomes.add(view.jTNomePaciente().getName());
+        nomes.add (view.jTCPF().getName());
+        nomes.add (view.JTEmail().getName());
+ 
+        if (Util.validaCampos(campos, nomes) && Util.validaCPF(view.jTCPF().getText()) && Util.validarEmail(view.JTEmail().getText())) {
             Paciente paciente = new Paciente();
             if (view.jLIDPaciente().getText() != null) {
                 paciente.setIdpaciente(Integer.parseInt(view.jLIDPaciente().getText()));
             }
             paciente.setNome(view.getNome());
-            paciente.setCpf(view.getCPF());
+            paciente.setCpf(Util.removeMascara(view.getCPF()));
             paciente.setEmail(view.getEmail());
 
             boolean result = new PacienteDAO().save(paciente);
@@ -199,80 +210,5 @@ public class PacienteControl {
             view.jTabPaciente().setEnabledAt(0, true);
             view.jTabPaciente().setEnabledAt(1, false);
         }
-    }
-
-    public boolean validaCampos(PacienteView view) {
-
-        if (view.jTNomePaciente().getText().equals("")
-                || view.jTNomePaciente().getText().equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTNomePaciente().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-
-            return false;
-        } else if (view.jTCPF().getText().equals("")
-                || view.jTCPF().getText().equals(" ")) {
-
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTCPF().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else if (!validaCPF(view.getCPF())) {
-            JOptionPane.showMessageDialog(null, "O CPF informado é inválido", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else if (view.JTEmail().getText().equals("")
-                || view.JTEmail().getText().equals(" ")) {
-
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.JTEmail().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else if (!validarEmail(view.getEmail())) {
-
-            JOptionPane.showMessageDialog(null, "O E-mail informado não é válido", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } 
-        else {
-            return true;
-        }
-
-    }
-
-    public static boolean validaCPF(String strCpf) {
-
-        int d1, d2;
-        int digito1, digito2, resto;
-        int digitoCPF;
-        String nDigResult;
-        d1 = d2 = 0;
-        digito1 = digito2 = resto = 0;
-        for (int nCount = 1; nCount < strCpf.length() - 1; nCount++) {
-            digitoCPF = Integer.valueOf(strCpf.substring(nCount - 1, nCount)).intValue();
-            d1 = d1 + (11 - nCount) * digitoCPF;
-            d2 = d2 + (12 - nCount) * digitoCPF;
-        }
-        resto = (d1 % 11);
-        if (resto < 2) {
-            digito1 = 0;
-        } else {
-            digito1 = 11 - resto;
-        }
-        d2 += 2 * digito1;
-        resto = (d2 % 11);
-        if (resto < 2) {
-            digito2 = 0;
-        } else {
-            digito2 = 11 - resto;
-        }
-        String nDigVerific = strCpf.substring(strCpf.length() - 2, strCpf.length());
-        nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
-        return nDigVerific.equals(nDigResult);
-    }
-    public static boolean validarEmail(String email)
-    {
-        boolean isEmailIdValid = false;
-        if (email != null && email.length() > 0) {
-            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(email);
-            if (matcher.matches()) {
-                isEmailIdValid = true;
-            }
-        }
-        return isEmailIdValid;
     }
 }

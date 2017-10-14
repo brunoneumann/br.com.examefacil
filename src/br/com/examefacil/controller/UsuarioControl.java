@@ -74,7 +74,15 @@ public class UsuarioControl {
     public boolean salvar(UsuarioView view) {
 
         if (view.jTabUsuario().getSelectedIndex() == 1) {
-            if (validaCampos(view)) {
+            ArrayList<String> campos = new ArrayList<>();
+            ArrayList<String> nomes = new ArrayList<>();
+            campos.add(view.jTNomeUsuario().getText());
+            campos.add(view.jTEmail().getText());
+            nomes.add (view.jTNomeUsuario().getName());
+            nomes.add (view.jTEmail().getName());
+            
+ 
+        if (Util.validaCampos(campos, nomes) && Util.validarEmail(view.jTEmail().getText())) {
                 Usuario usuario = new Usuario();
                 if (view.jLIDUsuario().getText() != null) {
                     usuario.setIdusuario(Integer.parseInt(view.jLIDUsuario().getText()));
@@ -416,38 +424,6 @@ public class UsuarioControl {
         }
     }
 
-    public boolean validaCampos(UsuarioView view) {
-        if (view.getNome().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTNomeUsuario().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        if (view.getEmail().equals("")) {
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTEmail().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
 
-        }else if (!validarEmail(view.getEmail())){
-            
-            JOptionPane.showMessageDialog(null, "O E-mail informado não é válido", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-            
-        }
-        
-
-        return false;
-
-    }
-
-    public static boolean validarEmail(String email) {
-        boolean isEmailIdValid = false;
-        if (email != null && email.length() > 0) {
-            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(email);
-            if (matcher.matches()) {
-                isEmailIdValid = true;
-            }
-        }
-        return isEmailIdValid;
-    }
 
 }

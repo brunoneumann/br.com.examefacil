@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.tools.Util;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -64,7 +65,12 @@ public class AreaExameControl {
     }
     
     public boolean salvar(AreaExameView view){
-        if (validaCampos(view)){
+        ArrayList<String> campos = new ArrayList<>();
+        ArrayList<String> nomes = new ArrayList<>();
+        campos.add(view.jTAreaExame().getText());
+        nomes.add (view.jTAreaExame().getName());
+
+        if (Util.validaCampos(campos, nomes)){
         
         AreaExame area = new AreaExame();
         if(view.jLIDAreaExame().getText()!=null){
@@ -187,13 +193,5 @@ public class AreaExameControl {
             view.jTabAreaExame().setEnabledAt(1, false);
         }
     }
-    public boolean validaCampos(AreaExameView view) {
-
-        if (view.jTAreaExame().getText().equals("")||view.jTAreaExame().getText().equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: "+view.jTAreaExame().getName()+"", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else {
-            return true;
-        }
-    }
+    
 }

@@ -27,6 +27,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
      */
     public TelaTipoExame() {
         initComponents();
+        setLocationRelativeTo( null );
         new TipoExameControl().init(this);
     }
 
@@ -64,6 +65,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipos de Exame");
+        setAlwaysOnTop(true);
 
         jPTipoExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

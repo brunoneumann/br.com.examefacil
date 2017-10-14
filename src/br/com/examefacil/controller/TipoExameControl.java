@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.tools.Util;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,7 +67,14 @@ public class TipoExameControl {
     }
 
     public boolean salvar(TipoExameView view) {
-        if (validaCampos(view)) {
+        ArrayList<String> campos = new ArrayList<>();
+        ArrayList<String> nomes = new ArrayList<>();
+        campos.add(view.jTTipoExame().getText());
+        campos.add (view.jTDescricao().getText());
+        nomes.add (view.jTTipoExame().getName());
+        nomes.add (view.jTDescricao().getName());
+ 
+        if (Util.validaCampos(campos, nomes)) {
             TipoExame tipo = new TipoExame();
             if (view.jLIDTipoExame().getText() != null) {
                 tipo.setIdtipoexame(Integer.parseInt(view.jLIDTipoExame().getText()));
@@ -189,23 +197,6 @@ public class TipoExameControl {
             view.jTabTipoExame().setSelectedIndex(0);
             view.jTabTipoExame().setEnabledAt(0, true);
             view.jTabTipoExame().setEnabledAt(1, false);
-        }
-    }
-
-    public boolean validaCampos(TipoExameView view) {
-
-        if (view.jTTipoExame().getText().equals("")
-                || view.jTTipoExame().getText().equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTTipoExame().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-
-            return false;
-        } else if (view.jTDescricao().getText().equals("")
-                || view.jTDescricao().getText().equals(" ")) {
-
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTDescricao().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else {
-            return true;
         }
     }
 }

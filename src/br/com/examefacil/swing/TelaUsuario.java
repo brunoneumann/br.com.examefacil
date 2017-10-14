@@ -36,6 +36,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     
     public TelaUsuario() {
         initComponents();
+        setLocationRelativeTo( null );
         new UsuarioControl().init(this);
         initCheckboxesPermissoes();
     }
@@ -187,6 +188,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Usuários");
+        setAlwaysOnTop(true);
 
         jPUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

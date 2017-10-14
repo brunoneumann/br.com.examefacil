@@ -19,6 +19,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.TextoPadraoView;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,7 +66,14 @@ public class TextoPadraoControl {
     }
     
     public boolean salvar(TextoPadraoView view){
-        if (validaCampos(view)){
+        ArrayList<String> campos = new ArrayList<>();
+        ArrayList<String> nomes = new ArrayList<>();
+        campos.add(view.jTNome_codigo().getText());
+        campos.add (view.jTDescricao().getText());
+        nomes.add (view.jTNome_codigo().getName());
+        nomes.add (view.jTDescricao().getName());
+ 
+        if (Util.validaCampos(campos, nomes)) {
         TextoPadrao area = new TextoPadrao();
         if(view.jLIDTextoPadrao().getText()!=null){
             area.setIdtextopadrao(Integer.parseInt(view.jLIDTextoPadrao().getText()));
@@ -194,21 +202,6 @@ public class TextoPadraoControl {
         }
     }
     
-    public boolean validaCampos(TextoPadraoView view) {
 
-        if (view.jTNome_codigo().getText().equals("")
-                || view.jTNome_codigo().getText().equals(" ")) {
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTNome_codigo().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-
-            return false;
-        } else if (view.jTDescricao().getText().equals("")
-                || view.jTDescricao().getText().equals(" ")) {
-
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo: " + view.jTDescricao().getName() + "", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return false;
-        } else {
-            return true;
-        }
-    }
 }
 

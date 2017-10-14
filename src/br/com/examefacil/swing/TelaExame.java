@@ -26,6 +26,7 @@ public class TelaExame extends javax.swing.JFrame{
      */
     public TelaExame() {
         initComponents();
+        setLocationRelativeTo( null );
         
     }
 
@@ -66,6 +67,7 @@ public class TelaExame extends javax.swing.JFrame{
         jLabel5 = new javax.swing.JLabel();
 
         setTitle("Área de Exame");
+        setAlwaysOnTop(true);
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

@@ -6,6 +6,7 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.PacienteControl;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.PacienteView;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -21,10 +22,11 @@ import javax.swing.JTextField;
 public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     
     /**
-     * Creates new form TipoExames
+     * Creates  new form TipoExames
      */
     public TelaPaciente() {
         initComponents();
+        setLocationRelativeTo( null );
         new PacienteControl().init(this);
     }
     
@@ -56,12 +58,19 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jTNomePaciente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTCPF = new javax.swing.JTextField();
+        try {
+            javax.swing.text.MaskFormatter cpf = new javax.swing.text.MaskFormatter("###.###.###-##");
+            jTCPF = new javax.swing.JFormattedTextField(cpf);
+        } catch (Exception e) {
+
+        }
         jLabel3 = new javax.swing.JLabel();
         jTEmail = new javax.swing.JTextField();
         jLIDPaciente = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pacientes");
+        setAlwaysOnTop(true);
 
         jPPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

@@ -29,6 +29,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
      */
     public TelaTextoPadrao() {
         initComponents();
+        setLocationRelativeTo( null );
         new TextoPadraoControl().init(this);
     }
 
@@ -64,6 +65,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
         jLabel2 = new javax.swing.JLabel();
 
         setTitle("Área de Exame");
+        setAlwaysOnTop(true);
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
