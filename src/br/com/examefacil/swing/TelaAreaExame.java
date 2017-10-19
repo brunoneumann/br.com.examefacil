@@ -63,6 +63,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
         jBCancelar.setEnabled(false);
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +72,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pesquisar.png"))); // NOI18N
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +80,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jBIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/incluir.png"))); // NOI18N
         jBIncluir.setText("Incluir");
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +88,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editar.png"))); // NOI18N
         jBEditar.setText("Editar");
         jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +97,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
         jBGravar.setText("Gravar");
         jBGravar.setEnabled(false);
         jBGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +106,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
         jBExcluir.setText("Excluir");
         jBExcluir.setEnabled(false);
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +115,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,8 +144,8 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBFechar)
@@ -193,7 +200,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +227,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
                         .addComponent(jTAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

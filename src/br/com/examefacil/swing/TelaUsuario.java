@@ -192,6 +192,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jPUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
         jBCancelar.setEnabled(false);
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +201,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pesquisar.png"))); // NOI18N
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +209,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/incluir.png"))); // NOI18N
         jBIncluir.setText("Incluir");
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +217,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editar.png"))); // NOI18N
         jBEditar.setText("Editar");
         jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +226,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
         jBGravar.setText("Gravar");
         jBGravar.setEnabled(false);
         jBGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -230,6 +235,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
         jBExcluir.setText("Excluir");
         jBExcluir.setEnabled(false);
         jBExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +250,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,8 +279,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jBCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBFechar)
@@ -345,6 +352,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jTEmail.setName("E-mail"); // NOI18N
 
+        btnAbrirDialogAlteraSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/conf2.png"))); // NOI18N
         btnAbrirDialogAlteraSenha.setText("Alterar senha");
         btnAbrirDialogAlteraSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,6 +360,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
 
+        jBPermissoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/permissoes.png"))); // NOI18N
         jBPermissoes.setText("Definir Permissões");
         jBPermissoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -396,7 +405,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addComponent(jBPermissoes)
                 .addGap(18, 18, 18)
                 .addComponent(btnAbrirDialogAlteraSenha)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
 
         jTabUsuario.addTab("Editar", jEditar);
