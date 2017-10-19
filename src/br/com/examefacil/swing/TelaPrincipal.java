@@ -10,7 +10,6 @@ import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.TelaPrincipalView;
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
