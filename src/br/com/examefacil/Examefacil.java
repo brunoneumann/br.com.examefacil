@@ -6,6 +6,7 @@
 package br.com.examefacil;
 
 
+import br.com.examefacil.swing.TelaLogin;
 import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.tools.Util;
 import com.alee.laf.WebLookAndFeel;
@@ -31,7 +32,7 @@ public class Examefacil {
                     //UIManager.setLookAndFeel(new GTKLookAndFeel());
                     UIManager.setLookAndFeel ( WebLookAndFeel.class.getCanonicalName () );
                     
-                    new TelaPrincipal().setVisible(true);
+                    new TelaLogin().setVisible(true);
                     
                 } catch (Exception ex) {
                     Util.Aviso("Look and Feel não suportado: "+ex.getMessage());
@@ -42,4 +43,4 @@ public class Examefacil {
     }
 
     
-}
+}  
