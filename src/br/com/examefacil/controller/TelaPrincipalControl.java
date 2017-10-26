@@ -8,11 +8,8 @@ package br.com.examefacil.controller;
 import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.swing.TelaLogin;
 import br.com.examefacil.swing.TelaPrincipal;
-import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.TelaPrincipalView;
 import java.util.List;
-import javax.swing.JFormattedTextField;
-import javax.swing.text.MaskFormatter;
 
 /**
  *

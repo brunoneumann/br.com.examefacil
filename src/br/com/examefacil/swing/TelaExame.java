@@ -67,7 +67,6 @@ public class TelaExame extends javax.swing.JFrame{
         jLabel5 = new javax.swing.JLabel();
 
         setTitle("Área de Exame");
-        setAlwaysOnTop(true);
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -261,7 +260,7 @@ public class TelaExame extends javax.swing.JFrame{
                         .addGap(34, 34, 34)
                         .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

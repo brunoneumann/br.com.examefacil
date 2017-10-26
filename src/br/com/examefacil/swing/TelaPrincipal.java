@@ -618,7 +618,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
     private void jMSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSairActionPerformed
         this.usuarioLogado = null;
-        new TelaPrincipalControl().desabilitaMenus(this);
+        System.exit(0);
     }//GEN-LAST:event_jMSairActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

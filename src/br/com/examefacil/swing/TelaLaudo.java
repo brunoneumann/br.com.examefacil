@@ -43,7 +43,6 @@ public class TelaLaudo extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Imagem - Clique para Ampliar"));
 

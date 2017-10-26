@@ -8,9 +8,11 @@ package br.com.examefacil.swing;
 import br.com.examefacil.controller.PacienteControl;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.PacienteView;
+import java.awt.Cursor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -67,10 +69,16 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jLabel3 = new javax.swing.JLabel();
         jTEmail = new javax.swing.JTextField();
         jLIDPaciente = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPnlPerfilFB = new javax.swing.JPanel();
+        jLblNomeUsuarioFB = new javax.swing.JLabel();
+        jLblUriFB = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLblFotoFB = new javax.swing.JLabel();
+        jBtnRemoverPerfilFB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pacientes");
-        setAlwaysOnTop(true);
 
         jPPaciente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -188,7 +196,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPesquisar)
-                    .addComponent(jTPesquisarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTPesquisarPaciente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPacienteLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -217,7 +225,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jPVisualizar.setLayout(jPVisualizarLayout);
         jPVisualizarLayout.setHorizontalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
         );
         jPVisualizarLayout.setVerticalGroup(
             jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,10 +241,86 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jLabel2.setText("CPF");
 
         jTCPF.setName("CPF"); // NOI18N
+        jTCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCPFActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("E-mail");
 
         jTEmail.setName("E-mail"); // NOI18N
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/facebook.png"))); // NOI18N
+        jButton1.setText("Incluir perfil");
+        jButton1.setToolTipText("Buscar perfil do Facebook");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLblNomeUsuarioFB.setText("NOME PACIENTE");
+
+        jLblUriFB.setForeground(new java.awt.Color(0, 0, 204));
+        jLblUriFB.setText("https://fb.com/123456");
+        jLblUriFB.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLblUriFBMouseMoved(evt);
+            }
+        });
+        jLblUriFB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLblUriFBMouseClicked(evt);
+            }
+        });
+
+        jLabel7.setText("Perfil do Facebook");
+
+        jLblFotoFB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblFotoFB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/facebook.png"))); // NOI18N
+
+        jBtnRemoverPerfilFB.setText("Remover");
+        jBtnRemoverPerfilFB.setToolTipText("Remover perfil do facebook do usuário");
+        jBtnRemoverPerfilFB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRemoverPerfilFBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPnlPerfilFBLayout = new javax.swing.GroupLayout(jPnlPerfilFB);
+        jPnlPerfilFB.setLayout(jPnlPerfilFBLayout);
+        jPnlPerfilFBLayout.setHorizontalGroup(
+            jPnlPerfilFBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlPerfilFBLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLblFotoFB, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlPerfilFBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblUriFB)
+                    .addComponent(jLblNomeUsuarioFB)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                .addComponent(jBtnRemoverPerfilFB, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPnlPerfilFBLayout.setVerticalGroup(
+            jPnlPerfilFBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlPerfilFBLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnlPerfilFBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlPerfilFBLayout.createSequentialGroup()
+                        .addGroup(jPnlPerfilFBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPnlPerfilFBLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(8, 8, 8)
+                                .addComponent(jLblNomeUsuarioFB))
+                            .addComponent(jBtnRemoverPerfilFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblUriFB))
+                    .addComponent(jLblFotoFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
         jEditar.setLayout(jEditarLayout);
@@ -244,15 +328,22 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEditarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTNomePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTCPF)
-                    .addComponent(jLabel3)
-                    .addComponent(jLIDPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jTNomePaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jTCPF)
+                            .addComponent(jLabel3)
+                            .addComponent(jLIDPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPnlPerfilFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,16 +353,21 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jEditarLayout.createSequentialGroup()
+                        .addComponent(jTNomePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPnlPerfilFB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jTabPaciente.addTab("Editar", jEditar);
@@ -281,7 +377,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,11 +428,39 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
 
     private void jTABPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABPacientesMouseClicked
         new PacienteControl().alteraEstadoEditarExcluir(this, true);
+        
+        if (evt.getClickCount() == 2) {
+            int selected = jTABPacientes.getSelectedRow();
+            if(jTABPacientes.getModel().getValueAt(selected, 4)!=null){
+                String uri = "https://fb.com/"+jTABPacientes.getModel().getValueAt(selected, 4);
+                new Util().openWebpage(uri);
+            }
+        }
     }//GEN-LAST:event_jTABPacientesMouseClicked
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
         new PacienteControl().excluir(this);
     }//GEN-LAST:event_jBExcluirActionPerformed
+
+    private void jTCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCPFActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new DialogBuscarUsuarioFacebook(this, rootPaneCheckingEnabled, this).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLblUriFBMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblUriFBMouseMoved
+        jLblUriFB.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLblUriFBMouseMoved
+
+    private void jBtnRemoverPerfilFBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRemoverPerfilFBActionPerformed
+        jPnlPerfilFB.setVisible(false);
+    }//GEN-LAST:event_jBtnRemoverPerfilFBActionPerformed
+
+    private void jLblUriFBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblUriFBMouseClicked
+        new Util().openWebpage(jLblUriFB.getText());
+    }//GEN-LAST:event_jLblUriFBMouseClicked
     
     /**
      * @param args the command line arguments
@@ -396,14 +520,21 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JButton jBeditar;
+    private javax.swing.JButton jBtnRemoverPerfilFB;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
     private javax.swing.JPanel jEditar;
     private javax.swing.JLabel jLIDPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLblFotoFB;
+    private javax.swing.JLabel jLblNomeUsuarioFB;
+    private javax.swing.JLabel jLblUriFB;
     private javax.swing.JPanel jPPaciente;
     private javax.swing.JPanel jPVisualizar;
+    private javax.swing.JPanel jPnlPerfilFB;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTABPacientes;
     private javax.swing.JTextField jTCPF;
@@ -492,9 +623,29 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     public JTextField jTPesquisarPaciente() {
         return jTPesquisarPaciente;
     }
-
+    
     @Override
     public JLabel jLIDPaciente() {
         return jLIDPaciente;
+    }
+    
+    @Override
+    public JPanel jPnlPerfilFB() {
+        return jPnlPerfilFB;
+    }
+    
+    @Override
+    public JLabel jLblUriFB() {
+        return jLblUriFB;
+    }
+    
+    @Override
+    public JLabel jLblNomeUsuarioFB() {
+        return jLblNomeUsuarioFB;
+    }
+    
+    @Override
+    public JLabel jLblFotoFB() {
+        return jLblFotoFB;
     }
 }

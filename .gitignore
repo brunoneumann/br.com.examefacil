@@ -9,3 +9,4 @@ hibernate.reveng.xml
 build.xml
 desktop.ini
 manifest.mf
+/src/br/com/examefacil/tools/Constants.java

@@ -20,6 +20,7 @@ public class PacientesTableModel extends AbstractTableModel {
     private static final int COL_NOME = 1;
     private static final int COL_CPF = 2;
     private static final int COL_EMAIL = 3;
+    private static final int COL_FB = 4;
     
     private static List<Paciente> pacientes;
     
@@ -32,7 +33,7 @@ public class PacientesTableModel extends AbstractTableModel {
     }
     
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
     
     @Override
@@ -41,6 +42,7 @@ public class PacientesTableModel extends AbstractTableModel {
         else if(column == COL_NOME) return "Nome";
         else if(column == COL_CPF) return "CPF";
         else if(column == COL_EMAIL) return "E-mail";
+        else if(column == COL_FB) return "Perfil Facebook";
         return "";
     }
     
@@ -50,6 +52,7 @@ public class PacientesTableModel extends AbstractTableModel {
         else if (column == COL_NOME) return p.getNome();
         else if(column == COL_CPF) return p.getCpf();
         else if(column == COL_EMAIL) return p.getEmail();
+        else if(column == COL_FB) return p.getIdfacebook();
         return "";
     }
     
@@ -60,6 +63,7 @@ public class PacientesTableModel extends AbstractTableModel {
         else if(columnIndex == COL_NOME) p.setNome(aValue.toString());
         else if(columnIndex == COL_CPF) p.setCpf(aValue.toString());
         else if(columnIndex == COL_EMAIL) p.setEmail(aValue.toString());
+        else if(columnIndex == COL_FB) p.setIdfacebook(aValue.toString());
     }
     
     @Override

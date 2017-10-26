@@ -6,8 +6,6 @@
 package br.com.examefacil.swing;
 
 
-
-
 import br.com.examefacil.controller.TextoPadraoControl;
 import br.com.examefacil.view.TextoPadraoView;
 import javax.swing.JButton;
@@ -64,8 +62,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
         jTDescricao = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
-        setTitle("Área de Exame");
-        setAlwaysOnTop(true);
+        setTitle("Texto padrão");
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

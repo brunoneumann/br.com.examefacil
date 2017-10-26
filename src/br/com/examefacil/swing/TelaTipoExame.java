@@ -65,7 +65,6 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipos de Exame");
-        setAlwaysOnTop(true);
 
         jPTipoExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -225,7 +224,6 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
 
         jLabel3.setText("Area do Exame");
 
-        jCAreaExame.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCAreaExame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCAreaExameActionPerformed(evt);

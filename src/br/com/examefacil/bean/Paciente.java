@@ -27,6 +27,7 @@ public class Paciente {
     private String nome;
     private String cpf;
     private String email;
+    private String idfacebook;
 
     public int getIdpaciente() {
         return idpaciente;
@@ -59,6 +60,14 @@ public class Paciente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    public String getIdfacebook() {
+        return idfacebook;
+    }
+
+    public void setIdfacebook(String idfacebook) {
+        this.idfacebook = idfacebook;
+    }
+        
     
 }
