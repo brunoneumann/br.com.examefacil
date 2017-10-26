@@ -32,10 +32,10 @@ public class EmailControl {
             HtmlEmail email = new HtmlEmail();
             email.setHostName("smtp.gmail.com");
             email.addTo(endereco, nome);
-            email.setFrom("ikigroove@gmail.com", "Henrique");
-            email.setSubject("Exame Fácil");
+            email.setFrom("email@gmail.com", "ExameFácil");
+            email.setSubject("Bem vindo ao Exame Fácil");
             email.setSmtpPort(587);
-            email.setAuthenticator(new DefaultAuthenticator("ikigroove@gmail.com", "hs1937bs"));
+            email.setAuthenticator(new DefaultAuthenticator("email@gmail.com", "UmaSenha"));
             email.setSSL(true);
             email.setTLS(false);
 

@@ -28,7 +28,10 @@ public class Parametros {
     private String pastaImagens;
     @Column(name = "pasta_audios")
     private String pastaAudios;
+    @Column(name = "pasta_pdf")
+    private String pastaPdf;
     private boolean auditar;
+    private boolean enviarEmail;
 
     public int getIdparametros() {
         return idparametros;
@@ -37,6 +40,23 @@ public class Parametros {
     public void setIdparametros(int idparametros) {
         this.idparametros = idparametros;
     }
+
+    public boolean isEnviarEmail() {
+        return enviarEmail;
+    }
+
+    public void setEnviarEmail(boolean enviarEmail) {
+        this.enviarEmail = enviarEmail;
+    }
+    
+    public String getPastaPdf() {
+        return pastaPdf;
+    }
+    
+    public void setPastaPdf(String pastaPdf) {
+        this.pastaPdf = pastaPdf;
+    }
+    
 
     public String getPastaImagens() {
         return pastaImagens;

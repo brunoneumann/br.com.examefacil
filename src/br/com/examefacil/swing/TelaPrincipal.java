@@ -122,6 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jMAreaExame = new javax.swing.JMenuItem();
         jMUsuario = new javax.swing.JMenuItem();
         jMTextoPadrao = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMSair = new javax.swing.JMenuItem();
 
@@ -540,6 +541,14 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             }
         });
         jMCadastro.add(jMTextoPadrao);
+
+        jMenuItem1.setText("Configurações");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMCadastro.add(jMenuItem1);
         jMCadastro.add(jSeparator1);
 
         jMSair.setText("Sair");
@@ -647,6 +656,10 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             control.carregaPermissoes(this, usuarioLogado.getIdusuario());
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new TelaParametros().setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -718,6 +731,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JMenuItem jMTipoExame;
     private javax.swing.JMenuItem jMUsuario;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPAreaExame;
     private javax.swing.JPasswordField jPSenha;
     private javax.swing.JPanel jPVisualizar;

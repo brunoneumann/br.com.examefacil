@@ -105,6 +105,7 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
             TelaPrincipalControl control = new TelaPrincipalControl();
             control.habilitaMenus(view);
             control.carregaPermissoes(view, usuarioLogado.getIdusuario());
+            setVisible(false);
             
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
