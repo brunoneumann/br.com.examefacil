@@ -6,6 +6,7 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.bean.Usuario;
+import br.com.examefacil.controller.EmailControl;
 import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.view.TelaPrincipalView;
