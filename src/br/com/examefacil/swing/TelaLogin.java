@@ -114,6 +114,7 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
             this.dispose();
         } else {
             Util.Error("Usuário não encontrado!");
+            setVisible(false);
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
 
@@ -176,7 +177,7 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
 
     @Override
     public JFrame jILogin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jILogin();
     }
 
     @Override

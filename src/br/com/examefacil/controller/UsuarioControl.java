@@ -21,9 +21,6 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.tools.Util;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -95,6 +92,7 @@ public class UsuarioControl {
                     limparTextos(view);
                     desabilitaBotoesEditar(view);
                     atualizaTabelaUsuarios(view);
+                    new EmailControl().enviarEmail(usuario.getEmail(), usuario.getNome());
                 }
                 return result;
             } else {
@@ -141,13 +139,7 @@ public class UsuarioControl {
     }
     
     public Usuario testaAcesso(String email, String senha) {
-        if (email.equals("") || senha.equals("")){
-            JOptionPane.showMessageDialog(null, "Informe um valor válido no campo Usuário e Senha", "Erro de validação", JOptionPane.ERROR_MESSAGE);
-            return null;
-        }
-        else{
-            return new UsuarioDAO().testAcesso(email, senha);
-        }
+        return new UsuarioDAO().testAcesso(email, senha);
     }
     
     public boolean alterarSenha(int idusuario, String senha) {
