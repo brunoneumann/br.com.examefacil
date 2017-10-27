@@ -24,12 +24,12 @@ public class EmailControl {
         try {
 
             HtmlEmail email = new HtmlEmail();
-            email.setHostName("smtp.gmail.com");
+            email.setHostName("mail.brasvegro.com.br");
             email.addTo(endereco, nome);
-            email.setFrom("email@gmail.com", "ExameFácil");
+            email.setFrom("brunoneumann@brasvegro.com.br", "ExameFácil");
             email.setSubject("Bem vindo ao Exame Fácil");
             email.setSmtpPort(587);
-            email.setAuthenticator(new DefaultAuthenticator("email@gmail.com", "UmaSenha"));
+            email.setAuthenticator(new DefaultAuthenticator("email", "senha"));
             email.setSSL(true);
             email.setTLS(false);
 
@@ -50,7 +50,7 @@ public class EmailControl {
     }
     
     public byte[] getPDFByteStream() throws IOException {
-    File file = new File("C:\\pdf\\documento.pdf");
+    File file = new File("/home/bruno/documento.pdf");
 
     byte[] b = new byte[(int) file.length()];
     try {
