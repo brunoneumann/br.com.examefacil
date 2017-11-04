@@ -18,6 +18,7 @@ public class TipoExamesTableModel extends AbstractTableModel {
     
     private static final int COL_ID = 0;
     private static final int COL_NOME = 1;
+    private static final int COL_DESCRICAO = 2;
     
     private static List<TipoExame> tipo;
     
@@ -30,7 +31,7 @@ public class TipoExamesTableModel extends AbstractTableModel {
     }
     
     public int getColumnCount() {
-        return 4;
+        return 3;
     }
     
     @Override
@@ -44,6 +45,7 @@ public class TipoExamesTableModel extends AbstractTableModel {
         TipoExame a = tipo.get(row);
         if(column== COL_ID) return a.getIdtipoexame();
         else if (column == COL_NOME) return a.getNome();
+        else if (column == COL_DESCRICAO) return a.getDescricao();
         return "";
     }
     
@@ -52,6 +54,7 @@ public class TipoExamesTableModel extends AbstractTableModel {
         TipoExame a = tipo.get(rowIndex);
         if(columnIndex == COL_ID) a.setIdtipoexame(Integer.parseInt((String) aValue));
         else if(columnIndex == COL_NOME) a.setNome(aValue.toString());
+        else if(columnIndex == COL_DESCRICAO) a.setDescricao(aValue.toString());
     }
     
     @Override

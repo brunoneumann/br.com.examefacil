@@ -5,17 +5,32 @@
  */
 package br.com.examefacil.swing;
 
+import br.com.examefacil.controller.ParametrosControl;
+import br.com.examefacil.view.ParametrosView;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Rafael
  */
-public class TelaParametros extends javax.swing.JFrame {
-
+public class TelaParametros extends javax.swing.JFrame implements ParametrosView {
+    
+    public JFileChooser chooserEmailPDF;
+    public JFileChooser chooserPastaAudios;
+    public JFileChooser chooserPastaImagens;
+    
     /**
      * Creates new form TelaParametros
      */
     public TelaParametros() {
         initComponents();
+        this.chooserEmailPDF = new JFileChooser();
+        this.chooserPastaAudios = new JFileChooser();
+        this.chooserPastaImagens = new JFileChooser();
+        new ParametrosControl(this).init();
     }
 
     /**
@@ -34,27 +49,36 @@ public class TelaParametros extends javax.swing.JFrame {
         jBCancelar = new javax.swing.JButton();
         jBFechar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        auditar = new javax.swing.JCheckBox();
+        jChkAuditar = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jTxtEmailPDF = new javax.swing.JTextField();
         jBSelecionarPdf = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        enviarEmail = new javax.swing.JCheckBox();
+        jChkEnviarEmailPDF = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        jTxtSMTPServer = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jTxtEmailRemetente = new javax.swing.JTextField();
+        jTxtUsuarioSMTP = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPSenhaSMTP = new javax.swing.JPasswordField();
+        jLabel8 = new javax.swing.JLabel();
+        jTxtPortaSMTP = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        jTxtPastaAudios = new javax.swing.JTextField();
         jBProcurarAudio = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTxtPastaImagens = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jBProcurarImagem = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editar.png"))); // NOI18N
         jBEditar.setText("Editar");
-        jBEditar.setEnabled(false);
         jBEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBEditarActionPerformed(evt);
@@ -63,7 +87,6 @@ public class TelaParametros extends javax.swing.JFrame {
 
         jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
         jBGravar.setText("Gravar");
-        jBGravar.setEnabled(false);
         jBGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGravarActionPerformed(evt);
@@ -72,7 +95,6 @@ public class TelaParametros extends javax.swing.JFrame {
 
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
-        jBCancelar.setEnabled(false);
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCancelarActionPerformed(evt);
@@ -116,7 +138,7 @@ public class TelaParametros extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Auditoria"));
 
-        auditar.setText("Ativado");
+        jChkAuditar.setText("Ativado");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -124,71 +146,146 @@ public class TelaParametros extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(auditar)
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addComponent(jChkAuditar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(auditar)
+                .addComponent(jChkAuditar)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Envio de E-mail ao cadastrar usuários"));
 
-        jTextField1.setText("C:\\pdf\\documento.pdf");
+        jTxtEmailPDF.setName("Arquivo PDF"); // NOI18N
 
         jBSelecionarPdf.setText("Selecionar");
+        jBSelecionarPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSelecionarPdfActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Arquivo PDF que será enviado");
 
-        enviarEmail.setText("Ativado");
+        jChkEnviarEmailPDF.setText("Ativado");
+        jChkEnviarEmailPDF.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jChkEnviarEmailPDFStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("Servidor SMTP");
+
+        jTxtSMTPServer.setName("Servidor SMTP"); // NOI18N
+
+        jLabel5.setText("E-mail remetente");
+
+        jTxtEmailRemetente.setName("E-mail remetente"); // NOI18N
+
+        jTxtUsuarioSMTP.setName("Usuário SMTP"); // NOI18N
+
+        jLabel6.setText("Usuário SMTP");
+
+        jLabel7.setText("Senha");
+
+        jPSenhaSMTP.setName("Senha"); // NOI18N
+
+        jLabel8.setText("Porta");
+
+        jTxtPortaSMTP.setName("Porta"); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTxtEmailPDF, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBSelecionarPdf))
-                    .addComponent(jLabel1))
-                .addGap(0, 42, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(enviarEmail)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTxtSMTPServer, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                    .addComponent(jTxtEmailRemetente, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                    .addComponent(jTxtUsuarioSMTP, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jChkEnviarEmailPDF)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(120, 120, 120)
+                                .addComponent(jLabel8)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPSenhaSMTP, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtPortaSMTP)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(enviarEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jChkEnviarEmailPDF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtEmailPDF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBSelecionarPdf))
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtSMTPServer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtEmailRemetente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtUsuarioSMTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jPSenhaSMTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtPortaSMTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Atendimento"));
 
-        jTextField2.setText("C:\\audios");
+        jTxtPastaAudios.setName("Pasta de áudios"); // NOI18N
 
         jBProcurarAudio.setText("Procurar");
+        jBProcurarAudio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBProcurarAudioActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Caminho onde serão salvos os áudios");
 
-        jTextField3.setText("C:\\imagens");
+        jTxtPastaImagens.setName("Pasta de imagens"); // NOI18N
 
         jLabel3.setText("Caminho onde serão salvas as imagens dos exames");
 
         jBProcurarImagem.setText("Procurar");
+        jBProcurarImagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBProcurarImagemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -197,22 +294,18 @@ public class TelaParametros extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                        .addComponent(jTxtPastaAudios)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jBProcurarAudio))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jBProcurarImagem)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jBProcurarAudio))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
-                        .addGap(0, 44, Short.MAX_VALUE)))
+                        .addGap(0, 52, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTxtPastaImagens)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBProcurarImagem)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -222,13 +315,13 @@ public class TelaParametros extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtPastaAudios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBProcurarAudio))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtPastaImagens, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBProcurarImagem))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -237,14 +330,16 @@ public class TelaParametros extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,41 +348,40 @@ public class TelaParametros extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-
-
+        new ParametrosControl(this).habilitarTodos(true);
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        
+        new ParametrosControl(this).salvar();
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        
+        ParametrosControl ctrl = new ParametrosControl(this);
+        ctrl.habilitarTodos(false);
+        ctrl.carregarParametrosSalvos(this);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -295,6 +389,22 @@ public class TelaParametros extends javax.swing.JFrame {
         setVisible(false);
 
     }//GEN-LAST:event_jBFecharActionPerformed
+
+    private void jBSelecionarPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelecionarPdfActionPerformed
+        new ParametrosControl(this).initChooserEmailPDF();
+    }//GEN-LAST:event_jBSelecionarPdfActionPerformed
+
+    private void jBProcurarAudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProcurarAudioActionPerformed
+        new ParametrosControl(this).initChooserProcurarAudios();
+    }//GEN-LAST:event_jBProcurarAudioActionPerformed
+
+    private void jBProcurarImagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProcurarImagemActionPerformed
+        new ParametrosControl(this).initChooserProcurarImagens();
+    }//GEN-LAST:event_jBProcurarImagemActionPerformed
+
+    private void jChkEnviarEmailPDFStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jChkEnviarEmailPDFStateChanged
+        new ParametrosControl(this).ativarEnvioEmailPDF();
+    }//GEN-LAST:event_jChkEnviarEmailPDFStateChanged
 
     /**
      * @param args the command line arguments
@@ -332,8 +442,6 @@ public class TelaParametros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox auditar;
-    private javax.swing.JCheckBox enviarEmail;
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBFechar;
@@ -341,16 +449,128 @@ public class TelaParametros extends javax.swing.JFrame {
     private javax.swing.JButton jBProcurarAudio;
     private javax.swing.JButton jBProcurarImagem;
     private javax.swing.JButton jBSelecionarPdf;
+    private javax.swing.JCheckBox jChkAuditar;
+    private javax.swing.JCheckBox jChkEnviarEmailPDF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPasswordField jPSenhaSMTP;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTxtEmailPDF;
+    private javax.swing.JTextField jTxtEmailRemetente;
+    private javax.swing.JTextField jTxtPastaAudios;
+    private javax.swing.JTextField jTxtPastaImagens;
+    private javax.swing.JTextField jTxtPortaSMTP;
+    private javax.swing.JTextField jTxtSMTPServer;
+    private javax.swing.JTextField jTxtUsuarioSMTP;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JButton jBeditar() {
+        return jBEditar;
+    }
+
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+
+    @Override
+    public JButton jBFechar() {
+        return jBFechar;
+    }
+
+    @Override
+    public JButton jBSelecionarPdf() {
+        return jBSelecionarPdf;
+    }
+
+    @Override
+    public JButton jBProcurarPastaImagem() {
+        return jBProcurarImagem;
+    }
+
+    @Override
+    public JButton jBProcurarPastaAudio() {
+        return jBProcurarAudio;
+    }
+
+    @Override
+    public JFileChooser chooserEmailPDF() {
+        return chooserEmailPDF;
+    }
+
+    @Override
+    public JFileChooser chooserPastaImagens() {
+        return chooserPastaImagens;
+    }
+
+    @Override
+    public JFileChooser chooserPastaAudios() {
+        return chooserPastaAudios;
+    }
+
+    @Override
+    public JTextField jTxtEmailPDF() {
+        return jTxtEmailPDF;
+    }
+
+    @Override
+    public JTextField jTxtPastaAudios() {
+        return jTxtPastaAudios;
+    }
+
+    @Override
+    public JTextField jTxtPastaImagens() {
+        return jTxtPastaImagens;
+    }
+
+    @Override
+    public JCheckBox jCEnviarEmailPDF() {
+        return jChkEnviarEmailPDF;
+    }
+
+    @Override
+    public JCheckBox jCAuditar() {
+        return jChkAuditar;
+    }
+
+    @Override
+    public JTextField jTxtSMTPServer() {
+        return jTxtSMTPServer;
+    }
+
+    @Override
+    public JTextField jTxtEmailRemetente() {
+        return jTxtEmailRemetente;
+    }
+
+    @Override
+    public JTextField jTxtUsuarioSMTP() {
+        return jTxtUsuarioSMTP;
+    }
+
+    @Override
+    public JTextField jPSenhaSMTP() {
+        return jPSenhaSMTP;
+    }
+
+    @Override
+    public JTextField jTxtPortaSMTP() {
+        return jTxtPortaSMTP;
+    }
 }

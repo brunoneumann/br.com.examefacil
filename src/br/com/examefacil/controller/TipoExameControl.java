@@ -82,8 +82,9 @@ public class TipoExameControl {
             if (view.jLIDTipoExame().getText() != null) {
                 tipo.setIdtipoexame(Integer.parseInt(view.jLIDTipoExame().getText()));
             }
-            tipo.setNome(view.getNome());
+            tipo.setNome(view.jTTipoExame().getText());
             tipo.setIdareaexame(((AreaExame)view.jCAreaExame().getModel().getSelectedItem()).getIdareaexame());
+            tipo.setDescricao(view.jTDescricao().getText());
             
             boolean result = new TipoExameDAO().save(tipo);
             if (result) {
@@ -134,6 +135,7 @@ public class TipoExameControl {
             habilitaBotoesEditar(view);
             view.jLIDTipoExame().setText(a.getIdtipoexame() + "");
             view.jTTipoExame().setText(a.getNome());
+            view.jTDescricao().setText(a.getDescricao());
         }
     }
     
@@ -141,10 +143,11 @@ public class TipoExameControl {
         FieldResolverFactory frf = new FieldResolverFactory(TipoExame.class);
         FieldResolver frID = frf.createResolver("idtipoexame", "ID");
         FieldResolver frNome = frf.createResolver("nome", "Nome");
+        FieldResolver frDescricao = frf.createResolver("descricao", "Descrição");
         
         ObjectTableModel<TipoExame> model
                 = new ObjectTableModel<TipoExame>(
-                        new FieldResolver[]{frID, frNome});
+                        new FieldResolver[]{frID, frNome, frDescricao});
         
         model.setEditableDefault(false);
         model.setData(this.listar(view.jTPesquisar().getText()));
@@ -155,6 +158,7 @@ public class TipoExameControl {
         TableColumnModel coluna = view.jTABTipoExame().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(150);
+        coluna.getColumn(2).setPreferredWidth(150);
         return coluna;
     }
     

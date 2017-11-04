@@ -51,6 +51,7 @@ public class UsuarioUtils {
         lista.add(new Acesso(0,"textopadrao",false,false,false,false));
         lista.add(new Acesso(0,"areaexame",false,false,false,false));
         lista.add(new Acesso(0,"tipoexame",false,false,false,false));
+        lista.add(new Acesso(0,"parametros",false,false,false,false));
         return lista;
     }
     
@@ -66,6 +67,7 @@ public class UsuarioUtils {
         lista.add(new Acesso(1,"textopadrao",true,true,true,true));
         lista.add(new Acesso(1,"areaexame",true,true,true,true));
         lista.add(new Acesso(1,"tipoexame",true,true,true,true));
+        lista.add(new Acesso(1,"parametros",false,false,false,false));
         return lista;
     }
     public List<Acesso> listaPadroesAcessoAtendenteExame(){
@@ -80,6 +82,7 @@ public class UsuarioUtils {
         lista.add(new Acesso(2,"textopadrao",false,false,false,false));
         lista.add(new Acesso(2,"areaexame",false,false,false,false));
         lista.add(new Acesso(2,"tipoexame",false,false,false,false));
+        lista.add(new Acesso(2,"parametros",false,false,false,false));
         return lista;
     }
     public List<Acesso> listaPadroesAcessoMedicoRequisitante(){
@@ -94,6 +97,7 @@ public class UsuarioUtils {
         lista.add(new Acesso(3,"textopadrao",false,false,false,false));
         lista.add(new Acesso(3,"areaexame",false,false,false,false));
         lista.add(new Acesso(3,"tipoexame",false,false,false,false));
+        lista.add(new Acesso(3,"parametros",false,false,false,false));
         return lista;
     }
     public List<Acesso> listaPadroesAcessoMedicoInterpretador(){
@@ -108,6 +112,7 @@ public class UsuarioUtils {
         lista.add(new Acesso(4,"textopadrao",true,true,true,true));
         lista.add(new Acesso(4,"areaexame",false,false,false,false));
         lista.add(new Acesso(4,"tipoexame",false,false,false,false));
+        lista.add(new Acesso(4,"parametros",false,false,false,false));
         return lista;
     }
     public List<Acesso> listaPadroesAcessoAdministrador(){
@@ -122,6 +127,7 @@ public class UsuarioUtils {
         lista.add(new Acesso(5,"textopadrao",true,true,true,true));
         lista.add(new Acesso(5,"areaexame",true,true,true,true));
         lista.add(new Acesso(5,"tipoexame",true,true,true,true));
+        lista.add(new Acesso(5,"parametros",true,true,true,true));
         return lista;
     }
     

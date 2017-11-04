@@ -54,6 +54,7 @@ public interface UsuarioView {
     public List<JCheckBox> chksPermissaoTextoPadrao();
     public List<JCheckBox> chksPermissaoAreaExame();
     public List<JCheckBox> chksPermissaoTipoExame();
+    public List<JCheckBox> chksPermissaoParametros();
     
 }
 

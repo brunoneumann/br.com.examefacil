@@ -7,6 +7,8 @@ package br.com.examefacil.view;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 
 /**
  *
@@ -14,18 +16,29 @@ import javax.swing.JCheckBox;
  */
 public interface ParametrosView {
     
+    public JFileChooser chooserEmailPDF();
+    public JFileChooser chooserPastaImagens();
+    public JFileChooser chooserPastaAudios();
+    
     public JButton jBeditar();
     public JButton jBGravar();
     public JButton jBCancelar();
     public JButton jBFechar();
     public JButton jBSelecionarPdf();
-    public JButton jBProcurarImagem();
-    public JButton jBProcurarAudio();
+    public JButton jBProcurarPastaImagem();
+    public JButton jBProcurarPastaAudio();
     
-    public JCheckBox enviarEmail();
-    public JCheckBox auditar();
+    public JCheckBox jCEnviarEmailPDF();
+    public JCheckBox jCAuditar();
     
-    public String getPastaPdf();
-    public String getPastaAudios();
-    public String getPastaImagens();
+    public JTextField jTxtEmailPDF();
+    public JTextField jTxtPastaAudios();
+    public JTextField jTxtPastaImagens();
+    
+    public JTextField jTxtSMTPServer();
+    public JTextField jTxtEmailRemetente();
+    public JTextField jTxtUsuarioSMTP();
+    public JTextField jPSenhaSMTP();
+    public JTextField jTxtPortaSMTP();
+    
 }
