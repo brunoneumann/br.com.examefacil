@@ -69,13 +69,12 @@ public class ExameControl {
         
         exame.setIdpaciente(Integer.parseInt(view.JLIDPaciente().getText()));
         exame.setIdusuario(3); //setar o código do Usuario
-        exame.setIdareaexame(28); //remover
-        exame.setIdtextopadrao(1); //remover
         exame.setStatus("2");
         exame.setResumo("teste"); //Não entendi para que serve este resumo
         exame.setData(new Util().formataData(view.getData()));
         exame.setHoraEntrada(view.getHoraAtendimeto());
         exame.setHoraSaida(view.getHoraSaida());
+        exame.setObservacoes(view.getObservacoes());
         
                 
         boolean result = new ExameDAO().save(exame);

@@ -29,8 +29,8 @@ public class Exame {
     private int idexame;
     private int idusuario;
     private int idpaciente;
-    private int idareaexame;
-    private int idtextopadrao;
+    //private int idareaexame;
+    //private int idtextopadrao;
     //private String status;
     //@Temporal(TemporalType.DATE)
     @Column(name = "data")
@@ -70,7 +70,7 @@ public class Exame {
         this.idpaciente = idpaciente;
     }
 
-    public int getIdareaexame() {
+    /*public int getIdareaexame() {
         return idareaexame;
     }
 
@@ -84,7 +84,7 @@ public class Exame {
 
     public void setIdtextopadrao(int idtextopadrao) {
         this.idtextopadrao = idtextopadrao;
-    }
+    }*/
 
     public String getStatus() {
         return status;

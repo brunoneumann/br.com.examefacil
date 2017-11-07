@@ -8,6 +8,7 @@ package br.com.examefacil.view;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -27,6 +28,7 @@ public interface ExameView {
     public String getData();
     public String getHoraAtendimeto();
     public String getHoraSaida();
+    public String getObservacoes();
     public JLabel jLIDExame();
     public JLabel JLIDPaciente();
     
@@ -34,6 +36,6 @@ public interface ExameView {
     public JTextField jTDataAtendimento();
     public JTextField jTHoraEntrada();
     public JTextField jTHoraSaida();
-
+    public JTextArea jTObservacoes();
     
 }

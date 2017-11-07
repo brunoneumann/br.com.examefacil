@@ -548,7 +548,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jBEntrarActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        new TelaParametros().setVisible(true);
+        //new TelaParametros().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     /**
