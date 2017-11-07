@@ -36,6 +36,14 @@ public interface TelaPrincipalView {
     public JMenuItem jMTextoPadrao();
     public JFrame telaPrincipal();
     
+    public JButton jBIncluir();
+    public JButton jBEditar();
+    public JButton jBExcluir();
+    public JButton jBLaudo();
+    public JButton jBInterpretar();
+    public JButton jBImagens();
+    public JButton jBPesquisar();
+    
     
     
 }
