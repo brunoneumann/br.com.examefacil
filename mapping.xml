@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<mapping>
+	<data sql="select * from paciente" />
+   <root name="paciente" rowName="paciente">
+      <element name="idpaciente">
+          <attribute name="idpaciente">idpaciente</attribute>
+          <content>idpaciente</content>
+      </element>
+      <element name="nome">
+	      <content>nome</content>
+	  </element>
+	  <element name="CPF">
+	      <content>CPF</content>
+	  </element>
+	  <element name="email">
+	      <content>email</content>
+	  </element>
+	  <element name="idfacebook">
+	      <content>idfacebook</content>
+	  </element>
+	</root>
+</mapping>

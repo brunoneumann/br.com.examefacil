@@ -5,23 +5,37 @@
 */
 package br.com.examefacil.swing;
 
+import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.controller.PacienteControl;
+import br.com.examefacil.dao.PacienteDAO;
+import br.com.examefacil.tools.PacienteUtils;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.PacienteView;
 import java.awt.Cursor;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
  * @author Henrique
  */
 public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
+    
+    final org.apache.logging.log4j.Logger log = LogManager.getLogger(TelaPaciente.class.getName());
+    public JFileChooser chooserXML;
     
     /**
      * Creates  new form TipoExames
@@ -30,6 +44,49 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         initComponents();
         setLocationRelativeTo( null );
         new PacienteControl().init(this);
+    }
+    
+    public void initChooserXML(){
+        chooserXML = new JFileChooser();
+        chooserXML.setCurrentDirectory(new java.io.File("."));
+        chooserXML.setDialogTitle("Selecione um arquivo");
+        chooserXML.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        chooserXML.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("XML", "xml", "xml");
+        chooserXML.setFileFilter(filter);
+        
+        if (chooserXML.showOpenDialog(chooserXML) == JFileChooser.APPROVE_OPTION) {
+            
+            String arquivoXML = chooserXML.getSelectedFile().toString();
+            try {
+                
+                List<Paciente> list = new PacienteUtils().carregarXML(new FileReader(new File(arquivoXML)));
+                
+                if(Util.Confirma("Deseja gravar "+list.size()+" pacientes?")){
+                    
+                    List<Paciente> insertList = new ArrayList<>();
+                    for(Paciente p : list){
+                        Paciente paciente = new Paciente();
+                        paciente.setNome(p.getNome());
+                        paciente.setCpf(p.getCpf());
+                        paciente.setEmail(p.getEmail());
+                        paciente.setIdfacebook(p.getIdfacebook());
+                        insertList.add(paciente);
+                    }
+                    PacienteDAO dao = new PacienteDAO();
+                    for(Paciente p : insertList){
+                        dao.save(p);
+                    }
+                    
+                    Util.Aviso("Arquivo XML importado com sucesso!");
+                    
+                    new PacienteControl().atualizaTabelaPacientes(this);
+                }
+            } catch (FileNotFoundException ex) {
+                log.error(ex);
+            }
+            
+        }
     }
     
     /**
@@ -76,6 +133,8 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
         jLabel7 = new javax.swing.JLabel();
         jLblFotoFB = new javax.swing.JLabel();
         jBtnRemoverPerfilFB = new javax.swing.JButton();
+        jBtnGerarXML = new javax.swing.JButton();
+        jBtnImportarXML = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pacientes");
@@ -372,12 +431,32 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
 
         jTabPaciente.addTab("Editar", jEditar);
 
+        jBtnGerarXML.setText("Gerar XML");
+        jBtnGerarXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnGerarXMLActionPerformed(evt);
+            }
+        });
+
+        jBtnImportarXML.setText("Importar XML");
+        jBtnImportarXML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnImportarXMLActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jTabPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnImportarXML)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnGerarXML)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,7 +464,11 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
                 .addComponent(jPPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnGerarXML)
+                    .addComponent(jBtnImportarXML))
+                .addGap(7, 7, 7))
         );
 
         pack();
@@ -461,6 +544,16 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     private void jLblUriFBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLblUriFBMouseClicked
         new Util().openWebpage(jLblUriFB.getText());
     }//GEN-LAST:event_jLblUriFBMouseClicked
+
+    private void jBtnGerarXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGerarXMLActionPerformed
+        if(new PacienteUtils().gerarXMLPaciente()){
+            Util.Aviso("Arquivo XML gerado com sucesso!");
+        }
+    }//GEN-LAST:event_jBtnGerarXMLActionPerformed
+
+    private void jBtnImportarXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnImportarXMLActionPerformed
+        initChooserXML();
+    }//GEN-LAST:event_jBtnImportarXMLActionPerformed
     
     /**
      * @param args the command line arguments
@@ -520,6 +613,8 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JButton jBeditar;
+    private javax.swing.JButton jBtnGerarXML;
+    private javax.swing.JButton jBtnImportarXML;
     private javax.swing.JButton jBtnRemoverPerfilFB;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCInclusaoAutomatica;
