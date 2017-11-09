@@ -6,12 +6,16 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.UsuarioControl;
+import br.com.examefacil.view.InterpretacaoView;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author bruno
  */
-public class TelaInterpretacao extends javax.swing.JDialog {
+public class TelaInterpretacao extends javax.swing.JDialog implements InterpretacaoView{
 
     
     
@@ -32,17 +36,18 @@ public class TelaInterpretacao extends javax.swing.JDialog {
     private void initComponents() {
 
         jDLaudar = new javax.swing.JDialog();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jBGravarLaudo = new javax.swing.JButton();
+        jBCancelarLaudo = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
-        jButton11 = new javax.swing.JButton();
+        jBTextoPadrao = new javax.swing.JButton();
+        jLIDTextoPadrao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton10 = new javax.swing.JButton();
+        jTLaudo = new javax.swing.JTextArea();
+        jBFecharLaudo = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jBLaudar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jSlider1 = new javax.swing.JSlider();
         jPanel8 = new javax.swing.JPanel();
@@ -53,22 +58,27 @@ public class TelaInterpretacao extends javax.swing.JDialog {
         jButton7 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBGravar = new javax.swing.JButton();
+        jBCancelar = new javax.swing.JButton();
+        jBFechar = new javax.swing.JButton();
 
         jDLaudar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jDLaudar.setAlwaysOnTop(true);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
-        jButton8.setText("Gravar");
+        jBGravarLaudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
+        jBGravarLaudo.setText("Gravar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
-        jButton9.setText("Cancelar");
+        jBCancelarLaudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
+        jBCancelarLaudo.setText("Cancelar");
 
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder("Ferramentas"));
 
-        jButton11.setText("Texto Padrão");
+        jBTextoPadrao.setText("Texto Padrão");
+        jBTextoPadrao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBTextoPadraoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -76,26 +86,30 @@ public class TelaInterpretacao extends javax.swing.JDialog {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton11)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBTextoPadrao)
+                    .addComponent(jLIDTextoPadrao))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jBTextoPadrao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLIDTextoPadrao)
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTLaudo.setColumns(20);
+        jTLaudo.setRows(5);
+        jScrollPane1.setViewportView(jTLaudo);
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
-        jButton10.setText("Fechar");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jBFecharLaudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
+        jBFecharLaudo.setText("Fechar");
+        jBFecharLaudo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jBFecharLaudoActionPerformed(evt);
             }
         });
 
@@ -107,11 +121,11 @@ public class TelaInterpretacao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jDLaudarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDLaudarLayout.createSequentialGroup()
-                        .addComponent(jButton8)
+                        .addComponent(jBGravarLaudo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9)
+                        .addComponent(jBCancelarLaudo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton10))
+                        .addComponent(jBFecharLaudo))
                     .addGroup(jDLaudarLayout.createSequentialGroup()
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -123,13 +137,13 @@ public class TelaInterpretacao extends javax.swing.JDialog {
             .addGroup(jDLaudarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jDLaudarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(jBGravarLaudo)
+                    .addComponent(jBCancelarLaudo)
+                    .addComponent(jBFecharLaudo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDLaudarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDLaudarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
         );
 
@@ -139,11 +153,11 @@ public class TelaInterpretacao extends javax.swing.JDialog {
 
         jButton4.setText("Editar Imagem");
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interpretar.png"))); // NOI18N
-        jButton5.setText("Laudar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jBLaudar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interpretar.png"))); // NOI18N
+        jBLaudar.setText("Laudar");
+        jBLaudar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jBLaudarActionPerformed(evt);
             }
         });
 
@@ -155,7 +169,7 @@ public class TelaInterpretacao extends javax.swing.JDialog {
                 .addGap(0, 4, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jBLaudar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +177,7 @@ public class TelaInterpretacao extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(jBLaudar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -234,17 +248,17 @@ public class TelaInterpretacao extends javax.swing.JDialog {
 
         jLabel10.setText("Zoom");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
-        jButton1.setText("Gravar");
+        jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
+        jBGravar.setText("Gravar");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
-        jButton2.setText("Cancelar");
+        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
+        jBCancelar.setText("Cancelar");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
-        jButton3.setText("Fechar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
+        jBFechar.setText("Fechar");
+        jBFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBFecharActionPerformed(evt);
             }
         });
 
@@ -272,11 +286,11 @@ public class TelaInterpretacao extends javax.swing.JDialog {
                                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)
+                        .addComponent(jBGravar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(jBCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(jBFechar)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -284,9 +298,9 @@ public class TelaInterpretacao extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jBGravar)
+                    .addComponent(jBCancelar)
+                    .addComponent(jBFechar))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -320,36 +334,41 @@ public class TelaInterpretacao extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBFecharActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void jBFecharLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharLaudoActionPerformed
         jDLaudar.setVisible(false);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_jBFecharLaudoActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jBLaudarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaudarActionPerformed
         jDLaudar.setModal(true);
         jDLaudar.setSize(570, 330);
         jDLaudar.setLocationRelativeTo( null );
         jDLaudar.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_jBLaudarActionPerformed
+
+    private void jBTextoPadraoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTextoPadraoActionPerformed
+        new DialogBuscarTextoPadrao(this, rootPaneCheckingEnabled, this).setVisible(true);
+    }//GEN-LAST:event_jBTextoPadraoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jBCancelar;
+    private javax.swing.JButton jBCancelarLaudo;
+    private javax.swing.JButton jBFechar;
+    private javax.swing.JButton jBFecharLaudo;
+    private javax.swing.JButton jBGravar;
+    private javax.swing.JButton jBGravarLaudo;
+    private javax.swing.JButton jBLaudar;
+    private javax.swing.JButton jBTextoPadrao;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDLaudar;
+    private javax.swing.JLabel jLIDTextoPadrao;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel14;
@@ -361,6 +380,56 @@ public class TelaInterpretacao extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSlider1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTLaudo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+
+    @Override
+    public JButton jBFechar() {
+        return jBFechar;
+    }
+
+    @Override
+    public JButton jBLaudar() {
+        return jBLaudar;
+    }
+
+    @Override
+    public JButton jBGravarLaudo() {
+        return jBGravarLaudo;
+    }
+
+    @Override
+    public JButton jBCancelarLaudo() {
+        return jBCancelarLaudo;
+    }
+
+    @Override
+    public JButton jBFecharLaudo() {
+        return jBFecharLaudo;
+    }
+
+    @Override
+    public JButton jBTextoPadrao() {
+        return jBTextoPadrao;
+    }
+
+    @Override
+    public JTextArea jTLaudo() {
+        return jTLaudo;
+    }
+
+    @Override
+    public JLabel jLIDTextoPadrao() {
+        return jLIDTextoPadrao;
+    }
 }

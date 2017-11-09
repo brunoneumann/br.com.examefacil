@@ -43,11 +43,11 @@ public class Util {
     final Logger log = LogManager.getLogger(Util.class.getName());
 
     public static void Aviso(String mens) {
-        JOptionPane.showMessageDialog(null, mens, "Warning", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, mens, "Aviso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void Error(String mens) {
-        JOptionPane.showMessageDialog(null, mens, "Error", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, mens, "Erro", JOptionPane.WARNING_MESSAGE);
     }
 
     public static boolean Confirma(String mens) {

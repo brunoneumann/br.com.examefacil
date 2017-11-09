@@ -106,15 +106,15 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
         Usuario u = new UsuarioControl().testaAcesso(jTUsuario.getText(), jPSenha.getText());
         
         if(u!=null){
-            TelaPrincipalView view = new TelaPrincipal();
+            new TelaPrincipal(u).setVisible(true);
+            /*TelaPrincipalView view = new TelaPrincipal();
             usuarioLogado = u;
             TelaPrincipalControl control = new TelaPrincipalControl();
             control.habilitaMenus(view);
-            control.carregaPermissoes(view, usuarioLogado.getIdusuario());
+            control.carregaPermissoes(view, usuarioLogado.getIdusuario());*/
             this.dispose();
         } else {
             Util.Error("Usuário não encontrado!");
-            setVisible(false);
         }
     }//GEN-LAST:event_jBEntrarActionPerformed
 

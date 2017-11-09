@@ -92,7 +92,20 @@ public class UsuarioControl {
                     limparTextos(view);
                     desabilitaBotoesEditar(view);
                     atualizaTabelaUsuarios(view);
-                    new EmailControl().enviarEmail(usuario.getEmail(), usuario.getNome());
+                    
+                    /* Inicia uma thread p/ não travar a tela enquanto o e-mail é enviado */
+                    Thread email = new Thread() {
+                        public void run() {
+                            try {
+                                new EmailControl().enviarEmail(usuario.getEmail(), usuario.getNome());
+                            } catch(Exception e) {
+                                e.getMessage();
+                            }
+                        }
+                    };
+                    
+                    email.start();
+                    
                 }
                 return result;
             } else {
@@ -112,6 +125,7 @@ public class UsuarioControl {
                 listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "textopadrao", view.chksPermissaoTextoPadrao()));
                 listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "areaexame", view.chksPermissaoAreaExame()));
                 listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "tipoexame", view.chksPermissaoTipoExame()));
+                listAcessos.add(new UsuarioUtils().carregaAcessoSelecionado(idusuario, "parametros", view.chksPermissaoParametros()));
                 
                 boolean result = true;
                 if (new AcessoDAO().excluirPermissoes(idusuario)) {
@@ -337,6 +351,9 @@ public class UsuarioControl {
                     view.chksPermissaoTipoExame().get(1).setSelected(a.isIncluir());
                     view.chksPermissaoTipoExame().get(2).setSelected(a.isAlterar());
                     view.chksPermissaoTipoExame().get(3).setSelected(a.isExcluir());
+                case "parametros":
+                    view.chksPermissaoParametros().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoParametros().get(2).setSelected(a.isAlterar());
             }
         }
     }
@@ -401,6 +418,9 @@ public class UsuarioControl {
                     view.chksPermissaoTipoExame().get(1).setSelected(a.isIncluir());
                     view.chksPermissaoTipoExame().get(2).setSelected(a.isAlterar());
                     view.chksPermissaoTipoExame().get(3).setSelected(a.isExcluir());
+                case "parametros":
+                    view.chksPermissaoParametros().get(0).setSelected(a.isVisualizar());
+                    view.chksPermissaoParametros().get(2).setSelected(a.isAlterar());
             }
         }
     }

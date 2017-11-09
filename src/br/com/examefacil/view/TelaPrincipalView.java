@@ -6,7 +6,6 @@
 package br.com.examefacil.view;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
@@ -26,7 +25,6 @@ public interface TelaPrincipalView {
     public JInternalFrame jIExame();
     public JTextField jTUsuario();
     public JPasswordField jPSenha();
-    public JButton jBEntrar();
     public JMenuBar jMenuBar1();
     public JMenu jMCadastro();
     public JMenuItem jMPaciente();
@@ -34,6 +32,7 @@ public interface TelaPrincipalView {
     public JMenuItem jMAreaExame();
     public JMenuItem jMUsuario();
     public JMenuItem jMTextoPadrao();
+    public JMenuItem jMParametros();
     public JFrame telaPrincipal();
     
     public JButton jBIncluir();
@@ -42,6 +41,7 @@ public interface TelaPrincipalView {
     public JButton jBLaudo();
     public JButton jBInterpretar();
     public JButton jBImagens();
+    public JButton jBAtender();
     public JButton jBPesquisar();
     
     

@@ -33,6 +33,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     public List<JCheckBox> chksPermissaoTextoPadrao;
     public List<JCheckBox> chksPermissaoAreaExame;
     public List<JCheckBox> chksPermissaoTipoExame;
+    public List<JCheckBox> chksPermissaoParametros;
     
     public TelaUsuario() {
         initComponents();
@@ -92,6 +93,11 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         this.chksPermissaoTipoExame.add(jCTipIncluir);
         this.chksPermissaoTipoExame.add(jCTipEditar);
         this.chksPermissaoTipoExame.add(jCTipExcluir);
+        this.chksPermissaoParametros = new ArrayList<>();
+        this.chksPermissaoParametros.add(jCParametrosVisualizar);
+        this.chksPermissaoParametros.add(new JCheckBox());
+        this.chksPermissaoParametros.add(jCParametrosEditar);
+        this.chksPermissaoParametros.add(new JCheckBox());
     }
     
     /**
@@ -182,6 +188,10 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jCTexIncluir = new javax.swing.JCheckBox();
         jCTexEditar = new javax.swing.JCheckBox();
         jCTexExcluir = new javax.swing.JCheckBox();
+        jLabel21 = new javax.swing.JLabel();
+        jCParametrosVisualizar = new javax.swing.JCheckBox();
+        jLabel20 = new javax.swing.JLabel();
+        jCParametrosEditar = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jCTipoAcesso = new javax.swing.JComboBox<>();
@@ -385,7 +395,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                     .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jBPermissoes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAbrirDialogAlteraSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(664, Short.MAX_VALUE))
+                .addContainerGap(668, Short.MAX_VALUE))
         );
         jEditarLayout.setVerticalGroup(
             jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,7 +420,7 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jTabUsuario.addTab("Editar", jEditar);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setLayout(new java.awt.GridLayout(11, 5, 5, 0));
+        jPanel2.setLayout(new java.awt.GridLayout(12, 5, 5, 0));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setText("Permissões Específicas");
@@ -419,19 +429,27 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
         jPanel2.add(jLabel10);
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Visualizar");
+        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel11);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Incluir");
+        jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel13);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Editar");
+        jLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel12);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Excluir");
+        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jLabel14);
 
         jLabel9.setText("1. Cadastro de Usuários");
@@ -441,6 +459,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCUsuVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCUsuVisualizar.setAlignmentY(0.0F);
+        jCUsuVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCUsuVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCUsuVisualizar.setIconTextGap(1);
         jCUsuVisualizar.setMargin(new java.awt.Insets(1, 1, 1, 1));
         jCUsuVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -452,8 +472,17 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
         jPanel2.add(jCUsuVisualizar);
+
+        jCUsuIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCUsuIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCUsuIncluir);
+
+        jCUsuEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCUsuEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCUsuEditar);
+
+        jCUsuExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCUsuExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCUsuExcluir);
 
         jLabel8.setText("2. Atendimentos");
@@ -463,13 +492,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCAteVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCAteVisualizar.setAlignmentY(0.0F);
+        jCAteVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAteVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCAteVisualizar.setIconTextGap(1);
         jCAteVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCAteVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCAteVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCAteVisualizar);
+
+        jCAteIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAteIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAteIncluir);
+
+        jCAteEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAteEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAteEditar);
+
+        jCAteExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAteExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAteExcluir);
 
         jLabel16.setText("2.1. Atendimentos / Laudos");
@@ -479,13 +519,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCLauVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCLauVisualizar.setAlignmentY(0.0F);
+        jCLauVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCLauVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCLauVisualizar.setIconTextGap(1);
         jCLauVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCLauVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCLauVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCLauVisualizar);
+
+        jCLauIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCLauIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCLauIncluir);
+
+        jCLauEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCLauEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCLauEditar);
+
+        jCLauExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCLauExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCLauExcluir);
 
         jLabel17.setText("2.2. Atendimentos / Imagens");
@@ -495,19 +546,29 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCImaVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCImaVisualizar.setAlignmentY(0.0F);
+        jCImaVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCImaVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCImaVisualizar.setIconTextGap(1);
         jCImaVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCImaVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCImaVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCImaVisualizar);
+
+        jCImaIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCImaIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCImaIncluir);
 
+        jCImaEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCImaEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCImaEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCImaEditarActionPerformed(evt);
             }
         });
         jPanel2.add(jCImaEditar);
+
+        jCImaExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCImaExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCImaExcluir);
 
         jLabel4.setText("2.3. Atendimentos / Manip. Imagens");
@@ -517,13 +578,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCManVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCManVisualizar.setAlignmentY(0.0F);
+        jCManVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCManVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCManVisualizar.setIconTextGap(1);
         jCManVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCManVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCManVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCManVisualizar);
+
+        jCManIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCManIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCManIncluir);
+
+        jCManEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCManEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCManEditar);
+
+        jCManExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCManExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCManExcluir);
 
         jLabel6.setText("2.4. Atendimentos / Áudios");
@@ -533,13 +605,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCAudVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCAudVisualizar.setAlignmentY(0.0F);
+        jCAudVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAudVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCAudVisualizar.setIconTextGap(1);
         jCAudVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCAudVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCAudVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCAudVisualizar);
+
+        jCAudIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAudIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAudIncluir);
+
+        jCAudEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAudEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAudEditar);
+
+        jCAudExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAudExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAudExcluir);
 
         jLabel18.setText("3. Cadastro de Pacientes");
@@ -549,13 +632,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCPacVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCPacVisualizar.setAlignmentY(0.0F);
+        jCPacVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCPacVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCPacVisualizar.setIconTextGap(1);
         jCPacVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCPacVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCPacVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCPacVisualizar);
+
+        jCPacIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCPacIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCPacIncluir);
+
+        jCPacEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCPacEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCPacEditar);
+
+        jCPacExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCPacExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCPacExcluir);
 
         jLabel7.setText("4. Cadastros de Tipos de Exames");
@@ -565,13 +659,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCTipVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCTipVisualizar.setAlignmentY(0.0F);
+        jCTipVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTipVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCTipVisualizar.setIconTextGap(1);
         jCTipVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCTipVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCTipVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCTipVisualizar);
+
+        jCTipIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTipIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCTipIncluir);
+
+        jCTipEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTipEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCTipEditar);
+
+        jCTipExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTipExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCTipExcluir);
 
         jLabel19.setText("5. Cadastro de Áreas de Exames");
@@ -581,13 +686,24 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCAreVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCAreVisualizar.setAlignmentY(0.0F);
+        jCAreVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAreVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCAreVisualizar.setIconTextGap(1);
         jCAreVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCAreVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
         jCAreVisualizar.setPreferredSize(new java.awt.Dimension(10, 10));
         jPanel2.add(jCAreVisualizar);
+
+        jCAreIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAreIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAreIncluir);
+
+        jCAreEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAreEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAreEditar);
+
+        jCAreExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCAreExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCAreExcluir);
 
         jLabel5.setText("6. Cadastro de Textos Padrões");
@@ -597,6 +713,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
 
         jCTexVisualizar.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         jCTexVisualizar.setAlignmentY(0.0F);
+        jCTexVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTexVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jCTexVisualizar.setIconTextGap(1);
         jCTexVisualizar.setMaximumSize(new java.awt.Dimension(10, 10));
         jCTexVisualizar.setMinimumSize(new java.awt.Dimension(10, 10));
@@ -607,9 +725,29 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
             }
         });
         jPanel2.add(jCTexVisualizar);
+
+        jCTexIncluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTexIncluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCTexIncluir);
+
+        jCTexEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTexEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCTexEditar);
+
+        jCTexExcluir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCTexExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jCTexExcluir);
+
+        jLabel21.setText("7. Parâmetros");
+        jPanel2.add(jLabel21);
+
+        jCParametrosVisualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jCParametrosVisualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(jCParametrosVisualizar);
+        jPanel2.add(jLabel20);
+
+        jCParametrosEditar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel2.add(jCParametrosEditar);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -666,8 +804,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
                 .addContainerGap()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabUsuario.addTab("Permissões", jPanel1);
@@ -842,6 +980,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JCheckBox jCPacExcluir;
     private javax.swing.JCheckBox jCPacIncluir;
     private javax.swing.JCheckBox jCPacVisualizar;
+    private javax.swing.JCheckBox jCParametrosEditar;
+    private javax.swing.JCheckBox jCParametrosVisualizar;
     private javax.swing.JCheckBox jCTexEditar;
     private javax.swing.JCheckBox jCTexExcluir;
     private javax.swing.JCheckBox jCTexIncluir;
@@ -869,6 +1009,8 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1037,6 +1179,11 @@ public class TelaUsuario extends javax.swing.JFrame implements UsuarioView {
     @Override
     public JButton btnAbrirPermissoes() {
         return jBPermissoes;
+    }
+
+    @Override
+    public List<JCheckBox> chksPermissaoParametros() {
+        return chksPermissaoParametros;
     }
     
     

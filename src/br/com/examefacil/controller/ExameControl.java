@@ -68,7 +68,7 @@ public class ExameControl {
         }
         
         exame.setIdpaciente(Integer.parseInt(view.JLIDPaciente().getText()));
-        exame.setIdusuario(3); //setar o código do Usuario
+        exame.setIdusuario(TelaPrincipal.usuarioLogado.getIdusuario()); //setar o código do Usuario
         exame.setStatus("2");
         exame.setResumo("teste"); //Não entendi para que serve este resumo
         exame.setData(new Util().formataData(view.getData()));
@@ -146,6 +146,7 @@ public class ExameControl {
         view.jTDataAtendimento().setText("");
         view.jTHoraEntrada().setText("");
         view.jTHoraSaida().setText("");
+        view.jTObservacoes().setText("");
         
     }
     
