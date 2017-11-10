@@ -5,26 +5,26 @@
  */
 package br.com.examefacil.swing;
 
-import java.util.ArrayList;
-import java.util.List;
+import br.com.examefacil.controller.ExameControl;
+import br.com.examefacil.controller.UsuarioControl;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTable;
+import br.com.examefacil.view.ExameView;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
  *
- * @author Henrique
+ * @author bruno
  */
-public class TelaExame extends javax.swing.JFrame{
 
-    /**
-     * Creates new form TipoExames
-     */
-    public TelaExame() {
+public class TelaExame extends javax.swing.JDialog implements ExameView{
+
+    
+    
+    public TelaExame(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo( null );
         
@@ -41,54 +41,61 @@ public class TelaExame extends javax.swing.JFrame{
 
         jPAreaExame = new javax.swing.JPanel();
         jBCancelar = new javax.swing.JButton();
-        jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
         jBEditar = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
-        jTPesquisar = new javax.swing.JTextField();
-        jBFechar = new javax.swing.JButton();
-        jCInclusaoAutomatica = new javax.swing.JCheckBox();
-        jTabAreaExame = new javax.swing.JTabbedPane();
-        jPVisualizar = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTABAreaExame = new javax.swing.JTable();
-        jEditar = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTPaciente = new javax.swing.JTextField();
-        jLIDAreaExame = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jFDataAtendimento = new javax.swing.JFormattedTextField();
-        jFHoraAtendimento = new javax.swing.JFormattedTextField();
-        jFHoraSaida = new javax.swing.JFormattedTextField();
+        jBFecha = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLIDExame = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jTPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
+        jTDataAtendimento = new javax.swing.JTextField();
+        try {
+            javax.swing.text.MaskFormatter data = new javax.swing.text.MaskFormatter("##/##/####");
+            jTDataAtendimento = new javax.swing.JFormattedTextField(data);
+        } catch (Exception e) {
 
-        setTitle("Área de Exame");
+        }
+        jLabel5 = new javax.swing.JLabel();
+        jTHoraEntrada = new javax.swing.JTextField();
+        try {
+            javax.swing.text.MaskFormatter hora = new javax.swing.text.MaskFormatter("##:##");
+            jTHoraEntrada = new javax.swing.JFormattedTextField(hora);
+        } catch (Exception e) {
+
+        }
+        jLabel6 = new javax.swing.JLabel();
+        jTHoraSaida = new javax.swing.JTextField();
+        try {
+            javax.swing.text.MaskFormatter hora = new javax.swing.text.MaskFormatter("##:##");
+            jTHoraSaida = new javax.swing.JFormattedTextField(hora);
+        } catch (Exception e) {
+
+        }
+        jLIDPaciente = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTObservacoes = new javax.swing.JTextArea();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Exame");
+        setAlwaysOnTop(true);
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
-        jBCancelar.setEnabled(false);
         jBCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCancelarActionPerformed(evt);
             }
         });
 
-        jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pesquisar.png"))); // NOI18N
-        jBPesquisar.setText("Pesquisar");
-        jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBPesquisarActionPerformed(evt);
-            }
-        });
-
         jBIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/incluir.png"))); // NOI18N
         jBIncluir.setText("Incluir");
+        jBIncluir.setEnabled(false);
         jBIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBIncluirActionPerformed(evt);
@@ -106,7 +113,6 @@ public class TelaExame extends javax.swing.JFrame{
 
         jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
         jBGravar.setText("Gravar");
-        jBGravar.setEnabled(false);
         jBGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGravarActionPerformed(evt);
@@ -122,18 +128,11 @@ public class TelaExame extends javax.swing.JFrame{
             }
         });
 
-        jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
-        jBFechar.setText("Fechar");
-        jBFechar.addActionListener(new java.awt.event.ActionListener() {
+        jBFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
+        jBFecha.setText("Fechar");
+        jBFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBFecharActionPerformed(evt);
-            }
-        });
-
-        jCInclusaoAutomatica.setText("Inclusão Automática");
-        jCInclusaoAutomatica.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCInclusaoAutomaticaActionPerformed(evt);
+                jBFechaActionPerformed(evt);
             }
         });
 
@@ -143,26 +142,18 @@ public class TelaExame extends javax.swing.JFrame{
             jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPAreaExameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPAreaExameLayout.createSequentialGroup()
-                        .addComponent(jBIncluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBFechar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPAreaExameLayout.createSequentialGroup()
-                        .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBPesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCInclusaoAutomatica))))
+                .addComponent(jBIncluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBGravar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBFecha)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPAreaExameLayout.setVerticalGroup(
             jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,280 +165,269 @@ public class TelaExame extends javax.swing.JFrame{
                     .addComponent(jBEditar)
                     .addComponent(jBGravar)
                     .addComponent(jBExcluir)
-                    .addComponent(jBFechar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBPesquisar)
-                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBFecha))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAreaExameLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jCInclusaoAutomatica))
         );
 
-        jTABAreaExame.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        jLabel3.setText("Paciente");
 
-            }
-        ));
-        jTABAreaExame.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTABAreaExameMouseClicked(evt);
+                jTPacienteMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTABAreaExame);
+        jTPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTPacienteKeyPressed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPVisualizarLayout = new javax.swing.GroupLayout(jPVisualizar);
-        jPVisualizar.setLayout(jPVisualizarLayout);
-        jPVisualizarLayout.setHorizontalGroup(
-            jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
-        );
-        jPVisualizarLayout.setVerticalGroup(
-            jPVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPVisualizarLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
+        jLabel4.setText("Data Atendimento");
 
-        jTabAreaExame.addTab("Visualizar", jPVisualizar);
+        jLabel5.setText("Hora Entrada");
 
-        jLabel1.setText("Paciente");
+        jLabel6.setText("Hora Saída");
 
-        jLabel2.setText("Data Atendimento");
+        jLabel1.setText("Observações");
 
-        jFDataAtendimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jTObservacoes.setColumns(20);
+        jTObservacoes.setRows(5);
+        jScrollPane1.setViewportView(jTObservacoes);
 
-        jFHoraAtendimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-
-        jFHoraSaida.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-
-        jLabel3.setText("Hora Entrada");
-
-        jLabel4.setText("Hora Saída");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setText("Status do Atendimento");
-
-        javax.swing.GroupLayout jEditarLayout = new javax.swing.GroupLayout(jEditar);
-        jEditar.setLayout(jEditarLayout);
-        jEditarLayout.setHorizontalGroup(
-            jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jEditarLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLIDExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(16, 16, 16)
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jEditarLayout.createSequentialGroup()
-                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jFHoraAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(34, 34, 34)
-                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(156, 156, 156)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jEditarLayout.setVerticalGroup(
-            jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jEditarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jEditarLayout.createSequentialGroup()
-                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLIDAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jEditarLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFHoraAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLIDExame, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
-
-        jTabAreaExame.addTab("Editar", jEditar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPAreaExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabAreaExame)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        
-    }//GEN-LAST:event_jBIncluirActionPerformed
-
-    private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
-        // TODO add your handling code here:
-       setVisible(false);
-       
-        
-    }//GEN-LAST:event_jBFecharActionPerformed
-
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        jCInclusaoAutomatica.setSelected(false);
-        
+            this.setVisible(false);
     }//GEN-LAST:event_jBCancelarActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        
-                
+
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        
+        ExameControl control = new ExameControl();
+        control.salvar(this);
     }//GEN-LAST:event_jBGravarActionPerformed
 
-    private void jCInclusaoAutomaticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCInclusaoAutomaticaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCInclusaoAutomaticaActionPerformed
-
-    private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-        
-    }//GEN-LAST:event_jBPesquisarActionPerformed
-
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        
+
     }//GEN-LAST:event_jBExcluirActionPerformed
 
-    private void jTABAreaExameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABAreaExameMouseClicked
+    private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
+
+    }//GEN-LAST:event_jBIncluirActionPerformed
+
+    private void jBFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFechaActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jBFechaActionPerformed
+
+    private void jTPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPacienteMouseClicked
         
-    }//GEN-LAST:event_jTABAreaExameMouseClicked
+        new DialogBuscarPaciente(this, rootPaneCheckingEnabled, this).setVisible(true);
+        
+    }//GEN-LAST:event_jTPacienteMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaExame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void jTPacienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPacienteKeyPressed
+        new DialogBuscarPaciente(this, rootPaneCheckingEnabled, this).setVisible(true);
+    }//GEN-LAST:event_jTPacienteKeyPressed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaExame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBExcluir;
-    private javax.swing.JButton jBFechar;
+    private javax.swing.JButton jBFecha;
     private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
-    private javax.swing.JButton jBPesquisar;
-    private javax.swing.JCheckBox jCInclusaoAutomatica;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JPanel jEditar;
-    private javax.swing.JFormattedTextField jFDataAtendimento;
-    private javax.swing.JFormattedTextField jFHoraAtendimento;
-    private javax.swing.JFormattedTextField jFHoraSaida;
-    private javax.swing.JLabel jLIDAreaExame;
+    private javax.swing.JLabel jLIDExame;
+    private javax.swing.JLabel jLIDPaciente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPAreaExame;
-    private javax.swing.JPanel jPVisualizar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTABAreaExame;
+    private javax.swing.JTextField jTDataAtendimento;
+    private javax.swing.JTextField jTHoraEntrada;
+    private javax.swing.JTextField jTHoraSaida;
+    private javax.swing.JTextArea jTObservacoes;
     private javax.swing.JTextField jTPaciente;
-    private javax.swing.JTextField jTPesquisar;
-    private javax.swing.JTabbedPane jTabAreaExame;
     // End of variables declaration//GEN-END:variables
 
-    
+    @Override
+    public JButton jBIncluir() {
+        return jBIncluir;
+    }
+
+    @Override
+    public JButton jBEditar() {
+        return jBEditar;
+    }
+
+    @Override
+    public JButton jBCancelar() {
+        return jBCancelar;
+    }
+
+    @Override
+    public JButton jBGravar() {
+        return jBGravar;
+    }
+
+    @Override
+    public JButton jBExcluir() {
+        return jBExcluir;
+    }
+
+    @Override
+    public JButton jBFechar() {
+        return jBFecha;
+    }
+
+    @Override
+    public String getPaciente() {
+        return jTPaciente.getText();
+    }
+
+    @Override
+    public String getData() {
+        return jTDataAtendimento.getText();
+    }
+
+    @Override
+    public String getHoraAtendimeto() {
+        return jTHoraEntrada.getText();
+    }
+
+    @Override
+    public String getHoraSaida() {
+        return jTHoraSaida.getText();
+    }
+
+    @Override
+    public JLabel jLIDExame() {
+        return jLIDExame;
+    }
+
+    @Override
+    public JTextField jTPaciente() {
+        return jTPaciente;
+    }
+
+    @Override
+    public JTextField jTDataAtendimento() {
+        return jTDataAtendimento;
+    }
+
+    @Override
+    public JTextField jTHoraEntrada() {
+        return jTHoraEntrada;
+    }
+
+    @Override
+    public JTextField jTHoraSaida() {
+        return jTHoraSaida;
+    }
+
+   
+    @Override
+    public JLabel JLIDPaciente() {
+        return jLIDPaciente;
+    }
+
+    @Override
+    public JTextArea jTObservacoes() {
+        return jTObservacoes;
+    }
+
+    @Override
+    public String getObservacoes() {
+        return jTObservacoes().getText();
+    }
 }

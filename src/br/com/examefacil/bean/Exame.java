@@ -6,6 +6,7 @@
 package br.com.examefacil.bean;
 
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,11 +29,12 @@ public class Exame {
     private int idexame;
     private int idusuario;
     private int idpaciente;
-    private int idareaexame;
-    private int idtextopadrao;
-    private String status;
-    @Temporal(TemporalType.DATE)
-    private Calendar data;
+    //private int idareaexame;
+    //private int idtextopadrao;
+    //private String status;
+    //@Temporal(TemporalType.DATE)
+    @Column(name = "data")
+    private Date data;
     @Column(name = "hora_entrada")
     private String horaEntrada;
     @Column(name = "hora_saida")
@@ -41,6 +43,8 @@ public class Exame {
     private String observacoes;
     @Column(columnDefinition = "TEXT")
     private String resumo;
+    @Column(columnDefinition = "TEXT")
+    private String status;
 
     public int getIdexame() {
         return idexame;
@@ -66,7 +70,7 @@ public class Exame {
         this.idpaciente = idpaciente;
     }
 
-    public int getIdareaexame() {
+    /*public int getIdareaexame() {
         return idareaexame;
     }
 
@@ -80,7 +84,7 @@ public class Exame {
 
     public void setIdtextopadrao(int idtextopadrao) {
         this.idtextopadrao = idtextopadrao;
-    }
+    }*/
 
     public String getStatus() {
         return status;
@@ -90,11 +94,11 @@ public class Exame {
         this.status = status;
     }
 
-    public Calendar getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

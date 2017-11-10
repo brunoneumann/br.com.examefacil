@@ -5,6 +5,7 @@
 */
 package br.com.examefacil.view;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
@@ -33,6 +34,15 @@ public interface TelaPrincipalView {
     public JMenuItem jMTextoPadrao();
     public JMenuItem jMParametros();
     public JFrame telaPrincipal();
+    
+    public JButton jBIncluir();
+    public JButton jBEditar();
+    public JButton jBExcluir();
+    public JButton jBLaudo();
+    public JButton jBInterpretar();
+    public JButton jBImagens();
+    public JButton jBAtender();
+    public JButton jBPesquisar();
     
     
     
