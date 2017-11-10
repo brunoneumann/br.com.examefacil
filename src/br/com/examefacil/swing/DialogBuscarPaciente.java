@@ -21,9 +21,9 @@ import javax.swing.JTextField;
  */
 public class DialogBuscarPaciente extends javax.swing.JDialog implements BuscaPacienteView{
 
-    TelaExame telaExame;
+    TelaAtendimento telaExame;
     
-    public DialogBuscarPaciente(java.awt.Dialog parent, boolean modal, TelaExame telaExame) {
+    public DialogBuscarPaciente(java.awt.Dialog parent, boolean modal, TelaAtendimento telaExame) {
         super(parent, modal);
         initComponents();
         this.telaExame = telaExame;

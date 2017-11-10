@@ -6,30 +6,29 @@
 package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Acesso;
-import br.com.examefacil.bean.Exame;
-import br.com.examefacil.dao.ExameDAO;
+import br.com.examefacil.bean.Atendimento;
+import br.com.examefacil.dao.AtendimentoDAO;
 import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.tools.Util;
-import br.com.examefacil.view.ExameView;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import br.com.examefacil.view.AtendimentoView;
 
 /**
  *
  * @author Henrique
  */
-public class ExameControl {
-    public ExameControl (){}
+public class AtendimentoControl {
+    public AtendimentoControl (){}
     
-    public void init(ExameView view){
+    public void init(AtendimentoView view){
         
     }
     
     
-        public void carregaPermissaoIncluir(ExameView view) {
+        public void carregaPermissaoIncluir(AtendimentoView view) {
         List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
         for (Acesso a : permissoes) {
             if (a.getPagina().equals("exame")) {
@@ -39,7 +38,7 @@ public class ExameControl {
         }
     }
     
-    public void carregaPermissaoAlterarExcluir(ExameView view) {
+    public void carregaPermissaoAlterarExcluir(AtendimentoView view) {
         List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
         for (Acesso a : permissoes) {
             if (a.getPagina().equals("exame")) {
@@ -49,10 +48,10 @@ public class ExameControl {
             }
         }
     }
-    public void atualizaTabelaExame(ExameView view){
+    public void atualizaTabelaExame(AtendimentoView view){
         
     }
-    public boolean salvar(ExameView view){
+    public boolean salvar(AtendimentoView view){
         ArrayList<String> campos = new ArrayList<>();
         ArrayList<String> nomes = new ArrayList<>();
         campos.add(view.jTPaciente().getText());
@@ -62,9 +61,9 @@ public class ExameControl {
         nomes.add (view.jTDataAtendimento().getName());
         nomes.add (view.jTHoraEntrada().getName());
        if (Util.validaCampos(campos, nomes)) {
-        Exame exame = new Exame();
+        Atendimento exame = new Atendimento();
         if(!(view.jLIDExame().getText().equals(""))){
-            exame.setIdexame(Integer.parseInt(view.jLIDExame().getText()));
+            exame.setIdatendimento(Integer.parseInt(view.jLIDExame().getText()));
         }
         
         exame.setIdpaciente(Integer.parseInt(view.JLIDPaciente().getText()));
@@ -77,7 +76,7 @@ public class ExameControl {
         exame.setObservacoes(view.getObservacoes());
         
                 
-        boolean result = new ExameDAO().save(exame);
+        boolean result = new AtendimentoDAO().save(exame);
         if(result){
             limparTextos(view);
             desabilitaBotoesEditar(view);
@@ -90,58 +89,58 @@ public class ExameControl {
         }
         
     }
-    public boolean excluir(ExameView view){
+    public boolean excluir(AtendimentoView view){
         
         return false;
     }
     
-    public Exame get(int id){
-        return new ExameDAO().get(id);
+    public Atendimento get(int id){
+        return new AtendimentoDAO().get(id);
     }
     
-    public List<Exame> listar() throws Exception{
-        return new ExameDAO().list();
+    public List<Atendimento> listar() throws Exception{
+        return new AtendimentoDAO().list();
     }
     
-    public List<Exame> listar(String parametro){
+    public List<Atendimento> listar(String parametro){
         
-        return new ExameDAO().list(parametro);
+        return new AtendimentoDAO().list(parametro);
     }
-    public Exame exameSelecionado(ExameView view){
+    public Atendimento exameSelecionado(AtendimentoView view){
         return null;
     }
-    public void carregarDados(ExameView view){
-        Exame a = exameSelecionado(view);
+    public void carregarDados(AtendimentoView view){
+        Atendimento a = exameSelecionado(view);
         if(a!=null){
             habilitaBotoesEditar(view);
-            view.jLIDExame().setText(a.getIdexame()+"");
+            view.jLIDExame().setText(a.getIdatendimento()+"");
             view.jTPaciente().setText(a.getIdpaciente()+"");
             view.jTDataAtendimento().setText(a.getData().toString());
             view.jTHoraEntrada().setText(a.getHoraEntrada());
             view.jTHoraSaida().setText(a.getHoraSaida());
         }
     }
-    public TableModel tableModelExame(ExameView view){
+    public TableModel tableModelExame(AtendimentoView view){
         return null;
     }
-    public TableColumnModel tableColumnExame(ExameView view){
+    public TableColumnModel tableColumnExame(AtendimentoView view){
         
         return null;
     }
     
-    public void novoExame(ExameView view){
+    public void novoExame(AtendimentoView view){
         habilitaBotoesEditar(view);
         view.jLIDExame().setText(null);
     }
     
-    public void alteraEstadoEditarExcluir(ExameView view, boolean action){
+    public void alteraEstadoEditarExcluir(AtendimentoView view, boolean action){
         view.jBExcluir().setEnabled(action);
         view.jBEditar().setEnabled(action);
         
         carregaPermissaoAlterarExcluir(view);
     }
     
-    public void limparTextos(ExameView view){
+    public void limparTextos(AtendimentoView view){
         view.jTPaciente().setText("");
         view.jTDataAtendimento().setText("");
         view.jTHoraEntrada().setText("");
@@ -151,7 +150,7 @@ public class ExameControl {
     }
     
     
-    public void habilitaBotoesEditar(ExameView view){
+    public void habilitaBotoesEditar(AtendimentoView view){
         view.jBIncluir().setEnabled(false);
         view.jBExcluir().setEnabled(false);
         view.jBEditar().setEnabled(false);
@@ -159,7 +158,7 @@ public class ExameControl {
         view.jBCancelar().setEnabled(true);
 
     }
-    public void desabilitaBotoesEditar(ExameView view){
+    public void desabilitaBotoesEditar(AtendimentoView view){
             view.jBIncluir().setEnabled(true);
             view.jBExcluir().setEnabled(false);
             view.jBEditar().setEnabled(false);

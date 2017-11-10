@@ -487,12 +487,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        TelaExame dialog = new TelaExame(this, rootPaneCheckingEnabled);
+        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        TelaExame dialog = new TelaExame(this, rootPaneCheckingEnabled);
+        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBEditarActionPerformed
 

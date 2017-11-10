@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  *
  * @author Henrique
  */
-public interface ExameView {
+public interface AtendimentoView {
     
     public JButton jBIncluir();
     public JButton jBEditar();

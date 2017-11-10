@@ -8,7 +8,6 @@ package br.com.examefacil.controller;
 import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.dao.PacienteDAO;
 import br.com.examefacil.view.BuscaPacienteView;
-import br.com.examefacil.view.ExameView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
@@ -16,6 +15,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import br.com.examefacil.view.AtendimentoView;
 
 /**
  *
@@ -71,7 +71,7 @@ public class BuscaPacienteControl {
         return get((int) view.JTABPacientes().getModel().getValueAt(selected, 0));
     }
     
-    public void selecionarPaciente(int row, JTable table, ExameView view){
+    public void selecionarPaciente(int row, JTable table, AtendimentoView view){
        String nome = table.getModel().getValueAt(row, 1).toString();
         String id = table.getModel().getValueAt(row, 0).toString();
         view.jTPaciente().setText(nome);

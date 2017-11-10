@@ -11,7 +11,6 @@ import br.com.examefacil.dao.PacienteDAO;
 import br.com.examefacil.dao.TextoPadraoDAO;
 import br.com.examefacil.view.BuscaPacienteView;
 import br.com.examefacil.view.BuscaTextoPadraoView;
-import br.com.examefacil.view.ExameView;
 import br.com.examefacil.view.InterpretacaoView;
 import br.com.examefacil.view.TextoPadraoView;
 import com.towel.el.FieldResolver;
@@ -21,6 +20,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import br.com.examefacil.view.AtendimentoView;
 
 /**
  *

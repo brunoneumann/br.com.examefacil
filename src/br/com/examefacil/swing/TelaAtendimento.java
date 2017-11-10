@@ -5,25 +5,25 @@
  */
 package br.com.examefacil.swing;
 
-import br.com.examefacil.controller.ExameControl;
+import br.com.examefacil.controller.AtendimentoControl;
 import br.com.examefacil.controller.UsuarioControl;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import br.com.examefacil.view.ExameView;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import br.com.examefacil.view.AtendimentoView;
 
 /**
  *
  * @author bruno
  */
 
-public class TelaExame extends javax.swing.JDialog implements ExameView{
+public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoView{
 
     
     
-    public TelaExame(java.awt.Frame parent, boolean modal) {
+    public TelaAtendimento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo( null );
@@ -289,7 +289,7 @@ public class TelaExame extends javax.swing.JDialog implements ExameView{
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        ExameControl control = new ExameControl();
+        AtendimentoControl control = new AtendimentoControl();
         control.salvar(this);
     }//GEN-LAST:event_jBGravarActionPerformed
 

@@ -5,15 +5,12 @@
  */
 package br.com.examefacil.bean;
 
-import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -21,18 +18,14 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="exame")
-public class Exame {
+public class Atendimento {
     
     @Id
     @GeneratedValue
     @Column(name = "idexame")
-    private int idexame;
+    private int idatendimento;
     private int idusuario;
     private int idpaciente;
-    //private int idareaexame;
-    //private int idtextopadrao;
-    //private String status;
-    //@Temporal(TemporalType.DATE)
     @Column(name = "data")
     private Date data;
     @Column(name = "hora_entrada")
@@ -46,12 +39,12 @@ public class Exame {
     @Column(columnDefinition = "TEXT")
     private String status;
 
-    public int getIdexame() {
-        return idexame;
+    public int getIdatendimento() {
+        return idatendimento;
     }
 
-    public void setIdexame(int idexame) {
-        this.idexame = idexame;
+    public void setIdatendimento(int idatendimento) {
+        this.idatendimento = idatendimento;
     }
 
     public int getIdusuario() {
@@ -70,21 +63,6 @@ public class Exame {
         this.idpaciente = idpaciente;
     }
 
-    /*public int getIdareaexame() {
-        return idareaexame;
-    }
-
-    public void setIdareaexame(int idareaexame) {
-        this.idareaexame = idareaexame;
-    }
-
-    public int getIdtextopadrao() {
-        return idtextopadrao;
-    }
-
-    public void setIdtextopadrao(int idtextopadrao) {
-        this.idtextopadrao = idtextopadrao;
-    }*/
 
     public String getStatus() {
         return status;
