@@ -17,7 +17,6 @@ public interface InterpretacaoView {
     
     public JButton jBGravar();
     public JButton jBCancelar();
-    public JButton jBFechar();
     public JButton jBLaudar();
     public JButton jBGravarLaudo();
     public JButton jBCancelarLaudo();

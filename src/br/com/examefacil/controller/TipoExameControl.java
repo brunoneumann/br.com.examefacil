@@ -176,6 +176,7 @@ public class TipoExameControl {
     
     public void limparTextos(TipoExameView view) {
         view.jTTipoExame().setText("");
+        view.jTDescricao().setText("");
         
     }
     

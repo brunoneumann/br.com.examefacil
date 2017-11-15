@@ -510,8 +510,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMSairActionPerformed
 
     private void jBImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImagensActionPerformed
-        TelaImagens dialog = new TelaImagens(this, rootPaneCheckingEnabled);
-        dialog.setVisible(true);
+        new TelaImagens().setVisible(true);
     }//GEN-LAST:event_jBImagensActionPerformed
 
     private void jBInterpretarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInterpretarActionPerformed
@@ -535,6 +534,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
     private void jBAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtenderActionPerformed
         TelaAtender dialog = new TelaAtender (this, rootPaneCheckingEnabled);
+        
         dialog.setVisible(true);
     }//GEN-LAST:event_jBAtenderActionPerformed
     

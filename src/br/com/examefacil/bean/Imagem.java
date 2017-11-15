@@ -24,11 +24,28 @@ public class Imagem {
     @GeneratedValue
     @Column(name = "idimagem")
     private int idimagem;
-    private int idexame;
+    private int idtipoexame;
+    private int idatendimento;
     @Column(name = "nome_arquivo")
     private String nomeArquivo;
     @Column(columnDefinition = "TEXT")
     private String detalhes;
+
+    public int getIdtipoexame() {
+        return idtipoexame;
+    }
+
+    public void setIdtipoexame(int idtipoexame) {
+        this.idtipoexame = idtipoexame;
+    }
+
+    public int getIdatendimento() {
+        return idatendimento;
+    }
+
+    public void setIdatendimento(int idatendimento) {
+        this.idatendimento = idatendimento;
+    }
 
     public int getIdimagem() {
         return idimagem;
@@ -36,14 +53,6 @@ public class Imagem {
 
     public void setIdimagem(int idimagem) {
         this.idimagem = idimagem;
-    }
-
-    public int getIdexame() {
-        return idexame;
-    }
-
-    public void setIdexame(int idexame) {
-        this.idexame = idexame;
     }
 
     public String getNomeArquivo() {
