@@ -46,8 +46,6 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
         jBExcluir = new javax.swing.JButton();
         jBAdicionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jTImagens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},

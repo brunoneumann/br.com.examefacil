@@ -74,7 +74,9 @@ public class BuscaExameControl {
        String nome = table.getModel().getValueAt(row, 1).toString();
        String id = table.getModel().getValueAt(row, 0).toString();
        
-       view.jTSolicitarExame().setText(id+"");      
+       view.jTSolicitarExame().setText(nome);
+       view.jLIDExame().setText(id+"");
+       
         
         
     }

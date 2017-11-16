@@ -7,18 +7,15 @@ package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Atender;
 import br.com.examefacil.bean.Imagem;
-import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.ImagemDAO;
 import br.com.examefacil.renderer.ExamesComboModel;
-import br.com.examefacil.swing.TelaImagens;
-import br.com.examefacil.view.AtendimentoView;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.view.ImagemView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
-import java.awt.Component;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
@@ -41,6 +38,7 @@ public class ImagemControl {
         atualizaTabelaImagem(view);
         /* Desabilita aba editar */
         view.jLIDAtendimento().setVisible(false);
+        view.jLIDImagem().setVisible(false);
         view.jCImagens().setModel(new ExamesComboModel());
         carregaPermissaoIncluir(view);
     }
@@ -184,6 +182,7 @@ public class ImagemControl {
     
     public void limparTextos(ImagemView view) {
         view.jLIDImagem().setText("");
+        view.jTImagens().removeAll();
         
     }
     
@@ -205,6 +204,10 @@ public class ImagemControl {
         view.chooserImagens().setFileFilter(filter);
         if (view.chooserImagens().showOpenDialog(view.chooserImagens()) == JFileChooser.APPROVE_OPTION) {
             view.jLIDImagem().setText(view.chooserImagens().getSelectedFile().toString());
+            //File imagem = new File(view.chooserImagens().getSelectedFile().toString());
+            //String caminho = "caminho da pasta/"+view.chooserImagens().getName();
+            //imagem.renameTo(new File("caminho"));
+            
         }
     }
     }

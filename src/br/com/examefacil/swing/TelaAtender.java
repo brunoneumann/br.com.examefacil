@@ -53,6 +53,7 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTSolicitados = new javax.swing.JTable();
+        jLIDExame = new javax.swing.JLabel();
         jBEnviarExame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -155,6 +156,8 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
         ));
         jScrollPane2.setViewportView(jTSolicitados);
 
+        jLIDExame.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -165,7 +168,9 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTSolicitarExame, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBIncluir))
+                        .addComponent(jBIncluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLIDExame))
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -176,7 +181,8 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTSolicitarExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBIncluir))
+                    .addComponent(jBIncluir)
+                    .addComponent(jLIDExame))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,7 +259,8 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBEnviarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarExameActionPerformed
-        
+        AtenderControl control = new AtenderControl();
+        control.salvar(this);
     }//GEN-LAST:event_jBEnviarExameActionPerformed
 
 
@@ -265,6 +272,7 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
     private javax.swing.JLabel jLData;
     private javax.swing.JLabel jLHora;
     private javax.swing.JLabel jLIDAtendimento;
+    private javax.swing.JLabel jLIDExame;
     private javax.swing.JLabel jLPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -320,6 +328,11 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
     @Override
     public JTable jTSolicitados() {
         return jTSolicitados;
+    }
+
+    @Override
+    public JLabel jLIDExame() {
+        return jLIDExame;
     }
 
 }
