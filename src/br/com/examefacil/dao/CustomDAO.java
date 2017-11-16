@@ -203,5 +203,24 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
         }
         return null;
     }
+
+    @Override
+    public List<T> listCustom(Class<T> type, String query, List<Parametro> parametros) throws Exception {
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery(query).addEntity(type);
+            for(Parametro p : parametros){
+                q.setParameter(p.getCampo(), p.getParametro());
+            }
+            return q.list();
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return null;
+    }
     
 }

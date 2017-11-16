@@ -5,6 +5,7 @@
 */
 package br.com.examefacil.swing;
 
+import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.view.TelaPrincipalView;
@@ -15,13 +16,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
  *
  * @author Henrique
  */
-public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalView{
+public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalView {
     
     /**
      * Creates new form TelaPrincipal
@@ -34,8 +36,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         this.usuarioLogado = u;
         new TelaPrincipalControl().init(this);
         setLocationRelativeTo( null );
-        
-        
     }
     
     
@@ -59,27 +59,19 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jBEntrar = new javax.swing.JButton();
         jIExame = new javax.swing.JInternalFrame();
         jPAreaExame = new javax.swing.JPanel();
-        jBCancelar = new javax.swing.JButton();
         jBPesquisar = new javax.swing.JButton();
         jBIncluir = new javax.swing.JButton();
         jBEditar = new javax.swing.JButton();
-        jBGravar = new javax.swing.JButton();
         jBExcluir = new javax.swing.JButton();
-        jTPesquisar = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        jTPesquisarAtendimento = new javax.swing.JTextField();
         jBImagens = new javax.swing.JButton();
         jBInterpretar = new javax.swing.JButton();
         jBLaudo = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        try{
-            javax.swing.text.MaskFormatter data= new javax.swing.text.MaskFormatter("##/##/####");
-            jTextField1 = new javax.swing.JFormattedTextField(data);
-        }
-        catch (Exception e){
-        }
         jBAtender = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jDteInicial = new com.toedter.calendar.JDateChooser();
+        jDteInicial1 = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAtendimentos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMCadastro = new javax.swing.JMenu();
         jMPaciente = new javax.swing.JMenuItem();
@@ -169,15 +161,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
-        jBCancelar.setText("Cancelar");
-        jBCancelar.setEnabled(false);
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
-            }
-        });
-
         jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pesquisar.png"))); // NOI18N
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,15 +186,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             }
         });
 
-        jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
-        jBGravar.setText("Gravar");
-        jBGravar.setEnabled(false);
-        jBGravar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBGravarActionPerformed(evt);
-            }
-        });
-
         jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
         jBExcluir.setText("Excluir");
         jBExcluir.setEnabled(false);
@@ -220,8 +194,6 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                 jBExcluirActionPerformed(evt);
             }
         });
-
-        jLabel11.setText("Data do Atend.");
 
         jBImagens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imagens.png"))); // NOI18N
         jBImagens.setText("Imagens");
@@ -255,6 +227,10 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             }
         });
 
+        jDteInicial.setDateFormatString("dd/MM/yyyy");
+
+        jDteInicial1.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPAreaExameLayout = new javax.swing.GroupLayout(jPAreaExame);
         jPAreaExame.setLayout(jPAreaExameLayout);
         jPAreaExameLayout.setHorizontalGroup(
@@ -264,82 +240,77 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPAreaExameLayout.createSequentialGroup()
                         .addComponent(jBIncluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBAtender))
+                        .addComponent(jBAtender)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBImagens)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBInterpretar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBLaudo))
                     .addGroup(jPAreaExameLayout.createSequentialGroup()
-                        .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPAreaExameLayout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addComponent(jTPesquisarAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDteInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDteInicial1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBPesquisar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBImagens)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBInterpretar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBLaudo)
-                .addGap(63, 63, 63))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         jPAreaExameLayout.setVerticalGroup(
             jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPAreaExameLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBIncluir)
+                    .addComponent(jBEditar)
+                    .addComponent(jBExcluir)
+                    .addComponent(jBAtender)
+                    .addComponent(jBImagens)
+                    .addComponent(jBInterpretar)
+                    .addComponent(jBLaudo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBCancelar)
-                            .addComponent(jBIncluir)
-                            .addComponent(jBEditar)
-                            .addComponent(jBGravar)
-                            .addComponent(jBExcluir))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBImagens)
-                            .addComponent(jBInterpretar)
-                            .addComponent(jBLaudo)))
-                    .addComponent(jBAtender))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPAreaExameLayout.createSequentialGroup()
-                        .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jBPesquisar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTPesquisarAtendimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDteInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDteInicial1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        tblAtendimentos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblAtendimentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAtendimentosMouseClicked(evt);
+            }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPane1.setViewportView(tblAtendimentos);
 
         javax.swing.GroupLayout jIExameLayout = new javax.swing.GroupLayout(jIExame.getContentPane());
         jIExame.getContentPane().setLayout(jIExameLayout);
         jIExameLayout.setHorizontalGroup(
             jIExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPAreaExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane1)
         );
         jIExameLayout.setVerticalGroup(
             jIExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jIExameLayout.createSequentialGroup()
                 .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 608, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jILogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -350,8 +321,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jIExame)
-                .addGap(0, 0, 0)
+                .addComponent(jIExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -442,9 +413,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 5, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,10 +424,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMTipoExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMTipoExameActionPerformed
-        
         new TelaTipoExame().setVisible(true);
-        
-        
     }//GEN-LAST:event_jMTipoExameActionPerformed
 
     private void jMAreaExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAreaExameActionPerformed
@@ -477,28 +443,22 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         new TelaTextoPadrao().setVisible(true);
     }//GEN-LAST:event_jMTextoPadraoActionPerformed
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-        
-
-    }//GEN-LAST:event_jBCancelarActionPerformed
-
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
 
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled);
+        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled, null);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled);
-        dialog.setVisible(true);
+        Atendimento a = new TelaPrincipalControl().atendimentoSelecionado(this);
+        if(a!=null){
+            TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled, a);
+            dialog.setVisible(true);
+        }
     }//GEN-LAST:event_jBEditarActionPerformed
-
-    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-
-    }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
 
@@ -537,27 +497,29 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         TelaAtender dialog = new TelaAtender (this, rootPaneCheckingEnabled);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBAtenderActionPerformed
+
+    private void tblAtendimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAtendimentosMouseClicked
+        new TelaPrincipalControl().carregaPermissaoAlterarExcluirAtendimento(this);
+    }//GEN-LAST:event_tblAtendimentosMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAtender;
-    private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEditar;
     private javax.swing.JButton jBEntrar;
     private javax.swing.JButton jBExcluir;
-    private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBImagens;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JButton jBInterpretar;
     private javax.swing.JButton jBLaudo;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private com.toedter.calendar.JDateChooser jDteInicial;
+    private com.toedter.calendar.JDateChooser jDteInicial1;
     private javax.swing.JInternalFrame jIExame;
     private javax.swing.JInternalFrame jILogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenuItem jMAreaExame;
     private javax.swing.JMenu jMCadastro;
     private javax.swing.JMenuItem jMPaciente;
@@ -570,11 +532,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JPanel jPAreaExame;
     private javax.swing.JPasswordField jPSenha;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JTextField jTPesquisar;
+    private javax.swing.JTextField jTPesquisarAtendimento;
     private javax.swing.JTextField jTUsuario;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tblAtendimentos;
     // End of variables declaration//GEN-END:variables
     
     @Override
@@ -690,6 +652,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     @Override
     public JButton jBAtender() {
         return jBAtender;
+    }
+
+    @Override
+    public JTable tblAtendimentos() {
+        return tblAtendimentos;
+    }
+
+    @Override
+    public JTextField jTPesquisarAtendimento() {
+        return jTPesquisarAtendimento;
     }
   
     

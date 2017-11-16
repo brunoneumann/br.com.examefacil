@@ -59,6 +59,8 @@ public class ParametrosControl {
             view.jCAuditar().setSelected(p.isAuditar());
             view.jTxtPastaAudios().setText(p.getPastaAudios());
             view.jTxtPastaImagens().setText(p.getPastaImagens());
+            view.jTxtURLServidor().setText(p.getUrlServidor());
+            view.jTxtPortaServidor().setText(p.getPortaServidor()+"");
         }
     }
     
@@ -79,6 +81,8 @@ public class ParametrosControl {
             parametros.setAuditar(view.jCAuditar().isSelected());
             parametros.setPastaAudios(view.jTxtPastaAudios().getText());
             parametros.setPastaImagens(view.jTxtPastaImagens().getText());
+            parametros.setUrlServidor(view.jTxtURLServidor().getText());
+            parametros.setPortaServidor(Integer.parseInt(view.jTxtPortaServidor().getText()));
             
             boolean result = new ParametrosDAO().save(parametros);
             if(result){
@@ -116,8 +120,12 @@ public class ParametrosControl {
         
         campos.add(view.jTxtPastaAudios().getText());
         campos.add(view.jTxtPastaImagens().getText());
+        campos.add(view.jTxtURLServidor().getText());
+        campos.add(view.jTxtPortaServidor().getText());
         nomes.add(view.jTxtPastaAudios().getName());
         nomes.add(view.jTxtPastaImagens().getName());
+        nomes.add(view.jTxtURLServidor().getName());
+        nomes.add(view.jTxtPortaServidor().getName());
         
         return Util.validaCampos(campos, nomes);
     }
@@ -138,6 +146,8 @@ public class ParametrosControl {
         view.jTxtSMTPServer().setEnabled(value);
         view.jPSenhaSMTP().setEnabled(value);
         view.jTxtPortaSMTP().setEnabled(value);
+        view.jTxtURLServidor().setEnabled(value);
+        view.jTxtPortaServidor().setEnabled(value);
     }
     
     public void ativarEnvioEmailPDF(){

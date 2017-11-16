@@ -5,24 +5,26 @@
  */
 package br.com.examefacil.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
  * @author bruno
  */
 @Entity
-@Table(name="exame")
-public class Atendimento {
+@Table(name="atendimento")
+public class Atendimento implements Serializable {
     
     @Id
     @GeneratedValue
-    @Column(name = "idexame")
+    @Column(name = "idatendimento")
     private int idatendimento;
     private int idusuario;
     private int idpaciente;
@@ -35,9 +37,15 @@ public class Atendimento {
     @Column(columnDefinition = "TEXT")
     private String observacoes;
     @Column(columnDefinition = "TEXT")
-    private String resumo;
-    @Column(columnDefinition = "TEXT")
     private String status;
+    
+    @Transient
+    private String nome_paciente;
+    @Transient
+    private String nome_usuario;
+    @Transient 
+    private String dataString;
+    
 
     public int getIdatendimento() {
         return idatendimento;
@@ -104,14 +112,29 @@ public class Atendimento {
         this.observacoes = observacoes;
     }
 
-    public String getResumo() {
-        return resumo;
+    public String getNome_paciente() {
+        return nome_paciente;
     }
 
-    public void setResumo(String resumo) {
-        this.resumo = resumo;
+    public void setNome_paciente(String nome_paciente) {
+        this.nome_paciente = nome_paciente;
     }
 
+    public String getNome_usuario() {
+        return nome_usuario;
+    }
+
+    public void setNome_usuario(String nome_usuario) {
+        this.nome_usuario = nome_usuario;
+    }
+
+    public String getDataString() {
+        return dataString;
+    }
+
+    public void setDataString(String dataString) {
+        this.dataString = dataString;
+    }
     
     
     

@@ -42,6 +42,10 @@ public class Parametros {
     private String senhaSMTP;
     @Column(name = "porta_smtp")
     private int portaSMTP;
+    @Column(name = "url_servidor")
+    private String urlServidor;
+    @Column(name = "porta_servidor")
+    private int portaServidor;
 
     public int getIdparametros() {
         return idparametros;
@@ -129,6 +133,22 @@ public class Parametros {
 
     public void setPortaSMTP(int portaSMTP) {
         this.portaSMTP = portaSMTP;
+    }
+
+    public String getUrlServidor() {
+        return urlServidor;
+    }
+
+    public void setUrlServidor(String urlServidor) {
+        this.urlServidor = urlServidor;
+    }
+
+    public int getPortaServidor() {
+        return portaServidor;
+    }
+
+    public void setPortaServidor(int portaServidor) {
+        this.portaServidor = portaServidor;
     }
     
     

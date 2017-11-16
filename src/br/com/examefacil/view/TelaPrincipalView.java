@@ -12,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -44,6 +45,8 @@ public interface TelaPrincipalView {
     public JButton jBAtender();
     public JButton jBPesquisar();
     
+    public JTextField jTPesquisarAtendimento();
     
+    public JTable tblAtendimentos();
     
 }

@@ -23,5 +23,6 @@ public interface InterfaceDAO<T> {
     public List<T> list(Class<T> type, String query, List<Parametro> parametros) throws Exception;
     public List<T> list(Class<T> c) throws Exception;
     public List<T> list(Class<T> c, String query, String field, String parameter) throws Exception;
+    public List<T> listCustom(Class<T> c, String query, List<Parametro> parametros) throws Exception;
     
 }

@@ -18,6 +18,7 @@ public class Constants {
     public String accessToken = "EAAV4MCWtjiMBALlvWtEnvwWfeLJ3DcosaKFlbDP2i3QmoteGIrGOucnwIz4TMIYt6n6vB8t6MPZCNXMYAT0c9wg4sWEuWaG9LDGDsGzvxkLZBhnUxBSdfZB243EvzwdngCjaggRZAkCMhH8UKlVe4btMn8wmXhJ2EKsQpkJZAtQZDZD";
     
     public ArrayList<String> SQLcreateTriggersAuditoria = new ArrayList<String>() {{
+        /* Usuario */
         add("CREATE TRIGGER tr_usuario_insert AFTER INSERT ON usuario FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
@@ -35,6 +36,7 @@ public class Constants {
                 + "VALUES "
                 + "(@user,current_date,CONCAT(OLD.nome,' | ',OLD.email,' | ',IFNULL(OLD.tipo_acesso,'')),null,'D','usuario');");
         
+        /* Acesso */
         add("CREATE TRIGGER tr_acesso_insert AFTER INSERT ON acesso FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
@@ -47,73 +49,78 @@ public class Constants {
                 + "VALUES "
                 + "(@user,current_date,CONCAT('idusuario:',OLD.idusuario,' | acesso:',OLD.pagina,' | visualizar:',OLD.visualizar,' | incluir:',OLD.incluir,' | alterar:',OLD.alterar,' | excluir:',OLD.excluir),CONCAT('idusuario:',NEW.idusuario,' | acesso:',NEW.pagina,' | visualizar:',NEW.visualizar,' | incluir:',NEW.incluir,' | alterar:',NEW.alterar,' | excluir:',NEW.excluir),'U','acesso');");
         
+        /* Audios */
         add("CREATE TRIGGER tr_audios_insert AFTER INSERT ON audios FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,null,CONCAT(NEW.idaudio,' | ',NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,''),' | ',NEW.idlaudo),'I','audios');");
+                + "(@user,current_date,null,CONCAT(NEW.idaudio,' | ',NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,'')),'I','audios');");
         add("CREATE TRIGGER tr_audios_update AFTER UPDATE ON audios FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,''),' | ',OLD.idlaudo),"
-                + "CONCAT(NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,''),' | ',NEW.idlaudo),'U','audios');");
+                + "(@user,current_date,CONCAT(OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,'')),"
+                + "CONCAT(NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,'')),'U','audios');");
         add("CREATE TRIGGER tr_audios_delete AFTER DELETE ON audios FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.idaudio,' | ',OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,''),' | ',OLD.idlaudo),null,'D','audios');");
+                + "(@user,current_date,CONCAT(OLD.idaudio,' | ',OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,'')),null,'D','audios');");
         
+        /* Imagens */
         add("CREATE TRIGGER tr_imagens_insert AFTER INSERT ON imagens FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,null,CONCAT(NEW.idimagem,' | ',NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,''),' | ',NEW.idlaudo),'I','imagens');");
+                + "(@user,current_date,null,CONCAT(NEW.idimagem,' | ',NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,'')),'I','imagens');");
         add("CREATE TRIGGER tr_imagens_update AFTER UPDATE ON imagens FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,''),' | ',OLD.idlaudo),"
-                + "CONCAT(NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,''),' | ',NEW.idlaudo),'U','imagens');");
+                + "(@user,current_date,CONCAT(OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,'')),"
+                + "CONCAT(NEW.nome_arquivo,' | ',IFNULL(NEW.detalhes,'')),'U','imagens');");
         add("CREATE TRIGGER tr_imagens_delete AFTER DELETE ON imagens FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.idimagem,' | ',OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,''),' | ',OLD.idlaudo),null,'D','imagens');");
+                + "(@user,current_date,CONCAT(OLD.idimagem,' | ',OLD.nome_arquivo,' | ',IFNULL(OLD.detalhes,'')),null,'D','imagens');");
         
+        /* Laudo */
         add("CREATE TRIGGER tr_laudo_insert AFTER INSERT ON laudo FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,null,CONCAT(NEW.idlaudo,' | ',NEW.idusuario,' | ',NEW.idexame,' | ',NEW.nome,' | ',IFNULL(NEW.descricao,'')),'I','laudo');");
+                + "(@user,current_date,null,CONCAT(NEW.idlaudo,' | ',NEW.idusuario,' | ',NEW.idatendimento,' | ',NEW.idtipoexame,' | ',NEW.idtextopadrao),'I','laudo');");
         add("CREATE TRIGGER tr_laudo_update AFTER UPDATE ON laudo FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.idlaudo,' | ',OLD.idusuario,' | ',OLD.idexame,' | ',OLD.nome,' | ',IFNULL(OLD.descricao,'')),"
-                + "CONCAT(NEW.idlaudo,' | ',NEW.idusuario,' | ',NEW.idexame,' | ',NEW.nome,' | ',IFNULL(NEW.descricao,'')),'U','laudo');");
+                + "(@user,current_date,CONCAT(OLD.idlaudo,' | ',OLD.idusuario,' | ',OLD.idatendimento,' | ',OLD.idtipoexame,' | ',OLD.idtextopadrao),"
+                + "CONCAT(NEW.idlaudo,' | ',NEW.idusuario,' | ',NEW.idatendimento,' | ',NEW.idtipoexame,' | ',NEW.idtextopadrao),'U','laudo');");
         add("CREATE TRIGGER tr_laudo_delete AFTER DELETE ON laudo FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.idlaudo,' | ',OLD.idusuario,' | ',OLD.idexame,' | ',OLD.nome,' | ',IFNULL(OLD.descricao,'')),null,'D','laudo');");
+                + "(@user,current_date,CONCAT(OLD.idlaudo,' | ',OLD.idusuario,' | ',OLD.idatendimento,' | ',OLD.idtipoexame,' | ',OLD.idtextopadrao),null,'D','laudo');");
         
-        add("CREATE TRIGGER tr_exame_insert AFTER INSERT ON exame FOR EACH ROW "
+        /* Atendimento */
+        add("CREATE TRIGGER tr_atendimento_insert AFTER INSERT ON atendimento FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,null,CONCAT(NEW.idexame,' | ',NEW.idusuario,' | ',NEW.idpaciente,' | ',NEW.idareaexame,' | ',NEW.idtextopadrao,' | ',NEW.status,' | ',NEW.data,' | ',NEW.hora_entrada,' | ',IFNULL(NEW.hora_saida,''),' | ',IFNULL(NEW.observacoes,''),' | ',IFNULL(NEW.resumo,'')),'I','exame');");
-        add("CREATE TRIGGER tr_exame_update AFTER UPDATE ON exame FOR EACH ROW "
+                + "(@user,current_date,null,CONCAT(NEW.idatendimento,' | ',NEW.idusuario,' | ',NEW.idpaciente,' | ',NEW.status,' | ',NEW.data,' | ',NEW.hora_entrada,' | ',IFNULL(NEW.hora_saida,''),' | ',IFNULL(NEW.observacoes,'')),'I','atendimento');");
+        add("CREATE TRIGGER tr_atendimento_update AFTER UPDATE ON atendimento FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.idexame,' | ',OLD.idusuario,' | ',OLD.idpaciente,' | ',OLD.idareaexame,' | ',OLD.idtextopadrao,' | ',OLD.status,' | ',OLD.data,' | ',OLD.hora_entrada,' | ',IFNULL(OLD.hora_saida,''),' | ',IFNULL(OLD.observacoes,''),' | ',IFNULL(OLD.resumo,'')),CONCAT(NEW.idexame,' | ',NEW.idusuario,' | ',NEW.idpaciente,' | ',NEW.idareaexame,' | ',NEW.idtextopadrao,' | ',NEW.status,' | ',NEW.data,' | ',NEW.hora_entrada,' | ',IFNULL(NEW.hora_saida,''),' | ',IFNULL(NEW.observacoes,''),' | ',IFNULL(NEW.resumo,'')),'U','exame');");
-        add("CREATE TRIGGER tr_exame_delete AFTER DELETE ON exame FOR EACH ROW "
+                + "(@user,current_date,CONCAT(OLD.idatendimento,' | ',OLD.idusuario,' | ',OLD.idpaciente,' | ',OLD.status,' | ',OLD.data,' | ',OLD.hora_entrada,' | ',IFNULL(OLD.hora_saida,''),' | ',IFNULL(OLD.observacoes,'')),CONCAT(NEW.idatendimento,' | ',NEW.idusuario,' | ',NEW.idpaciente,' | ',NEW.status,' | ',NEW.data,' | ',NEW.hora_entrada,' | ',IFNULL(NEW.hora_saida,''),' | ',IFNULL(NEW.observacoes,'')),'U','atendimento');");
+        add("CREATE TRIGGER tr_atendimento_delete AFTER DELETE ON atendimento FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,CONCAT(OLD.idexame,' | ',OLD.idusuario,' | ',OLD.idpaciente,' | ',OLD.idareaexame,' | ',OLD.idtextopadrao,' | ',OLD.status,' | ',OLD.data,' | ',OLD.hora_entrada,' | ',IFNULL(OLD.hora_saida,''),' | ',IFNULL(OLD.observacoes,''),' | ',IFNULL(OLD.resumo,'')),null,'D','exame');");
+                + "(@user,current_date,CONCAT(OLD.idatendimento,' | ',OLD.idusuario,' | ',OLD.idpaciente,' | ',OLD.status,' | ',OLD.data,' | ',OLD.hora_entrada,' | ',IFNULL(OLD.hora_saida,''),' | ',IFNULL(OLD.observacoes,'')),null,'D','atendimento');");
         
+        /* Paciente */
         add("CREATE TRIGGER tr_paciente_insert AFTER INSERT ON paciente FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
@@ -130,6 +137,7 @@ public class Constants {
                 + "VALUES "
                 + "(@user,current_date,CONCAT(OLD.idpaciente,' | ',OLD.nome,' | ',IFNULL(OLD.CPF,''),' | ',IFNULL(OLD.email,'')),null,'D','paciente');");
         
+        /* Area exame */
         add("CREATE TRIGGER tr_areaexame_insert AFTER INSERT ON areaexame FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
@@ -146,6 +154,7 @@ public class Constants {
                 + "VALUES "
                 + "(@user,current_date,CONCAT(OLD.idareaexame,' | ',OLD.nome),null,'D','areaexame');");
         
+        /* Tipo exame */
         add("CREATE TRIGGER tr_tipoexame_insert AFTER INSERT ON tipoexame FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
@@ -163,6 +172,7 @@ public class Constants {
                 + "VALUES "
                 + "(@user,current_date,CONCAT(OLD.idtipoexame,' | ',OLD.idareaexame,' | ',OLD.nome,' | ',IFNULL(OLD.descricao,'')),null,'D','tipoexame');");
         
+        /* Texto padrão */
         add("CREATE TRIGGER tr_textopadrao_insert AFTER INSERT ON textopadrao FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
@@ -180,11 +190,12 @@ public class Constants {
                 + "VALUES "
                 + "(@user,current_date,CONCAT(OLD.idtextopadrao,' | ',OLD.nome_codigo,' | ',OLD.texto),null,'D','textopadrao');");
         
+        /* Parametros */
         add("CREATE TRIGGER tr_parametros_insert AFTER INSERT ON parametros FOR EACH ROW "
                 + "INSERT INTO "
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
-                + "(@user,current_date,null,CONCAT(NEW.pasta_imagens,' | ',NEW.pasta_audios,' | ',NEW.auditar,' | ',IFNULL(NEW.email_usuario,''),' | ',IFNULL(NEW.arq_pdf,''),' | ',IFNULL(NEW.server_smtp,''),' | ',IFNULL(NEW.email_smtp,''),' | ',IFNULL(NEW.user_smtp,''),' | ',IFNULL(NEW.senha_smtp,''),' | ',IFNULL(NEW.porta_smtp,'')),'U','parametros');");
+                + "(@user,current_date,null,CONCAT(NEW.pasta_imagens,' | ',NEW.pasta_audios,' | ',NEW.auditar,' | ',IFNULL(NEW.email_usuario,''),' | ',IFNULL(NEW.arq_pdf,''),' | ',IFNULL(NEW.server_smtp,''),' | ',IFNULL(NEW.email_smtp,''),' | ',IFNULL(NEW.user_smtp,''),' | ',IFNULL(NEW.senha_smtp,''),' | ',IFNULL(NEW.porta_smtp,''),' | ',IFNULL(NEW.url_servidor,''),' | ',IFNULL(NEW.porta_servidor,'')),'U','parametros');");
     }};
     
     public ArrayList<String> SQLdropTriggersAuditoria = new ArrayList<String>() {{
@@ -203,9 +214,9 @@ public class Constants {
         add("DROP TRIGGER IF EXISTS  tr_laudo_insert");
         add("DROP TRIGGER IF EXISTS  tr_laudo_update");
         add("DROP TRIGGER IF EXISTS  tr_laudo_delete");
-        add("DROP TRIGGER IF EXISTS  tr_exame_insert");
-        add("DROP TRIGGER IF EXISTS  tr_exame_update");
-        add("DROP TRIGGER IF EXISTS  tr_exame_delete");
+        add("DROP TRIGGER IF EXISTS  tr_atendimento_insert");
+        add("DROP TRIGGER IF EXISTS  tr_atendimento_update");
+        add("DROP TRIGGER IF EXISTS  tr_atendimento_delete");
         add("DROP TRIGGER IF EXISTS  tr_paciente_insert");
         add("DROP TRIGGER IF EXISTS  tr_paciente_update");
         add("DROP TRIGGER IF EXISTS  tr_paciente_delete");

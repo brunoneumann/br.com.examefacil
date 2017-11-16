@@ -6,11 +6,8 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.BuscaPacienteControl;
-import br.com.examefacil.controller.PacienteControl;
-import br.com.examefacil.controller.UsuarioControl;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.BuscaPacienteView;
-import br.com.examefacil.view.PacienteView;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -27,7 +24,7 @@ public class DialogBuscarPaciente extends javax.swing.JDialog implements BuscaPa
         super(parent, modal);
         initComponents();
         this.telaExame = telaExame;
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );
         
     }
 
@@ -117,8 +114,8 @@ public class DialogBuscarPaciente extends javax.swing.JDialog implements BuscaPa
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBPesquisar))
+                    .addComponent(jBPesquisar)
+                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

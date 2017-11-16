@@ -195,7 +195,7 @@ public class PacienteControl {
         coluna.getColumn(1).setPreferredWidth(150);
         coluna.getColumn(2).setPreferredWidth(50);
         coluna.getColumn(3).setPreferredWidth(50);
-        coluna.getColumn(3).setPreferredWidth(100);
+        coluna.getColumn(4).setPreferredWidth(100);
         return coluna;
     }
     
@@ -203,6 +203,7 @@ public class PacienteControl {
         habilitaBotoesEditar(view);
         view.jLIDPaciente().setText(null);
         view.jPnlPerfilFB().setVisible(false);
+        limparTextos(view);
     }
     
     public void alteraEstadoEditarExcluir(PacienteView view, boolean action) {
