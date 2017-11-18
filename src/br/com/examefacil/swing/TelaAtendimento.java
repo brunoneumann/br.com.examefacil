@@ -1,35 +1,39 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.examefacil.swing;
 
+import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.controller.AtendimentoControl;
-import br.com.examefacil.controller.UsuarioControl;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import br.com.examefacil.view.AtendimentoView;
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 
 /**
  *
  * @author bruno
  */
 
-public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoView{
-
+public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoView {
     
     
-    public TelaAtendimento(java.awt.Frame parent, boolean modal) {
+    public TelaAtendimento(java.awt.Frame parent, boolean modal, Atendimento atendimento) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );  
+        jLIDAtendimento.setVisible(false); 
+        jLIDPaciente.setVisible(false);
+        jLIDUsuario.setVisible(false);
         
+        new AtendimentoControl().init(this, atendimento);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,24 +44,12 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
     private void initComponents() {
 
         jPAreaExame = new javax.swing.JPanel();
-        jBCancelar = new javax.swing.JButton();
-        jBIncluir = new javax.swing.JButton();
-        jBEditar = new javax.swing.JButton();
         jBGravar = new javax.swing.JButton();
-        jBExcluir = new javax.swing.JButton();
         jBFecha = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLIDExame = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLIDPaciente = new javax.swing.JLabel();
         jTPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTDataAtendimento = new javax.swing.JTextField();
-        try {
-            javax.swing.text.MaskFormatter data = new javax.swing.text.MaskFormatter("##/##/####");
-            jTDataAtendimento = new javax.swing.JFormattedTextField(data);
-        } catch (Exception e) {
-
-        }
         jLabel5 = new javax.swing.JLabel();
         jTHoraEntrada = new javax.swing.JTextField();
         try {
@@ -74,57 +66,26 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
         } catch (Exception e) {
 
         }
-        jLIDPaciente = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTObservacoes = new javax.swing.JTextArea();
+        jLIDAtendimento = new javax.swing.JLabel();
+        jLIDUsuario = new javax.swing.JLabel();
+        jDtDataAtendimento = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Exame");
         setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(600, 500));
 
         jPAreaExame.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
-        jBCancelar.setText("Cancelar");
-        jBCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBCancelarActionPerformed(evt);
-            }
-        });
-
-        jBIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/incluir.png"))); // NOI18N
-        jBIncluir.setText("Incluir");
-        jBIncluir.setEnabled(false);
-        jBIncluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBIncluirActionPerformed(evt);
-            }
-        });
-
-        jBEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editar.png"))); // NOI18N
-        jBEditar.setText("Editar");
-        jBEditar.setEnabled(false);
-        jBEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEditarActionPerformed(evt);
-            }
-        });
 
         jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
         jBGravar.setText("Gravar");
         jBGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBGravarActionPerformed(evt);
-            }
-        });
-
-        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
-        jBExcluir.setText("Excluir");
-        jBExcluir.setEnabled(false);
-        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBExcluirActionPerformed(evt);
             }
         });
 
@@ -142,15 +103,7 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
             jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPAreaExameLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBIncluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBGravar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBFecha)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -160,17 +113,12 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
             .addGroup(jPAreaExameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCancelar)
-                    .addComponent(jBIncluir)
-                    .addComponent(jBEditar)
                     .addComponent(jBGravar)
-                    .addComponent(jBExcluir)
                     .addComponent(jBFecha))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setText("Paciente");
-
+        jTPaciente.setName("Paciente"); // NOI18N
         jTPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTPacienteMouseClicked(evt);
@@ -186,7 +134,11 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
 
         jLabel5.setText("Hora Entrada");
 
+        jTHoraEntrada.setName("Hora de entrada"); // NOI18N
+
         jLabel6.setText("Hora Saída");
+
+        jTHoraSaida.setName(""); // NOI18N
 
         jLabel1.setText("Observações");
 
@@ -194,112 +146,111 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
         jTObservacoes.setRows(5);
         jScrollPane1.setViewportView(jTObservacoes);
 
+        jDtDataAtendimento.setDateFormatString("dd/MM/yyyy");
+        jDtDataAtendimento.setName("Data de atendimento"); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLIDExame, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(156, 156, 156)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1))
-                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLIDAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(jDtDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTHoraSaida)
+                                .addGap(13, 13, 13))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(10, 10, 10)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLIDExame, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTDataAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTHoraEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLIDPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLIDAtendimento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTHoraSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDtDataAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTHoraEntrada)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTHoraSaida)))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        jLabel3.setText("Paciente");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPAreaExame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-            this.setVisible(false);
-    }//GEN-LAST:event_jBCancelarActionPerformed
-
-    private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
-
-    }//GEN-LAST:event_jBEditarActionPerformed
-
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
         AtendimentoControl control = new AtendimentoControl();
-        control.salvar(this);
+        if(control.salvar(this)){
+            this.dispose();
+        }
     }//GEN-LAST:event_jBGravarActionPerformed
-
-    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-
-    }//GEN-LAST:event_jBExcluirActionPerformed
-
-    private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-
-    }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFechaActionPerformed
         this.setVisible(false);
@@ -314,17 +265,15 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
     private void jTPacienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPacienteKeyPressed
         new DialogBuscarPaciente(this, rootPaneCheckingEnabled, this).setVisible(true);
     }//GEN-LAST:event_jTPacienteKeyPressed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBCancelar;
-    private javax.swing.JButton jBEditar;
-    private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFecha;
     private javax.swing.JButton jBGravar;
-    private javax.swing.JButton jBIncluir;
-    private javax.swing.JLabel jLIDExame;
+    private com.toedter.calendar.JDateChooser jDtDataAtendimento;
+    private javax.swing.JLabel jLIDAtendimento;
     private javax.swing.JLabel jLIDPaciente;
+    private javax.swing.JLabel jLIDUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -333,101 +282,87 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
     private javax.swing.JPanel jPAreaExame;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTDataAtendimento;
     private javax.swing.JTextField jTHoraEntrada;
     private javax.swing.JTextField jTHoraSaida;
     private javax.swing.JTextArea jTObservacoes;
     private javax.swing.JTextField jTPaciente;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public JButton jBIncluir() {
-        return jBIncluir;
-    }
-
-    @Override
-    public JButton jBEditar() {
-        return jBEditar;
-    }
-
-    @Override
-    public JButton jBCancelar() {
-        return jBCancelar;
-    }
-
+    
     @Override
     public JButton jBGravar() {
         return jBGravar;
     }
-
-    @Override
-    public JButton jBExcluir() {
-        return jBExcluir;
-    }
-
+    
+    
     @Override
     public JButton jBFechar() {
         return jBFecha;
     }
-
+    
     @Override
     public String getPaciente() {
         return jTPaciente.getText();
     }
 
     @Override
-    public String getData() {
-        return jTDataAtendimento.getText();
-    }
-
-    @Override
     public String getHoraAtendimeto() {
         return jTHoraEntrada.getText();
     }
-
+    
     @Override
     public String getHoraSaida() {
         return jTHoraSaida.getText();
     }
-
-    @Override
-    public JLabel jLIDExame() {
-        return jLIDExame;
-    }
-
+    
     @Override
     public JTextField jTPaciente() {
         return jTPaciente;
     }
-
-    @Override
-    public JTextField jTDataAtendimento() {
-        return jTDataAtendimento;
-    }
-
+    
+    
     @Override
     public JTextField jTHoraEntrada() {
         return jTHoraEntrada;
     }
-
+    
     @Override
     public JTextField jTHoraSaida() {
         return jTHoraSaida;
     }
-
-   
+    
     @Override
     public JLabel JLIDPaciente() {
         return jLIDPaciente;
     }
-
+    
     @Override
     public JTextArea jTObservacoes() {
         return jTObservacoes;
     }
-
+    
     @Override
     public String getObservacoes() {
         return jTObservacoes().getText();
+    }
+
+    @Override
+    public JLabel jLIDAtendimento() {
+        return jLIDAtendimento;
+    }
+
+    @Override
+    public JLabel jLIDUsuario() {
+        return jLIDUsuario;
+    }
+
+    @Override
+    public JDateChooser jDtDataAtendimento() {
+        return jDtDataAtendimento;
+    }
+
+    @Override
+    public Date getData() {
+        return jDtDataAtendimento.getDate();
     }
 }

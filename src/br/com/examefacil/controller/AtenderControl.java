@@ -6,18 +6,15 @@
 package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Atender;
-import br.com.examefacil.bean.TextoPadrao;
 import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.AtenderDAO;
 import br.com.examefacil.dao.TipoExameDAO;
-import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.AtenderView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
@@ -31,6 +28,8 @@ public class AtenderControl {
     }
 
     public void init(AtenderView view) {
+        view.jLIDExame().setVisible(false);
+        view.jLIDAtendimento().setVisible(false);
         //atualizaTabelaAtender(view);
         //carregaPermissaoIncluir(view);
     }
@@ -66,8 +65,6 @@ public class AtenderControl {
                 a.setIdatendimento(1); 
                 result = new AtenderDAO().save(a);
         }
-        //atender.setIdatendimento(1);
-        //atender.setIdtipoexame(1);
       
         if (result) {
             limparTextos(view);

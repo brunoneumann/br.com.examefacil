@@ -5,8 +5,9 @@
  */
 package br.com.examefacil.view;
 
+import com.toedter.calendar.JDateChooser;
+import java.util.Date;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -17,25 +18,21 @@ import javax.swing.JTextField;
  */
 public interface AtendimentoView {
     
-    public JButton jBIncluir();
-    public JButton jBEditar();
-    public JButton jBCancelar();
     public JButton jBGravar();
-    public JButton jBExcluir();
     public JButton jBFechar();
     
     public String getPaciente();
-    public String getData();
+    public Date getData();
     public String getHoraAtendimeto();
     public String getHoraSaida();
     public String getObservacoes();
-    public JLabel jLIDExame();
+    public JLabel jLIDAtendimento();
     public JLabel JLIDPaciente();
+    public JLabel jLIDUsuario();
     
     public JTextField jTPaciente();
-    public JTextField jTDataAtendimento();
+    public JDateChooser jDtDataAtendimento();
     public JTextField jTHoraEntrada();
     public JTextField jTHoraSaida();
     public JTextArea jTObservacoes();
-    
 }

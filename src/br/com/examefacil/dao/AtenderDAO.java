@@ -6,13 +6,22 @@
 package br.com.examefacil.dao;
 
 import br.com.examefacil.bean.Atender;
+import br.com.examefacil.conn.ConnectionFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
  * @author Henrique
  */
 public class AtenderDAO {
+    
+    final org.apache.logging.log4j.Logger log = LogManager.getLogger(AtenderDAO.class.getName());
+    private Connection connection;
     
     public boolean save(Atender obj) {
         Atender a = (Atender)obj;
@@ -34,7 +43,50 @@ public class AtenderDAO {
     }
     
     public List<Atender> list(String parametro){
-        return new CustomDAO<Atender>().list(Atender.class, "SELECT * FROM atendimento_tipoexame WHERE idatendimento LIKE '%' :idatendimento '%' DESC", "idatendimento", parametro);
+        return new CustomDAO<Atender>().list(Atender.class, "SELECT * FROM atendimento_tipoexame WHERE idatendimento LIKE '%' :idatendimento '%'", "idatendimento", parametro);
+    }
+    
+    public List<Atender> listarCombo() {
+        this.connection = new ConnectionFactory().getConnection();
+        List<Atender> atender = new ArrayList<Atender>();
+        String sql = "SELECT a.idatend_tipo, a.idatendimento, a.idtipoexame, t.nome AS tipoexame, e.nome AS areaexame\n" +
+                "FROM atendimento_tipoexame a, tipoexame t, areaexame e\n" +
+                "where a.idtipoexame = t.idtipoexame\n" +
+                "AND t.idareaexame = e.idareaexame";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Atender a = new Atender();
+                a.setIdatend_tipo(rs.getInt("idatend_tipo"));
+                a.setIdatendimento(rs.getInt("idatendimento"));
+                a.setIdtipoexame(rs.getInt("idtipoexame"));
+                a.setTipoexame(rs.getString("tipoexame"));
+                a.setAreaexame(rs.getString("areaexame"));
+
+                atender.add(a);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return atender;
     }
     
 }

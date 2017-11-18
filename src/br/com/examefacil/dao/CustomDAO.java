@@ -5,6 +5,7 @@
 */
 package br.com.examefacil.dao;
 
+import br.com.examefacil.bean.Atender;
 import br.com.examefacil.bean.Parametro;
 import br.com.examefacil.conn.HibernateUtil;
 import br.com.examefacil.swing.TelaPrincipal;
@@ -202,6 +203,29 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
             }
         }
         return null;
+    }
+
+    @Override
+    public List<T> listCustom(Class<T> type, String query, List<Parametro> parametros) throws Exception {
+        try {
+            session.beginTransaction();
+            Query q = session.createSQLQuery(query).addEntity(type);
+            for(Parametro p : parametros){
+                q.setParameter(p.getCampo(), p.getParametro());
+            }
+            return q.list();
+        } catch(Exception ex){
+            log.error(ex);
+        } finally {
+            if(session.isConnected()){
+                session.close();
+            }
+        }
+        return null;
+    }
+
+    List<Atender> list(Class<Atender> aClass, String select__from_atendimento_tipoexame_WHERE_, String parametros) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

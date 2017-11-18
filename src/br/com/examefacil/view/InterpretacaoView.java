@@ -6,7 +6,9 @@
 package br.com.examefacil.view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 /**
@@ -15,8 +17,6 @@ import javax.swing.JTextArea;
  */
 public interface InterpretacaoView {
     
-    public JButton jBGravar();
-    public JButton jBCancelar();
     public JButton jBLaudar();
     public JButton jBGravarLaudo();
     public JButton jBCancelarLaudo();
@@ -24,6 +24,11 @@ public interface InterpretacaoView {
     public JButton jBTextoPadrao();
     public JTextArea jTLaudo();
     public JLabel jLIDTextoPadrao();
+    public JComboBox jCImagens();
+    public JLabel jLIDTextoPadraoExame();
+    public JTable jTImagens();
+    public JLabel jLIDAtendimento();
+    public JLabel jLImagem();
     
     
 }

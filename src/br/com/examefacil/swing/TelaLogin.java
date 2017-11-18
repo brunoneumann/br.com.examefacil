@@ -60,6 +60,11 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
         jLabel2.setText("Senha");
 
         jPSenha.setText("teste");
+        jPSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPSenhaActionPerformed(evt);
+            }
+        });
 
         jBEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
         jBEntrar.setText("Entrar");
@@ -121,6 +126,10 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
     private void jTUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTUsuarioActionPerformed
+
+    private void jPSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPSenhaActionPerformed
 
     /**
      * @param args the command line arguments

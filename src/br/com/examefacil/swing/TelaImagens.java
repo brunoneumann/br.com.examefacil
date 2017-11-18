@@ -59,6 +59,7 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
         ));
         jScrollPane2.setViewportView(jTImagens);
 
+        jBEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/interpretar.png"))); // NOI18N
         jBEnviar.setText("Enviar para Interpretação");
         jBEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +81,11 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
 
         jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
         jBExcluir.setText("Excluir");
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBExcluirActionPerformed(evt);
+            }
+        });
 
         jBAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/incluir.png"))); // NOI18N
         jBAdicionar.setText("Adicionar");
@@ -158,6 +164,10 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
         }
 
     }//GEN-LAST:event_jBAdicionarActionPerformed
+
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new ImagemControl(this).excluir(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -230,6 +230,7 @@ public class UsuarioControl {
         view.jLIDUsuario().setText(null);
         view.btnAbrirDialogAlteraSenha().setVisible(false);
         view.btnAbrirPermissoes().setVisible(false);
+        limparTextos(view);
     }
     
     public void alteraEstadoEditarExcluir(UsuarioView view, boolean action) {

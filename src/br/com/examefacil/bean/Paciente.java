@@ -5,6 +5,7 @@
  */
 package br.com.examefacil.bean;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="paciente")
-public class Paciente {
+public class Paciente implements Serializable {
     
     @Id
     @GeneratedValue

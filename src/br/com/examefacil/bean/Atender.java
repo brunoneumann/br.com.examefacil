@@ -11,8 +11,10 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -23,17 +25,22 @@ import javax.persistence.GenerationType;
 public class Atender {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue
     private int idatend_tipo;
     private int idatendimento;
     private int idtipoexame;
     
-    /*@Column(updatable = false, insertable = false)
+    @Transient
     private String paciente;
-    @Column(updatable = false, insertable = false)
+    @Transient
     private Date data;
-    @Column(updatable = false, insertable = false)
+    @Transient
     private String hora;
+    @Transient
+    private String tipoexame;
+    @Transient
+    private String areaexame;
+    
     public String getPaciente() {
     return paciente;
     }
@@ -51,7 +58,7 @@ public class Atender {
     }
     public void setHora(String hora) {
     this.hora = hora;
-    }*/
+    }
     
     public int getIdatend_tipo() {
         return idatend_tipo;
@@ -75,6 +82,34 @@ public class Atender {
 
     public void setIdtipoexame(int idtipoexame) {
         this.idtipoexame = idtipoexame;
+    }
+
+    public String getTipoexame() {
+        return tipoexame;
+    }
+
+    public void setTipoexame(String tipoexame) {
+        this.tipoexame = tipoexame;
+    }
+
+    public String getAreaexame() {
+        return areaexame;
+    }
+
+    public void setAreaexame(String areaexame) {
+        this.areaexame = areaexame;
+    }
+    
+    @Override
+    public String toString() {
+        String texto = areaexame+" - "+tipoexame;
+        return texto;
+    }
+    
+     @Override
+    public boolean equals(Object obj) {
+        Atender a = (Atender) obj;
+        return Objects.equals(this.idatend_tipo, a.idatend_tipo);
     }
     
     

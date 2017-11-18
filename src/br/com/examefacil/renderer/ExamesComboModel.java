@@ -6,7 +6,6 @@
 package br.com.examefacil.renderer;
 
 import br.com.examefacil.bean.Atender;
-import br.com.examefacil.bean.Atender;
 import br.com.examefacil.dao.AtenderDAO;
 import java.util.List;
 import javax.swing.AbstractListModel;
@@ -14,7 +13,7 @@ import javax.swing.ComboBoxModel;
 
 /**
  *
- * @author bruno
+ * @author Henrique
  */
 public class ExamesComboModel extends AbstractListModel<Atender> implements ComboBoxModel<Atender> {
 
@@ -56,7 +55,7 @@ public class ExamesComboModel extends AbstractListModel<Atender> implements Comb
     private void popular() {
         try {
             AtenderDAO dao = new AtenderDAO();
-            lista = dao.list();
+            lista = dao.listarCombo();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

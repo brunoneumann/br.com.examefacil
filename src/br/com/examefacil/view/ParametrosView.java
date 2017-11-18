@@ -41,4 +41,7 @@ public interface ParametrosView {
     public JTextField jPSenhaSMTP();
     public JTextField jTxtPortaSMTP();
     
+    public JTextField jTxtURLServidor();
+    public JTextField jTxtPortaServidor();
+    
 }
