@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import br.com.examefacil.view.AtendimentoView;
+import br.com.examefacil.view.TelaPrincipalView;
 import com.toedter.calendar.JDateChooser;
 import java.util.Date;
 
@@ -22,16 +23,18 @@ import java.util.Date;
 
 public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoView {
     
+    public TelaPrincipalView viewPrincipal;
     
-    public TelaAtendimento(java.awt.Frame parent, boolean modal, Atendimento atendimento) {
+    public TelaAtendimento(java.awt.Frame parent, boolean modal, Atendimento atendimento, TelaPrincipalView viewPrincipal) {
         super(parent, modal);
+        this.viewPrincipal = viewPrincipal;
         initComponents();
         //setLocationRelativeTo( null );  
         jLIDAtendimento.setVisible(false); 
         jLIDPaciente.setVisible(false);
         jLIDUsuario.setVisible(false);
         
-        new AtendimentoControl().init(this, atendimento);
+        new AtendimentoControl(viewPrincipal).init(this, atendimento);
     }
     
     /**
@@ -246,7 +249,7 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        AtendimentoControl control = new AtendimentoControl();
+        AtendimentoControl control = new AtendimentoControl(viewPrincipal);
         if(control.salvar(this)){
             this.dispose();
         }

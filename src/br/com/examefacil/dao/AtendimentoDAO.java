@@ -6,6 +6,7 @@
 package br.com.examefacil.dao;
 
 import br.com.examefacil.bean.Atendimento;
+import br.com.examefacil.bean.Parametros;
 import br.com.examefacil.conn.ConnectionFactory;
 import br.com.examefacil.tools.Util;
 import java.sql.Connection;
@@ -35,7 +36,8 @@ public class AtendimentoDAO {
     }
     
     public Atendimento get(int id) {
-        this.connection = new ConnectionFactory().getConnection();
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
         String sql = "SELECT a.idatendimento, a.idusuario, u.nome nome_usuario, a.idpaciente, p.nome nome_paciente, " +
                 "a.status, a.data, a.hora_entrada, a.hora_saida, a.observacoes " +
                 "FROM atendimento a " +
@@ -84,18 +86,20 @@ public class AtendimentoDAO {
         return null;
     }
 
-    public List<Atendimento> listaAtendimentos() {
-        this.connection = new ConnectionFactory().getConnection();
+    public List<Atendimento> listaAtendimentos(String nome_paciente, String dataInicial, String dataFinal, String tipo_acesso) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
         List<Atendimento> atendimentos = new ArrayList<Atendimento>();
-        String sql = "select a.idatendimento, u.nome nome_usuario, p.nome nome_paciente, " +
-                "a.status, a.data, a.hora_entrada, a.hora_saida " +
-                "from atendimento a " +
-                "left join usuario u on (u.idusuario=a.idusuario) " +
-                "left join paciente p on (p.idpaciente=a.idpaciente)";
+        
+        String sql = "call atendimentos(?, ?, ?, ?);";
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(sql);
+            stmt.setString(1, "%"+nome_paciente+"%");
+            stmt.setString(2, Util.data_to_sql(dataInicial));
+            stmt.setString(3, Util.data_to_sql(dataFinal));
+            stmt.setString(4, tipo_acesso);
             rs = stmt.executeQuery();
             while(rs.next()){
                 Atendimento a = new Atendimento();

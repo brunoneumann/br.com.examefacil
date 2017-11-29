@@ -306,7 +306,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jDteInicial" min="-2" pref="140" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jDteInicial1" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="jDteFinal" min="-2" pref="140" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jBPesquisar" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -332,7 +332,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jTPesquisarAtendimento" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="jDteInicial" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="jDteInicial1" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="jDteFinal" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="jBPesquisar" alignment="1" min="-2" pref="39" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -438,7 +438,7 @@
                     <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDteInicial1">
+                <Component class="com.toedter.calendar.JDateChooser" name="jDteFinal">
                   <Properties>
                     <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
                   </Properties>

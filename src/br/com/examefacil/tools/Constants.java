@@ -196,6 +196,28 @@ public class Constants {
                 + "auditoria(usuario,data,dado_anterior,dado_novo,tipo_alteracao,tabela) "
                 + "VALUES "
                 + "(@user,current_date,null,CONCAT(NEW.pasta_imagens,' | ',NEW.pasta_audios,' | ',NEW.auditar,' | ',IFNULL(NEW.email_usuario,''),' | ',IFNULL(NEW.arq_pdf,''),' | ',IFNULL(NEW.server_smtp,''),' | ',IFNULL(NEW.email_smtp,''),' | ',IFNULL(NEW.user_smtp,''),' | ',IFNULL(NEW.senha_smtp,''),' | ',IFNULL(NEW.porta_smtp,''),' | ',IFNULL(NEW.url_servidor,''),' | ',IFNULL(NEW.porta_servidor,'')),'U','parametros');");
+        
+        /* View Auditoria */
+        add("CREATE OR REPLACE VIEW vw_auditoria AS "
+                + "SELECT a.usuario USUARIO, DATE_FORMAT(a.data, '%d/%m/%Y') 'DATA', "
+                + "CASE WHEN a.tipo_alteracao='I' THEN 'INSERIU' "
+                + "WHEN a.tipo_alteracao='U' THEN 'ALTEROU' "
+                + "WHEN a.tipo_alteracao='D' THEN 'EXCLUIU' END ACAO, "
+                + "CASE WHEN a.tabela='usuario' THEN 'Usuários' "
+                + "WHEN a.tabela='acesso' THEN 'Permissões de acesso' "
+                + "WHEN a.tabela='audios' THEN 'Áudios' "
+                + "WHEN a.tabela='imagens' THEN 'Imagens' "
+                + "WHEN a.tabela='laudo' THEN 'Laudo de exame' "
+                + "WHEN a.tabela='atendimento' THEN 'Atendimentos' "
+                + "WHEN a.tabela='paciente' THEN 'Pacientes' "
+                + "WHEN a.tabela='areaexame' THEN 'Área de exame' "
+                + "WHEN a.tabela='tipoexame' THEN 'Tipos de exame' "
+                + "WHEN a.tabela='textopadrao' THEN 'Texto padrão' "
+                + "WHEN a.tabela='parametros' THEN 'Parâmetros' "
+                + "END ONDE, "
+                + "a.dado_anterior ANTERIOR, a.dado_novo AGORA "
+                + "FROM auditoria a");
+        
     }};
     
     public ArrayList<String> SQLdropTriggersAuditoria = new ArrayList<String>() {{
@@ -232,5 +254,48 @@ public class Constants {
         add("DROP TRIGGER IF EXISTS  tr_parametros_insert");
     }};
     
+    /* Função status do atendimento */
+    public String SQLDROPFunctionStatusAtendimento = "DROP FUNCTION IF EXISTS fn_status_atendimento";
+    public String SQLADDFunctionStatusAtendimento = "CREATE FUNCTION fn_status_atendimento (status VARCHAR(1)) "
+            + "RETURNS VARCHAR(25) "
+            + "DETERMINISTIC "
+            + "RETURN CASE WHEN status='1' THEN 'Aguardando consulta' "
+            + "WHEN status='2' THEN 'Aguardando exame' "
+            + "WHEN status='3' THEN 'Aguardando interpretação' "
+            + "WHEN status='4' THEN 'Interpretado' "
+            + "WHEN status='5' THEN 'Finalizado' "
+            + "END";
+    
+    /* Função para filtros de acordo com o tipo de acesso do usuário */
+    public String SQLDROPProcedureAtendimentos = "DROP PROCEDURE IF EXISTS atendimentos";
+    public String SQLADDProcedureAtendimentos = ""
+            + "CREATE PROCEDURE atendimentos(nome_paciente VARCHAR(100), data_inicial VARCHAR(10), data_final VARCHAR(10), tipo_acesso VARCHAR(1)) "
+            + "DETERMINISTIC "
+            + "BEGIN "
+            + "SET @query = CONCAT(\"SELECT a.idatendimento, u.nome nome_usuario, p.nome nome_paciente, " +
+                "fn_status_atendimento(a.status) status, a.data, a.hora_entrada, a.hora_saida "+
+                "FROM atendimento a "+
+                "LEFT JOIN usuario u ON (u.idusuario=a.idusuario) "+
+                "LEFT JOIN paciente p ON (p.idpaciente=a.idpaciente) "+
+                "WHERE a.data BETWEEN '\", data_inicial, \"' AND '\", data_final, \"' " +
+                "AND p.nome LIKE '%\", nome_paciente, \"%'\"); "+
+                "IF (tipo_acesso = '1') THEN "+
+                "SET @query = CONCAT(@query, ' AND a.status IN ('\"1\"','\"5\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
+                "END IF; "+
+                "IF (tipo_acesso = '2') THEN "+
+                "SET @query = CONCAT(@query, ' AND a.status IN ('\"2\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
+                "END IF; "+
+                "IF (tipo_acesso = '3') THEN "+
+                "SET @query = CONCAT(@query, ' AND a.status IN ('\"1\"','\"2\"','\"4\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
+                "END IF; "+
+                "IF (tipo_acesso = '4') THEN "+
+                "SET @query = CONCAT(@query, ' AND a.status IN ('\"3\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
+                "END IF; "+
+                "IF (tipo_acesso = '5') THEN "+
+                "SET @query = CONCAT(@query, ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
+                "END IF; "+
+                "PREPARE stmt1 FROM @query; "+
+                "EXECUTE stmt1; "+
+                "END";
     
 }

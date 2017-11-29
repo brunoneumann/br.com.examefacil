@@ -9,7 +9,9 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
+import java.net.NetworkInterface;
 import java.net.URI;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -18,6 +20,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.function.Supplier;
@@ -242,10 +245,7 @@ public class Util {
         java.sql.Date date = null;
         
         try {
-  //          DateFormat df = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-//df.setTimeZone(...); // Whatever time zone you want to use
-//Date journeyDate = new java.sql.Date(df.parse(text).getTime());
-
+            
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("pt", "BR"));
             return new java.sql.Date(formatter.parse(data).getTime());
             
@@ -274,4 +274,50 @@ public class Util {
         return data;
     }
     
+    /**
+     *
+     * @param dias Dias para adicionar na data passada
+     * @param data Data que será acrescido os dias
+     * @return Retorna a data no formato java.util.Date passada somado os dias
+     */
+    public static Date add_days(int dias, Date data) {
+        Calendar dtCalendar = Calendar.getInstance();
+        dtCalendar.setTime(data);
+        dtCalendar.add(Calendar.DAY_OF_MONTH, dias);
+        return dtCalendar.getTime();
+    }
+    
+    /**
+     * Recebe uma data dd/MM/yyyy e transforma em yyyy-MM-dd
+     * @param data
+     * @return
+     */
+    public static String data_to_sql(String data) {
+        if (data != null) {
+            if (!data.contains("-")) {
+                try {
+                    return data.substring(6, 10) + "-" + data.substring(3, 5) + "-" + data.substring(0, 2);
+                } catch (Exception ex) {
+                }
+            } else {
+                return data;
+            }
+        }
+        return "";
+    }
+    
+    public static String[] stringToArray(String val){
+        return val.split(",");
+    }
+    
+    public static boolean isServerMachine(String host) {
+        try {
+            InetAddress addr = InetAddress.getByName(host);
+            if (addr.isAnyLocalAddress() || addr.isLoopbackAddress())
+                return true;
+            return NetworkInterface.getByInetAddress(addr) != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

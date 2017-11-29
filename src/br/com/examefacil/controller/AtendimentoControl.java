@@ -5,15 +5,14 @@
 */
 package br.com.examefacil.controller;
 
-import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.dao.AtendimentoDAO;
 import br.com.examefacil.socket.ServerSocketAtendimento;
 import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.tools.Util;
 import java.util.ArrayList;
-import java.util.List;
 import br.com.examefacil.view.AtendimentoView;
+import br.com.examefacil.view.TelaPrincipalView;
 import org.apache.logging.log4j.LogManager;
 /**
  *
@@ -22,8 +21,11 @@ import org.apache.logging.log4j.LogManager;
 public class AtendimentoControl {
     
     final org.apache.logging.log4j.Logger log = LogManager.getLogger(AtendimentoControl.class.getName());
+    public TelaPrincipalView viewPrincipal;
     
-    public AtendimentoControl(){}
+    public AtendimentoControl(TelaPrincipalView viewPrincipal){
+        this.viewPrincipal = viewPrincipal;
+    }
     
     public void init(AtendimentoView view, Atendimento atendimento){
         if(atendimento!=null){
@@ -52,7 +54,7 @@ public class AtendimentoControl {
             } else {
                 atendimento.setIdusuario(TelaPrincipal.usuarioLogado.getIdusuario());
             }
-            atendimento.setStatus("2");
+            atendimento.setStatus("1");
             atendimento.setData(view.getData());
             atendimento.setHoraEntrada(view.getHoraAtendimeto());
             if(view.getHoraSaida().equals("  :  ")){
@@ -68,7 +70,11 @@ public class AtendimentoControl {
                 desabilitaBotoesEditar(view);
                 
                 // Envia atualização da lista para o socket
-                new ServerSocketAtendimento().atualizar(atendimento);
+                try {
+                    new ServerSocketAtendimento().atualizar(viewPrincipal);
+                } catch(Exception ex){
+                    log.error(ex);
+                }
             }
             return result;
         }
@@ -76,11 +82,7 @@ public class AtendimentoControl {
             return false;
         }
     }
-    
-    public boolean excluir(AtendimentoView view){
-        
-        return false;
-    }
+
     
     public void carregarDados(AtendimentoView view, Atendimento a){
         if(a!=null){

@@ -9,6 +9,7 @@ import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.view.TelaPrincipalView;
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -69,7 +70,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jBLaudo = new javax.swing.JButton();
         jBAtender = new javax.swing.JButton();
         jDteInicial = new com.toedter.calendar.JDateChooser();
-        jDteInicial1 = new com.toedter.calendar.JDateChooser();
+        jDteFinal = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAtendimentos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -229,7 +230,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
         jDteInicial.setDateFormatString("dd/MM/yyyy");
 
-        jDteInicial1.setDateFormatString("dd/MM/yyyy");
+        jDteFinal.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPAreaExameLayout = new javax.swing.GroupLayout(jPAreaExame);
         jPAreaExame.setLayout(jPAreaExameLayout);
@@ -257,7 +258,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDteInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDteInicial1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBPesquisar)))
                 .addContainerGap(200, Short.MAX_VALUE))
@@ -278,7 +279,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTPesquisarAtendimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDteInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDteInicial1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDteFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -444,24 +445,24 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMTextoPadraoActionPerformed
 
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
-
+        new TelaPrincipalControl().pesquisar(this);
     }//GEN-LAST:event_jBPesquisarActionPerformed
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled, null);
+        TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled, null, this);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEditarActionPerformed
         Atendimento a = new TelaPrincipalControl().atendimentoSelecionado(this);
         if(a!=null){
-            TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled, a);
+            TelaAtendimento dialog = new TelaAtendimento(this, rootPaneCheckingEnabled, a, this);
             dialog.setVisible(true);
         }
     }//GEN-LAST:event_jBEditarActionPerformed
 
     private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-
+        new TelaPrincipalControl().excluir(this);
     }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void jMSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSairActionPerformed
@@ -514,8 +515,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JButton jBLaudo;
     private javax.swing.JButton jBPesquisar;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private com.toedter.calendar.JDateChooser jDteFinal;
     private com.toedter.calendar.JDateChooser jDteInicial;
-    private com.toedter.calendar.JDateChooser jDteInicial1;
     private javax.swing.JInternalFrame jIExame;
     private javax.swing.JInternalFrame jILogin;
     private javax.swing.JLabel jLabel1;
@@ -662,6 +663,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     @Override
     public JTextField jTPesquisarAtendimento() {
         return jTPesquisarAtendimento;
+    }
+
+    @Override
+    public JDateChooser jDteInicial() {
+        return jDteInicial;
+    }
+
+    @Override
+    public JDateChooser jDteFinal() {
+        return jDteFinal;
     }
   
     

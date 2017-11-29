@@ -1,6 +1,7 @@
 
 package br.com.examefacil.conn;
 
+import br.com.examefacil.bean.Parametros;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,8 +11,8 @@ import java.sql.SQLException;
  * @author bruno
  */
 public class ConnectionFactory {
-
-    public Connection getConnection() {
+    
+    public Connection getConnection(Parametros parametros) {
         try {
             Class.forName( "com.mysql.jdbc.Driver" );
         } catch (ClassNotFoundException c) {
@@ -22,7 +23,7 @@ public class ConnectionFactory {
             }
         }
         try {
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/examefacil?autoReconnect=true&useSSL=false", "root", "1pbns11");
+            return DriverManager.getConnection("jdbc:mysql://"+parametros.getUrlServidor()+":3306/examefacil?autoReconnect=true&useSSL=false", "root", "1pbns11");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
