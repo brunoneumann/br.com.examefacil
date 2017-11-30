@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.text.Normalizer.Form;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.TargetDataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.TableColumnModel;
