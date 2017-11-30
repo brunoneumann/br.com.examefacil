@@ -5,7 +5,6 @@
 */
 package br.com.examefacil.dao;
 
-import br.com.examefacil.bean.Atender;
 import br.com.examefacil.bean.Parametro;
 import br.com.examefacil.conn.HibernateUtil;
 import br.com.examefacil.swing.TelaPrincipal;
@@ -222,10 +221,6 @@ public class CustomDAO<T> implements InterfaceDAO<T>{
             }
         }
         return null;
-    }
-
-    List<Atender> list(Class<Atender> aClass, String select__from_atendimento_tipoexame_WHERE_, String parametros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

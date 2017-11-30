@@ -46,6 +46,7 @@ public class Parametros {
     private String urlServidor;
     @Column(name = "porta_servidor")
     private int portaServidor;
+    private boolean atualizar;
 
     public int getIdparametros() {
         return idparametros;
@@ -149,6 +150,14 @@ public class Parametros {
 
     public void setPortaServidor(int portaServidor) {
         this.portaServidor = portaServidor;
+    }
+
+    public boolean isAtualizar() {
+        return atualizar;
+    }
+
+    public void setAtualizar(boolean atualizar) {
+        this.atualizar = atualizar;
     }
     
     

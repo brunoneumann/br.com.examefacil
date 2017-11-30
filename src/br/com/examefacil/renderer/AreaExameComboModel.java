@@ -27,7 +27,9 @@ public class AreaExameComboModel extends AbstractListModel<AreaExame> implements
         popular();
 
         /* Define o objeto selecionado */
-        setSelectedItem(lista.get(0));
+        if(lista!=null && lista.size()>0){
+            setSelectedItem(lista.get(0));
+        }
     }
 
     /* Captura o tamanho da listagem */

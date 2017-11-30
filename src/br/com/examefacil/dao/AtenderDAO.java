@@ -6,6 +6,7 @@
 package br.com.examefacil.dao;
 
 import br.com.examefacil.bean.Atender;
+import br.com.examefacil.bean.Parametros;
 import br.com.examefacil.conn.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,11 +23,12 @@ public class AtenderDAO {
     
     final org.apache.logging.log4j.Logger log = LogManager.getLogger(AtenderDAO.class.getName());
     private Connection connection;
+    private Parametros parametros;
     
     public boolean save(Atender obj) {
         Atender a = (Atender)obj;
         System.out.println(a.getIdatendimento()+" "+a.getIdtipoexame());
-        
+        parametros = new ParametrosDAO().get();
         return new CustomDAO<Atender>().save(obj);
     }
     
@@ -47,7 +49,7 @@ public class AtenderDAO {
     }
     
     public List<Atender> listarCombo() {
-        this.connection = new ConnectionFactory().getConnection();
+        this.connection = new ConnectionFactory().getConnection(parametros);
         List<Atender> atender = new ArrayList<Atender>();
         String sql = "SELECT a.idatend_tipo, a.idatendimento, a.idtipoexame, t.nome AS tipoexame, e.nome AS areaexame\n" +
                 "FROM atendimento_tipoexame a, tipoexame t, areaexame e\n" +

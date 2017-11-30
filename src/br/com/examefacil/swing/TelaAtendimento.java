@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import br.com.examefacil.view.AtendimentoView;
+import br.com.examefacil.view.TelaPrincipalView;
 import com.toedter.calendar.JDateChooser;
 import java.util.Date;
 
@@ -22,16 +23,21 @@ import java.util.Date;
 
 public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoView {
     
+    public TelaPrincipalView viewPrincipal;
     
-    public TelaAtendimento(java.awt.Frame parent, boolean modal, Atendimento atendimento) {
+    public TelaAtendimento(java.awt.Frame parent, boolean modal, Atendimento atendimento, TelaPrincipalView viewPrincipal) {
+
         super(parent, modal);
+        this.viewPrincipal = viewPrincipal;
         initComponents();
         //setLocationRelativeTo( null );  
         jLIDAtendimento.setVisible(false); 
         jLIDPaciente.setVisible(false);
         jLIDUsuario.setVisible(false);
         
-        new AtendimentoControl().init(this, atendimento);
+
+        new AtendimentoControl(viewPrincipal).init(this, atendimento);
+
     }
     
     /**
@@ -146,7 +152,6 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
         jTObservacoes.setRows(5);
         jScrollPane1.setViewportView(jTObservacoes);
 
-        jDtDataAtendimento.setDateFormatString("dd/MM/yyyy");
         jDtDataAtendimento.setName("Data de atendimento"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -239,14 +244,16 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        AtendimentoControl control = new AtendimentoControl();
+
+        AtendimentoControl control = new AtendimentoControl(viewPrincipal);
+
         if(control.salvar(this)){
             this.dispose();
         }

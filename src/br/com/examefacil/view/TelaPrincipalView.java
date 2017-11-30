@@ -5,6 +5,7 @@
 */
 package br.com.examefacil.view;
 
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -49,4 +50,6 @@ public interface TelaPrincipalView {
     
     public JTable tblAtendimentos();
     
+    public JDateChooser jDteInicial();
+    public JDateChooser jDteFinal();
 }

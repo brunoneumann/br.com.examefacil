@@ -9,6 +9,7 @@ import com.toedter.calendar.JDateChooser;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -29,7 +30,6 @@ public interface AtendimentoView {
     public JLabel jLIDAtendimento();
     public JLabel JLIDPaciente();
     public JLabel jLIDUsuario();
-    
     public JTextField jTPaciente();
     public JDateChooser jDtDataAtendimento();
     public JTextField jTHoraEntrada();

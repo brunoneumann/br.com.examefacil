@@ -6,10 +6,12 @@
 package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Atender;
+import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.AtenderDAO;
 import br.com.examefacil.dao.TipoExameDAO;
 import br.com.examefacil.view.AtenderView;
+import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
@@ -117,21 +119,24 @@ public class AtenderControl {
         }
     }
 
-    public Atender atendimentoSelecionado(AtenderView view) {
-        //int selected = view.JTABAtendimentos().getSelectedRow();
-        //return get((int)view.JTABAtendimento().getModel().getValueAt(selected, 0));
-        Atender a = new Atender();
+    public Atender atendimentoSelecionado(TelaPrincipalView view) {
+        int selected = view.tblAtendimentos().getSelectedRow();
+        return get((int)view.tblAtendimentos().getModel().getValueAt(selected, 0));
+        /*Atender a = new Atender();
         a.setIdatendimento(1);
-        return a;
+        return a;*/
     }
 
-    public void carregarDados(AtenderView view) {
-        /*TelaPrincipal a = TelaPrincipal(view);
+    public void carregarDados(TelaPrincipalView view) {
+        Atender a = atendimentoSelecionado(view);
+        System.out.println(a.getIdatendimento());
         if(a!=null){
-            habilitaBotoesEditar(view);
-            view.jLIDAtender().setText(a.getIdareaexame()+"");
-            view.jTAtender().setText(a.getNome());
-        }*/
+            /*habilitaBotoesEditar(view);
+            view.jLIDAtendimento().setText(a.getIdatendimento()+"");
+            view.jLPaciente().setText(a.getNome_paciente());
+            view.jLIDAtendimento().setText(a.getDataString());
+            view.jLHora().setText(a.getHoraEntrada());*/
+        }
     }
 
     public TableModel tableModelAtender(AtenderView view) {

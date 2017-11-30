@@ -8,15 +8,17 @@ package br.com.examefacil.controller;
 import br.com.examefacil.bean.Acesso;
 import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.dao.AtendimentoDAO;
+import br.com.examefacil.dao.ParametrosDAO;
 import br.com.examefacil.socket.ServerSocketAtendimento;
 import br.com.examefacil.swing.TelaLogin;
 import br.com.examefacil.swing.TelaPrincipal;
 import static br.com.examefacil.swing.TelaPrincipal.usuarioLogado;
-import br.com.examefacil.view.PacienteView;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -32,6 +34,10 @@ public class TelaPrincipalControl {
     final org.apache.logging.log4j.Logger log = LogManager.getLogger(TelaPrincipalControl.class.getName());
     
     public void init(TelaPrincipalView view) {
+        // Inicia as funções do banco
+        new ParametrosDAO().initFunctions(new ParametrosDAO().get());
+        
+        iniciarPeriodoDatas(view);
         carregaPermissaoIncluirAtendimento(view);
         if(visualizar()){
             new ServerSocketAtendimento().start(view);
@@ -41,6 +47,11 @@ public class TelaPrincipalControl {
         carregaPermissoes(view, usuarioLogado.getIdusuario());
         
         PromptSupport.setPrompt("Buscar paciente", view.jTPesquisarAtendimento());
+    }
+    
+    public void iniciarPeriodoDatas(TelaPrincipalView view){
+        view.jDteInicial().setDate(Util.add_days(-7, new Date()));
+        view.jDteFinal().setDate(new Date());
     }
     
     public boolean visualizar(){
@@ -77,10 +88,22 @@ public class TelaPrincipalControl {
         }
     }
     
-    
-    public List<Atendimento> listar() {
+    public void pesquisar(TelaPrincipalView view){
         try {
-            return new AtendimentoDAO().listaAtendimentos();
+            List<Atendimento> lista = new TelaPrincipalControl().listar(
+                    view.jTPesquisarAtendimento().getText(),
+                    Util.formataDataSQL(view.jDteInicial().getDate()),
+                    Util.formataDataSQL(view.jDteFinal().getDate()));
+            atualizaTabelaAtendimento(view, lista);
+            
+        } catch(Exception ex){
+            log.error(ex);
+        }
+    }
+    
+    public List<Atendimento> listar(String nome_paciente, String dataInicial, String dataFinal) {
+        try {
+            return new AtendimentoDAO().listaAtendimentos(nome_paciente, dataInicial, dataFinal, TelaPrincipal.usuarioLogado.getTipo_acesso());
         } catch(Exception ex){
             log.error(ex);
         }
@@ -93,13 +116,13 @@ public class TelaPrincipalControl {
     }
     public TableColumnModel tableColumnAtendimentos(TelaPrincipalView view) {
         TableColumnModel coluna = view.tblAtendimentos().getColumnModel();
-        coluna.getColumn(0).setPreferredWidth(5);
-        coluna.getColumn(1).setPreferredWidth(150);
-        coluna.getColumn(2).setPreferredWidth(150);
+        coluna.getColumn(0).setPreferredWidth(1);
+        coluna.getColumn(1).setPreferredWidth(100);
+        coluna.getColumn(2).setPreferredWidth(100);
         coluna.getColumn(3).setPreferredWidth(5);
         coluna.getColumn(4).setPreferredWidth(5);
         coluna.getColumn(5).setPreferredWidth(5);
-        coluna.getColumn(6).setPreferredWidth(50);
+        coluna.getColumn(6).setPreferredWidth(100);
         return coluna;
     }
     public TableModel tableModelAtendimentos(TelaPrincipalView view, List<Atendimento> lista) {
@@ -154,6 +177,22 @@ public class TelaPrincipalControl {
         return new AtendimentoDAO().get(id);
     }
     
+    public boolean excluir(TelaPrincipalView view) {
+        if (Util.Confirma("Deseja realmente excluir este atendimento?")) {
+            boolean result = new AtendimentoDAO().delete(atendimentoSelecionado(view));
+            if (result) {
+                // Envia atualização da lista para o socket
+                try {
+                    new ServerSocketAtendimento().atualizar(view);
+                } catch(Exception ex){
+                    System.out.println("try aqui");
+                }
+            }
+        }
+        carregaPermissaoAlterarExcluirAtendimento(view);
+        return true;
+    }
+    
     public void habilitaMenus(TelaPrincipalView view) {
         view.jMenuBar1().setEnabled(true);
         view.jMCadastro().setEnabled(true);
@@ -171,9 +210,8 @@ public class TelaPrincipalControl {
         tela.setVisible(true);
     }
     
-    public boolean validaCampos(TelaPrincipalView view) {
-        return false;
-    }
+    
+    
     
     
     

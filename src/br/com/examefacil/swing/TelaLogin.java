@@ -6,12 +6,9 @@
 package br.com.examefacil.swing;
 
 import br.com.examefacil.bean.Usuario;
-import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.controller.UsuarioControl;
-import static br.com.examefacil.swing.TelaPrincipal.usuarioLogado;
 import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.LoginView;
-import br.com.examefacil.view.TelaPrincipalView;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
