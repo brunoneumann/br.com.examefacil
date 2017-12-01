@@ -129,7 +129,6 @@ public class AtenderControl {
 
     public void carregarDados(TelaPrincipalView view) {
         Atender a = atendimentoSelecionado(view);
-        System.out.println(a.getIdatendimento());
         if(a!=null){
             /*habilitaBotoesEditar(view);
             view.jLIDAtendimento().setText(a.getIdatendimento()+"");

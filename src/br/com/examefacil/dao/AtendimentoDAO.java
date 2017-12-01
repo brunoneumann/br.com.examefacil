@@ -36,7 +36,6 @@ public class AtendimentoDAO {
     }
     
     public Atendimento get(int id) {
-
         Parametros parametros = new ParametrosDAO().get();
         this.connection = new ConnectionFactory().getConnection(parametros);
         String sql = "SELECT a.idatendimento, a.idusuario, u.nome nome_usuario, a.idpaciente, p.nome nome_paciente, " +
