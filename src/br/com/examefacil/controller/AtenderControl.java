@@ -9,6 +9,7 @@ import br.com.examefacil.bean.Atender;
 import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.AtenderDAO;
+import br.com.examefacil.dao.AtendimentoDAO;
 import br.com.examefacil.dao.TipoExameDAO;
 import br.com.examefacil.view.AtenderView;
 import br.com.examefacil.view.TelaPrincipalView;
@@ -25,8 +26,9 @@ import javax.swing.table.TableModel;
  * @author Henrique
  */
 public class AtenderControl {
-
+    
     public AtenderControl() {
+        
     }
 
     public void init(AtenderView view) {
@@ -87,8 +89,8 @@ public class AtenderControl {
         return new AtenderDAO().list();
     }
 
-    public List<TipoExame> listar(String parametro) {
-        return new TipoExameDAO().list(parametro);
+    public List<Atender> listar(String parametro) {
+        return new AtenderDAO().list(parametro);
     }
 
     public List<TipoExame> listar2(String parametro, String nome, AtenderView view) {
@@ -122,19 +124,18 @@ public class AtenderControl {
     public Atender atendimentoSelecionado(TelaPrincipalView view) {
         int selected = view.tblAtendimentos().getSelectedRow();
         return get((int)view.tblAtendimentos().getModel().getValueAt(selected, 0));
-        /*Atender a = new Atender();
-        a.setIdatendimento(1);
-        return a;*/
     }
 
     public void carregarDados(TelaPrincipalView view) {
         Atender a = atendimentoSelecionado(view);
+        
         if(a!=null){
-            /*habilitaBotoesEditar(view);
-            view.jLIDAtendimento().setText(a.getIdatendimento()+"");
-            view.jLPaciente().setText(a.getNome_paciente());
-            view.jLIDAtendimento().setText(a.getDataString());
-            view.jLHora().setText(a.getHoraEntrada());*/
+            
+            /*//habilitaBotoesEditar(view);
+            view.jLIDAtendimento().setText(b.getIdatendimento()+"");
+            view.jLPaciente().setText(b.getNome_paciente());
+            view.jLIDAtendimento().setText(b.getDataString());
+            view.jLHora().setText(b.getHoraEntrada());*/
         }
     }
 

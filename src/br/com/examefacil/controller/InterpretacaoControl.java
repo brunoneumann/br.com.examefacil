@@ -18,15 +18,9 @@ import br.com.examefacil.view.InterpretacaoView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
-import java.io.File;
 import java.io.IOException;
-import java.text.Normalizer.Form;
-import java.util.ArrayList;
 import java.util.List;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.TargetDataLine;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 

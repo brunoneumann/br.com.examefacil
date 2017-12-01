@@ -49,7 +49,7 @@ public class AtenderDAO {
     }
     
     public List<Atender> listarCombo() {
-        this.connection = new ConnectionFactory().getConnection(parametros);
+        this.connection = new ConnectionFactory().getConnection(new ParametrosDAO().get());
         List<Atender> atender = new ArrayList<Atender>();
         String sql = "SELECT a.idatend_tipo, a.idatendimento, a.idtipoexame, t.nome AS tipoexame, e.nome AS areaexame\n" +
                 "FROM atendimento_tipoexame a, tipoexame t, areaexame e\n" +
