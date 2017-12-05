@@ -22,9 +22,9 @@ public class ExamesComboModel extends AbstractListModel<Atender> implements Comb
     /* Seleciona um objeto na caixa de seleção */
     private Atender selecionado;
 
-    public ExamesComboModel() {
+    public ExamesComboModel(int idAtendimento) {
         /* Popula a lista */
-        popular();
+        popular(idAtendimento);
 
         /* Define o objeto selecionado */
         setSelectedItem(lista.get(0));
@@ -52,10 +52,10 @@ public class ExamesComboModel extends AbstractListModel<Atender> implements Comb
         return selecionado;
     }
 
-    private void popular() {
+    private void popular(int idAtendimento) {
         try {
             AtenderDAO dao = new AtenderDAO();
-            lista = dao.listarCombo();
+            lista = dao.listarCombo(idAtendimento);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

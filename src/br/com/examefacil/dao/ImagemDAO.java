@@ -34,5 +34,8 @@ public class ImagemDAO {
     public List<Imagem> list(String parametro){
         return new CustomDAO<Imagem>().list(Imagem.class, "SELECT * FROM imagens WHERE idatendimento LIKE '%' :idatendimento '%'", "idatendimento", parametro);
     }
+    public List<Imagem> list(String parametro, String exame){
+        return new CustomDAO<Imagem>().list(Imagem.class, "SELECT * FROM imagens WHERE idatendimento LIKE '%' :idatendimento '%' AND idtipoexame="+exame, "idatendimento", parametro);
+    }
     
 }

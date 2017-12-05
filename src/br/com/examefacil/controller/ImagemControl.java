@@ -6,14 +6,17 @@
 package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Atender;
+import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.Imagem;
 import br.com.examefacil.bean.Parametros;
+import br.com.examefacil.dao.AtendimentoDAO;
 import br.com.examefacil.dao.ImagemDAO;
 import br.com.examefacil.dao.ParametrosDAO;
 import br.com.examefacil.renderer.ExamesComboModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import br.com.examefacil.view.ImagemView;
+import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
@@ -30,18 +33,21 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class ImagemControl {
 
     ImagemView view;
+    TelaPrincipalView principalView;
 
     public ImagemControl(ImagemView view) {
         this.view = view;
     }
 
-    public void init() {
+    public void init(TelaPrincipalView view2) {
 
         atualizaTabelaImagem(view);
         /* Desabilita aba editar */
+        carregarDados(view2);
+        
         view.jLIDAtendimento().setVisible(false);
         view.jLIDImagem().setVisible(false);
-        view.jCImagens().setModel(new ExamesComboModel());
+        
         carregaPermissaoIncluir(view);
     }
 
@@ -70,6 +76,8 @@ public class ImagemControl {
 
     public boolean salvar(ImagemView view) {
         boolean result = false;
+        boolean status = false;
+        Atendimento b = new Atendimento();
         String caminhoAtual = "";
         String novoCaminho = "";
         for (int i = 0; i < view.jTImagens().getRowCount(); i++) {
@@ -84,11 +92,15 @@ public class ImagemControl {
             a.setIdtipoexame(Integer.parseInt(String.valueOf(view.jTImagens().getValueAt(i, 1))));
             result = new ImagemDAO().save(a);
             
+            b = new AtendimentoDAO().get(Integer.parseInt(view.jLIDAtendimento().getText()));
+            b.setStatus("3");
+            status = new AtendimentoDAO().save(b);
+            
             caminhoAtual = "";
             novoCaminho = "";
         }
 
-        if (result) {
+        if (result && status) {
             limparTextos(view);
             desabilitaBotoesEditar(view);
             atualizaTabelaImagem(view);
@@ -112,6 +124,10 @@ public class ImagemControl {
         return true;
     }
 
+    public Atendimento getAtendimento(int id) {
+        return new AtendimentoDAO().get(id);
+    }
+    
     public Imagem get(int id) {
         return new ImagemDAO().get(id);
     }
@@ -131,6 +147,8 @@ public class ImagemControl {
             Imagem a = new Imagem();
             a.setNomeArquivo(parametro);
             a.setIdtipoexame(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdtipoexame());
+            a.setTipoExame(((Atender) view.jCImagens().getModel().getSelectedItem()).getTipoexame());
+            
             lista.add(a);
             limparTextos(view);
             return lista;
@@ -155,24 +173,29 @@ public class ImagemControl {
         }
     }
 
-    public Imagem imagemSelecionada(ImagemView view) {
-        return null;
-
+    public Atendimento atendimentoSelecionado(TelaPrincipalView view2) {
+        int selected = view2.tblAtendimentos().getSelectedRow();
+        return getAtendimento((int)view2.tblAtendimentos().getModel().getValueAt(selected, 0));
     }
 
-    public void carregarDados(ImagemView view) {
+    public void carregarDados(TelaPrincipalView view2) {
+        Atendimento a = atendimentoSelecionado(view2);
+        System.out.println(a.getIdatendimento());
+        view.jCImagens().setModel(new ExamesComboModel(a.getIdatendimento()));
+        view.jLIDAtendimento().setText(a.getIdatendimento()+"");
+        
 
     }
 
     public TableModel tableModelImagem(ImagemView view) {
         FieldResolverFactory frf = new FieldResolverFactory(Imagem.class);
         FieldResolver frImagem = frf.createResolver("nomeArquivo", "Imagem");
-        FieldResolver frIDAtendimento = frf.createResolver("idtipoexame", "ID Atend.");
-        //FieldResolver frNome = frf.createResolver("nome", "Descrição");
+        FieldResolver frIDAtendimento = frf.createResolver("idtipoexame", "ID Exame");
+        FieldResolver frNome = frf.createResolver("tipoExame", "Descrição");
 
         ObjectTableModel<Imagem> model
                 = new ObjectTableModel<Imagem>(
-                        new FieldResolver[]{frImagem, frIDAtendimento});
+                        new FieldResolver[]{frImagem, frIDAtendimento, frNome});
 
         model.setEditableDefault(false);
         model.setData(this.listar2(view.jLIDImagem().getText(), view));
@@ -184,6 +207,7 @@ public class ImagemControl {
         TableColumnModel coluna = view.jTImagens().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(5);
+        coluna.getColumn(2).setPreferredWidth(10);
         return coluna;
     }
 

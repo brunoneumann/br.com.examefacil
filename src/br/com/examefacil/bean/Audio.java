@@ -24,7 +24,7 @@ public class Audio {
     @GeneratedValue
     @Column(name = "idaudio")
     private int idaudio;
-    private int idexame;
+    private int idatendimento;
     @Column(name="nome_arquivo")
     private String nomeArquivo;
     @Column(columnDefinition = "TEXT")
@@ -54,13 +54,15 @@ public class Audio {
         this.detalhes = detalhes;
     }
 
-    public int getIdexame() {
-        return idexame;
+    public int getIdatendimento() {
+        return idatendimento;
     }
 
-    public void setIdexame(int idexame) {
-        this.idexame = idexame;
+    public void setIdatendimento(int idatendimento) {
+        this.idatendimento = idatendimento;
     }
+
+
     
     
 }

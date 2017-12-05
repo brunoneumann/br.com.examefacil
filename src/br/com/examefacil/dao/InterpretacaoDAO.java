@@ -33,5 +33,7 @@ public class InterpretacaoDAO {
     public List<Interpretacao> list(String parametro){
         return new CustomDAO<Interpretacao>().list(Interpretacao.class, "SELECT * FROM laudo WHERE idlaudo LIKE '%' :idlaudo '%' ORDER BY idlaudo DESC", "idlaudo", parametro);
     }
-    
+    public List<Interpretacao> list(String parametro, String exame){
+        return new CustomDAO<Interpretacao>().list(Interpretacao.class, "SELECT * FROM laudo WHERE idatendimento LIKE '%' :idatendimento '%' AND idtipoexame="+exame+" ORDER BY idatendimento DESC", "idatendimento", parametro);
+    }
 }

@@ -73,6 +73,12 @@ public class TelaPrincipalControl {
             if (a.getPagina().equals("atendimento")) {
                 view.jBIncluir().setEnabled(a.isIncluir());
                 break;
+            }else if (a.getPagina().equals("at-laudo")){
+                view.jBLaudo().setEnabled(a.isIncluir());
+                break;
+            }else if (a.getPagina().equals("at-imagem")){
+                view.jBImagens().setEnabled(a.isIncluir());
+                break;
             }
         }
     }
