@@ -20,10 +20,10 @@ import javax.swing.JTextField;
 public class TelaAtender extends javax.swing.JDialog implements AtenderView{
 
     
-    
     public TelaAtender(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        new AtenderControl(this).init(this);
         setLocationRelativeTo( null );
         
     }
@@ -93,15 +93,15 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLIDAtendimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLHora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(0, 12, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLHora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLData, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLPaciente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -234,8 +234,9 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        AtenderControl control = new AtenderControl();
+        AtenderControl control = new AtenderControl(this);
         control.salvar(this);
+        this.setVisible(false);
     }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
@@ -253,14 +254,15 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
     }//GEN-LAST:event_jTSolicitarExameMouseClicked
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        if(!(new AtenderControl().atualizaTabelaAtender(this))){
+        if(!(new AtenderControl(this).atualizaTabelaAtender(this))){
             new DialogBuscarExame(this, rootPaneCheckingEnabled, this).setVisible(true);
         }
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBEnviarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarExameActionPerformed
-        AtenderControl control = new AtenderControl();
+        AtenderControl control = new AtenderControl(this);
         control.salvar(this);
+        this.setVisible(false);
     }//GEN-LAST:event_jBEnviarExameActionPerformed
 
 

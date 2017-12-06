@@ -8,8 +8,10 @@ package br.com.examefacil.swing;
 import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.AtenderControl;
+import br.com.examefacil.controller.LaudoControl;
 import br.com.examefacil.controller.TelaPrincipalControl;
 import br.com.examefacil.tools.Util;
+import br.com.examefacil.view.ImagemView;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
@@ -31,7 +33,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     /**
      * Creates new form TelaPrincipal
      */
-    
+    public ImagemView imagemView;
     public static Usuario usuarioLogado;
     
     public TelaPrincipal(Usuario u) {
@@ -484,16 +486,19 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMSairActionPerformed
 
     private void jBImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBImagensActionPerformed
-        new TelaImagens().setVisible(true);
+        //new ImagemControl(imagemView).carregarDados(this);
+        new TelaImagens(this).setVisible(true);
+        
     }//GEN-LAST:event_jBImagensActionPerformed
 
     private void jBInterpretarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInterpretarActionPerformed
-        TelaInterpretacao dialog = new TelaInterpretacao (this, rootPaneCheckingEnabled);
+        TelaInterpretacao dialog = new TelaInterpretacao (this, rootPaneCheckingEnabled, this);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBInterpretarActionPerformed
 
     private void jBLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLaudoActionPerformed
         TelaLaudo dialog = new TelaLaudo (this, rootPaneCheckingEnabled);
+        new LaudoControl(dialog).carregarDados(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBLaudoActionPerformed
 
@@ -508,7 +513,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
     private void jBAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtenderActionPerformed
         TelaAtender dialog = new TelaAtender (this, rootPaneCheckingEnabled);
-        new AtenderControl().carregarDados(this);
+        new AtenderControl(dialog).carregarDados(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBAtenderActionPerformed
 

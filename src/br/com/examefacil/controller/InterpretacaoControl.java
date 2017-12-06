@@ -6,21 +6,34 @@
 package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Atender;
+import br.com.examefacil.bean.Atendimento;
+import br.com.examefacil.bean.Audio;
 import br.com.examefacil.bean.Imagem;
 import br.com.examefacil.bean.Interpretacao;
 import br.com.examefacil.bean.Parametros;
+import br.com.examefacil.dao.AtendimentoDAO;
+import br.com.examefacil.dao.AudioDAO;
 import br.com.examefacil.dao.ImagemDAO;
 import br.com.examefacil.dao.InterpretacaoDAO;
 import br.com.examefacil.dao.ParametrosDAO;
 import br.com.examefacil.renderer.ExamesComboModel;
 import br.com.examefacil.swing.TelaPrincipal;
 import br.com.examefacil.view.InterpretacaoView;
+import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
 import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
@@ -30,13 +43,20 @@ import javax.swing.table.TableModel;
  */
 public class InterpretacaoControl {
 
-    public void init(InterpretacaoView view) {
-        view.jLIDAtendimento().setText("1");
-        view.jCImagens().setModel(new ExamesComboModel());
+    InterpretacaoView view;
+
+    public InterpretacaoControl(InterpretacaoView view) {
+        this.view = view;
+    }
+
+    public void init(TelaPrincipalView view2) {
+
+        carregarDados(view2);
         view.jLIDTextoPadrao().setVisible(false);
         view.jLIDTextoPadraoExame().setVisible(false);
         view.jLIDAtendimento().setVisible(false);
-        atualizaTabelaImagens(view);
+        view.jBPlay().setEnabled(false);
+        view.jLAudio().setVisible(false);
         //carregaPermissaoIncluir(view);
 
     }
@@ -49,14 +69,51 @@ public class InterpretacaoControl {
 
     }
 
-   public void atualizaTabelaImagens(InterpretacaoView view) {  
-            view.jTImagens().setModel(tableModelInterpretacao(view));
-            view.jTImagens().setColumnModel(tableColumnInterpretacao(view));
+    public void atualizarItensTabela(InterpretacaoView view) {
+        atualizaTabelaImagens(view);
+    }
+
+    public void atualizaTabelaImagens(InterpretacaoView view) {
+        view.jTImagens().setModel(tableModelInterpretacao(view));
+        view.jTImagens().setColumnModel(tableColumnInterpretacao(view));
     }
 
     public void textoPadrao(InterpretacaoView view) {
         view.jLIDTextoPadraoExame().setText(view.jLIDTextoPadrao().getText());
-        
+        try {
+            salvar(view);
+        } catch (IOException ex) {
+            Logger.getLogger(InterpretacaoControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void alteraStatus(InterpretacaoView view) {
+        boolean audio = false;
+        String caminhoAtual = "";
+        String novoCaminho = "";
+
+        caminhoAtual = view.jLAudio().getText();
+        if (!(caminhoAtual.equals("") || caminhoAtual.equals("null"))) {
+            novoCaminho = novoAudio(view, caminhoAtual);
+            Audio b = new Audio();
+            b.setNomeArquivo(novoCaminho);
+            b.setIdatendimento(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdatendimento());
+            audio = new AudioDAO().save(b);
+        }
+
+        Atendimento a = new AtendimentoDAO().get(Integer.parseInt(view.jLIDAtendimento().getText()));
+        boolean result = false;
+        a.setStatus("4");
+        result = new AtendimentoDAO().save(a);
+
+    }
+
+    public void refazerExames(InterpretacaoView view) {
+        Atendimento a = new AtendimentoDAO().get(Integer.parseInt(view.jLIDAtendimento().getText()));
+        boolean result = false;
+        a.setStatus("2");
+        result = new AtendimentoDAO().save(a);
+
     }
 
     public boolean salvar(InterpretacaoView view) throws IOException {
@@ -66,7 +123,7 @@ public class InterpretacaoControl {
 
         a.setIdatendimento(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdatendimento());
         a.setIdtextopadrao(Integer.parseInt(view.jLIDTextoPadraoExame().getText()));
-        a.setIdtipoexame(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdtipoexame());;
+        a.setIdtipoexame(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdtipoexame());
         a.setIdusuario(TelaPrincipal.usuarioLogado.getIdusuario());
 
         result = new InterpretacaoDAO().save(a);
@@ -81,6 +138,10 @@ public class InterpretacaoControl {
         }
     }
 
+    public Atendimento getAtendimento(int id) {
+        return new AtendimentoDAO().get(id);
+    }
+
     public Interpretacao get(int id) {
         return new InterpretacaoDAO().get(id);
     }
@@ -93,26 +154,19 @@ public class InterpretacaoControl {
         return new InterpretacaoDAO().list(parametro);
     }
 
-    public Interpretacao atendimentoSelecionado(InterpretacaoView view) {
-        //int selected = view.JTABAtendimentos().getSelectedRow();
-        //return get((int)view.JTABAtendimento().getModel().getValueAt(selected, 0));
-        Interpretacao a = new Interpretacao();
-        a.setIdatendimento(1);
-        return a;
+    public Atendimento atendimentoSelecionado(TelaPrincipalView view) {
+        int selected = view.tblAtendimentos().getSelectedRow();
+        return getAtendimento((int) view.tblAtendimentos().getModel().getValueAt(selected, 0));
     }
 
-    public void carregarDados(InterpretacaoView view) {
-        /*TelaPrincipal a = TelaPrincipal(view);
-        if(a!=null){
-            habilitaBotoesEditar(view);
-            view.jLIDAtender().setText(a.getIdareaexame()+"");
-            view.jTAtender().setText(a.getNome());
-        }*/
+    public void carregarDados(TelaPrincipalView view2) {
+        Atendimento a = atendimentoSelecionado(view2);
+        view.jCImagens().setModel(new ExamesComboModel(a.getIdatendimento()));
+        view.jLIDAtendimento().setText(a.getIdatendimento() + "");
     }
-    
-    public List visualizarArquivos(int id) {
-        //APENAS PARA TESTES
-        return new ImagemDAO().list(String.valueOf(id));
+
+    public List visualizarArquivos(int id, int exame) {
+        return new ImagemDAO().list(String.valueOf(id), String.valueOf(exame));
     }
 
     public TableModel tableModelInterpretacao(InterpretacaoView view) {
@@ -123,9 +177,9 @@ public class InterpretacaoControl {
                 = new ObjectTableModel<Imagem>(
                         new FieldResolver[]{frNome});
 
-        
         model.setEditableDefault(false);
-        model.setData(this.visualizarArquivos(Integer.parseInt(String.valueOf(view.jLIDAtendimento().getText()))));
+        model.setData(this.visualizarArquivos(Integer.parseInt(String.valueOf(view.jLIDAtendimento().getText())),
+                (((Atender) view.jCImagens().getModel().getSelectedItem()).getIdtipoexame())));
         return model;
 
     }
@@ -153,17 +207,58 @@ public class InterpretacaoControl {
     public void desabilitaBotoesEditar(InterpretacaoView view) {
 
     }
-    
-    public void abrirImagem(InterpretacaoView view){
-        
+
+    public void abrirImagem(InterpretacaoView view) {
+
         Parametros p = new ParametrosDAO().get();
         String caminho = String.valueOf(view.jTImagens().getValueAt(view.jTImagens().getSelectedRow(), 0));
-        
+
         ImageIcon img = new ImageIcon(caminho);
         img.setImage(img.getImage().getScaledInstance(520, 320, 100));
-        
+
         view.jLImagem().setIcon(img);
-        
+
     }
 
+    public void abrirSom() { // funciona apenas com arquivos .WAV
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(view.jLAudio().getText()).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (Exception ex) {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace();
+
+        }
+    }
+
+    public void initChooserAudio() {
+
+        view.chooserAudio().setCurrentDirectory(new java.io.File("."));
+        view.chooserAudio().setDialogTitle("Selecione um áudio");
+        view.chooserAudio().setFileSelectionMode(JFileChooser.FILES_ONLY);
+        view.chooserAudio().setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV", "wav", "wav");
+        view.chooserAudio().setFileFilter(filter);
+        if (view.chooserAudio().showOpenDialog(view.chooserAudio()) == JFileChooser.APPROVE_OPTION) {
+            view.jLAudio().setText(view.chooserAudio().getSelectedFile().toString());
+            view.jBPlay().setEnabled(true);
+
+        }
+    }
+
+    public String novoAudio(InterpretacaoView view, String caminho) {
+        File audio = new File(caminho);
+        Parametros p = new ParametrosDAO().get();
+        int i = 1;
+        String salvar;
+        salvar = p.getPastaAudios() + "\\" + view.jLIDAtendimento().getText() + "-0.wav";
+        while (new File(salvar).exists()) {
+            salvar = p.getPastaAudios() + "\\" + view.jLIDAtendimento().getText() + "-" + i + ".wav";
+            i++;
+        }
+        audio.renameTo(new File(salvar));
+        return salvar;
+    }
 }

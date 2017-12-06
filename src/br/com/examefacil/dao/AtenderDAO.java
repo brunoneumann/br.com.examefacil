@@ -49,13 +49,14 @@ public class AtenderDAO {
         return new CustomDAO<Atender>().list(Atender.class, "SELECT * FROM atendimento_tipoexame WHERE idatendimento LIKE '%' :idatendimento '%'", "idatendimento", parametro);
     }
     
-    public List<Atender> listarCombo() {
+    public List<Atender> listarCombo(int idAtendimento) {
         this.connection = new ConnectionFactory().getConnection(new ParametrosDAO().get());
         List<Atender> atender = new ArrayList<Atender>();
-        String sql = "SELECT a.idatend_tipo, a.idatendimento, a.idtipoexame, t.nome AS tipoexame, e.nome AS areaexame\n" +
-                "FROM atendimento_tipoexame a, tipoexame t, areaexame e\n" +
-                "where a.idtipoexame = t.idtipoexame\n" +
-                "AND t.idareaexame = e.idareaexame";
+        String sql = "SELECT a.idatend_tipo, a.idatendimento, a.idtipoexame, t.nome AS tipoexame, e.nome AS areaexame" +
+                " FROM atendimento_tipoexame a, tipoexame t, areaexame e" +
+                " WHERE a.idtipoexame = t.idtipoexame" +
+                " AND t.idareaexame = e.idareaexame" +
+                " AND a.idatendimento = "+String.valueOf(idAtendimento)+"";
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {

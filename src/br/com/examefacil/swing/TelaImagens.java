@@ -7,6 +7,7 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.ImagemControl;
 import br.com.examefacil.view.ImagemView;
+import br.com.examefacil.view.TelaPrincipalView;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -18,12 +19,15 @@ import javax.swing.JTable;
  * @author Henrique
  */
 public class TelaImagens extends javax.swing.JFrame implements ImagemView{
-
+    
+    public static TelaPrincipalView telaPrincipalView;
     public JFileChooser chooserImagens;
-    public TelaImagens() {
+    
+    public TelaImagens(TelaPrincipalView viewPrincipal) {
         this.chooserImagens = new JFileChooser();
+        this.telaPrincipalView = viewPrincipal;
         initComponents();
-        new ImagemControl(this).init();
+        new ImagemControl(this).init(telaPrincipalView);
     }
 
     /**
@@ -152,6 +156,7 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
 
     private void jBEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarActionPerformed
         new ImagemControl(this).salvar(this);
+        this.setVisible(false);
     }//GEN-LAST:event_jBEnviarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -200,7 +205,7 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaImagens().setVisible(true);
+                new TelaImagens(telaPrincipalView).setVisible(true);
             }
         });
     }

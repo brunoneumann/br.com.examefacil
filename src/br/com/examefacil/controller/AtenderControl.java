@@ -7,10 +7,11 @@ package br.com.examefacil.controller;
 
 import br.com.examefacil.bean.Atender;
 import br.com.examefacil.bean.Atendimento;
+import br.com.examefacil.bean.Paciente;
 import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.AtenderDAO;
 import br.com.examefacil.dao.AtendimentoDAO;
-import br.com.examefacil.dao.TipoExameDAO;
+import br.com.examefacil.dao.PacienteDAO;
 import br.com.examefacil.view.AtenderView;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
@@ -26,9 +27,10 @@ import javax.swing.table.TableModel;
  * @author Henrique
  */
 public class AtenderControl {
+     public AtenderView viewAtender;
     
-    public AtenderControl() {
-        
+    public AtenderControl(AtenderView view) {
+        this.viewAtender = view;
     }
 
     public void init(AtenderView view) {
@@ -62,26 +64,34 @@ public class AtenderControl {
 
     public boolean salvar(AtenderView view) {
         boolean result = false;
+        boolean status = false;
+        Atendimento b = new Atendimento();
         for (int i=0;i < view.jTSolicitados().getRowCount();i++){
                 Atender a = new Atender ();
                 int id = Integer.parseInt (view.jTSolicitados().getValueAt(i, 0)+"");
                 a.setIdtipoexame(id);
-                a.setIdatendimento(1); 
-                result = new AtenderDAO().save(a);
+                a.setIdatendimento(Integer.parseInt(view.jLIDAtendimento().getText())); 
+                result = new AtenderDAO().save(a);    
         }
+        b = new AtendimentoDAO().get(Integer.parseInt(view.jLIDAtendimento().getText()));
+        b.setStatus("2");
+        status = new AtendimentoDAO().save(b);
       
-        if (result) {
+        if (result && status) {
             limparTextos(view);
             desabilitaBotoesEditar(view);
             atualizaTabelaAtender(view);
-            //}
             return result;
         } else {
             return false;
         }
     }
 
-    public Atender get(int id) {
+    public Atendimento getAtendimento(int id) {
+        return new AtendimentoDAO().get(id);
+    }
+    
+     public Atender get(int id) {
         return new AtenderDAO().get(id);
     }
 
@@ -121,21 +131,21 @@ public class AtenderControl {
         }
     }
 
-    public Atender atendimentoSelecionado(TelaPrincipalView view) {
+    public Atendimento atendimentoSelecionado(TelaPrincipalView view) {
         int selected = view.tblAtendimentos().getSelectedRow();
-        return get((int)view.tblAtendimentos().getModel().getValueAt(selected, 0));
+        return getAtendimento((int)view.tblAtendimentos().getModel().getValueAt(selected, 0));
     }
 
     public void carregarDados(TelaPrincipalView view) {
-        Atender a = atendimentoSelecionado(view);
-        
+        Atendimento a = atendimentoSelecionado(view);
+        Paciente p = new PacienteDAO().get(a.getIdpaciente());
         if(a!=null){
             
-            /*//habilitaBotoesEditar(view);
-            view.jLIDAtendimento().setText(b.getIdatendimento()+"");
-            view.jLPaciente().setText(b.getNome_paciente());
-            view.jLIDAtendimento().setText(b.getDataString());
-            view.jLHora().setText(b.getHoraEntrada());*/
+            habilitaBotoesEditar(viewAtender);
+            viewAtender.jLIDAtendimento().setText(a.getIdatendimento()+"");
+            viewAtender.jLPaciente().setText(p.getNome());
+            viewAtender.jLData().setText(a.getDataString());
+            viewAtender.jLHora().setText(a.getHoraEntrada());
         }
     }
 
@@ -181,6 +191,7 @@ public class AtenderControl {
     }
 
     public void habilitaBotoesEditar(AtenderView view) {
+        
 
     }
 

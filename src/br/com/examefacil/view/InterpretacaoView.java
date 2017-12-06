@@ -7,6 +7,7 @@ package br.com.examefacil.view;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -29,6 +30,10 @@ public interface InterpretacaoView {
     public JTable jTImagens();
     public JLabel jLIDAtendimento();
     public JLabel jLImagem();
+    public JFileChooser chooserAudio();
+    public JButton jBAdicionar();
+    public JButton jBPlay();
+    public JLabel jLAudio();
     
     
 }

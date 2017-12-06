@@ -7,11 +7,13 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.InterpretacaoControl;
 import br.com.examefacil.view.InterpretacaoView;
+import br.com.examefacil.view.TelaPrincipalView;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -22,12 +24,15 @@ import javax.swing.JTextArea;
  */
 public class TelaInterpretacao extends javax.swing.JDialog implements InterpretacaoView{
 
+    public static TelaPrincipalView telaPrincipalView;
+    public JFileChooser chooserAudio;
     
-    
-    public TelaInterpretacao(java.awt.Frame parent, boolean modal) {
+    public TelaInterpretacao(java.awt.Frame parent, boolean modal, TelaPrincipalView viewPrincipal) {
         super(parent, modal);
+        this.chooserAudio = new JFileChooser();
+        this.telaPrincipalView = viewPrincipal;
         initComponents();
-        new InterpretacaoControl().init(this);
+        new InterpretacaoControl(this).init(telaPrincipalView);
         setLocationRelativeTo( null );
         
     }
@@ -57,9 +62,10 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
         jScrollPane3 = new javax.swing.JScrollPane();
         jTImagens = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        jBAdicionar = new javax.swing.JButton();
+        jBPlay = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jLAudio = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jBLaudar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -206,18 +212,23 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Gravar Áudio"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar Áudio"));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/microfone.png"))); // NOI18N
-        jButton6.setText("Gravar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jBAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/microfone.png"))); // NOI18N
+        jBAdicionar.setText("Adicionar");
+        jBAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jBAdicionarActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/play.png"))); // NOI18N
-        jButton7.setText("Play/Pause");
+        jBPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/play.png"))); // NOI18N
+        jBPlay.setText("Play");
+        jBPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBPlayActionPerformed(evt);
+            }
+        });
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
         jButton12.setText("Excluir");
@@ -227,19 +238,23 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jButton6)
+                .addComponent(jBAdicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(jBPlay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLAudio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton12))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton12))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBAdicionar)
+                        .addComponent(jBPlay)
+                        .addComponent(jButton12))
+                    .addComponent(jLAudio))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -263,8 +278,18 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imagens.png"))); // NOI18N
         jButton2.setText("Refazer Exames");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jCImagens.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCImagens.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCImagensActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -361,40 +386,51 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
     }//GEN-LAST:event_jBLaudarActionPerformed
 
     private void jBGravarLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarLaudoActionPerformed
-        new InterpretacaoControl().textoPadrao(this);
+        new InterpretacaoControl(this).textoPadrao(this);
         jDLaudar.setVisible(false);
     }//GEN-LAST:event_jBGravarLaudoActionPerformed
 
     private void jTImagensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTImagensMouseClicked
-        new InterpretacaoControl().abrirImagem(this);
+        new InterpretacaoControl(this).abrirImagem(this);
     }//GEN-LAST:event_jTImagensMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            new InterpretacaoControl().salvar(this);
-        } catch (IOException ex) {
-            Logger.getLogger(TelaInterpretacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new InterpretacaoControl(this).alteraStatus(this);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
+        new InterpretacaoControl(this).initChooserAudio();
+    }//GEN-LAST:event_jBAdicionarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new InterpretacaoControl(this).refazerExames(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCImagensActionPerformed
+        new InterpretacaoControl(this).atualizarItensTabela(this);
+    }//GEN-LAST:event_jCImagensActionPerformed
+
+    private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
+        new InterpretacaoControl(this).abrirSom();
+    }//GEN-LAST:event_jBPlayActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBAdicionar;
     private javax.swing.JButton jBCancelarLaudo;
     private javax.swing.JButton jBFecharLaudo;
     private javax.swing.JButton jBGravarLaudo;
     private javax.swing.JButton jBLaudar;
+    private javax.swing.JButton jBPlay;
     private javax.swing.JButton jBTextoPadrao;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jCImagens;
     private javax.swing.JDialog jDLaudar;
+    private javax.swing.JLabel jLAudio;
     private javax.swing.JLabel jLIDAtendimento;
     private javax.swing.JLabel jLIDTextoPadrao;
     private javax.swing.JLabel jLIDTextoPadraoExame;
@@ -469,5 +505,25 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
     @Override
     public JLabel jLImagem() {
         return jLImagem;
+    }
+
+    @Override
+    public JFileChooser chooserAudio() {
+        return chooserAudio;
+    }
+
+    @Override
+    public JButton jBAdicionar() {
+        return  jBAdicionar;
+    }
+
+    @Override
+    public JButton jBPlay() {
+        return jBPlay;
+    }
+
+    @Override
+    public JLabel jLAudio() {
+        return jLAudio;
     }
 }
