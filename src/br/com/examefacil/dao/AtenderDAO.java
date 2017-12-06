@@ -8,6 +8,7 @@ package br.com.examefacil.dao;
 import br.com.examefacil.bean.Atender;
 import br.com.examefacil.bean.Parametros;
 import br.com.examefacil.conn.ConnectionFactory;
+import br.com.examefacil.tools.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,6 +90,92 @@ public class AtenderDAO {
             }
         }
         return atender;
+    }
+    
+    
+    public List<Atender> listaQtdeAtendimentosPorTipoExame(String dataInicial, String dataFinal) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
+        List<Atender> lista = new ArrayList<Atender>();
+        
+        String sql = "call pr_dash_atendimentos_tipoexame(?, ?);";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, Util.data_to_sql(dataInicial));
+            stmt.setString(2, Util.data_to_sql(dataFinal));
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Atender a = new Atender();
+                a.setTipoexame(rs.getString("tipoexame"));
+                a.setQtdeAtendimentos(rs.getInt("qtde"));
+                lista.add(a);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return lista;
+    }
+    
+    public List<Atender> listaQtdeAtendimentosPorAreaExame(String dataInicial, String dataFinal) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
+        List<Atender> atendimentos = new ArrayList<Atender>();
+        
+        String sql = "SELECT "+
+                "areaexame, data, COUNT(DISTINCT idatendimento) qtde "
+                + "FROM vw_atendimentos_areaexame "
+                + "WHERE data_sql BETWEEN ? AND ? "
+                + "GROUP BY 1,2";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, Util.data_to_sql(dataInicial));
+            stmt.setString(2, Util.data_to_sql(dataFinal));
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Atender a = new Atender();
+                a.setAreaexame(rs.getString("areaexame"));
+                a.setDataStr(rs.getString("data"));
+                a.setQtdeAtendimentos(rs.getInt("qtde"));
+                atendimentos.add(a);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return atendimentos;
     }
     
 }

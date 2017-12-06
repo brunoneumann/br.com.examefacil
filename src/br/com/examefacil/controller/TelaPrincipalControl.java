@@ -68,6 +68,11 @@ public class TelaPrincipalControl {
     }
     
     public void carregaPermissaoIncluirAtendimento(TelaPrincipalView view) {
+        if(!TelaPrincipal.usuarioLogado.getTipo_acesso().equals("5")){
+            view.jBtnDashboard().setVisible(false);
+        } else {
+            view.jBtnDashboard().setVisible(true);
+        }
         List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
         for (Acesso a : permissoes) {
             if (a.getPagina().equals("atendimento")) {

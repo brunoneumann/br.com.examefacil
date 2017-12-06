@@ -52,4 +52,6 @@ public interface TelaPrincipalView {
     
     public JDateChooser jDteInicial();
     public JDateChooser jDteFinal();
+    
+    public JButton jBtnDashboard();
 }

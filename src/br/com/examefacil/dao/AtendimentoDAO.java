@@ -134,6 +134,89 @@ public class AtendimentoDAO {
         return atendimentos;
     }
     
+    public List<Atendimento> listaQtdeAtendimentosPorStatus(String dataInicial, String dataFinal) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
+        List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+        
+        String sql = "call pr_dash_atendimentos_status(?, ?);";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, Util.data_to_sql(dataInicial));
+            stmt.setString(2, Util.data_to_sql(dataFinal));
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Atendimento a = new Atendimento();
+                a.setStatus(rs.getString("status"));
+                a.setQtdeAtendimentos(rs.getInt("qtde"));
+                atendimentos.add(a);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return atendimentos;
+    }
+    
+    public List<Atendimento> listaQtdeAtendimentosPorData(String dataInicial, String dataFinal) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
+        List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+        
+        String sql = "SELECT data, data_sql, qtde "
+                + "FROM vw_atendimentos_data "
+                + "WHERE data_sql BETWEEN ? AND ?";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, Util.data_to_sql(dataInicial));
+            stmt.setString(2, Util.data_to_sql(dataFinal));
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Atendimento a = new Atendimento();
+                a.setDataString(rs.getString("data"));
+                a.setQtdeAtendimentos(rs.getInt("qtde"));
+                atendimentos.add(a);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return atendimentos;
+    }
+
+    
     public List<Atendimento> list() {
         return new CustomDAO<Atendimento>().list(Atendimento.class);
     }

@@ -9,6 +9,7 @@ import br.com.examefacil.bean.Atendimento;
 import br.com.examefacil.bean.Usuario;
 import br.com.examefacil.controller.AtenderControl;
 import br.com.examefacil.controller.TelaPrincipalControl;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
@@ -72,6 +73,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jBAtender = new javax.swing.JButton();
         jDteInicial = new com.toedter.calendar.JDateChooser();
         jDteFinal = new com.toedter.calendar.JDateChooser();
+        jBtnDashboard = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAtendimentos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -233,6 +235,13 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
 
         jDteFinal.setDateFormatString("dd/MM/yyyy");
 
+        jBtnDashboard.setText("Dashboard");
+        jBtnDashboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDashboardActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPAreaExameLayout = new javax.swing.GroupLayout(jPAreaExame);
         jPAreaExame.setLayout(jPAreaExameLayout);
         jPAreaExameLayout.setHorizontalGroup(
@@ -261,7 +270,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jDteFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBPesquisar)))
+                        .addComponent(jBPesquisar)
+                        .addGap(0, 0, 0)
+                        .addComponent(jBtnDashboard)))
                 .addContainerGap(200, Short.MAX_VALUE))
         );
         jPAreaExameLayout.setVerticalGroup(
@@ -277,11 +288,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                     .addComponent(jBInterpretar)
                     .addComponent(jBLaudo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTPesquisarAtendimento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDteInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDteFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -503,6 +515,10 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private void tblAtendimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAtendimentosMouseClicked
         new TelaPrincipalControl().carregaPermissaoAlterarExcluirAtendimento(this);
     }//GEN-LAST:event_tblAtendimentosMouseClicked
+
+    private void jBtnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDashboardActionPerformed
+        new Dashboard(Util.formataDataSQL(jDteInicial.getDate()), Util.formataDataSQL(jDteFinal.getDate())).setVisible(true);
+    }//GEN-LAST:event_jBtnDashboardActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -515,6 +531,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JButton jBInterpretar;
     private javax.swing.JButton jBLaudo;
     private javax.swing.JButton jBPesquisar;
+    private javax.swing.JButton jBtnDashboard;
     private javax.swing.JDesktopPane jDesktopPane1;
     private com.toedter.calendar.JDateChooser jDteFinal;
     private com.toedter.calendar.JDateChooser jDteInicial;
@@ -674,6 +691,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     @Override
     public JDateChooser jDteFinal() {
         return jDteFinal;
+    }
+
+    @Override
+    public JButton jBtnDashboard() {
+        return jBtnDashboard;
     }
   
     

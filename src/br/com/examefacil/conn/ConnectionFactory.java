@@ -23,7 +23,7 @@ public class ConnectionFactory {
             }
         }
         try {
-            return DriverManager.getConnection("jdbc:mysql://"+parametros.getUrlServidor()+":3306/examefacil?autoReconnect=true&useSSL=false", "root", "root");
+            return DriverManager.getConnection("jdbc:mysql://"+parametros.getUrlServidor()+":3306/examefacil?autoReconnect=true&useSSL=false", "root", "1pbns11");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

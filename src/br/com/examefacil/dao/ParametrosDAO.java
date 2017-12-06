@@ -27,14 +27,31 @@ public class ParametrosDAO {
     }
     
     public void initFunctions(Parametros parametros){
-        if(Util.isServerMachine(parametros.getUrlServidor())){
-            if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPFunctionStatusAtendimento)){
-                new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionStatusAtendimento);
+        if(parametros!=null){
+            if(Util.isServerMachine(parametros.getUrlServidor())){
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPFunctionStatusAtendimento)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionStatusAtendimento);
+                }
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPProcedureAtendimentos)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDProcedureAtendimentos);
+                }
+                
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPProcedureAtendimentosPorStatus)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDProcedureAtendimentosPorStatus);
+                }
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPProcedureAtendimentosPorTipoExame)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDProcedureAtendimentosPorTipoExame);
+                }
+                
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPFunctionFormataDataSQL)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionFormataDataSQL);
+                }
+                
+                new CustomDAO<Parametros>().execute(new Constants().SQLViewAtendimentoPorData);
+                new CustomDAO<Parametros>().execute(new Constants().SQLViewAtendimentoPorAreaExame);
+                
+                log.info("Criado funções, procedures e views");
             }
-            if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPProcedureAtendimentos)){
-                new CustomDAO<Parametros>().execute(new Constants().SQLADDProcedureAtendimentos);
-            }
-            log.info("Criado funções e procedures");
         }
     }
     

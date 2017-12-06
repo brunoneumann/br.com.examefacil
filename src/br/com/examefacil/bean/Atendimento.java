@@ -45,6 +45,8 @@ public class Atendimento implements Serializable {
     private String nome_usuario;
     @Transient 
     private String dataString;
+    @Transient 
+    private int qtdeAtendimentos;
     
 
     public int getIdatendimento() {
@@ -134,6 +136,14 @@ public class Atendimento implements Serializable {
 
     public void setDataString(String dataString) {
         this.dataString = dataString;
+    }
+
+    public int getQtdeAtendimentos() {
+        return qtdeAtendimentos;
+    }
+
+    public void setQtdeAtendimentos(int qtdeAtendimentos) {
+        this.qtdeAtendimentos = qtdeAtendimentos;
     }
     
     

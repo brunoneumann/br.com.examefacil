@@ -270,6 +270,7 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDtDataAtendimento">
           <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
             <Property name="name" type="java.lang.String" value="Data de atendimento" noResource="true"/>
           </Properties>
         </Component>

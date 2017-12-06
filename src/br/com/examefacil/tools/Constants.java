@@ -267,7 +267,14 @@ public class Constants {
             + "WHEN status='5' THEN 'Finalizado' "
             + "END";
     
-    /* Função para filtros de acordo com o tipo de acesso do usuário */
+    /* Função para formatar data do Mysql para dd/MM/yyyy */
+    public String SQLDROPFunctionFormataDataSQL = "DROP FUNCTION IF EXISTS fn_formata_data";
+    public String SQLADDFunctionFormataDataSQL = "CREATE FUNCTION fn_formata_data(data_sql date) "
+            + "RETURNS VARCHAR(10) "
+            + "DETERMINISTIC "
+            + "RETURN DATE_FORMAT(data_sql,'%d/%m/%Y')";
+    
+    /* Procedure para filtros de acordo com o tipo de acesso do usuário */
     public String SQLDROPProcedureAtendimentos = "DROP PROCEDURE IF EXISTS atendimentos";
     public String SQLADDProcedureAtendimentos = ""
             + "CREATE PROCEDURE atendimentos(nome_paciente VARCHAR(100), data_inicial VARCHAR(10), data_final VARCHAR(10), tipo_acesso VARCHAR(1)) "
@@ -299,4 +306,58 @@ public class Constants {
                 "EXECUTE stmt1; "+
                 "END";
     
+    
+    /* Procedures para os gráficos do dashboard */
+    
+    /* Qtde atendimentos por status */
+    public String SQLDROPProcedureAtendimentosPorStatus = "DROP PROCEDURE IF EXISTS pr_dash_atendimentos_status";
+    public String SQLADDProcedureAtendimentosPorStatus = ""
+            + "CREATE PROCEDURE pr_dash_atendimentos_status(data_inicial VARCHAR(10), data_final VARCHAR(10)) "
+            + "DETERMINISTIC "
+            + "BEGIN "
+            + "SET @query = CONCAT(\"SELECT fn_status_atendimento(a.status) status, " +
+                "COUNT(a.idatendimento) qtde "+
+                "FROM atendimento a "+
+                "LEFT JOIN paciente p ON (p.idpaciente=a.idpaciente) "+
+                "WHERE a.data BETWEEN '\", data_inicial, \"' AND '\", data_final, \"' " +
+                "GROUP BY 1\"); "+
+                "PREPARE stmt1 FROM @query; "+
+                "EXECUTE stmt1;" +
+                "END";
+    
+    /* Qtde atendimentos por tipo de exame */
+    public String SQLDROPProcedureAtendimentosPorTipoExame = "DROP PROCEDURE IF EXISTS pr_dash_atendimentos_tipoexame";
+    public String SQLADDProcedureAtendimentosPorTipoExame = ""
+            + "CREATE PROCEDURE pr_dash_atendimentos_tipoexame(data_inicial VARCHAR(10), data_final VARCHAR(10)) "
+            + "DETERMINISTIC "
+            + "BEGIN "
+            + "SET @query = CONCAT(\"SELECT t.nome tipoexame, " +
+                "COUNT(DISTINCT a.idatendimento) qtde "+
+                "FROM atendimento a "+
+                "INNER JOIN atendimento_tipoexame p ON (p.idatendimento=a.idatendimento) "+
+                "LEFT JOIN tipoexame t ON (t.idtipoexame=p.idtipoexame) "+
+                "WHERE a.data BETWEEN '\", data_inicial, \"' AND '\", data_final, \"' " +
+                "GROUP BY 1\"); "+
+                "PREPARE stmt1 FROM @query; "+
+                "EXECUTE stmt1;" +
+                "END";
+    
+    /* View qtde. atendimentos por data */
+    public String SQLViewAtendimentoPorData = "CREATE OR REPLACE VIEW vw_atendimentos_data AS "
+            + "SELECT fn_formata_data(a.data) data, "
+            + "a.data data_sql, "
+            + "COUNT(a.idatendimento) qtde "
+            + "FROM atendimento a "
+            + "GROUP BY 1, 2";
+    
+    /* View qtde. atendimentos por área de exame */
+    public String SQLViewAtendimentoPorAreaExame = "CREATE OR REPLACE VIEW vw_atendimentos_areaexame AS "
+            + "SELECT ae.nome areaexame, a.data data_sql, fn_formata_data(a.data) data, a.idatendimento "
+            + "FROM atendimento a "
+            + "INNER JOIN atendimento_tipoexame ate ON "
+            + "(ate.idatendimento=a.idatendimento) "
+            + "INNER JOIN tipoexame te ON "
+            + "(te.idtipoexame=ate.idtipoexame) "
+            + "INNER JOIN areaexame ae ON "
+            + "(ae.idareaexame=te.idareaexame)";
 }

@@ -9,11 +9,9 @@ package br.com.examefacil.bean;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.Column;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Transient;
 
 /**
@@ -40,6 +38,10 @@ public class Atender {
     private String tipoexame;
     @Transient
     private String areaexame;
+    @Transient
+    private int qtdeAtendimentos;
+    @Transient
+    private String dataStr;
     
     public String getPaciente() {
     return paciente;
@@ -110,6 +112,22 @@ public class Atender {
     public boolean equals(Object obj) {
         Atender a = (Atender) obj;
         return Objects.equals(this.idatend_tipo, a.idatend_tipo);
+    }
+
+    public int getQtdeAtendimentos() {
+        return qtdeAtendimentos;
+    }
+
+    public void setQtdeAtendimentos(int qtdeAtendimentos) {
+        this.qtdeAtendimentos = qtdeAtendimentos;
+    }
+
+    public String getDataStr() {
+        return dataStr;
+    }
+
+    public void setDataStr(String dataStr) {
+        this.dataStr = dataStr;
     }
     
     
