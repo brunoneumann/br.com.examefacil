@@ -137,7 +137,7 @@
           <Properties>
             <Property name="title" type="java.lang.String" value="Login"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Default Cursor"/>
+              <Color id="Cursor Padr&#xe3;o"/>
             </Property>
             <Property name="debugGraphicsOptions" type="int" value="-1"/>
             <Property name="focusTraversalPolicyProvider" type="boolean" value="true"/>
@@ -437,14 +437,8 @@
                   </Events>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDteInicial">
-                  <Properties>
-                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
-                  </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDteFinal">
-                  <Properties>
-                    <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jBtnDashboard">
                   <Properties>

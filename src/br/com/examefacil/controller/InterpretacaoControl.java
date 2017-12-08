@@ -17,7 +17,9 @@ import br.com.examefacil.dao.ImagemDAO;
 import br.com.examefacil.dao.InterpretacaoDAO;
 import br.com.examefacil.dao.ParametrosDAO;
 import br.com.examefacil.renderer.ExamesComboModel;
+import br.com.examefacil.socket.ServerSocketAtendimento;
 import br.com.examefacil.swing.TelaPrincipal;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.InterpretacaoView;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
@@ -36,6 +38,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
@@ -44,9 +47,12 @@ import javax.swing.table.TableModel;
 public class InterpretacaoControl {
 
     InterpretacaoView view;
+    TelaPrincipalView viewPrincipal;
+    final org.apache.logging.log4j.Logger log = LogManager.getLogger(AtendimentoControl.class.getName());
 
-    public InterpretacaoControl(InterpretacaoView view) {
+    public InterpretacaoControl(InterpretacaoView view, TelaPrincipalView view2) {
         this.view = view;
+        this.viewPrincipal = view2;
     }
 
     public void init(TelaPrincipalView view2) {
@@ -55,8 +61,8 @@ public class InterpretacaoControl {
         view.jLIDTextoPadrao().setVisible(false);
         view.jLIDTextoPadraoExame().setVisible(false);
         view.jLIDAtendimento().setVisible(false);
-        view.jBPlay().setEnabled(false);
         view.jLAudio().setVisible(false);
+        view.jLIDTextoPadrao().setEnabled(false);
         //carregaPermissaoIncluir(view);
 
     }
@@ -78,12 +84,23 @@ public class InterpretacaoControl {
         view.jTImagens().setColumnModel(tableColumnInterpretacao(view));
     }
 
-    public void textoPadrao(InterpretacaoView view) {
+    public boolean textoPadrao(InterpretacaoView view) {
+        boolean status = false;
         view.jLIDTextoPadraoExame().setText(view.jLIDTextoPadrao().getText());
-        try {
-            salvar(view);
-        } catch (IOException ex) {
-            Logger.getLogger(InterpretacaoControl.class.getName()).log(Level.SEVERE, null, ex);
+        if (view.jLIDTextoPadraoExame().getText().equals("")) {
+            Util.Error("Selecione um texto padrão");
+            return false;
+        } else {
+            try {
+                status = salvar(view);
+            } catch (IOException ex) {
+                Logger.getLogger(InterpretacaoControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(status){
+            return true;
+        }else{
+            return false;
         }
     }
 
@@ -93,11 +110,12 @@ public class InterpretacaoControl {
         String novoCaminho = "";
 
         caminhoAtual = view.jLAudio().getText();
-        if (!(caminhoAtual.equals("") || caminhoAtual.equals("null"))) {
+        if (!(view.jLAudio().getText().equals(""))) {
             novoCaminho = novoAudio(view, caminhoAtual);
             Audio b = new Audio();
             b.setNomeArquivo(novoCaminho);
             b.setIdatendimento(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdatendimento());
+            b.setDetalhes(view.jLAudio().getText());
             audio = new AudioDAO().save(b);
         }
 
@@ -105,6 +123,13 @@ public class InterpretacaoControl {
         boolean result = false;
         a.setStatus("4");
         result = new AtendimentoDAO().save(a);
+
+        // Envia atualização da lista para o socket
+        try {
+            new ServerSocketAtendimento().atualizar(viewPrincipal);
+        } catch (Exception ex) {
+            log.error(ex);
+        }
 
     }
 
@@ -114,11 +139,18 @@ public class InterpretacaoControl {
         a.setStatus("2");
         result = new AtendimentoDAO().save(a);
 
+        // Envia atualização da lista para o socket
+        try {
+            new ServerSocketAtendimento().atualizar(viewPrincipal);
+        } catch (Exception ex) {
+            log.error(ex);
+        }
+
     }
 
     public boolean salvar(InterpretacaoView view) throws IOException {
         boolean result = false;
-
+        
         Interpretacao a = new Interpretacao();
 
         a.setIdatendimento(((Atender) view.jCImagens().getModel().getSelectedItem()).getIdatendimento());
@@ -132,6 +164,7 @@ public class InterpretacaoControl {
             limparTextos(view);
             desabilitaBotoesEditar(view);
             atualizaTabelaImagens(view);
+
             return result;
         } else {
             return false;
@@ -243,9 +276,12 @@ public class InterpretacaoControl {
         view.chooserAudio().setFileFilter(filter);
         if (view.chooserAudio().showOpenDialog(view.chooserAudio()) == JFileChooser.APPROVE_OPTION) {
             view.jLAudio().setText(view.chooserAudio().getSelectedFile().toString());
-            view.jBPlay().setEnabled(true);
 
         }
+    }
+    public void excluirAudio(InterpretacaoView view){
+        view.jLAudio().setText("");
+        view.jBExcluir().setEnabled(false);
     }
 
     public String novoAudio(InterpretacaoView view, String caminho) {

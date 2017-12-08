@@ -512,8 +512,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMParametrosActionPerformed
 
     private void jBAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtenderActionPerformed
-        TelaAtender dialog = new TelaAtender (this, rootPaneCheckingEnabled);
-        new AtenderControl(dialog).carregarDados(this);
+        TelaAtender dialog = new TelaAtender (this, rootPaneCheckingEnabled, this);
+        new AtenderControl(dialog, this).carregarDados(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBAtenderActionPerformed
 

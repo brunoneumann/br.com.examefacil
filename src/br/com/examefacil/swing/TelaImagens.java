@@ -27,7 +27,7 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
         this.chooserImagens = new JFileChooser();
         this.telaPrincipalView = viewPrincipal;
         initComponents();
-        new ImagemControl(this).init(telaPrincipalView);
+        new ImagemControl(this, telaPrincipalView).init(telaPrincipalView);
     }
 
     /**
@@ -47,7 +47,6 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
         jLabel1 = new javax.swing.JLabel();
         jCImagens = new javax.swing.JComboBox<>();
         jBFechar = new javax.swing.JButton();
-        jBExcluir = new javax.swing.JButton();
         jBAdicionar = new javax.swing.JButton();
 
         jTImagens.setModel(new javax.swing.table.DefaultTableModel(
@@ -83,14 +82,6 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
             }
         });
 
-        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
-        jBExcluir.setText("Excluir");
-        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBExcluirActionPerformed(evt);
-            }
-        });
-
         jBAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/incluir.png"))); // NOI18N
         jBAdicionar.setText("Adicionar");
         jBAdicionar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +104,7 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBExcluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(105, 105, 105)
                                 .addComponent(jBFechar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jBEnviar))
@@ -133,11 +123,10 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBAdicionar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBAdicionar)
-                        .addComponent(jBExcluir)
-                        .addComponent(jBFechar))
-                    .addComponent(jBEnviar))
+                        .addComponent(jBEnviar)
+                        .addComponent(jBFechar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCImagens, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,8 +144,10 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarActionPerformed
-        new ImagemControl(this).salvar(this);
-        this.setVisible(false);
+        if(new ImagemControl(this, telaPrincipalView).salvar(this)){
+            this.setVisible(false);
+        }
+        
     }//GEN-LAST:event_jBEnviarActionPerformed
 
     private void jBFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFecharActionPerformed
@@ -164,15 +155,11 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
     }//GEN-LAST:event_jBFecharActionPerformed
 
     private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
-        if (!(new ImagemControl(this).atualizaTabelaImagem(this))){
-            new ImagemControl(this).initChooserImagem();
-        }
+        //if (!(new ImagemControl(this).atualizaTabelaImagem(this))){
+            new ImagemControl(this, telaPrincipalView).initChooserImagem();
+       // }
 
     }//GEN-LAST:event_jBAdicionarActionPerformed
-
-    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
-        new ImagemControl(this).excluir(this);
-    }//GEN-LAST:event_jBExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +200,6 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAdicionar;
     private javax.swing.JButton jBEnviar;
-    private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFechar;
     private javax.swing.JComboBox<String> jCImagens;
     private javax.swing.JLabel jLIDAtendimento;
@@ -230,7 +216,7 @@ public class TelaImagens extends javax.swing.JFrame implements ImagemView{
 
     @Override
     public JButton jBExcluir() {
-        return jBExcluir;
+        return null;
     }
 
     @Override

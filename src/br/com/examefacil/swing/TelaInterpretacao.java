@@ -32,7 +32,7 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
         this.chooserAudio = new JFileChooser();
         this.telaPrincipalView = viewPrincipal;
         initComponents();
-        new InterpretacaoControl(this).init(telaPrincipalView);
+        new InterpretacaoControl(this, telaPrincipalView).init(telaPrincipalView);
         setLocationRelativeTo( null );
         
     }
@@ -63,8 +63,7 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
         jTImagens = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jBAdicionar = new javax.swing.JButton();
-        jBPlay = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        jBExcluir = new javax.swing.JButton();
         jLAudio = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jBLaudar = new javax.swing.JButton();
@@ -222,16 +221,13 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
             }
         });
 
-        jBPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/play.png"))); // NOI18N
-        jBPlay.setText("Play");
-        jBPlay.addActionListener(new java.awt.event.ActionListener() {
+        jBExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
+        jBExcluir.setText("Excluir");
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBPlayActionPerformed(evt);
+                jBExcluirActionPerformed(evt);
             }
         });
-
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/excluir.png"))); // NOI18N
-        jButton12.setText("Excluir");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -239,12 +235,10 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jBAdicionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBPlay)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(99, 99, 99)
                 .addComponent(jLAudio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton12))
+                .addComponent(jBExcluir))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,8 +246,7 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jBAdicionar)
-                        .addComponent(jBPlay)
-                        .addComponent(jButton12))
+                        .addComponent(jBExcluir))
                     .addComponent(jLAudio))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -306,13 +299,13 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
                         .addComponent(jButton1)
                         .addGap(0, 368, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jCImagens, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -386,47 +379,47 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
     }//GEN-LAST:event_jBLaudarActionPerformed
 
     private void jBGravarLaudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarLaudoActionPerformed
-        new InterpretacaoControl(this).textoPadrao(this);
-        jDLaudar.setVisible(false);
+        if(new InterpretacaoControl(this, telaPrincipalView).textoPadrao(this)){
+            jDLaudar.setVisible(false);
+        }
     }//GEN-LAST:event_jBGravarLaudoActionPerformed
 
     private void jTImagensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTImagensMouseClicked
-        new InterpretacaoControl(this).abrirImagem(this);
+        new InterpretacaoControl(this, telaPrincipalView).abrirImagem(this);
     }//GEN-LAST:event_jTImagensMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new InterpretacaoControl(this).alteraStatus(this);
+        new InterpretacaoControl(this, telaPrincipalView).alteraStatus(this);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jBAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarActionPerformed
-        new InterpretacaoControl(this).initChooserAudio();
+        new InterpretacaoControl(this, telaPrincipalView).initChooserAudio();
     }//GEN-LAST:event_jBAdicionarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new InterpretacaoControl(this).refazerExames(this);
+        new InterpretacaoControl(this, telaPrincipalView).refazerExames(this);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCImagensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCImagensActionPerformed
-        new InterpretacaoControl(this).atualizarItensTabela(this);
+        new InterpretacaoControl(this, telaPrincipalView).atualizarItensTabela(this);
     }//GEN-LAST:event_jCImagensActionPerformed
 
-    private void jBPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPlayActionPerformed
-        new InterpretacaoControl(this).abrirSom();
-    }//GEN-LAST:event_jBPlayActionPerformed
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
+        new InterpretacaoControl(this, telaPrincipalView).excluirAudio(this);
+    }//GEN-LAST:event_jBExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAdicionar;
     private javax.swing.JButton jBCancelarLaudo;
+    private javax.swing.JButton jBExcluir;
     private javax.swing.JButton jBFecharLaudo;
     private javax.swing.JButton jBGravarLaudo;
     private javax.swing.JButton jBLaudar;
-    private javax.swing.JButton jBPlay;
     private javax.swing.JButton jBTextoPadrao;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCImagens;
     private javax.swing.JDialog jDLaudar;
@@ -519,11 +512,16 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
 
     @Override
     public JButton jBPlay() {
-        return jBPlay;
+        return null;
     }
 
     @Override
     public JLabel jLAudio() {
         return jLAudio;
+    }
+
+    @Override
+    public JButton jBExcluir() {
+        return jBExcluir;
     }
 }

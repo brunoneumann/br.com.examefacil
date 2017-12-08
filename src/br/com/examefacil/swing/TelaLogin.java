@@ -47,7 +47,7 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
 
         jLabel1.setText("E-mail ");
 
-        jTUsuario.setText("bruno");
+        jTUsuario.setText("teste");
         jTUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTUsuarioActionPerformed(evt);
@@ -56,7 +56,7 @@ public class TelaLogin extends javax.swing.JFrame implements LoginView{
 
         jLabel2.setText("Senha");
 
-        jPSenha.setText("123");
+        jPSenha.setText("teste");
         jPSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPSenhaActionPerformed(evt);

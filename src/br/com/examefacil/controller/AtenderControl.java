@@ -12,6 +12,8 @@ import br.com.examefacil.bean.TipoExame;
 import br.com.examefacil.dao.AtenderDAO;
 import br.com.examefacil.dao.AtendimentoDAO;
 import br.com.examefacil.dao.PacienteDAO;
+import br.com.examefacil.socket.ServerSocketAtendimento;
+import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.AtenderView;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.towel.el.FieldResolver;
@@ -21,16 +23,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import org.apache.logging.log4j.LogManager;
 
 /**
  *
  * @author Henrique
  */
 public class AtenderControl {
-     public AtenderView viewAtender;
-    
-    public AtenderControl(AtenderView view) {
+
+    public AtenderView viewAtender;
+    public TelaPrincipalView viewPrincipal;
+    final org.apache.logging.log4j.Logger log = LogManager.getLogger(AtenderControl.class.getName());
+
+    public AtenderControl(AtenderView view, TelaPrincipalView view2) {
         this.viewAtender = view;
+        this.viewPrincipal = view2;
     }
 
     public void init(AtenderView view) {
@@ -49,7 +56,7 @@ public class AtenderControl {
     }
 
     public boolean atualizaTabelaAtender(AtenderView view) {
-        
+
         if (view.jTSolicitarExame().getText().equals("")) {
             return false;
         } else {
@@ -65,33 +72,47 @@ public class AtenderControl {
     public boolean salvar(AtenderView view) {
         boolean result = false;
         boolean status = false;
-        Atendimento b = new Atendimento();
-        for (int i=0;i < view.jTSolicitados().getRowCount();i++){
-                Atender a = new Atender ();
-                int id = Integer.parseInt (view.jTSolicitados().getValueAt(i, 0)+"");
-                a.setIdtipoexame(id);
-                a.setIdatendimento(Integer.parseInt(view.jLIDAtendimento().getText())); 
-                result = new AtenderDAO().save(a);    
-        }
-        b = new AtendimentoDAO().get(Integer.parseInt(view.jLIDAtendimento().getText()));
-        b.setStatus("2");
-        status = new AtendimentoDAO().save(b);
-      
-        if (result && status) {
-            limparTextos(view);
-            desabilitaBotoesEditar(view);
-            atualizaTabelaAtender(view);
-            return result;
-        } else {
+
+        if (view.jTSolicitados().getColumnCount()==0) {
+            Util.Aviso("Solicite pelo menos um exame");
             return false;
+        } else {
+            Atendimento b = new Atendimento();
+            for (int i = 0; i < view.jTSolicitados().getRowCount(); i++) {
+                Atender a = new Atender();
+                int id = Integer.parseInt(view.jTSolicitados().getValueAt(i, 0) + "");
+                a.setIdtipoexame(id);
+                a.setIdatendimento(Integer.parseInt(view.jLIDAtendimento().getText()));
+                result = new AtenderDAO().save(a);
+            }
+            b = new AtendimentoDAO().get(Integer.parseInt(view.jLIDAtendimento().getText()));
+            b.setStatus("2");
+            status = new AtendimentoDAO().save(b);
+
+            if (result && status) {
+                limparTextos(view);
+                desabilitaBotoesEditar(view);
+                atualizaTabelaAtender(view);
+                // Envia atualização da lista para o socket
+                try {
+                    new ServerSocketAtendimento().atualizar(viewPrincipal);
+                } catch(Exception ex){
+                    log.error(ex);
+                }
+ 
+                    
+                return result;
+            } else {
+                return false;
+            }
         }
     }
 
     public Atendimento getAtendimento(int id) {
         return new AtendimentoDAO().get(id);
     }
-    
-     public Atender get(int id) {
+
+    public Atender get(int id) {
         return new AtenderDAO().get(id);
     }
 
@@ -104,24 +125,24 @@ public class AtenderControl {
     }
 
     public List<TipoExame> listar2(String parametro, String nome, AtenderView view) {
-        if(view.jTSolicitados().getRowCount()==4){
+        if (view.jTSolicitados().getRowCount() == 4) {
             List<TipoExame> lista = new ArrayList();
             TipoExame a = new TipoExame();
             a.setIdtipoexame(Integer.parseInt(parametro));
             a.setNome(nome);
             lista.add(a);
             return lista;
-        }
-        else{
+        } else {
             List<TipoExame> lista = new ArrayList();
-            for (int i=0;i < view.jTSolicitados().getRowCount();i++){
-                TipoExame a = new TipoExame ();
-                int id = Integer.parseInt (view.jTSolicitados().getValueAt(i, 0)+"");
+            for (int i = 0; i < view.jTSolicitados().getRowCount(); i++) {
+                TipoExame a = new TipoExame();
+                int id = Integer.parseInt(view.jTSolicitados().getValueAt(i, 0) + "");
                 a.setIdtipoexame(id);
                 String exame = String.valueOf(view.jTSolicitados().getValueAt(i, 1));
                 a.setNome(exame);
-                lista.add(a);         
-            } 
+                
+                lista.add(a);
+            }
             TipoExame b = new TipoExame();
             b.setIdtipoexame(Integer.parseInt(parametro));
             b.setNome(nome);
@@ -133,16 +154,16 @@ public class AtenderControl {
 
     public Atendimento atendimentoSelecionado(TelaPrincipalView view) {
         int selected = view.tblAtendimentos().getSelectedRow();
-        return getAtendimento((int)view.tblAtendimentos().getModel().getValueAt(selected, 0));
+        return getAtendimento((int) view.tblAtendimentos().getModel().getValueAt(selected, 0));
     }
 
     public void carregarDados(TelaPrincipalView view) {
         Atendimento a = atendimentoSelecionado(view);
         Paciente p = new PacienteDAO().get(a.getIdpaciente());
-        if(a!=null){
-            
+        if (a != null) {
+
             habilitaBotoesEditar(viewAtender);
-            viewAtender.jLIDAtendimento().setText(a.getIdatendimento()+"");
+            viewAtender.jLIDAtendimento().setText(a.getIdatendimento() + "");
             viewAtender.jLPaciente().setText(p.getNome());
             viewAtender.jLData().setText(a.getDataString());
             viewAtender.jLHora().setText(a.getHoraEntrada());
@@ -158,7 +179,6 @@ public class AtenderControl {
                 = new ObjectTableModel<TipoExame>(
                         new FieldResolver[]{frID, frNome});
 
-        
         model.setEditableDefault(false);
         model.setData(this.listar2(view.jLIDExame().getText(), view.jTSolicitarExame().getText(), view));
         return model;
@@ -191,7 +211,6 @@ public class AtenderControl {
     }
 
     public void habilitaBotoesEditar(AtenderView view) {
-        
 
     }
 
