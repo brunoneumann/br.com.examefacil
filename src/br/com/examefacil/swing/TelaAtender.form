@@ -168,6 +168,8 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jBIncluir" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLArea" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLIDExame" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -185,6 +187,7 @@
                       <Component id="jTSolicitarExame" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLIDExame" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLArea" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -234,6 +237,8 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLArea">
         </Component>
       </SubComponents>
     </Container>

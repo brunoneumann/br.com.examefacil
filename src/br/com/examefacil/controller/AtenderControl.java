@@ -43,6 +43,7 @@ public class AtenderControl {
     public void init(AtenderView view) {
         view.jLIDExame().setVisible(false);
         view.jLIDAtendimento().setVisible(false);
+        view.jLArea().setVisible(false);
         //atualizaTabelaAtender(view);
         //carregaPermissaoIncluir(view);
     }
@@ -124,12 +125,14 @@ public class AtenderControl {
         return new AtenderDAO().list(parametro);
     }
 
-    public List<TipoExame> listar2(String parametro, String nome, AtenderView view) {
-        if (view.jTSolicitados().getRowCount() == 4) {
+    public List<TipoExame> listar2(String parametro, String nome, AtenderView view) {  
+        
+        if (view.jTSolicitados().getColumnCount()<=0) {
             List<TipoExame> lista = new ArrayList();
             TipoExame a = new TipoExame();
             a.setIdtipoexame(Integer.parseInt(parametro));
             a.setNome(nome);
+            a.setArea(view.jLArea().getText());
             lista.add(a);
             return lista;
         } else {
@@ -140,12 +143,14 @@ public class AtenderControl {
                 a.setIdtipoexame(id);
                 String exame = String.valueOf(view.jTSolicitados().getValueAt(i, 1));
                 a.setNome(exame);
+                a.setArea(String.valueOf(view.jTSolicitados().getValueAt(i, 2)));
                 
                 lista.add(a);
             }
             TipoExame b = new TipoExame();
             b.setIdtipoexame(Integer.parseInt(parametro));
             b.setNome(nome);
+            b.setArea(view.jLArea().getText());
             lista.add(b);
 
             return lista;
@@ -174,10 +179,11 @@ public class AtenderControl {
         FieldResolverFactory frf = new FieldResolverFactory(TipoExame.class);
         FieldResolver frID = frf.createResolver("idtipoexame", "ID");
         FieldResolver frNome = frf.createResolver("nome", "Descrição");
+        FieldResolver frArea = frf.createResolver("area", "Area");
 
         ObjectTableModel<TipoExame> model
                 = new ObjectTableModel<TipoExame>(
-                        new FieldResolver[]{frID, frNome});
+                        new FieldResolver[]{frID, frNome, frArea});
 
         model.setEditableDefault(false);
         model.setData(this.listar2(view.jLIDExame().getText(), view.jTSolicitarExame().getText(), view));
@@ -188,7 +194,8 @@ public class AtenderControl {
     public TableColumnModel tableColumnAtender(AtenderView view) {
         TableColumnModel coluna = view.jTSolicitados().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
-        coluna.getColumn(1).setPreferredWidth(20);
+        coluna.getColumn(1).setPreferredWidth(15);
+        coluna.getColumn(1).setPreferredWidth(10);
         return coluna;
     }
 
