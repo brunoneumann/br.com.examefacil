@@ -33,7 +33,7 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
         this.telaPrincipalView = viewPrincipal;
         initComponents();
         new InterpretacaoControl(this, telaPrincipalView).init(telaPrincipalView);
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );
         
     }
 

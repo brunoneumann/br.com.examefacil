@@ -42,7 +42,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
      */
     public TelaPaciente() {
         initComponents();
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );
         new PacienteControl().init(this);
     }
     

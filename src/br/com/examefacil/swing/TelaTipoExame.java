@@ -27,7 +27,7 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
      */
     public TelaTipoExame() {
         initComponents();
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );
         new TipoExameControl().init(this);
     }
 

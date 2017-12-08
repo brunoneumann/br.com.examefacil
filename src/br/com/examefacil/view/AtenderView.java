@@ -29,6 +29,7 @@ public interface AtenderView {
     public JLabel jLIDAtendimento();
     public JTable jTSolicitados();
     public JLabel jLIDExame();
+    public JLabel jLArea();
 
     
     

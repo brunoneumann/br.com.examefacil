@@ -36,14 +36,14 @@ public class BuscaExameControl {
         FieldResolverFactory frf = new FieldResolverFactory(TipoExame.class);
         FieldResolver frID = frf.createResolver("idtipoexame", "ID");
         FieldResolver frNome = frf.createResolver("nome", "Descrição");
-        //FieldResolver frArea = frf.createResolver("area", "Area");
+        FieldResolver frArea = frf.createResolver("area", "Area");
         
         ObjectTableModel<TipoExame> model
                 = new ObjectTableModel<TipoExame>(
-                        new FieldResolver[]{frID,frNome/*,frArea*/});
+                        new FieldResolver[]{frID,frNome,frArea});
         
         model.setEditableDefault(false);
-        model.setData(this.listar(view.jTPesquisar().getText()));
+        model.setData(this.listar());
         return model;
     }
     
@@ -51,7 +51,7 @@ public class BuscaExameControl {
         TableColumnModel coluna = view.JTABExames().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(5);
         coluna.getColumn(1).setPreferredWidth(150);
-        //coluna.getColumn(2).setPreferredWidth(150);
+        coluna.getColumn(2).setPreferredWidth(150);
         return coluna;
     }
     
@@ -60,7 +60,7 @@ public class BuscaExameControl {
     }
     
     public List<TipoExame> listar() {
-        return new TipoExameDAO().list();
+        return new TipoExameDAO().listarExames();
     }
     
     public List<TipoExame> listar(String parametro) {
@@ -75,10 +75,11 @@ public class BuscaExameControl {
     public void selecionarExame(int row, JTable table, AtenderView view, BuscaExameView view2){
        String id = table.getModel().getValueAt(row, 0).toString();
        String nome = table.getModel().getValueAt(row, 1).toString();
-       //String area = table.getModel().getValueAt(row, 2).toString();
+       String area = table.getModel().getValueAt(row, 2).toString();
        
        view.jTSolicitarExame().setText(nome);
        view.jLIDExame().setText(id+"");
+       view.jLArea().setText(area);
        
         
         

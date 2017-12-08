@@ -24,7 +24,7 @@ public class TelaLaudo extends javax.swing.JDialog implements LaudoView{
     public TelaLaudo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );
         
     }
 

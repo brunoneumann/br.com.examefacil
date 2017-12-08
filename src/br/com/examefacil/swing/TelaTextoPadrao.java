@@ -27,7 +27,7 @@ public class TelaTextoPadrao extends javax.swing.JFrame implements TextoPadraoVi
      */
     public TelaTextoPadrao() {
         initComponents();
-        setLocationRelativeTo( null );
+        //setLocationRelativeTo( null );
         new TextoPadraoControl().init(this);
     }
 
