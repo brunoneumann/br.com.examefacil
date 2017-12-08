@@ -25,8 +25,6 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
         initComponents(); 
         this.viewPrincipal = view;
         new AtenderControl(this, viewPrincipal).init(this);
-        setLocationRelativeTo( null );
-        
     }
 
     /**
