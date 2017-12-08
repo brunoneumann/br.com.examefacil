@@ -47,6 +47,18 @@ public class ParametrosDAO {
                     new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionFormataDataSQL);
                 }
                 
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPFunctionQtdeAtendimentos)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionQtdeAtendimentos);
+                }
+                
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPFunctionMaiorInterpretador)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionMaiorInterpretador);
+                }
+                
+                if(new CustomDAO<Parametros>().execute(new Constants().SQLDROPFunctionMaiorRecepcionista)){
+                    new CustomDAO<Parametros>().execute(new Constants().SQLADDFunctionMaiorRecepcionista);
+                }
+                
                 new CustomDAO<Parametros>().execute(new Constants().SQLViewAtendimentoPorData);
                 new CustomDAO<Parametros>().execute(new Constants().SQLViewAtendimentoPorAreaExame);
                 

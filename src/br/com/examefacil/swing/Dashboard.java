@@ -8,6 +8,10 @@ package br.com.examefacil.swing;
 import br.com.examefacil.controller.AtendimentoDatasets;
 import br.com.examefacil.dao.AtenderDAO;
 import br.com.examefacil.dao.AtendimentoDAO;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 
@@ -50,7 +54,29 @@ public class Dashboard extends javax.swing.JFrame {
         panel.add(chartPanelAtendimentosPorTipoExame);
         panel.add(chartPanelAtendimentosPorData);
         panel.add(chartPanelAtendimentosPorAreaExame);
-
+        
+        
+        /*JPanel panel2 = new JPanel();
+        panel2.setSize(new java.awt.Dimension(800, 10));
+        panel2.setLayout(new java.awt.GridLayout(1,1));
+        panel2.setBackground(Color.WHITE);
+        
+        int totalAtendimentos = new AtendimentoDAO().totalAtendimentos(dataInicial, dataFinal);
+        String maiorInterpretador = "João do Pulo";
+        String maiorRecepcionista = "Virgínia do Suli";
+        JLabel labelTotais = new JLabel();
+        labelTotais.setFont(labelTotais.getFont().deriveFont(18.0f));
+        labelTotais.setText("<html><body>"
+                + "Total de atendimentos: " +totalAtendimentos+" <br>"
+                + "Méd. interpretador c/ maior número de atendimentos: <br>"
+                + ""+ maiorInterpretador + "<br>"
+                + "Recepcionista c/ maior número de abertura de atendimentos: <br>"
+                + ""+ maiorRecepcionista +""
+                + "</body>"
+                + "</html>");
+        
+        panel2.add(labelTotais);*/
+        
         this.setContentPane(panel);
     }
 
@@ -64,17 +90,16 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         pack();

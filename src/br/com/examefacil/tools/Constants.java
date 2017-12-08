@@ -288,7 +288,7 @@ public class Constants {
                 "WHERE a.data BETWEEN '\", data_inicial, \"' AND '\", data_final, \"' " +
                 "AND p.nome LIKE '%\", nome_paciente, \"%'\"); "+
                 "IF (tipo_acesso = '1') THEN "+
-                "SET @query = CONCAT(@query, ' AND a.status IN ('\"1\"','\"5\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
+                "SET @query = CONCAT(@query, ' AND a.status IN ('\"1\"','\"4\"','\"5\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
                 "END IF; "+
                 "IF (tipo_acesso = '2') THEN "+
                 "SET @query = CONCAT(@query, ' AND a.status IN ('\"2\"')', ' ORDER BY a.data DESC, a.hora_entrada DESC'); "+
@@ -360,4 +360,53 @@ public class Constants {
             + "(te.idtipoexame=ate.idtipoexame) "
             + "INNER JOIN areaexame ae ON "
             + "(ae.idareaexame=te.idareaexame)";
+    
+    /* Função qtde. atendimentos por período */
+    public String SQLDROPFunctionQtdeAtendimentos = "DROP FUNCTION IF EXISTS fn_qtde_atendimentos";
+    public String SQLADDFunctionQtdeAtendimentos = "CREATE FUNCTION fn_qtde_atendimentos(dataInicial VARCHAR(10), dataFinal VARCHAR(10)) "
+            + "RETURNS INT(11) "
+            + "DETERMINISTIC "
+            + "BEGIN "
+            + "DECLARE var_qtde INT(11); "
+            + "SELECT COUNT(idatendimento) INTO var_qtde FROM atendimento WHERE data BETWEEN dataInicial AND dataFinal; "
+            + "RETURN var_qtde; "
+            + "END";
+    
+    /* Função: méd. interpretador com maior número de atendimentos */
+    public String SQLDROPFunctionMaiorInterpretador = "DROP FUNCTION IF EXISTS fn_maior_interpretador";
+    public String SQLADDFunctionMaiorInterpretador = "CREATE FUNCTION fn_maior_interpretador(dataInicial VARCHAR(10), dataFinal VARCHAR(10)) "
+            + "RETURNS VARCHAR(100) "
+            + "DETERMINISTIC "
+            + "BEGIN "
+            + "DECLARE medico VARCHAR(100); "
+            + "SELECT usuario INTO medico FROM ("
+            + "SELECT u.nome usuario, COUNT(DISTINCT l.idatendimento) "
+            + "FROM laudo l "
+            + "INNER JOIN usuario u ON (u.idusuario=l.idusuario) "
+            + "INNER JOIN atendimento a ON (a.idatendimento=l.idatendimento) "
+            + "WHERE data BETWEEN dataInicial AND dataFinal "
+            + "GROUP BY 1 "
+            + "ORDER BY 2 DESC LIMIT 1 "
+            + ") AS S; "
+            + "RETURN medico;"
+            + "END";
+    
+    
+    /* Função: recepcionista com maior número de abertura de atendimentos */
+    public String SQLDROPFunctionMaiorRecepcionista = "DROP FUNCTION IF EXISTS fn_maior_recepcionista";
+    public String SQLADDFunctionMaiorRecepcionista = "CREATE FUNCTION fn_maior_recepcionista(dataInicial VARCHAR(10), dataFinal VARCHAR(10)) "
+            + "RETURNS VARCHAR(100) "
+            + "DETERMINISTIC "
+            + "BEGIN "
+            + "DECLARE nome_usuario VARCHAR(100); "
+            + "SELECT usuario INTO nome_usuario FROM ("
+            + "SELECT u.nome usuario, COUNT(DISTINCT a.idatendimento) "
+            + "FROM atendimento a "
+            + "INNER JOIN usuario u ON (u.idusuario=a.idusuario) "
+            + "WHERE a.data BETWEEN dataInicial AND dataFinal "
+            + "GROUP BY 1 "
+            + "ORDER BY 2 DESC LIMIT 1"
+            + ") AS S; "
+            + "RETURN nome_usuario; "
+            + "END";
 }

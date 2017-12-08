@@ -43,6 +43,8 @@ public class Atendimento implements Serializable {
     private String nome_paciente;
     @Transient
     private String nome_usuario;
+    @Transient
+    private String nome_interpretador;
     @Transient 
     private String dataString;
     @Transient 
@@ -144,6 +146,14 @@ public class Atendimento implements Serializable {
 
     public void setQtdeAtendimentos(int qtdeAtendimentos) {
         this.qtdeAtendimentos = qtdeAtendimentos;
+    }
+
+    public String getNome_interpretador() {
+        return nome_interpretador;
+    }
+
+    public void setNome_interpretador(String nome_interpretador) {
+        this.nome_interpretador = nome_interpretador;
     }
     
     
