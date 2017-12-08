@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -28,6 +29,9 @@ public class TipoExame {
     private String nome;
     @Column(columnDefinition = "TEXT")
     private String descricao;
+    @Transient
+    @Column(name = "area")
+    private String area;
 
     public int getIdtipoexame() {
         return idtipoexame;
@@ -59,6 +63,14 @@ public class TipoExame {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
     
     

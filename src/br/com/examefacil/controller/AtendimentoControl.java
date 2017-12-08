@@ -54,13 +54,14 @@ public class AtendimentoControl {
             } else {
                 atendimento.setIdusuario(TelaPrincipal.usuarioLogado.getIdusuario());
             }
-            atendimento.setStatus("1");
             atendimento.setData(view.getData());
             atendimento.setHoraEntrada(view.getHoraAtendimeto());
             if(view.getHoraSaida().equals("  :  ")){
+                atendimento.setStatus("1");
                 atendimento.setHoraSaida("");
             } else {
                 atendimento.setHoraSaida(view.getHoraSaida());
+                atendimento.setStatus("5");
             }
             atendimento.setObservacoes(view.getObservacoes());
             

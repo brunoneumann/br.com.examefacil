@@ -1,4 +1,3 @@
-
 package br.com.examefacil.conn;
 
 import br.com.examefacil.bean.Parametros;
@@ -23,7 +22,7 @@ public class ConnectionFactory {
             }
         }
         try {
-            return DriverManager.getConnection("jdbc:mysql://"+parametros.getUrlServidor()+":3306/examefacil?autoReconnect=true&useSSL=false", "root", "1pbns11");
+            return DriverManager.getConnection("jdbc:mysql://"+parametros.getUrlServidor()+":3306/examefacil?autoReconnect=true&useSSL=false", "root", "root");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

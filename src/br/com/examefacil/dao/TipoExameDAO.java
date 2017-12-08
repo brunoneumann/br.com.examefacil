@@ -31,7 +31,7 @@ public class TipoExameDAO {
     }
     
     public List<TipoExame> list(String parametro){
-        return new CustomDAO<TipoExame>().list(TipoExame.class, "SELECT * FROM tipoexame WHERE nome LIKE '%' :nome '%' ORDER BY idtipoexame DESC", "nome", parametro);
+        return new CustomDAO<TipoExame>().list(TipoExame.class, "SELECT idtipoexame, t.idareaexame, t.nome, t.descricao, a.nome AS area FROM tipoexame t, areaexame a WHERE a.idareaexame = t.idareaexame AND idtipoexame LIKE '%' :idtipoexame '%'", "idtipoexame", parametro);
     }
     
 }

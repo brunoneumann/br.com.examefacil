@@ -7,6 +7,7 @@ package br.com.examefacil.swing;
 
 import br.com.examefacil.controller.AtenderControl;
 import br.com.examefacil.view.AtenderView;
+import br.com.examefacil.view.TelaPrincipalView;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,12 +19,12 @@ import javax.swing.JTextField;
  * @author bruno
  */
 public class TelaAtender extends javax.swing.JDialog implements AtenderView{
-
-    
-    public TelaAtender(java.awt.Frame parent, boolean modal) {
+    public TelaPrincipalView viewPrincipal;
+    public TelaAtender(java.awt.Frame parent, boolean modal, TelaPrincipalView view) {
         super(parent, modal);
-        initComponents();
-        new AtenderControl(this).init(this);
+        initComponents(); 
+        this.viewPrincipal = view;
+        new AtenderControl(this, viewPrincipal).init(this);
         setLocationRelativeTo( null );
         
     }
@@ -45,7 +46,6 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
         jLabel3 = new javax.swing.JLabel();
         jLHora = new javax.swing.JLabel();
         jLIDAtendimento = new javax.swing.JLabel();
-        jBGravar = new javax.swing.JButton();
         jBCancelar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTSolicitarExame = new javax.swing.JTextField();
@@ -104,14 +104,6 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-
-        jBGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gravar.png"))); // NOI18N
-        jBGravar.setText("Gravar");
-        jBGravar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBGravarActionPerformed(evt);
-            }
-        });
 
         jBCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cancelar.png"))); // NOI18N
         jBCancelar.setText("Cancelar");
@@ -202,8 +194,6 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jBGravar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBEnviarExame)
@@ -219,9 +209,7 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBCancelar)
-                        .addComponent(jBGravar))
+                    .addComponent(jBCancelar)
                     .addComponent(jBEnviarExame))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,12 +220,6 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
-        AtenderControl control = new AtenderControl(this);
-        control.salvar(this);
-        this.setVisible(false);
-    }//GEN-LAST:event_jBGravarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
         this.setVisible(false);
@@ -254,22 +236,22 @@ public class TelaAtender extends javax.swing.JDialog implements AtenderView{
     }//GEN-LAST:event_jTSolicitarExameMouseClicked
 
     private void jBIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIncluirActionPerformed
-        if(!(new AtenderControl(this).atualizaTabelaAtender(this))){
+        if(!(new AtenderControl(this, viewPrincipal).atualizaTabelaAtender(this))){
             new DialogBuscarExame(this, rootPaneCheckingEnabled, this).setVisible(true);
         }
     }//GEN-LAST:event_jBIncluirActionPerformed
 
     private void jBEnviarExameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEnviarExameActionPerformed
-        AtenderControl control = new AtenderControl(this);
-        control.salvar(this);
-        this.setVisible(false);
+        AtenderControl control = new AtenderControl(this, viewPrincipal);
+        if(control.salvar(this)){
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBEnviarExameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCancelar;
     private javax.swing.JButton jBEnviarExame;
-    private javax.swing.JButton jBGravar;
     private javax.swing.JButton jBIncluir;
     private javax.swing.JLabel jLData;
     private javax.swing.JLabel jLHora;

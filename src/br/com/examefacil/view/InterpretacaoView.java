@@ -34,6 +34,7 @@ public interface InterpretacaoView {
     public JButton jBAdicionar();
     public JButton jBPlay();
     public JLabel jLAudio();
+    public JButton jBExcluir();
     
     
 }

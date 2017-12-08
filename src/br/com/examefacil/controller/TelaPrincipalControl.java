@@ -39,6 +39,7 @@ public class TelaPrincipalControl {
         
         iniciarPeriodoDatas(view);
         carregaPermissaoIncluirAtendimento(view);
+        desabilitaBotoes(view);
         if(visualizar()){
             new ServerSocketAtendimento().start(view);
         }
@@ -95,8 +96,81 @@ public class TelaPrincipalControl {
                 view.jBEditar().setEnabled(a.isAlterar());
                 view.jBExcluir().setEnabled(a.isExcluir());
                 break;
-            }
+            }else if (a.getPagina().equals("at-laudo")){
+                view.jBLaudo().setEnabled(a.isIncluir());
+                break;
+            }else if (a.getPagina().equals("at-imagem")){
+                view.jBImagens().setEnabled(a.isIncluir());
+                break;
+            } 
         }
+        String acesso = TelaPrincipal.usuarioLogado.getTipo_acesso();
+        alteraBotoesAtendimento(view, acesso);
+        
+
+    }
+    public void alteraBotoesAtendimento (TelaPrincipalView view, String acesso){
+          // PERMISSOES POR STATUS
+        if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Aguardando consulta")){
+            view.jBImagens().setEnabled(false);
+            view.jBInterpretar().setEnabled(false);
+            view.jBLaudo().setEnabled(false);
+            view.jBExcluir().setEnabled(true);
+            if(acesso.equals("5")||acesso.equals("3")){
+                view.jBAtender().setEnabled(true);
+            }else{
+                view.jBAtender().setEnabled(false);
+            }
+            
+        }else if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Aguardando exame")){
+            view.jBAtender().setEnabled(false);
+            view.jBInterpretar().setEnabled(false);
+            view.jBLaudo().setEnabled(false);
+            view.jBExcluir().setEnabled(true);
+            if(acesso.equals("5")||acesso.equals("2")){
+                view.jBImagens().setEnabled(true);
+            }else{
+                view.jBImagens().setEnabled(false);
+            }
+            
+        }else if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Aguardando interpretação")){
+            view.jBAtender().setEnabled(false);
+            view.jBImagens().setEnabled(false); 
+            view.jBLaudo().setEnabled(false);
+            view.jBExcluir().setEnabled(true);
+            if(acesso.equals("5")||acesso.equals("4")){
+                view.jBInterpretar().setEnabled(true);
+            }else{
+                view.jBInterpretar().setEnabled(false);
+            }
+        }else if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Interpretado")){
+            view.jBAtender().setEnabled(false);
+            view.jBImagens().setEnabled(false);
+            view.jBInterpretar().setEnabled(false);
+            view.jBExcluir().setEnabled(true);
+            if(acesso.equals("5")||acesso.equals("3")||acesso.equals("1")){
+                view.jBLaudo().setEnabled(true);
+            }else{
+                view.jBLaudo().setEnabled(false);
+            }
+            
+        }else if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Finalizado")){
+            view.jBAtender().setEnabled(false);
+            view.jBImagens().setEnabled(false);
+            view.jBInterpretar().setEnabled(false);
+            view.jBLaudo().setEnabled(false);
+            view.jBEditar().setEnabled(false);
+            view.jBExcluir().setEnabled(true);
+        }else{
+            view.jBAtender().setEnabled(false);
+            view.jBImagens().setEnabled(false);
+            view.jBInterpretar().setEnabled(false);
+            view.jBLaudo().setEnabled(false);
+            view.jBEditar().setEnabled(false);
+            view.jBExcluir().setEnabled(true);
+        }
+        
+          
     }
     
     public void pesquisar(TelaPrincipalView view){
@@ -219,6 +293,14 @@ public class TelaPrincipalControl {
         view.telaPrincipal().setVisible(false);
         TelaLogin tela = new TelaLogin();
         tela.setVisible(true);
+    }
+    public void desabilitaBotoes(TelaPrincipalView view){
+            view.jBAtender().setEnabled(false);
+            view.jBImagens().setEnabled(false);
+            view.jBInterpretar().setEnabled(false);
+            view.jBLaudo().setEnabled(false);
+            view.jBEditar().setEnabled(false);
+            view.jBExcluir().setEnabled(false);
     }
     
     
