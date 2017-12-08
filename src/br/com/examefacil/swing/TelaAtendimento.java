@@ -30,7 +30,6 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
         super(parent, modal);
         this.viewPrincipal = viewPrincipal;
         initComponents();
-        //setLocationRelativeTo( null );  
         jLIDAtendimento.setVisible(false); 
         jLIDPaciente.setVisible(false);
         jLIDUsuario.setVisible(false);

@@ -252,6 +252,78 @@ public class AtendimentoDAO {
         return 0;
     }
     
+    public String maiorInterpretador(String dataInicial, String dataFinal) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
+        
+        String sql = "SELECT fn_maior_interpretador(?, ?) medico";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, Util.data_to_sql(dataInicial));
+            stmt.setString(2, Util.data_to_sql(dataFinal));
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                return rs.getString("medico");
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return "";
+    }
+    
+    public String maiorRecepcionista(String dataInicial, String dataFinal) {
+        Parametros parametros = new ParametrosDAO().get();
+        this.connection = new ConnectionFactory().getConnection(parametros);
+        
+        String sql = "SELECT fn_maior_recepcionista(?, ?) usuario";
+        ResultSet rs = null;
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, Util.data_to_sql(dataInicial));
+            stmt.setString(2, Util.data_to_sql(dataFinal));
+            rs = stmt.executeQuery();
+            if(rs.next()){
+                return rs.getString("usuario");
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+        } catch(Exception ex){
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(rs!=null){
+                    rs.close();
+                }
+                if(stmt!=null){
+                    stmt.close();
+                }
+                connection.close();
+            } catch(Exception ex){
+                log.error(ex);
+            }
+        }
+        return "";
+    }
+    
     public List<Atendimento> list() {
         return new CustomDAO<Atendimento>().list(Atendimento.class);
     }

@@ -17,6 +17,7 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -78,6 +79,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jBtnDashboard = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAtendimentos = new javax.swing.JTable();
+        jlblMaiorRecepcionista = new javax.swing.JLabel();
+        jlblMaiorInterpretador = new javax.swing.JLabel();
+        jlblTotalAtendimentos = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMCadastro = new javax.swing.JMenu();
         jMPaciente = new javax.swing.JMenuItem();
@@ -233,10 +237,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             }
         });
 
-        jDteInicial.setDateFormatString("dd/MM/yyyy");
-
-        jDteFinal.setDateFormatString("dd/MM/yyyy");
-
+        jBtnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/dashboard.png"))); // NOI18N
         jBtnDashboard.setText("Dashboard");
         jBtnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -326,27 +327,60 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jIExameLayout.createSequentialGroup()
                 .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
+
+        jlblMaiorRecepcionista.setForeground(new java.awt.Color(51, 51, 255));
+        jlblMaiorRecepcionista.setText("Recepcionista com maior número de atendimentos: Virgínia de Souza. ");
+
+        jlblMaiorInterpretador.setForeground(new java.awt.Color(51, 51, 255));
+        jlblMaiorInterpretador.setText("Méd. interpretador com maior número de atendimentos: João do Pulo. ");
+
+        jlblTotalAtendimentos.setForeground(new java.awt.Color(51, 51, 255));
+        jlblTotalAtendimentos.setText("Total de atendimentos: 5. ");
 
         jDesktopPane1.setLayer(jILogin, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jIExame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jlblMaiorRecepcionista, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jlblMaiorInterpretador, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jlblTotalAtendimentos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jIExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jIExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jlblMaiorInterpretador, javax.swing.GroupLayout.PREFERRED_SIZE, 1068, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblTotalAtendimentos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlblMaiorRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jIExame)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jIExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jILogin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblTotalAtendimentos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblMaiorInterpretador)))
+                .addGap(7, 7, 7)
+                .addComponent(jlblMaiorRecepcionista)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -429,11 +463,15 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -512,7 +550,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     }//GEN-LAST:event_jMParametrosActionPerformed
 
     private void jBAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAtenderActionPerformed
-        TelaAtender dialog = new TelaAtender (this, rootPaneCheckingEnabled, this);
+        TelaAtender dialog = new TelaAtender(this, rootPaneCheckingEnabled, this);
         new AtenderControl(dialog, this).carregarDados(this);
         dialog.setVisible(true);
     }//GEN-LAST:event_jBAtenderActionPerformed
@@ -560,6 +598,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTPesquisarAtendimento;
     private javax.swing.JTextField jTUsuario;
+    private javax.swing.JLabel jlblMaiorInterpretador;
+    private javax.swing.JLabel jlblMaiorRecepcionista;
+    private javax.swing.JLabel jlblTotalAtendimentos;
     private javax.swing.JTable tblAtendimentos;
     // End of variables declaration//GEN-END:variables
     
@@ -701,6 +742,21 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     @Override
     public JButton jBtnDashboard() {
         return jBtnDashboard;
+    }
+
+    @Override
+    public JLabel jlblTotalAtendimentos() {
+        return jlblTotalAtendimentos;
+    }
+
+    @Override
+    public JLabel jlblMaiorInterpretador() {
+        return jlblMaiorInterpretador;
+    }
+
+    @Override
+    public JLabel jlblMaiorRecepcionista() {
+        return jlblMaiorRecepcionista;
     }
   
     

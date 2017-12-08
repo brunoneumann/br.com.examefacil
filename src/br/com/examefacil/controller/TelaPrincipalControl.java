@@ -48,6 +48,8 @@ public class TelaPrincipalControl {
         carregaPermissoes(view, usuarioLogado.getIdusuario());
         
         PromptSupport.setPrompt("Buscar paciente", view.jTPesquisarAtendimento());
+        
+        carregaEstatisticas(view);
     }
     
     public void iniciarPeriodoDatas(TelaPrincipalView view){
@@ -66,6 +68,23 @@ public class TelaPrincipalControl {
             }
         }
         return false;
+    }
+    
+    public void carregaEstatisticas(TelaPrincipalView view){
+        if(TelaPrincipal.usuarioLogado.getTipo_acesso().equals("5")){
+            String dataInicial = Util.formataDataSQL(view.jDteInicial().getDate());
+            String dataFinal = Util.formataDataSQL(view.jDteFinal().getDate());
+            view.jlblTotalAtendimentos().setText("Total de atendimentos: "+
+                    new AtendimentoDAO().totalAtendimentos(dataInicial, dataFinal)+"");
+            view.jlblMaiorInterpretador().setText("Méd. interpretador com maior número de atendimentos: "+
+                    new AtendimentoDAO().maiorInterpretador(dataInicial, dataFinal));
+            view.jlblMaiorRecepcionista().setText("Recepcionista com maior número de atendimentos: "+
+                    new AtendimentoDAO().maiorRecepcionista(dataInicial, dataFinal));
+        } else {
+            view.jlblTotalAtendimentos().setText(""); view.jlblTotalAtendimentos().setVisible(false);
+            view.jlblMaiorInterpretador().setText(""); view.jlblMaiorInterpretador().setVisible(false);
+            view.jlblMaiorRecepcionista().setText(""); view.jlblMaiorRecepcionista().setVisible(false);
+        }
     }
     
     public void carregaPermissaoIncluirAtendimento(TelaPrincipalView view) {
