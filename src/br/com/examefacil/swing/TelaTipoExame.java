@@ -120,6 +120,12 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
             }
         });
 
+        jTPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPesquisarActionPerformed(evt);
+            }
+        });
+
         jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,10 +179,10 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
                     .addComponent(jBGravar)
                     .addComponent(jBExcluir)
                     .addComponent(jBFechar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPTipoExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPesquisar)
-                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPTipoExameLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -344,6 +350,10 @@ public class TelaTipoExame extends javax.swing.JFrame implements TipoExameView{
     private void jTABTipoExameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABTipoExameMouseClicked
         new TipoExameControl().alteraEstadoEditarExcluir(this, true);
     }//GEN-LAST:event_jTABTipoExameMouseClicked
+
+    private void jTPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPesquisarActionPerformed
 
     /**
      * @param args the command line arguments

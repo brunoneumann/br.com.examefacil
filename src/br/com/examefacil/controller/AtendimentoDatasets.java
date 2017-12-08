@@ -65,6 +65,7 @@ public class AtendimentoDatasets {
                 createDatasetAtendimentosPorAreaExame(lista),
                 PlotOrientation.VERTICAL,
                 true,true,false);
+        
         return lineChart;
     }
     

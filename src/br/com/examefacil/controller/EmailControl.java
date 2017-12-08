@@ -36,7 +36,14 @@ public class EmailControl {
                 email.setTLS(false);
                 
                 email.attach(new ByteArrayDataSource(getPDFByteStream(p.getArqPDF()), "application/pdf"), "examefacil.pdf", "documento", EmailAttachment.ATTACHMENT);
-                email.setHtmlMsg("<html>MENSAGEM EM FORMATO HTML</html>");
+                email.setHtmlMsg("<html> "
+                        + "<body> "
+                        + "<span style=\"font-size: 24px\">Bem vindo ao sistema Exame Fácil!</span><br><br>"
+                        + "Encaminhamos em anexo um manual de utilização do sistema.<br><br>" 
+                        + "Muito obrigado!<br>" 
+                        + "Equipe Exame Fácil"
+                        + "</body> "
+                        + "</html>");
                 
                 email.send();
             }

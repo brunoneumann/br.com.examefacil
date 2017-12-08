@@ -255,7 +255,7 @@ public class TelaPaciente extends javax.swing.JFrame implements PacienteView {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPesquisar)
-                    .addComponent(jTPesquisarPaciente))
+                    .addComponent(jTPesquisarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPPacienteLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

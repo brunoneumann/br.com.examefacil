@@ -14,6 +14,7 @@ import br.com.examefacil.tools.Util;
 import br.com.examefacil.view.ImagemView;
 import br.com.examefacil.view.TelaPrincipalView;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -40,6 +41,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     public TelaPrincipal(Usuario u) {
         initComponents();
         this.usuarioLogado = u;
+        this.jlblEmailUsuario.setText(u.getEmail());
         new TelaPrincipalControl().init(this);
         setLocationRelativeTo( null );
     }
@@ -74,6 +76,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jlblTotalAtendimentos = new javax.swing.JLabel();
         jlblMaiorInterpretador = new javax.swing.JLabel();
         jlblMaiorRecepcionista = new javax.swing.JLabel();
+        jlblEmailUsuario = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMCadastro = new javax.swing.JMenu();
         jMPaciente = new javax.swing.JMenuItem();
@@ -128,6 +131,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
             }
         });
 
+        jTPesquisarAtendimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTPesquisarAtendimentoKeyPressed(evt);
+            }
+        });
+
         jBImagens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imagens.png"))); // NOI18N
         jBImagens.setText("Imagens");
         jBImagens.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +168,10 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                 jBAtenderActionPerformed(evt);
             }
         });
+
+        jDteInicial.setDateFormatString("dd/MM/yyyy");
+
+        jDteFinal.setDateFormatString("dd/MM/yyyy");
 
         jBtnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/dashboard.png"))); // NOI18N
         jBtnDashboard.setText("Dashboard");
@@ -247,6 +260,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
         jlblMaiorRecepcionista.setForeground(new java.awt.Color(51, 51, 255));
         jlblMaiorRecepcionista.setText("Recepcionista com maior número de atendimentos: Virgínia de Souza. ");
 
+        jlblEmailUsuario.setText("admin@gmail.com");
+
         javax.swing.GroupLayout jIExameLayout = new javax.swing.GroupLayout(jIExame.getContentPane());
         jIExame.getContentPane().setLayout(jIExameLayout);
         jIExameLayout.setHorizontalGroup(
@@ -258,10 +273,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
                 .addComponent(jlblMaiorInterpretador, javax.swing.GroupLayout.PREFERRED_SIZE, 1068, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jlblMaiorRecepcionista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jIExameLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlblEmailUsuario)
+                .addContainerGap())
         );
         jIExameLayout.setVerticalGroup(
             jIExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jIExameLayout.createSequentialGroup()
+                .addComponent(jlblEmailUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPAreaExame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,6 +458,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private void jBPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPesquisarActionPerformed
         new TelaPrincipalControl().pesquisar(this);
     }//GEN-LAST:event_jBPesquisarActionPerformed
+
+    private void jTPesquisarAtendimentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTPesquisarAtendimentoKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            new TelaPrincipalControl().pesquisar(this);
+        }
+    }//GEN-LAST:event_jTPesquisarAtendimentoKeyPressed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -465,6 +492,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements TelaPrincipalVi
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTPesquisarAtendimento;
+    private javax.swing.JLabel jlblEmailUsuario;
     private javax.swing.JLabel jlblMaiorInterpretador;
     private javax.swing.JLabel jlblMaiorRecepcionista;
     private javax.swing.JLabel jlblTotalAtendimentos;

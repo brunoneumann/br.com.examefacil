@@ -95,7 +95,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTPesquisar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -178,6 +178,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTPesquisar">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTPesquisarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBFechar">
           <Properties>

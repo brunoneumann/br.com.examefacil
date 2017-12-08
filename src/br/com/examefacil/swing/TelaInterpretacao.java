@@ -32,6 +32,7 @@ public class TelaInterpretacao extends javax.swing.JDialog implements Interpreta
         this.chooserAudio = new JFileChooser();
         this.telaPrincipalView = viewPrincipal;
         initComponents();
+        this.jLIDAtendimento.setVisible(false);
         new InterpretacaoControl(this, telaPrincipalView).init(telaPrincipalView);
         //setLocationRelativeTo( null );
         

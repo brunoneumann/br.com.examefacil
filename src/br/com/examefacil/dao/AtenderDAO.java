@@ -143,7 +143,8 @@ public class AtenderDAO {
                 "areaexame, data, COUNT(DISTINCT idatendimento) qtde "
                 + "FROM vw_atendimentos_areaexame "
                 + "WHERE data_sql BETWEEN ? AND ? "
-                + "GROUP BY 1,2";
+                + "GROUP BY 1,2 "
+                + "ORDER BY 2,1";
         ResultSet rs = null;
         PreparedStatement stmt = null;
         try {

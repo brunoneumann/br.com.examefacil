@@ -51,7 +51,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jBPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTPesquisar" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="jTPesquisar" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="272" max="32767" attributes="0"/>

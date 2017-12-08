@@ -109,6 +109,11 @@ public class TelaPrincipalControl {
     }
     
     public void carregaPermissaoAlterarExcluirAtendimento(TelaPrincipalView view) {
+        String acesso = TelaPrincipal.usuarioLogado.getTipo_acesso();
+        try {
+            alteraBotoesAtendimento(view, acesso);
+        } catch(Exception ex){}
+        
         List<Acesso> permissoes = new AcessoControl().listaAcessosUsuario(TelaPrincipal.usuarioLogado.getIdusuario());
         for (Acesso a : permissoes) {
             if (a.getPagina().equals("atendimento")) {
@@ -121,15 +126,11 @@ public class TelaPrincipalControl {
             }else if (a.getPagina().equals("at-imagem")){
                 view.jBImagens().setEnabled(a.isIncluir());
                 break;
-            } 
+            }
         }
-        String acesso = TelaPrincipal.usuarioLogado.getTipo_acesso();
-        alteraBotoesAtendimento(view, acesso);
-        
-
     }
     public void alteraBotoesAtendimento (TelaPrincipalView view, String acesso){
-          // PERMISSOES POR STATUS
+        // PERMISSOES POR STATUS
         if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Aguardando consulta")){
             view.jBImagens().setEnabled(false);
             view.jBInterpretar().setEnabled(false);
@@ -154,7 +155,7 @@ public class TelaPrincipalControl {
             
         }else if (view.tblAtendimentos().getModel().getValueAt(view.tblAtendimentos().getSelectedRow(), 6).equals("Aguardando interpretação")){
             view.jBAtender().setEnabled(false);
-            view.jBImagens().setEnabled(false); 
+            view.jBImagens().setEnabled(false);
             view.jBLaudo().setEnabled(false);
             view.jBExcluir().setEnabled(true);
             if(acesso.equals("5")||acesso.equals("4")){
@@ -177,7 +178,7 @@ public class TelaPrincipalControl {
             view.jBAtender().setEnabled(false);
             view.jBImagens().setEnabled(false);
             view.jBInterpretar().setEnabled(false);
-            view.jBLaudo().setEnabled(false);
+            view.jBLaudo().setEnabled(true);
             view.jBEditar().setEnabled(false);
             view.jBExcluir().setEnabled(true);
         }else{
@@ -189,7 +190,7 @@ public class TelaPrincipalControl {
             view.jBExcluir().setEnabled(true);
         }
         
-          
+        
     }
     
     public void pesquisar(TelaPrincipalView view){
@@ -199,6 +200,8 @@ public class TelaPrincipalControl {
                     Util.formataDataSQL(view.jDteInicial().getDate()),
                     Util.formataDataSQL(view.jDteFinal().getDate()));
             atualizaTabelaAtendimento(view, lista);
+            
+            carregaEstatisticas(view);
             
         } catch(Exception ex){
             log.error(ex);
@@ -221,12 +224,12 @@ public class TelaPrincipalControl {
     public TableColumnModel tableColumnAtendimentos(TelaPrincipalView view) {
         TableColumnModel coluna = view.tblAtendimentos().getColumnModel();
         coluna.getColumn(0).setPreferredWidth(1);
-        coluna.getColumn(1).setPreferredWidth(100);
-        coluna.getColumn(2).setPreferredWidth(100);
-        coluna.getColumn(3).setPreferredWidth(5);
-        coluna.getColumn(4).setPreferredWidth(5);
-        coluna.getColumn(5).setPreferredWidth(5);
-        coluna.getColumn(6).setPreferredWidth(100);
+        coluna.getColumn(1).setPreferredWidth(20);
+        coluna.getColumn(2).setPreferredWidth(20);
+        coluna.getColumn(3).setPreferredWidth(2);
+        coluna.getColumn(4).setPreferredWidth(2);
+        coluna.getColumn(5).setPreferredWidth(2);
+        coluna.getColumn(6).setPreferredWidth(80);
         return coluna;
     }
     public TableModel tableModelAtendimentos(TelaPrincipalView view, List<Atendimento> lista) {
@@ -314,12 +317,12 @@ public class TelaPrincipalControl {
         tela.setVisible(true);
     }
     public void desabilitaBotoes(TelaPrincipalView view){
-            view.jBAtender().setEnabled(false);
-            view.jBImagens().setEnabled(false);
-            view.jBInterpretar().setEnabled(false);
-            view.jBLaudo().setEnabled(false);
-            view.jBEditar().setEnabled(false);
-            view.jBExcluir().setEnabled(false);
+        view.jBAtender().setEnabled(false);
+        view.jBImagens().setEnabled(false);
+        view.jBInterpretar().setEnabled(false);
+        view.jBLaudo().setEnabled(false);
+        view.jBEditar().setEnabled(false);
+        view.jBExcluir().setEnabled(false);
     }
     
     

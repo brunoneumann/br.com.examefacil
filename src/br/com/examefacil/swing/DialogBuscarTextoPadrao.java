@@ -62,6 +62,9 @@ public class DialogBuscarTextoPadrao extends javax.swing.JDialog implements Busc
             }
         });
 
+        jTPesquisar.setMinimumSize(new java.awt.Dimension(14, 30));
+        jTPesquisar.setPreferredSize(new java.awt.Dimension(14, 30));
+
         jBPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pesquisar.png"))); // NOI18N
         jBPesquisar.setText("Pesquisar");
         jBPesquisar.addActionListener(new java.awt.event.ActionListener() {

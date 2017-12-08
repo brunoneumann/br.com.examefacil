@@ -26,9 +26,11 @@ import com.towel.el.factory.FieldResolverFactory;
 import com.towel.swing.table.ObjectTableModel;
 import java.io.File;
 import java.util.List;
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -182,7 +184,10 @@ public class LaudoControl {
     public void abrirSom() { // funciona apenas com arquivos .WAV
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(view.jLAudio().getText()).getAbsoluteFile());
-            Clip clip = AudioSystem.getClip();
+            //Clip clip = AudioSystem.getClip();
+            AudioFormat format = audioInputStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            Clip clip = (Clip)AudioSystem.getLine(info);
             clip.open(audioInputStream);
             clip.start();
         } catch (Exception ex) {

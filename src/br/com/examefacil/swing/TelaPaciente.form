@@ -107,7 +107,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jBPesquisar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTPesquisarPaciente" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jTPesquisarPaciente" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>

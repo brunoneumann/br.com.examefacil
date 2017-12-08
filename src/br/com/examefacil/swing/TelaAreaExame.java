@@ -114,6 +114,12 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
             }
         });
 
+        jTPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTPesquisarActionPerformed(evt);
+            }
+        });
+
         jBFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/fechar.png"))); // NOI18N
         jBFechar.setText("Fechar");
         jBFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +176,7 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPAreaExameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBPesquisar)
-                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPAreaExameLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -304,6 +310,10 @@ public class TelaAreaExame extends javax.swing.JFrame implements AreaExameView{
     private void jTABAreaExameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTABAreaExameMouseClicked
         new AreaExameControl().alteraEstadoEditarExcluir(this, true);
     }//GEN-LAST:event_jTABAreaExameMouseClicked
+
+    private void jTPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTPesquisarActionPerformed
     
     /**
      * @param args the command line arguments

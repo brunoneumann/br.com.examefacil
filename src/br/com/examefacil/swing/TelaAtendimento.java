@@ -151,6 +151,7 @@ public class TelaAtendimento extends javax.swing.JDialog implements AtendimentoV
         jTObservacoes.setRows(5);
         jScrollPane1.setViewportView(jTObservacoes);
 
+        jDtDataAtendimento.setDateFormatString("dd/MM/yyyy");
         jDtDataAtendimento.setName("Data de atendimento"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
